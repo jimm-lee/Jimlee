@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Aera Academy — Master real skills. Own your era.</title>
+<meta name="description" content="Aera Academy is a cohort-based online academy pairing live mentorship with project-based learning, so you graduate with proof of skill, not just a certificate." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="#top">Aera <span>Academy</span></a>
+    <nav class="main-nav" aria-label="Primary">
+      <a href="#programs">Programs</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-primary btn-small" href="#waitlist">Join the waitlist</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile">
+    <a href="#programs">Programs</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn-primary" href="#waitlist">Join the waitlist</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">Founding cohort — enrollment opens soon</p>
+      <h1>Master real skills.<br />Own your era.</h1>
+      <p class="hero-sub">
+        Aera Academy pairs live mentorship with project-based learning in small cohorts,
+        so you leave with a portfolio and a network — not just a completion badge.
+      </p>
+      <form class="hero-form" id="waitlist-form" novalidate>
+        <label class="sr-only" for="hero-email">Email address</label>
+        <input type="email" id="hero-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        <button type="submit" class="btn btn-primary">Get early access</button>
+      </form>
+      <p class="form-note" id="hero-form-note" role="status" aria-live="polite"></p>
+      <p class="hero-microcopy">No spam. One email when doors open, and never again if you don't want it.</p>
+    </div>
+  </section>
+
+  <section class="value-props" aria-label="Why Aera Academy">
+    <div class="container value-grid">
+      <div class="value-card">
+        <div class="value-icon" aria-hidden="true">◆</div>
+        <h3>Small live cohorts</h3>
+        <p>Capped classes so instructors know your name and your work — not a video library you abandon in week two.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" aria-hidden="true">▲</div>
+        <h3>Mentor-led, not just recorded</h3>
+        <p>Working practitioners run live sessions and review your work, on top of a self-paced curriculum.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" aria-hidden="true">●</div>
+        <h3>Portfolio over certificates</h3>
+        <p>Every track ends in a real project you can show, not just a PDF you file away and forget.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon" aria-hidden="true">■</div>
+        <h3>A community that outlasts the course</h3>
+        <p>Alumni access, ongoing office hours, and a peer network built for the years after graduation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="programs" id="programs">
+    <div class="container">
+      <h2 class="section-title">Pick your track</h2>
+      <p class="section-sub">Three tracks, one method: live instruction, real projects, small groups.</p>
+      <div class="programs-grid">
+        <article class="program-card">
+          <h3>Foundations</h3>
+          <p class="program-tagline">Start from zero, finish with fundamentals that actually stick.</p>
+          <ul>
+            <li>6-week live cohort</li>
+            <li>Weekly project checkpoints</li>
+            <li>1:1 kickoff call with a mentor</li>
+          </ul>
+          <a class="btn btn-outline" href="#waitlist">Join waitlist</a>
+        </article>
+        <article class="program-card featured">
+          <p class="program-badge">Most popular</p>
+          <h3>Specialist</h3>
+          <p class="program-tagline">Go deep on one discipline with a capstone project for your portfolio.</p>
+          <ul>
+            <li>10-week live cohort</li>
+            <li>Dedicated mentor pairing</li>
+            <li>Capstone project + review</li>
+          </ul>
+          <a class="btn btn-primary" href="#waitlist">Join waitlist</a>
+        </article>
+        <article class="program-card">
+          <h3>Mastery</h3>
+          <p class="program-tagline">For alumni and advanced learners ready to lead, not just execute.</p>
+          <ul>
+            <li>12-week intensive</li>
+            <li>Small-group peer critique</li>
+            <li>Lifetime alumni access</li>
+          </ul>
+          <a class="btn btn-outline" href="#waitlist">Join waitlist</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2 class="section-title">How it works</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-num">01</span>
+          <h3>Join the waitlist</h3>
+          <p>Reserve your spot for the founding cohort — no payment required to get on the list.</p>
+        </li>
+        <li>
+          <span class="step-num">02</span>
+          <h3>Pick a track and onboard</h3>
+          <p>Choose Foundations, Specialist, or Mastery, then get matched with your cohort and mentor.</p>
+        </li>
+        <li>
+          <span class="step-num">03</span>
+          <h3>Learn live and async</h3>
+          <p>Weekly live sessions, structured async work, and direct feedback on everything you build.</p>
+        </li>
+        <li>
+          <span class="step-num">04</span>
+          <h3>Graduate with proof</h3>
+          <p>Leave with a finished project, a mentor reference, and a community you keep for good.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Founding cohort pricing</h2>
+      <p class="section-sub">Early access pricing for the first cohort. Rises once enrollment opens publicly.</p>
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Foundations</h3>
+          <p class="price">$—<span> / cohort</span></p>
+          <p class="price-note">Add your founding-cohort price here.</p>
+          <a class="btn btn-outline" href="#waitlist">Join waitlist</a>
+        </div>
+        <div class="price-card featured">
+          <p class="program-badge">Best value</p>
+          <h3>Specialist</h3>
+          <p class="price">$—<span> / cohort</span></p>
+          <p class="price-note">Add your founding-cohort price here.</p>
+          <a class="btn btn-primary" href="#waitlist">Join waitlist</a>
+        </div>
+        <div class="price-card">
+          <h3>Mastery</h3>
+          <p class="price">$—<span> / cohort</span></p>
+          <p class="price-note">Add your founding-cohort price here.</p>
+          <a class="btn btn-outline" href="#waitlist">Join waitlist</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently asked questions</h2>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Do I need experience before I start?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Foundations assumes no prior experience. Specialist and Mastery expect the fundamentals from an earlier track, or equivalent experience.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            How much time does each track take per week?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Plan on 5–8 hours a week: one live session plus structured project time. Exact hours vary by track.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            What happens after I join the waitlist?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>You'll get one email when applications open for the founding cohort, with everything you need to enroll.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            Is there a refund policy?
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Add your refund and guarantee policy here before this goes live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta" id="waitlist">
+    <div class="container final-cta-inner">
+      <h2>Be first into the founding cohort.</h2>
+      <p>Spots are capped to keep cohorts small. Join the waitlist to get access before applications open.</p>
+      <form class="hero-form" id="final-form" novalidate>
+        <label class="sr-only" for="final-email">Email address</label>
+        <input type="email" id="final-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+        <button type="submit" class="btn btn-primary">Get early access</button>
+      </form>
+      <p class="form-note" id="final-form-note" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <a class="logo" href="#top">Aera <span>Academy</span></a>
+    <nav aria-label="Footer">
+      <a href="#programs">Programs</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <p class="footer-copy">&copy; <span id="year"></span> Aera Academy. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
