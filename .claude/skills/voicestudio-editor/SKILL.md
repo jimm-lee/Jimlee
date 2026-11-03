@@ -32,6 +32,12 @@ curl -s localhost:3900/media-tools/status  # ffmpeg/ffprobe/yt-dlp
   `GET /models/licenses/details/{repo_id}` (the default OmniVoice weights are **non-commercial**,
   CC-BY-NC + Higgs Audio 2 + Meta Llama 3 tokenizer terms) and accept via `POST /models/licenses/accept`
   **only on their explicit say-so**. Never accept on the user's behalf.
+- **Commercial-friendly engines** (Apache-2.0/MIT per `GET /models` → `license_info.license_category`):
+  VoxCPM2 (clone + design), CosyVoice 3 (needed for `keep_delivery`), MOSS-TTS-Nano, KittenTTS, GPT-SoVITS.
+  Install: `POST /engines/sidecar/{engine}/install` + `POST /models/install {"repo_id":…}`,
+  then `POST /engines/select {"family":"tts","backend_id":"voxcpm2"}` (or pass `engine=` per request).
+  The user chose this route over OmniVoice's non-commercial weights. VoxCPM2 is the active engine in this
+  workspace (CPU: ~2.5 min for a 5 s take, 48 kHz mono).
 
 Pick the right tool for the edit:
 
