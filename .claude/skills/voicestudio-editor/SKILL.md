@@ -28,6 +28,10 @@ curl -s localhost:3900/media-tools/status  # ffmpeg/ffprobe/yt-dlp
 - Not running and a source checkout exists → `bun run setup:api` once, then `bun run dev:api`
   (backend only) or `bun run dev` (desktop). Never install a second copy.
 - 401/403 → auth is configured; ask for credentials, never disable auth.
+- 403 `model_licence_required` → the model's licence has not been accepted. Show the user
+  `GET /models/licenses/details/{repo_id}` (the default OmniVoice weights are **non-commercial**,
+  CC-BY-NC + Higgs Audio 2 + Meta Llama 3 tokenizer terms) and accept via `POST /models/licenses/accept`
+  **only on their explicit say-so**. Never accept on the user's behalf.
 
 Pick the right tool for the edit:
 
