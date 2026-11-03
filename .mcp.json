@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "concat": {
+      "command": "/usr/bin/concat",
+      "args": ["--mcp"]
+    }
+  }
+}
