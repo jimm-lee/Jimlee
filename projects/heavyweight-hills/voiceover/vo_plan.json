@@ -1,0 +1,15 @@
+[
+ {"id":"this-movember",  "from":2.13,  "to":2.95,  "at":0.10},
+ {"id":"clean-shaven",   "from":3.11,  "to":4.30,  "at":1.15},
+ {"id":"thirty-kilos",   "from":5.29,  "to":6.90,  "at":2.95},
+ {"id":"heavyweight",    "from":7.56,  "to":10.05, "at":4.55},
+ {"id":"up",             "from":10.80, "to":11.30, "at":7.50},
+ {"id":"down",           "from":11.69, "to":12.24, "at":8.50},
+ {"id":"repeat",         "from":12.54, "to":13.42, "at":9.50},
+ {"id":"every-hill",     "from":14.50, "to":15.90, "at":11.15},
+ {"id":"all-movember",   "from":16.20, "to":17.80, "at":19.84},
+ {"id":"now-i-need-you", "from":18.90, "to":20.25, "at":22.00},
+ {"id":"sponsor",        "from":20.41, "to":21.97, "at":23.25},
+ {"id":"scan",           "from":22.22, "to":23.28, "at":25.95},
+ {"id":"help-me",        "from":24.02, "to":25.90, "at":27.15}
+]

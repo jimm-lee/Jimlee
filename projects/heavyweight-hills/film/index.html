@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"James Leahy"},
+  {"id":"campaign","type":"string","label":"Campaign","default":"HEAVYWEIGHT HILLS"},
+  {"id":"weight","type":"string","label":"Vest weight","default":"30 KG"},
+  {"id":"ask","type":"string","label":"Ask","default":"SPONSOR MY SUMMIT"},
+  {"id":"link","type":"string","label":"Link shown","default":"movember.com/m/15440871"},
+  {"id":"accent","type":"color","label":"Accent","default":"#ffd21f"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"},
+  {"id":"endHold","type":"number","label":"End card hold (s)","default":4,"min":1,"max":10,"step":0.1,"group":"Timing"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>Heavyweight Hills — Movember launch</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Anton"; src: url("assets/fonts/Anton-400.woff") format("woff"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-var.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Inter", sans-serif; }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .shot video, .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .night video { filter: brightness(1.15) contrast(1.08); }
+  /* legibility: shade behind type, placed before the type in the DOM */
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: .92; letter-spacing: 1px; opacity: 0; text-shadow: 0 6px 30px rgba(0,0,0,.45); }
+  .xl { font-size: 250px; } .l { font-size: 170px; } .m { font-size: 120px; } .s { font-size: 84px; }
+  .acc { color: var(--accent); }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Inter"; font-weight: 800; font-size: 40px; letter-spacing: 12px; opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 520px; height: 14px; margin-left: -260px; background: var(--accent); transform-origin: 50% 50%; transform: scaleX(0); }
+  /* end card */
+  #end { position: absolute; inset: 0; visibility: hidden; }
+  #end .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.38); }
+  #end .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .qrwrap { position: absolute; left: 50%; top: 820px; width: 520px; height: 520px; margin-left: -290px; padding: 30px; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
+  .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .scan { position: absolute; left: 0; right: 0; top: 1430px; text-align: center; font-family: "Inter"; font-weight: 800; font-size: 46px; letter-spacing: 8px; color: var(--accent); opacity: 0; }
+  .url { position: absolute; left: 0; right: 0; top: 1500px; text-align: center; font-family: "Inter"; font-weight: 600; font-size: 38px; opacity: 0; }
+  .who { position: absolute; left: 0; right: 0; top: 1640px; text-align: center; font-family: "Inter"; font-weight: 600; font-size: 34px; letter-spacing: 3px; opacity: 0; color: #ffffffcc; }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <audio id="om-voice" src="assets/voice.wav" data-start="0" data-track-index="7" data-volume="1"></audio>
+  <script type="application/json" id="om-cues">{"words": [{"text": "this", "start": 0.171, "end": 0.351}, {"text": "movember", "start": 0.432, "end": 0.852}, {"text": "clean", "start": 1.613, "end": 1.834}, {"text": "shaven", "start": 1.874, "end": 2.254}, {"text": "30", "start": 3.176, "end": 3.276}, {"text": "kilos", "start": 3.336, "end": 3.737}, {"text": "on", "start": 3.817, "end": 3.897}, {"text": "my", "start": 3.957, "end": 4.057}, {"text": "back", "start": 4.097, "end": 4.318}, {"text": "this", "start": 4.638, "end": 4.858}, {"text": "is", "start": 5.479, "end": 5.66}, {"text": "heavyweight", "start": 6.1, "end": 6.601}, {"text": "hills", "start": 6.641, "end": 6.922}, {"text": "up", "start": 7.683, "end": 7.783}, {"text": "down", "start": 8.604, "end": 8.965}, {"text": "repeat", "start": 9.726, "end": 10.227}, {"text": "every", "start": 11.329, "end": 11.509}, {"text": "hill", "start": 11.549, "end": 11.709}, {"text": "around", "start": 11.729, "end": 12.03}, {"text": "here", "start": 12.09, "end": 12.29}, {"text": "by", "start": 13.732, "end": 13.872}, {"text": "day", "start": 13.933, "end": 14.213}, {"text": "in", "start": 15.775, "end": 15.856}, {"text": "the", "start": 15.876, "end": 15.956}, {"text": "rain", "start": 16.036, "end": 16.396}, {"text": "by", "start": 17.738, "end": 17.859}, {"text": "night", "start": 17.919, "end": 18.199}, {"text": "all", "start": 20.062, "end": 20.262}, {"text": "movember", "start": 20.463, "end": 20.963}, {"text": "long", "start": 21.004, "end": 21.304}, {"text": "now", "start": 22.145, "end": 22.366}, {"text": "i", "start": 22.826, "end": 22.906}, {"text": "need", "start": 22.926, "end": 23.067}, {"text": "you", "start": 23.107, "end": 23.347}, {"text": "sponsor", "start": 23.708, "end": 24.088}, {"text": "my", "start": 24.108, "end": 24.229}, {"text": "summit", "start": 24.249, "end": 24.609}, {"text": "scan", "start": 26.232, "end": 26.512}, {"text": "the", "start": 26.552, "end": 26.612}, {"text": "code", "start": 26.672, "end": 26.973}, {"text": "and", "start": 27.253, "end": 27.353}, {"text": "help", "start": 27.393, "end": 27.534}, {"text": "me", "start": 27.574, "end": 27.634}, {"text": "get", "start": 27.674, "end": 27.794}, {"text": "this", "start": 27.834, "end": 27.994}, {"text": "weight", "start": 28.034, "end": 28.235}, {"text": "to", "start": 28.275, "end": 28.395}, {"text": "the", "start": 28.415, "end": 28.475}, {"text": "top", "start": 28.535, "end": 28.736}]}</script>
+  <audio id="om-sound" src="assets/sound.wav" data-start="0" data-duration="30.5" data-track-index="8" data-volume="1"></audio>
+
+  <!-- footage: each shot is a hard cut on the beat (120 bpm, beat = 0.5 s) -->
+  <div class="shot" id="s0" style="visibility:visible" data-om-id="movember-bottle"><video src="assets/clips/2654.mp4" class="clip" data-start="0" data-duration="1" data-media-start="2.75" muted playsinline></video></div>
+  <div class="shot" id="s1" data-om-id="shave"><video src="assets/clips/3220.mp4" class="clip" data-start="1"    data-duration="2"   data-media-start="1.2"  muted playsinline></video></div>
+  <div class="shot" id="s2"  data-om-id="vest-selfie"><video src="assets/clips/3267.mp4" class="clip" data-start="3"    data-duration="1.5" data-media-start="0.8" muted playsinline></video></div>
+  <div class="shot" id="s3"  data-om-id="terraces"><video src="assets/clips/3244.mp4" class="clip" data-start="4.5"  data-duration="3"   data-media-start="1.3"  muted playsinline></video></div>
+  <div class="shot" id="s4"  data-om-id="pov-up"><video src="assets/clips/3260.mp4" class="clip" data-start="7.5"  data-duration="1"   data-media-start="0"    muted playsinline></video></div>
+  <div class="shot" id="s5"  data-om-id="downhill"><video src="assets/clips/2650.mp4" class="clip" data-start="8.5"  data-duration="1"   data-media-start="0.5"  muted playsinline></video></div>
+  <div class="shot" id="s6"  data-om-id="repeat-steps"><video src="assets/clips/2651.mp4" class="clip" data-start="9.5"  data-duration="1"   data-media-start="0"    muted playsinline></video></div>
+  <div class="shot" id="s7"  data-om-id="repeat-steps-2"><video src="assets/clips/2654.mp4" class="clip" data-start="10.5"  data-duration=".5"  data-media-start="7.6"  muted playsinline></video></div>
+  <div class="shot" id="s9"  data-om-id="summit-selfie"><video src="assets/clips/3246.mp4" class="clip" data-start="11"  data-duration="2.5" data-media-start="3.8"  muted playsinline></video></div>
+  <div class="shot" id="s10" data-om-id="summit-view"><video src="assets/clips/3269.mp4" class="clip" data-start="13.5" data-duration="2" data-media-start="0.35" muted playsinline></video></div>
+  <div class="shot night" id="s11" data-om-id="wet-road"><video src="assets/clips/3286.mp4" class="clip" data-start="15.5"   data-duration="2"   data-media-start="2.0"  muted playsinline></video></div>
+  <div class="shot night" id="s12" data-om-id="night-slowmo"><video src="assets/clips/3292.mp4" class="clip" data-start="17.5"   data-duration="2"   data-media-start="1.6"  muted playsinline></video></div>
+  <div class="shot night" id="s14" data-om-id="night-wave"><video src="assets/clips/3290.mp4" class="clip" data-start="19.5"   data-duration="2.5" data-media-start="1.0"  muted playsinline></video></div>
+  <div class="shot" id="s15" data-om-id="summit-mist"><video src="assets/clips/3262.mp4" class="clip" data-start="22" data-duration="2.5" data-media-start="2.7"  muted playsinline></video></div>
+
+  <div id="end" data-om-id="end-card">
+    <div class="bg"><video src="assets/clips/3267_loop.mp4" class="clip" data-start="24.5" data-duration="6" data-media-start="0" muted playsinline></video></div>
+  </div>
+
+  <div class="shade"></div>
+
+  <!-- type -->
+  <div class="t l"  id="t0" style="top:1380px;opacity:1" data-om-id="t-this">THIS<br><span class="acc">MOVEMBER…</span></div>
+  <div class="kick" id="k1" style="top:260px" data-om-id="k-shave">1 NOVEMBER</div>
+  <div class="t l"  id="t1" style="top:330px" data-om-id="t-shave">CLEAN<br>SHAVEN.</div>
+  <div class="t xl acc" id="t2" style="top:230px" data-om-id="t-weight" data-var-text="weight">30 KG</div>
+  <div class="t s"  id="t2b" style="top:500px" data-om-id="t-vest">ON MY BACK</div>
+  <div class="kick" id="k3" style="top:600px" data-om-id="k-movember">A MOVEMBER CHALLENGE</div>
+  <div class="t xl" id="t3a" style="top:690px;font-size:196px" data-om-id="t-heavy">HEAVYWEIGHT</div>
+  <div class="t xl acc" id="t3b" style="top:910px" data-om-id="t-hills">HILLS</div>
+  <div class="bar"  id="b3" style="top:1160px" data-om-id="bar"></div>
+  <div class="t xl" id="t4" style="top:1350px" data-om-id="t-up">UP.</div>
+  <div class="t xl" id="t5" style="top:1350px" data-om-id="t-down">DOWN.</div>
+  <div class="t xl acc" id="t6" style="top:1350px" data-om-id="t-repeat">REPEAT.</div>
+  <div class="t m"  id="t9" style="top:1420px" data-om-id="t-local">EVERY HILL<br>AROUND HERE</div>
+  <div class="t l"  id="t10" style="top:300px" data-om-id="t-day">BY DAY.</div>
+  <div class="t l acc" id="t11" style="top:300px" data-om-id="t-night">BY NIGHT.</div>
+  <div class="t l"  id="t12" style="top:300px" data-om-id="t-rain">IN THE RAIN.</div>
+  <div class="t m"  id="t14" style="top:1420px" data-om-id="t-month">ALL MOVEMBER<br><span class="acc">LONG.</span></div>
+  <div class="t m"  id="t15a" style="top:420px" data-om-id="t-now">NOW I NEED YOU.</div>
+  <div class="t l acc" id="t15b" style="top:620px" data-om-id="t-ask" data-var-text="ask">SPONSOR MY SUMMIT</div>
+
+  <!-- end card type -->
+  <div class="kick" id="ek" style="top:300px" data-om-id="end-kicker">MOVEMBER · MEN'S HEALTH</div>
+  <div class="t m"  id="e1" style="top:370px;font-size:116px;white-space:nowrap" data-om-id="end-title" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
+  <div class="t s acc" id="e2" style="top:520px" data-om-id="end-ask" data-var-text="ask">SPONSOR MY SUMMIT</div>
+  <div class="qrwrap" id="qr" data-om-id="qr"><img src="assets/qr.svg" alt="QR code to James Leahy's Mo Space"></div>
+  <div class="scan" id="scan" data-om-id="scan">SCAN TO DONATE</div>
+  <div class="url"  id="url" data-om-id="url" data-var-text="link">movember.com/m/15440871</div>
+  <div class="who"  id="who" data-om-id="who" data-var-text="name">James Leahy</div>
+</div>
+
+<script>
+  const V = OM.vars();
+  const BPM = 120;
+  OM.music({ product: 'hype', bpm: BPM, drop: 'night', ending: 'button' });
+
+  const O = 1; // the intro (Movember bottle) runs 0–1 s; everything after it starts O seconds later
+  const sfx = (name, at, opts) => OM.sfx(name, at + O, opts);
+  const label = (name, at) => tl.addLabel(name, at + O);
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  // show a shot for its window, with a small scale punch on the cut
+  function shot(id, at, dur, { from = 1.12, to = 1.0, drift = 0 } = {}) {
+    at += O; const el = '#' + id;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: from }, { scale: to, duration: Math.min(.6, dur), ease: 'expo.out' }, at);
+    if (drift) tl.to(el, { scale: to + drift, duration: dur - .6, ease: 'none' }, at + .6);
+    tl.set(el, { visibility: 'hidden' }, at + dur);
+    return at;
+  }
+  // type slams in, holds, and leaves on its own cue
+  function slam(id, at, out, { sfx: hit = 'hit', scale = 1.7 } = {}) {
+    at += O; if (out != null) out += O;
+    tl.fromTo('#' + id, { opacity: 0, scale }, { opacity: 1, scale: 1, duration: .35 }, at);
+    if (hit) OM.sfx(hit, at);
+    if (out != null) tl.set('#' + id, { opacity: 0 }, out);
+  }
+  function rise(id, at, out) {
+    at += O; if (out != null) out += O;
+    tl.fromTo('#' + id, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5 }, at);
+    if (out != null) tl.set('#' + id, { opacity: 0 }, out);
+  }
+
+  // 0 · intro: the Movember bottle (absolute times, before the offset)
+  tl.addLabel('scene:intro', 0);
+  tl.fromTo('#s0', { scale: 1.06 }, { scale: 1, duration: .6 }, 0).set('#s0', { visibility: 'hidden' }, 1);
+  tl.fromTo('#t0', { scale: 1.06 }, { scale: 1, duration: .4 }, 0).set('#t0', { opacity: 0 }, 1);
+  OM.sfx('whoosh', .8);
+
+  // 1 · hook: the shave (frame 0 already has the subject and the line)
+  label('scene:shave', 0);
+  shot('s1', 0, 2, { from: 1.06, drift: .04 });
+  slam('t1', 0, 2, { sfx: 'impact', scale: 1.4 });
+  rise('k1', .5, 2); sfx('pop', .5);
+
+  // 2 · the vest
+  label('scene:vest', 2);
+  shot('s2', 2, 1.5);
+  slam('t2', 2, 3.5, { sfx: 'impact', scale: 2.2 });   // "thirty"
+  rise('t2b', 2.75, 3.5);                               // "on my back"
+
+  // 3 · title over the terraces
+  label('scene:title', 3.5);
+  shot('s3', 3.5, 3, { from: 1.2, drift: .06 });
+  rise('k3', 3.5, 6.5);
+  slam('t3a', 5.05, 6.5, { sfx: 'impact' });           // "heavyweight"
+  slam('t3b', 5.6, 6.5, { sfx: 'thud', scale: 2 });     // "hills"
+  tl.to('#b3', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, 5.9 + O).set('#b3', { scaleX: 0 }, 6.5 + O);
+  sfx('whoosh', 6.5);
+
+  // 4 · burst: up, down, repeat, then half-beat cuts
+  label('scene:grind', 6.5);
+  shot('s4', 6.5, 1);  slam('t4', 6.5, 7.5);
+  shot('s5', 7.5, 1);  slam('t5', 7.5, 8.5);
+  shot('s6', 8.5, 1);  slam('t6', 8.5, 9.5, { sfx: 'impact' });
+  shot('s7', 9.5, .5, { from: 1.2 }); sfx('hit', 9.5);
+
+  // 5 · summit
+  label('scene:summit', 10);
+  shot('s9', 10, 2.5, { from: 1.1 });
+  rise('t9', 10.25, 12.5); sfx('pop', 10.25);   // "every hill around here"
+  shot('s10', 12.5, 2, { from: 1.06, drift: .03 }); // the view over the town and harbour (IMG_3269)
+  slam('t10', 12.5, 14.5, { sfx: 'thud' });
+
+  // 6 · night: the drop
+  label('scene:night', 14.5);
+  sfx('subdrop', 14.5, { dur: 1.2 });
+  shot('s11', 14.5, 2, { from: 1.2, drift: .05 });
+  slam('t12', 14.5, 16.5, { sfx: 'impact' });
+  shot('s12', 16.5, 2, { from: 1.1, drift: .06 });
+  slam('t11', 16.5, 18.5, { sfx: 'thud' });
+  shot('s14', 18.5, 2.5, { from: 1.15 }); sfx('whip', 18.5);
+  rise('t14', 19, 21); sfx('hit', 19);
+
+  // 7 · the ask
+  label('scene:ask', 21);
+  shot('s15', 21, 2.5, { from: 1.08, drift: .05 });
+  rise('t15a', 21, 23.5);
+  slam('t15b', 22.65, 23.5, { sfx: 'impact', scale: 1.9 }); // "sponsor my summit"
+  sfx('reverse', 23.5, { dur: 1 });
+
+  // 8 · end card
+  label('scene:end', 23.5);
+  tl.set('#end', { visibility: 'visible' }, 23.5 + O);
+  // one line per beat, top to bottom
+  rise('ek', 23.5);                                         sfx('tick', 23.5);
+  slam('e1', 24, null, { sfx: 'impact', scale: 1.5 });
+  slam('e2', 24.5, null, { sfx: 'thud', scale: 1.4 });
+  tl.fromTo('#qr', { opacity: 0, scale: .7, rotation: -4 }, { opacity: 1, scale: 1, rotation: 0, duration: .7, ease: 'back.out(1.6)' }, 25 + O);
+  sfx('thud', 25.1);
+  rise('scan', 25.5);                                       sfx('chime', 25.5);
+  rise('url', 26);                                        sfx('pop', 26);
+  rise('who', 26.5);                                        sfx('pop', 26.5);
+  tl.to({}, { duration: V.endHold }, 25.5 + O);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>
