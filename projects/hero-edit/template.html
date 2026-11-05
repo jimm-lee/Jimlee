@@ -11,18 +11,18 @@
 <script src="vendor/om.js"></script>
 <style id="om-fonts">
 @font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
-@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
+@font-face { font-family: "Anton"; src: url("assets/fonts/Anton.woff2") format("woff2"); font-weight: 400; font-style: normal; }
 </style>
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
   #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
-  /* the grade (contrast, deeper blacks, richer colour) is baked into the clips; only the end shot is darkened for type */
+  /* clips are ungraded (straight HDR to SDR conversion); only the end shot is darkened for type */
   .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .shot.endshot video { filter: brightness(.72); }
   .shade { position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
-  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.14; letter-spacing: 0; opacity: 0; text-shadow: var(--shadow); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Anton", sans-serif; font-weight: 400; line-height: 1.0; letter-spacing: 1px; text-transform: uppercase; opacity: 0; text-shadow: var(--shadow); }
   .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
   .big { font-size: 200px; }
   .acc { color: var(--accent); }
@@ -40,10 +40,9 @@
 {{TYPES}}
 
   <!-- end card, over the last shot -->
-  <div class="t l"  id="e1" style="top:560px" data-om-id="end-line">{{END_LINE}}</div>
-  <div class="t acc big" id="e2" style="top:730px" data-om-id="end-word">{{END_WORD}}</div>
-  <div class="bar"  id="eb" style="top:1000px" data-om-id="end-bar"></div>
-  <div class="kick" id="ek" style="top:1050px" data-om-id="end-name" data-var-text="name">JAMES LEAHY</div>
+  <div class="t" id="e1" style="top:640px;font-size:170px" data-om-id="end-first">{{END_LINE}}</div>
+  <div class="t acc" id="e2" style="top:835px;font-size:230px" data-om-id="end-last">{{END_WORD}}</div>
+  <div class="bar"  id="eb" style="top:1095px" data-om-id="end-bar"></div>
 
 </div>
 
@@ -83,7 +82,6 @@
   tl.fromTo('#e1', { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5 }, END + .2);
   tl.fromTo('#e2', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: .4 }, END + .7);
   tl.to('#eb', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, END + 1.1);
-  tl.fromTo('#ek', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .5 }, END + 1.3);
   tl.to({}, { duration: {{END_DUR}} }, END);
 
   window.__timelines['film'] = tl;

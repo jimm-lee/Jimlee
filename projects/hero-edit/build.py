@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Writes film-15/index.html and film-10/index.html (huashu-motion compositions) from the cut lists below.
 
-Hero edits, no soundtrack (music is added afterwards). House style: brand/README.md. Captions are written in the
-spirit of James's stoic/strategy quotes (stillness, response over circumstance, discipline over motivation,
-consistency over applause, building quietly). Times are seconds on a 0.5 s grid.
+Hero edits, no soundtrack (music is added afterwards). Type: Anton caps with the #75FF78 accent (chosen by James for
+hero edits, Nov 2026). Captions during the clips are James's own lines (TITLES_*); empty until he supplies them.
+Times are seconds on a 0.5 s grid.
 """
 from pathlib import Path
 
@@ -23,15 +23,7 @@ CUT_15 = [
     ("2153", 10.0, 2.0, 2.4),       # vest selfie, golden hour
     ("0389", 12.0, 3.0, 1.0),       # end: sunset on deck
 ]
-# (text html, css size class, start, end, top px)
-TITLES_15 = [
-    ('Be<br><span class="acc">still.</span>', "l", 0.0, 2.5, 230),
-    ("You can't control<br>the <span class=\"acc\">chaos.</span>", "m", 2.5, 4.5, 250),
-    ('Only your<br><span class="acc">response.</span>', "m", 4.5, 5.5, 250),
-    ('Discipline<br>over <span class="acc">comfort.</span>', "m", 5.5, 7.5, 230),
-    ('Hard moments<br>reveal <span class="acc">strength.</span>', "m", 7.5, 9.0, 1130),
-    ('Build it<br><span class="acc">quietly.</span>', "l", 10.0, 12.0, 230),
-]
+TITLES_15 = []  # James's lines go here: (html, size class, start, end, top px)
 END_15 = 12.0
 LEN_15 = 15.0
 
@@ -44,17 +36,12 @@ CUT_10 = [
     ("2153", 5.0, 2.0, 2.4),
     ("0389", 7.0, 3.0, 1.0),
 ]
-TITLES_10 = [
-    ('Discipline<br>over <span class="acc">comfort.</span>', "m", 0.0, 1.5, 230),
-    ('Control the<br><span class="acc">response.</span>', "m", 1.5, 3.5, 250),
-    ('Hard moments<br>reveal <span class="acc">strength.</span>', "m", 3.5, 5.0, 1130),
-    ('Build it<br><span class="acc">quietly.</span>', "l", 5.0, 7.0, 230),
-]
+TITLES_10 = []
 END_10 = 7.0
 LEN_10 = 10.0
 
-END_LINE = "Do the"
-END_WORD = "WORK."
+END_LINE = "James"
+END_WORD = "Leahy"
 
 TEMPLATE = (HERE / "template.html").read_text()
 

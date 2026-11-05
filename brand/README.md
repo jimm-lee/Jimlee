@@ -14,6 +14,10 @@ Use this for every video from now on, so they look designed rather than template
 | Rule | 6px × 420px green bar with a soft offset shadow |
 | Position | upper two-thirds; **nothing below y 1440**, and keep lower-half text left of x 960 |
 
+> **Hero edits (Nov 2026):** James chose **Anton** caps for hero edits (white, #75FF78 on one word, same shadow),
+> from a side-by-side of six faces (`projects/hero-edit/font-options.jpg`), and no colour grade on the footage.
+> Merienda remains the face for other videos unless he says otherwise.
+
 Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.
 For 16:9, multiply by ~0.56.
 
