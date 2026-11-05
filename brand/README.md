@@ -14,8 +14,9 @@ Use this for every video from now on, so they look designed rather than template
 | Rule | 6px × 420px green bar with a soft offset shadow |
 | Position | upper two-thirds; **nothing below y 1440**, and keep lower-half text left of x 960 |
 
-> **Hero edits (Nov 2026):** James chose **Anton** caps for hero edits (white, #75FF78 on one word, same shadow),
-> from a side-by-side of six faces (`projects/hero-edit/font-options.jpg`), and no colour grade on the footage.
+> **Hero edits (Nov 2026):** James chose **Newsreader Bold** (Google Fonts, OFL; opsz 72, sentence case, letter-spacing
+> .05em) with white type, #75FF78 on one word and the same subtle down-right shadow, and no colour grade on the footage.
+> (Tried and replaced: Anton caps; Brasika is a paid Canva font with no free equivalent.)
 > Merienda remains the face for other videos unless he says otherwise.
 
 Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.
