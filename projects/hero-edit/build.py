@@ -58,6 +58,38 @@ HOOK_10_READ = 0.24  # slightly quicker reads so the hook clears before the payo
 END_10 = 7.5
 LEN_10 = 10.0
 
+CUT_20 = [
+    # 01 hook 0–3: the unexpected image (glowing jellyfish) under the first caption, then the cold plunge
+    ("0989", 0.0, 2.0, 2.4),        # jellyfish, magenta in the dark
+    ("0170", 2.0, 1.0, 2.6),        # ice bath, the splash
+    # 02 connection 3–7: the world (wide, still), then people (training)
+    ("2894", 3.0, 1.5, 1.6),        # Aoraki / Mt Cook and the glacier lake
+    ("3048", 4.5, 1.0, 2.0),        # the Wānaka tree
+    ("6234", 5.5, 1.5, 4.0),        # pad work at the gym
+    # 03 build 7–13: rhythm; food and town between effort and landscape, 1 s cuts to 0.5 s
+    ("9681", 7.0, 1.0, 2.0),        # vintage town, red truck
+    ("9733", 8.0, 0.5, 0.2),        # oysters
+    ("0171", 8.5, 0.5, 15.5),       # sauna
+    ("7989", 9.0, 0.5, 3.3),        # rodeo
+    ("9651", 9.5, 0.5, 0.3),        # river gorge
+    ("9161", 10.0, 0.5, 1.0),       # fight night
+    ("9644", 10.5, 0.5, 0.8),       # seafood platter
+    ("9170", 11.0, 0.5, 0.6),       # geyser
+    ("3148", 11.5, 0.5, 2.6),       # candlelit table
+    ("9319", 12.0, 0.5, 2.5),       # dragon boats
+    ("2987", 12.5, 0.5, 0.5),       # Clay Cliffs
+    # 04 payoff 13–17: movement and scale, then warmth
+    ("9661_slow", 13.0, 1.5, 4.4),  # dune run, half speed
+    ("3365", 14.5, 1.0, 1.0),       # running the beach
+    ("2153", 15.5, 1.5, 3.6),       # golden hour, turns to camera
+    # 05 linger 17–20: the sea at dusk, closing line, fade to black
+    ("3366", 17.0, 3.0, 1.0),
+]
+HOOK_20 = "Some places | *stay* with you | long after | you've physically | left them behind."
+HOOK_20_START = 0.3
+END_20 = 17.0
+LEN_20 = 20.0
+
 WORD_GAP = 0.14       # seconds between words popping in
 READ_BASE = 0.35      # minimum hold once the chunk is complete
 READ_PER_WORD = 0.28  # extra reading time per word
@@ -127,4 +159,5 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
 (HERE / "film-15/index.html").write_text(render(CUT_15, HOOK_15, HOOK_15_START, END_15, LEN_15, "Hero edit — 15 s"))
 (HERE / "film-10/index.html").write_text(render(CUT_10, HOOK_10, HOOK_10_START, END_10, LEN_10, "Hero edit — 10 s",
                                                 tops={4: 1130}, read_per_word=HOOK_10_READ))  # last chunk sits in the sand, clear of James on the dune)
-print("wrote film-15/index.html, film-10/index.html")
+(HERE / "film-20/index.html").write_text(render(CUT_20, HOOK_20, HOOK_20_START, END_20, LEN_20, "Hero edit — 20 s"))
+print("wrote film-15, film-10 and film-20 index.html")

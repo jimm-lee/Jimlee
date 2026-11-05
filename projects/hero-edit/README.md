@@ -15,6 +15,13 @@ linger ~15 %, alternating intimacy/scale, stillness/movement and dark/light.
 | 05 Linger | 12–15 the open sea at sunset, slow push; **"Go on, look after yourself"** word by word, fade to black | 7.5–10 same |
 | Hook line | "The ordinary days are quietly building / the **extraordinary** life you've always imagined." (aspiration: saves, profile visits) | "Your comfort zone can quietly become / the most **expensive** place you ever live." (challenging belief: comments) |
 
+**20 s cut** (`videos/Hero-Edit-20s.mp4`, `film-20/`): the original clips plus 13 new ones (jellyfish, Aoraki/Mt Cook, the
+Wānaka tree, Clay Cliffs, river gorge, vintage town, pad work, beach run, dusk beach, brunch, oysters, seafood,
+candlelit table). Hook: the glowing jellyfish under "Some places **stay** with you long after you've physically left
+them behind." (0–3 s) → connection (Mt Cook, Wānaka tree, pad work, 3–7 s) → build (11 shots, 1 s then 0.5 s cuts,
+7–13 s) → payoff (dune run, beach run, golden selfie, 13–17 s) → linger on the dusk sea with "Go on, look after
+yourself" (17–20 s). More structures for this footage: `COMPOSITIONS.md`.
+
 **Captions:** the hook line plays as chunks of 2–3 words on a single row. Words pop in one at a time (0.14 s apart),
 each chunk holds for reading time (0.35 s + 0.28 s per word) and then clears. Chunks are split with `|` in
 `HOOK_15` / `HOOK_10` in `build.py`; `*word*` marks the green word. The 10 s cut's last chunk sits lower, in the sand,
