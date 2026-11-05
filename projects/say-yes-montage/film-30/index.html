@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"JAMES LEAHY"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>Say Yes — 30 s</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.14; letter-spacing: 0; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .big { font-size: 200px; }
+  .acc { color: var(--accent); }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
+  #end { position: absolute; inset: 0; visibility: hidden; }
+  #end .bg { position: absolute; inset: -40px; filter: blur(16px) brightness(.45); }
+  #end .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <audio id="om-sound" src="assets/sound.wav" data-start="0" data-duration="30" data-track-index="8" data-volume="1"></audio>
+
+  <!-- footage: hard cuts on the beat (120 BPM, beat = 0.5 s) -->
+  <div class="shot" id="s0" style="visibility:visible" data-om-id="shot-9661"><video src="assets/clips/9661.mp4" class="clip" data-start="0.0" data-duration="2.0" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot" id="s1" data-om-id="shot-9023"><video src="assets/clips/9023.mp4" class="clip" data-start="2.0" data-duration="1.5" data-media-start="1.4" muted playsinline></video></div>
+  <div class="shot" id="s2" data-om-id="shot-2148"><video src="assets/clips/2148.mp4" class="clip" data-start="3.5" data-duration="1.5" data-media-start="0.6" muted playsinline></video></div>
+  <div class="shot" id="s3" data-om-id="shot-9357"><video src="assets/clips/9357.mp4" class="clip" data-start="5.0" data-duration="1.0" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot" id="s4" data-om-id="shot-8078"><video src="assets/clips/8078.mp4" class="clip" data-start="6.0" data-duration="0.5" data-media-start="0.4" muted playsinline></video></div>
+  <div class="shot" id="s5" data-om-id="shot-8342"><video src="assets/clips/8342.mp4" class="clip" data-start="6.5" data-duration="1.0" data-media-start="1.5" muted playsinline></video></div>
+  <div class="shot" id="s6" data-om-id="shot-7909"><video src="assets/clips/7909.mp4" class="clip" data-start="7.5" data-duration="1.5" data-media-start="0.4" muted playsinline></video></div>
+  <div class="shot" id="s7" data-om-id="shot-0389"><video src="assets/clips/0389.mp4" class="clip" data-start="9.0" data-duration="1.5" data-media-start="1.6" muted playsinline></video></div>
+  <div class="shot" id="s8" data-om-id="shot-7989"><video src="assets/clips/7989.mp4" class="clip" data-start="10.5" data-duration="2.5" data-media-start="3.3" muted playsinline></video></div>
+  <div class="shot" id="s9" data-om-id="shot-9161"><video src="assets/clips/9161.mp4" class="clip" data-start="13.0" data-duration="1.5" data-media-start="1.2" muted playsinline></video></div>
+  <div class="shot" id="s10" data-om-id="shot-races"><video src="assets/clips/races.mp4" class="clip" data-start="14.5" data-duration="1.5" data-media-start="1.2" muted playsinline></video></div>
+  <div class="shot" id="s11" data-om-id="shot-5222"><video src="assets/clips/5222.mp4" class="clip" data-start="16.0" data-duration="1.0" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot" id="s12" data-om-id="shot-6169"><video src="assets/clips/6169.mp4" class="clip" data-start="17.0" data-duration="1.0" data-media-start="0.8" muted playsinline></video></div>
+  <div class="shot" id="s13" data-om-id="shot-5963"><video src="assets/clips/5963.mp4" class="clip" data-start="18.0" data-duration="1.0" data-media-start="1.5" muted playsinline></video></div>
+  <div class="shot" id="s14" data-om-id="shot-2524"><video src="assets/clips/2524.mp4" class="clip" data-start="19.0" data-duration="2.5" data-media-start="1.3" muted playsinline></video></div>
+  <div class="shot" id="s15" data-om-id="shot-2153"><video src="assets/clips/2153.mp4" class="clip" data-start="21.5" data-duration="3.5" data-media-start="2.2" muted playsinline></video></div>
+
+  <div id="end" data-om-id="end-card">
+    <div class="bg"><video src="assets/clips/2148_loop.mp4" class="clip" data-start="25.0" data-duration="5.0" data-media-start="0" muted playsinline></video></div>
+  </div>
+
+  <div class="shade"></div>
+
+  <div class="t l" id="t0" style="top:170px;opacity:1" data-om-id="title-0">Say<br><span class="acc big">YES.</span></div>
+  <div class="t l" id="t1" style="top:250px" data-om-id="title-1">To early<br>starts.</div>
+  <div class="t l" id="t2" style="top:250px" data-om-id="title-2">And late<br><span class="acc">sunsets.</span></div>
+  <div class="t l" id="t3" style="top:250px" data-om-id="title-3">New<br><span class="acc">places.</span></div>
+  <div class="t l" id="t4" style="top:250px" data-om-id="title-4">Front-row<br><span class="acc">seats.</span></div>
+  <div class="t l" id="t5" style="top:250px" data-om-id="title-5">Big<br><span class="acc">nights.</span></div>
+  <div class="t l" id="t6" style="top:250px" data-om-id="title-6">Good<br><span class="acc">people.</span></div>
+  <div class="t l" id="t7" style="top:250px" data-om-id="title-7">Good<br><span class="acc">food.</span></div>
+  <div class="t l" id="t8" style="top:230px" data-om-id="title-8">And good<br><span class="acc">causes.</span></div>
+  <div class="t l" id="t9" style="top:230px" data-om-id="title-9">Still saying<br><span class="acc">yes.</span></div>
+
+  <!-- end card -->
+  <div class="t l"  id="e1" style="top:560px" data-om-id="end-say">Say</div>
+  <div class="t acc big" id="e2" style="top:730px" data-om-id="end-yes">YES.</div>
+  <div class="bar"  id="eb" style="top:990px" data-om-id="end-bar"></div>
+  <div class="kick" id="ek" style="top:1040px" data-om-id="end-name" data-var-text="name">JAMES LEAHY</div>
+</div>
+
+<script>
+  const V = OM.vars();
+  OM.music({ product: 'hype', bpm: 120, drop: 'drop', ending: 'button' });
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  const CUT = [
+    ['s0', 0.0, 2.0],
+    ['s1', 2.0, 1.5],
+    ['s2', 3.5, 1.5],
+    ['s3', 5.0, 1.0],
+    ['s4', 6.0, 0.5],
+    ['s5', 6.5, 1.0],
+    ['s6', 7.5, 1.5],
+    ['s7', 9.0, 1.5],
+    ['s8', 10.5, 2.5],
+    ['s9', 13.0, 1.5],
+    ['s10', 14.5, 1.5],
+    ['s11', 16.0, 1.0],
+    ['s12', 17.0, 1.0],
+    ['s13', 18.0, 1.0],
+    ['s14', 19.0, 2.5],
+    ['s15', 21.5, 3.5]
+  ];
+  const TITLES = [
+    ['t0', 0.0, 2.0],
+    ['t1', 2.0, 3.5],
+    ['t2', 3.5, 5.0],
+    ['t3', 5.0, 7.5],
+    ['t4', 10.5, 13.0],
+    ['t5', 13.0, 14.5],
+    ['t6', 14.5, 16.0],
+    ['t7', 17.0, 18.0],
+    ['t8', 19.0, 21.5],
+    ['t9', 22.0, 25.0]
+  ];
+  const END = 25.0;
+
+  // each shot: visible for its window, entering with a small scale punch that keeps drifting
+  CUT.forEach(([id, at, dur], i) => {
+    const el = '#' + id;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: 1.12 }, { scale: 1.0, duration: Math.min(.6, dur), ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    if (dur > .6) tl.to(el, { scale: 1.04, duration: dur - .6, ease: 'none' }, at + .6);
+    if (i) OM.sfx('hit', at, { gain: .35, pitch: 1 + (i % 4) * .04 });
+  });
+  const mid = CUT[Math.floor(CUT.length / 2)];
+  tl.addLabel('scene:drop', mid[1]);
+
+  // titles slam in, hold, and leave on the cut
+  TITLES.forEach(([id, at, out], i) => {
+    if (at === 0) tl.fromTo('#' + id, { scale: 1.08 }, { scale: 1, duration: .4 }, 0);
+    else { tl.fromTo('#' + id, { opacity: 0, scale: 1.5 }, { opacity: 1, scale: 1, duration: .35 }, at); OM.sfx('impact', at, { gain: .6 }); }
+    tl.set('#' + id, { opacity: 0 }, out);
+  });
+
+  // end card: one line per beat
+  tl.addLabel('scene:end', END);
+  OM.sfx('whoosh', END - .2);
+  tl.set('#end', { visibility: 'visible' }, END);
+  tl.fromTo('#e1', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5 }, END);
+  tl.fromTo('#e2', { opacity: 0, scale: 1.8 }, { opacity: 1, scale: 1, duration: .4 }, END + .5); OM.sfx('impact', END + .5);
+  tl.to('#eb', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, END + 1);
+  tl.fromTo('#ek', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .5 }, END + 1.2); OM.sfx('pop', END + 1.2);
+  tl.to({}, { duration: 5.0 }, END);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>
