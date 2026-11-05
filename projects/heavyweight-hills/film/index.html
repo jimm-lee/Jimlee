@@ -3,7 +3,7 @@
   {"id":"name","type":"string","label":"Name","default":"James Leahy"},
   {"id":"campaign","type":"string","label":"Campaign","default":"HEAVYWEIGHT HILLS"},
   {"id":"weight","type":"string","label":"Vest weight","default":"30 KG"},
-  {"id":"ask","type":"string","label":"Ask","default":"SPONSOR MY SUMMIT"},
+  {"id":"ask","type":"string","label":"Ask","default":"Sponsor my summit"},
   {"id":"link","type":"string","label":"Link shown","default":"movember.com/m/15440871"},
   {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
   {"id":"ink","type":"color","label":"Text","default":"#ffffff"},
@@ -16,31 +16,31 @@
 <script src="vendor/om.js"></script>
 <style id="om-fonts">
 @font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
-@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-var.woff") format("woff"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
 </style>
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 0 1px 1px rgba(0,0,0,.45), 0 3px 6px rgba(0,0,0,.45), 0 10px 30px rgba(0,0,0,.45); }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
   .shot video, .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .night video { filter: brightness(1.15) contrast(1.08); }
   /* legibility: shade behind type, placed before the type in the DOM */
   .shade { position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%); }
-  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit", sans-serif; font-weight: 300; text-transform: uppercase; line-height: .98; letter-spacing: -2px; opacity: 0; text-shadow: var(--shadow); }
-  .xl { font-size: 210px; } .l { font-size: 140px; } .m { font-size: 104px; } .s { font-size: 72px; }
-  .acc { color: var(--accent); font-weight: 400; }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.05; letter-spacing: 0; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .acc { color: var(--accent); }
   .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
   .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 0 3px 10px rgba(0,0,0,.4); background: var(--accent); transform-origin: 50% 50%; transform: scaleX(0); }
   /* end card */
   #end { position: absolute; inset: 0; visibility: hidden; }
   #end .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.38); }
   #end .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .qrwrap { position: absolute; left: 50%; top: 820px; width: 520px; height: 520px; margin-left: -290px; padding: 30px; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
+  .qrwrap { position: absolute; left: 50%; top: 520px; width: 520px; height: 520px; margin-left: -290px; padding: 30px; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
   .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
-  .scan { position: absolute; left: 0; right: 0; top: 1430px; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 44px; letter-spacing: 9px; color: var(--accent); text-shadow: var(--shadow); opacity: 0; }
-  .url { position: absolute; left: 0; right: 0; top: 1500px; text-align: center; font-family: "Outfit"; font-weight: 400; font-size: 38px; text-shadow: var(--shadow); opacity: 0; }
-  .who { position: absolute; left: 0; right: 0; top: 1640px; text-align: center; font-family: "Outfit"; font-weight: 300; font-size: 34px; letter-spacing: 4px; text-shadow: var(--shadow); opacity: 0; color: #ffffffd9; }
+  .scan { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 44px; letter-spacing: 9px; color: var(--accent); text-shadow: var(--shadow); opacity: 0; }
+  .url { position: absolute; left: 0; right: 0; top: 1215px; text-align: center; font-family: "Outfit"; font-weight: 400; font-size: 38px; text-shadow: var(--shadow); opacity: 0; }
+  .who { position: absolute; left: 0; right: 0; top: 1290px; text-align: center; font-family: "Outfit"; font-weight: 300; font-size: 34px; letter-spacing: 4px; text-shadow: var(--shadow); opacity: 0; color: #ffffffd9; }
 </style>
 </head>
 <body>
@@ -72,30 +72,30 @@
   <div class="shade"></div>
 
   <!-- type -->
-  <div class="t l"  id="t0" style="top:1380px;opacity:1" data-om-id="t-this">THIS<br><span class="acc">MOVEMBER…</span></div>
+  <div class="t l"  id="t0" style="top:250px;opacity:1" data-om-id="t-this">This<br><span class="acc">Movember…</span></div>
   <div class="kick" id="k1" style="top:260px" data-om-id="k-shave">1 NOVEMBER</div>
-  <div class="t l"  id="t1" style="top:330px" data-om-id="t-shave">CLEAN<br>SHAVEN.</div>
+  <div class="t l"  id="t1" style="top:330px" data-om-id="t-shave">Clean<br>shaven.</div>
   <div class="t xl acc" id="t2" style="top:230px" data-om-id="t-weight" data-var-text="weight">30 KG</div>
-  <div class="t s"  id="t2b" style="top:500px" data-om-id="t-vest">ON MY BACK</div>
+  <div class="t s"  id="t2b" style="top:450px" data-om-id="t-vest">on my back</div>
   <div class="kick" id="k3" style="top:600px" data-om-id="k-movember">A MOVEMBER CHALLENGE</div>
-  <div class="t xl" id="t3a" style="top:700px;font-size:150px" data-om-id="t-heavy">HEAVYWEIGHT</div>
-  <div class="t xl acc" id="t3b" style="top:910px" data-om-id="t-hills">HILLS</div>
-  <div class="bar"  id="b3" style="top:1160px" data-om-id="bar"></div>
-  <div class="t xl" id="t4" style="top:1350px" data-om-id="t-up">UP.</div>
-  <div class="t xl" id="t5" style="top:1350px" data-om-id="t-down">DOWN.</div>
-  <div class="t xl acc" id="t6" style="top:1350px" data-om-id="t-repeat">REPEAT.</div>
-  <div class="t m"  id="t9" style="top:1420px" data-om-id="t-local">EVERY HILL<br>AROUND HERE</div>
-  <div class="t l"  id="t10" style="top:300px" data-om-id="t-day">BY DAY.</div>
-  <div class="t l acc" id="t11" style="top:300px" data-om-id="t-night">BY NIGHT.</div>
-  <div class="t l"  id="t12" style="top:300px" data-om-id="t-rain">IN THE RAIN.</div>
-  <div class="t m"  id="t14" style="top:1420px" data-om-id="t-month">ALL MOVEMBER<br><span class="acc">LONG.</span></div>
-  <div class="t m"  id="t15a" style="top:420px" data-om-id="t-now">NOW I NEED YOU.</div>
-  <div class="t l acc" id="t15b" style="top:620px" data-om-id="t-ask" data-var-text="ask">SPONSOR MY SUMMIT</div>
+  <div class="t xl" id="t3a" style="top:700px;font-size:120px" data-om-id="t-heavy">HEAVYWEIGHT</div>
+  <div class="t xl acc" id="t3b" style="top:850px;font-size:200px" data-om-id="t-hills">HILLS</div>
+  <div class="bar"  id="b3" style="top:1100px" data-om-id="bar"></div>
+  <div class="t xl" id="t4" style="top:1150px" data-om-id="t-up">UP.</div>
+  <div class="t xl" id="t5" style="top:1150px" data-om-id="t-down">DOWN.</div>
+  <div class="t xl acc" id="t6" style="top:1150px" data-om-id="t-repeat">REPEAT.</div>
+  <div class="t m"  id="t9" style="top:1180px" data-om-id="t-local">Every hill<br>around here</div>
+  <div class="t l"  id="t10" style="top:300px" data-om-id="t-day">By day.</div>
+  <div class="t l acc" id="t11" style="top:300px" data-om-id="t-night">By night.</div>
+  <div class="t l"  id="t12" style="top:300px" data-om-id="t-rain">In the rain.</div>
+  <div class="t m"  id="t14" style="top:1180px" data-om-id="t-month">All Movember<br><span class="acc">long.</span></div>
+  <div class="t m"  id="t15a" style="top:420px" data-om-id="t-now">Now I need you.</div>
+  <div class="t l acc" id="t15b" style="top:580px" data-om-id="t-ask" data-var-text="ask">Sponsor my summit</div>
 
   <!-- end card type -->
-  <div class="kick" id="ek" style="top:300px" data-om-id="end-kicker">MOVEMBER · MEN'S HEALTH</div>
-  <div class="t m"  id="e1" style="top:375px;font-size:96px;white-space:nowrap" data-om-id="end-title" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
-  <div class="t s acc" id="e2" style="top:520px" data-om-id="end-ask" data-var-text="ask">SPONSOR MY SUMMIT</div>
+  <div class="kick" id="ek" style="top:230px" data-om-id="end-kicker">MOVEMBER · MEN'S HEALTH</div>
+  <div class="t m"  id="e1" style="top:285px;font-size:76px;white-space:nowrap" data-om-id="end-title" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
+  <div class="t s acc" id="e2" style="top:395px" data-om-id="end-ask" data-var-text="ask">Sponsor my summit</div>
   <div class="qrwrap" id="qr" data-om-id="qr"><img src="assets/qr.svg" alt="QR code to James Leahy's Mo Space"></div>
   <div class="scan" id="scan" data-om-id="scan">SCAN TO DONATE</div>
   <div class="url"  id="url" data-om-id="url" data-var-text="link">movember.com/m/15440871</div>

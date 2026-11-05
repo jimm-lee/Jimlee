@@ -1,39 +1,34 @@
 /*
-  House style for James's videos (set Nov 2026, first used on Heavyweight Hills v13).
-  Copy brand/fonts/Outfit-var.woff2 into the project's assets/fonts/, then include this block.
-  Sizes are for a 1080×1920 vertical frame; scale ×0.56 for 1920×1080.
+  House style for James's videos. Set Nov 2026; first used on Heavyweight Hills v14.
+  Titles: Merienda (display, cursive). Small labels: Outfit. Copy both from brand/fonts/ into the project's
+  assets/fonts/. Sizes are for a 1080×1920 vertical frame; scale ×0.56 for 1920×1080.
 */
-@font-face {
-  font-family: "Outfit";
-  src: url("assets/fonts/Outfit-var.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-}
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; }
+@font-face { font-family: "Outfit";   src: url("assets/fonts/Outfit-var.woff2")   format("woff2"); font-weight: 100 900; }
 
 :root {
-  --accent: #75ff78;          /* signature green — key words, kickers on the end card, rules */
-  --ink: #ffffff;             /* everything else */
+  --accent: #75ff78;          /* signature green: one or two key words per screen */
+  --ink: #ffffff;
   --ink-soft: #ffffffd9;      /* names, small credits */
-  /* tight contact shadow + soft lift: readable over grass, bright sky and night footage */
-  --shadow: 0 1px 1px rgba(0,0,0,.45), 0 3px 6px rgba(0,0,0,.45), 0 10px 30px rgba(0,0,0,.45);
+  /* subtle directional shadow, down and to the right: a crisp offset plus a soft lift */
+  --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35);
   --shade: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%);
 }
 
-/* Headlines: Outfit Light, uppercase, slightly tight */
-.t   { font-family: "Outfit", sans-serif; font-weight: 300; text-transform: uppercase;
-       line-height: .98; letter-spacing: -2px; color: var(--ink); text-shadow: var(--shadow); }
-.xl  { font-size: 210px; }   /* one short word: "UP.", "30 KG" */
-.l   { font-size: 140px; }   /* two or three words */
-.m   { font-size: 104px; }   /* a line */
-.s   { font-size: 72px; }    /* secondary line */
-.acc { color: var(--accent); font-weight: 400; }  /* green words go one step heavier so they hold over grass */
+/* Titles: Merienda Black (900). CAPS for big title words; sentence case for spoken lines (where the cursive shows) */
+.t   { font-family: "Merienda", cursive; font-weight: 900; line-height: 1.05; letter-spacing: 0;
+       color: var(--ink); text-shadow: var(--shadow); text-align: center; }
+.xl  { font-size: 180px; }   /* one short word: "UP.", "30 KG" (keep under ~880px wide) */
+.l   { font-size: 130px; }   /* two or three words */
+.m   { font-size: 96px; }    /* a line */
+.s   { font-size: 68px; }    /* secondary line */
+.acc { color: var(--accent); }
 
-/* Kicker / label: small, wide-tracked */
+/* Small labels: Outfit Medium, wide-tracked caps */
 .kick { font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px;
         text-transform: uppercase; color: var(--ink); text-shadow: var(--shadow); }
 
-/* Thin accent rule under a title */
-.bar  { height: 6px; width: 420px; background: var(--accent); box-shadow: 0 3px 10px rgba(0,0,0,.4); }
+.bar  { height: 6px; width: 420px; background: var(--accent); box-shadow: 4px 6px 10px rgba(0,0,0,.35); }
+.shade { background: var(--shade); }   /* put it in the DOM before the type */
 
-/* Legibility shade: put it in the DOM *before* the type */
-.shade { background: var(--shade); }
+/* Safe zone (Instagram/TikTok UI): no text below y 1440 or right of x 960 in the lower half */

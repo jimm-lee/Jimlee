@@ -4,27 +4,29 @@ Use this for every video from now on, so they look designed rather than template
 
 | Element | Spec |
 |---|---|
-| Typeface | **Outfit** (variable, 100–900), SIL OFL 1.1 — `fonts/Outfit-var.woff2`, licence in `fonts/Outfit-OFL.txt` |
-| Headlines | Outfit **Light (300)**, uppercase, letter-spacing −2px, line-height 0.98 |
-| Accent words | **#75FF78** green, Outfit **Regular (400)** (one step heavier than white so it holds over grass) |
+| Title typeface | **Merienda** Black (900), a cursive, calligraphic display face. SIL OFL 1.1: `fonts/Merienda-var.woff2`, licence `fonts/Merienda-OFL.txt` |
+| Case | **CAPS** for big title words ("30 KG", "HEAVYWEIGHT HILLS", "UP."); **sentence case** for spoken lines ("Every hill around here"), where the cursive shows |
+| Accent words | **#75FF78** green |
 | Body / white | #FFFFFF; small credits #FFFFFF at 85% |
-| Kicker | Outfit Medium (500), 36px, tracking 13px, uppercase |
-| Shadow on all type | `0 1px 1px rgba(0,0,0,.45), 0 3px 6px rgba(0,0,0,.45), 0 10px 30px rgba(0,0,0,.45)` |
+| Small labels | **Outfit** Medium (500), 36px, tracking 13px, caps (`fonts/Outfit-var.woff2`) |
+| Shadow on all type | subtle, **down and to the right**: `4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35)` |
 | Legibility shade | top and bottom gradient behind type (see `--shade`) |
-| Rule | 6px × 420px green bar with a soft shadow |
+| Rule | 6px × 420px green bar with a soft offset shadow |
+| Position | upper two-thirds; **nothing below y 1440**, and keep lower-half text left of x 960 |
 
-Sizes for 1080×1920: XL 210 (one word), L 140, M 104, S 72. Keep any headline line inside ~90% of the frame width.
+Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.
 For 16:9, multiply by ~0.56.
 
 `house-style.css` has all of it as CSS for huashu-motion compositions. In Concat, use the same values in a title's
-style (font Outfit, weight 300/400, colour #75FF78, drop shadow).
+style (font Merienda 900, colour #75FF78, a down-right drop shadow).
+
+How it was chosen: James liked a Canva font called "Para" (scanned in `fonts/reference/`) and asked for something
+a little more cursive in the same vein; Merienda won the side-by-side on footage. Previous house style (until v13):
+Outfit Light titles with an all-round shadow.
 
 Use green on one or two key words per screen, not whole sentences.
 Verified readable over grass, bright overcast sky and night street footage (Heavyweight Hills, Nov 2026).
 
-> **Pending:** James is choosing a new, slightly heavier typeface, with a subtle shadow offset down and to the
-> right. The Outfit Light spec above stays until it's swapped in.
->
 > **Brand font reference:** the chosen display face (from a Canva sample, name not yet known) is scanned letter by
 > letter in [`fonts/reference/`](fonts/reference/README.md), with its distinguishing traits and a checker that scores
 > any font file against it. No exact match exists in Google Fonts; the closest free relatives are Averia Libre
@@ -48,7 +50,7 @@ The QR code and anything to be read or scanned must sit fully inside the safe zo
 ### Type
 
 - **Weight:** Instagram's upload compression degrades thin strokes. Use Regular/Medium or heavier for anything
-  that must be read; keep Light only for very large display words. This is why the house face is moving heavier.
+  that must be read; keep Light only for very large display words. (Hence Merienda Black for titles.)
 - **Contrast treatment:** every line gets either a shadow/outline (about a 2 px dark stroke or a firm offset shadow)
   or a semi-transparent box. Plain text with no treatment fails on bright scenes and in Instagram's dark mode.
 - **Typeface:** clean sans-serif with a high x-height. No script or decorative faces for anything read at speed.
@@ -73,19 +75,16 @@ The QR code and anything to be read or scanned must sit fully inside the safe zo
 2. Burn in only what the titles don't already say; export an `.srt` for upload as well.
 3. Before publishing, **preview on a real phone** and confirm nothing important sits below y 1440 or right of x 960.
 
-### Status of Heavyweight Hills v13 against these rules
+### Status of Heavyweight Hills v14 against these rules
 
 | Rule | Status |
 |---|---|
-| Safe zone | ❌ Six moments sit low in the frame, inside the bottom 480 px: "THIS MOVEMBER…" (y 1380–1654), "UP." / "DOWN." / "REPEAT." (1350–1555), "EVERY HILL AROUND HERE" (1420–1623), "ALL MOVEMBER LONG." (1420–1624). Also the end card's "SCAN TO DONATE", link and name (y 1430–1680). The QR code (y 820–1400) is clear. |
-| Weight | ⚠️ Outfit Light is thinner than recommended; being replaced. |
-| Contrast | ✅ Layered shadow plus top/bottom shade on every line. |
-| ≤ 10 words, ≤ 2 lines | ✅ Every block. |
+| Safe zone | ✅ All text above y 1440 (checked frame by frame with the zone overlaid); end card rearranged to finish at about y 1330 |
+| Weight | ✅ Merienda Black titles |
+| Contrast | ✅ Down-right shadow plus top/bottom shade |
+| ≤ 10 words, ≤ 2 lines | ✅ |
 | Centred | ✅ |
-| End screen | ✅ About 6 s, longer than the minimum. Good for scanning the QR. |
-
-Fix with the font change: lift low titles to about y 1150–1300 and move the end-card text block up so it ends
-above y 1440.
+| End screen | ✅ About 6 s |
 
 ### Claims treated with caution
 

@@ -7,7 +7,7 @@ Donations: <https://movember.com/m/15440871?mc=60> (the QR code on the end card 
 
 | File | Length | Notes |
 |---|---|---|
-| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v13: house style + voice-forward mix). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
+| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v14: Merienda house style, safe-zone layout, voice-forward mix). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
 | `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.4 LUFS |
 | `*.srt` | — | Caption files for upload (Instagram / Facebook / YouTube) |
 
@@ -19,7 +19,7 @@ This repo is public, so **raw footage and voice recordings are deliberately not 
 Kept here: the edit itself, so it can be re-rendered or changed.
 
 - `film/index.html` — the huashu-motion composition: every shot, in/out point, title, sound effect and timing.
-- `film/vendor/`, `film/assets/fonts/` — runtime + fonts (Outfit, the house typeface; OFL licensed). Title style follows `brand/`.
+- `film/vendor/`, `film/assets/fonts/` — runtime + fonts (Merienda titles, Outfit labels; OFL licensed). Title style follows `brand/`.
 - `film/assets/qr.svg` — QR code for the Mo Space link.
 - `voiceover/vo_plan.json` — where each voice-over phrase sits on the timeline; `build_vo.py` assembles it.
 
