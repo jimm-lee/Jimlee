@@ -7,7 +7,7 @@ Use this for every video from now on, so they look designed rather than template
 | Title typeface | **Merienda** Black (900), a cursive, calligraphic display face. SIL OFL 1.1: `fonts/Merienda-var.woff2`, licence `fonts/Merienda-OFL.txt` |
 | Case | **CAPS** for big title words ("30 KG", "HEAVYWEIGHT HILLS", "UP."); **sentence case** for spoken lines ("Every hill around here"), where the cursive shows |
 | Accent words | **#75FF78** green |
-| Second colour | **#8C172E** rich cherry (outline on green words in hero edits) |
+| Second colour | **#990F3D** dark cherry (outline on green words in hero edits; James preferred it to #8C172E) |
 | Body / white | #FFFFFF; small credits #FFFFFF at 85% |
 | Small labels | **Outfit** Medium (500), 36px, tracking 13px, caps (`fonts/Outfit-var.woff2`) |
 | Shadow on all type | subtle, **down and to the right**: `4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35)` |
@@ -15,12 +15,12 @@ Use this for every video from now on, so they look designed rather than template
 | Rule | 6px × 420px green bar with a soft offset shadow |
 | Position | upper two-thirds; **nothing below y 1440**, and keep lower-half text left of x 960 |
 
-> **Hero edits (Nov 2026):** James chose **Bebas Neue** caps (Google Fonts, OFL), bold and tight: letter-spacing .01em,
+> **Hero edits (Nov 2026):** James chose **Bebas Neue** caps (Google Fonts, OFL), bold, letter-spacing .035em,
 > thickened with a 3 px same-colour stroke; white with #75FF78 on one word and the same subtle down-right shadow; no colour
 > grade on the footage. (Tried and replaced: Anton, Newsreader Bold; Brasika is a paid Canva font with no free equivalent.)
-> Green words carry a thin (2.5 px) outline in James's rich **cherry #8C172E** (his chosen second brand colour).
+> Green words carry a thin (2.5 px) outline in **dark cherry #990F3D** (his chosen second brand colour).
 > **No name end cards on hero edits.** James: it feels like forced promotion. End on an open, warm image (a landscape,
-> a fade) that makes people want to see more of the life, not on his name.
+> a fade) that makes people want to see more of the life, not on his name. Current sign-off line: **"Go on, look after yourself"**.
 > Merienda remains the face for other videos unless he says otherwise.
 
 Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.
