@@ -15,8 +15,9 @@ linger ~15 %, alternating intimacy/scale, stillness/movement and dark/light.
 | 05 Linger | 13–15 golden-hour selfie, turns to camera; JAMES / **LEAHY** over the sky | 8.5–10 same |
 | Hook line | "The ordinary days are quietly building / the **extraordinary** life you've always imagined." (aspiration: saves, profile visits) | "Your comfort zone can quietly become / the most **expensive** place you ever live." (challenging belief: comments) |
 
-Each hook line is split into two blocks so it can be read at this pace. **Type:** Newsreader Bold (opsz 72), sentence case, letter-spaced .05em, white with #75FF78 on one word and the
-brand's subtle down-right shadow (James's choice for hero edits, Nov 2026; see `newsreader-sample.jpg`).
+Each hook line is split into two blocks so it can be read at this pace. **Type:** Bebas Neue caps, tight spacing (.01em), thickened with a 3 px same-colour stroke (Bebas has one weight),
+white with #75FF78 on one word and the brand's subtle down-right shadow (James's choice for hero edits, Nov 2026;
+see `bebas-sample.jpg`).
 
 **Look:** no grade. The iPhone HLG footage is only converted to SDR (Hable tone-map) so it plays with correct colours;
 no extra contrast, saturation, vignette or flashes. The dune run is the 60 fps original at half speed.
