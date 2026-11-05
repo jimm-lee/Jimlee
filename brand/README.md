@@ -21,7 +21,9 @@ For 16:9, multiply by ~0.56.
 style (font Merienda 900, colour #75FF78, a down-right drop shadow).
 
 How it was chosen: James liked a Canva font called "Para" (scanned in `fonts/reference/`) and asked for something
-a little more cursive in the same vein; Merienda won the side-by-side on footage. Previous house style (until v13):
+a little more cursive in the same vein; Merienda won the side-by-side on footage. Also compared and declined:
+Montserrat Bold/ExtraBold (cleaner and faster to read, but generic; James kept Merienda for its personal,
+hand-drawn feel). Previous house style (until v13):
 Outfit Light titles with an all-round shadow.
 
 Use green on one or two key words per screen, not whole sentences.
