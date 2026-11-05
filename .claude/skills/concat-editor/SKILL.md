@@ -8,6 +8,13 @@ description: Edit video with Concat (jub0t/Concat), the local open-source CapCut
 Concat 0.2.8 ships an MCP server inside the app binary: 42 tools whose argument schemas come
 from the engine's own types. Everything runs locally; footage never uploads.
 
+## House style (all videos)
+
+Every video uses James's house style in `brand/` (see `brand/README.md` and `brand/house-style.css`):
+**Outfit Light** headlines (uppercase, −2px tracking), **#75FF78** green on one or two key words (Outfit Regular),
+white everything else, and a layered drop shadow on all type. Copy `brand/fonts/Outfit-var.woff2` into the project.
+Don't fall back to Anton/Inter or yellow accents.
+
 ## Connect
 
 - Binary: Linux `/usr/bin/concat` · macOS `/Applications/Concat.app/Contents/MacOS/concat` ·

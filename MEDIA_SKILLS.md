@@ -11,6 +11,13 @@ The live, individually-loadable versions are in `.claude/skills/`; this file is 
 
 **Pipeline:** VoiceStudio (voice-over, captions, dubs) → huashu-motion (intros, overlays, explainers) → Concat (final cut and export).
 
+## House style (all videos)
+
+Every video uses James's house style in `brand/` (see `brand/README.md` and `brand/house-style.css`):
+**Outfit Light** headlines (uppercase, −2px tracking), **#75FF78** green on one or two key words (Outfit Regular),
+white everything else, and a layered drop shadow on all type. Copy `brand/fonts/Outfit-var.woff2` into the project.
+Don't fall back to Anton/Inter or yellow accents.
+
 ## Contents
 
 0. [Reinstall in a fresh environment](#0-reinstall-in-a-fresh-environment)

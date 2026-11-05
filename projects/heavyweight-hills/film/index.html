@@ -5,7 +5,7 @@
   {"id":"weight","type":"string","label":"Vest weight","default":"30 KG"},
   {"id":"ask","type":"string","label":"Ask","default":"SPONSOR MY SUMMIT"},
   {"id":"link","type":"string","label":"Link shown","default":"movember.com/m/15440871"},
-  {"id":"accent","type":"color","label":"Accent","default":"#ffd21f"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
   {"id":"ink","type":"color","label":"Text","default":"#ffffff"},
   {"id":"endHold","type":"number","label":"End card hold (s)","default":4,"min":1,"max":10,"step":0.1,"group":"Timing"}
 ]'>
@@ -15,32 +15,32 @@
 <script src="vendor/gsap.min.js"></script>
 <script src="vendor/om.js"></script>
 <style id="om-fonts">
-@font-face { font-family: "Anton"; src: url("assets/fonts/Anton-400.woff") format("woff"); font-weight: 400; font-style: normal; }
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
 @font-face { font-family: "Inter"; src: url("assets/fonts/Inter-var.woff") format("woff"); font-weight: 100 900; font-style: normal; }
 </style>
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Inter", sans-serif; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 0 1px 1px rgba(0,0,0,.45), 0 3px 6px rgba(0,0,0,.45), 0 10px 30px rgba(0,0,0,.45); }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
   .shot video, .shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .night video { filter: brightness(1.15) contrast(1.08); }
   /* legibility: shade behind type, placed before the type in the DOM */
   .shade { position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%); }
-  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Anton", sans-serif; text-transform: uppercase; line-height: .92; letter-spacing: 1px; opacity: 0; text-shadow: 0 6px 30px rgba(0,0,0,.45); }
-  .xl { font-size: 250px; } .l { font-size: 170px; } .m { font-size: 120px; } .s { font-size: 84px; }
-  .acc { color: var(--accent); }
-  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Inter"; font-weight: 800; font-size: 40px; letter-spacing: 12px; opacity: 0; }
-  .bar { position: absolute; left: 50%; width: 520px; height: 14px; margin-left: -260px; background: var(--accent); transform-origin: 50% 50%; transform: scaleX(0); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit", sans-serif; font-weight: 300; text-transform: uppercase; line-height: .98; letter-spacing: -2px; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 210px; } .l { font-size: 140px; } .m { font-size: 104px; } .s { font-size: 72px; }
+  .acc { color: var(--accent); font-weight: 400; }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 0 3px 10px rgba(0,0,0,.4); background: var(--accent); transform-origin: 50% 50%; transform: scaleX(0); }
   /* end card */
   #end { position: absolute; inset: 0; visibility: hidden; }
   #end .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.38); }
   #end .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .qrwrap { position: absolute; left: 50%; top: 820px; width: 520px; height: 520px; margin-left: -290px; padding: 30px; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
   .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
-  .scan { position: absolute; left: 0; right: 0; top: 1430px; text-align: center; font-family: "Inter"; font-weight: 800; font-size: 46px; letter-spacing: 8px; color: var(--accent); opacity: 0; }
-  .url { position: absolute; left: 0; right: 0; top: 1500px; text-align: center; font-family: "Inter"; font-weight: 600; font-size: 38px; opacity: 0; }
-  .who { position: absolute; left: 0; right: 0; top: 1640px; text-align: center; font-family: "Inter"; font-weight: 600; font-size: 34px; letter-spacing: 3px; opacity: 0; color: #ffffffcc; }
+  .scan { position: absolute; left: 0; right: 0; top: 1430px; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 44px; letter-spacing: 9px; color: var(--accent); text-shadow: var(--shadow); opacity: 0; }
+  .url { position: absolute; left: 0; right: 0; top: 1500px; text-align: center; font-family: "Outfit"; font-weight: 400; font-size: 38px; text-shadow: var(--shadow); opacity: 0; }
+  .who { position: absolute; left: 0; right: 0; top: 1640px; text-align: center; font-family: "Outfit"; font-weight: 300; font-size: 34px; letter-spacing: 4px; text-shadow: var(--shadow); opacity: 0; color: #ffffffd9; }
 </style>
 </head>
 <body>
@@ -78,7 +78,7 @@
   <div class="t xl acc" id="t2" style="top:230px" data-om-id="t-weight" data-var-text="weight">30 KG</div>
   <div class="t s"  id="t2b" style="top:500px" data-om-id="t-vest">ON MY BACK</div>
   <div class="kick" id="k3" style="top:600px" data-om-id="k-movember">A MOVEMBER CHALLENGE</div>
-  <div class="t xl" id="t3a" style="top:690px;font-size:196px" data-om-id="t-heavy">HEAVYWEIGHT</div>
+  <div class="t xl" id="t3a" style="top:700px;font-size:150px" data-om-id="t-heavy">HEAVYWEIGHT</div>
   <div class="t xl acc" id="t3b" style="top:910px" data-om-id="t-hills">HILLS</div>
   <div class="bar"  id="b3" style="top:1160px" data-om-id="bar"></div>
   <div class="t xl" id="t4" style="top:1350px" data-om-id="t-up">UP.</div>
@@ -94,7 +94,7 @@
 
   <!-- end card type -->
   <div class="kick" id="ek" style="top:300px" data-om-id="end-kicker">MOVEMBER · MEN'S HEALTH</div>
-  <div class="t m"  id="e1" style="top:370px;font-size:116px;white-space:nowrap" data-om-id="end-title" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
+  <div class="t m"  id="e1" style="top:375px;font-size:96px;white-space:nowrap" data-om-id="end-title" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
   <div class="t s acc" id="e2" style="top:520px" data-om-id="end-ask" data-var-text="ask">SPONSOR MY SUMMIT</div>
   <div class="qrwrap" id="qr" data-om-id="qr"><img src="assets/qr.svg" alt="QR code to James Leahy's Mo Space"></div>
   <div class="scan" id="scan" data-om-id="scan">SCAN TO DONATE</div>
