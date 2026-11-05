@@ -7,7 +7,7 @@ Donations: <https://movember.com/m/15440871?mc=60> (the QR code on the end card 
 
 | File | Length | Notes |
 |---|---|---|
-| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v14: Merienda house style, safe-zone layout, voice-forward mix). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
+| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v15: Merienda house style, safe-zone layout, voice-forward mix, "How can you help?"). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
 | `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.4 LUFS |
 | `*.srt` | — | Caption files for upload (Instagram / Facebook / YouTube) |
 
