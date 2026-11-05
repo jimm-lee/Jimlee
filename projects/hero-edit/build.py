@@ -62,7 +62,7 @@ READ_BASE = 0.35      # minimum hold once the chunk is complete
 READ_PER_WORD = 0.28  # extra reading time per word
 CHUNK_GAP = 0.1       # empty beat between chunks
 CAPTION_TOP = 250     # px; single row in the upper third
-CHERRY = "#D2042D"    # cherry red; James's exact cherry not on record yet
+CHERRY = "#8C172E"    # James's rich cherry (his colour wheel, Nov 2026)
 
 END_LINE = "James"
 END_WORD = "Leahy"

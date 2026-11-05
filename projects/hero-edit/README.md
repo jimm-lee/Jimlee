@@ -23,11 +23,8 @@ so it doesn't cover James on the dune.
 **No name card:** James dropped the closing name (Nov 2026): it read as self-promotion. The edits end on the
 life itself, so viewers want to see more of it.
 
-**Green words:** bold #75FF78 with a thin (2.5 px) cherry outline, then the subtle shadow. The cherry used is #D2042D
-(classic cherry red); James's exact cherry wasn't on record. Alternatives in `cherry-shades.jpg`: dark cherry
-#990F3D, cherry pink #DE3163. Change `CHERRY` in `build.py`. **Type:** Bebas Neue caps, tight spacing (.01em), thickened with a 3 px same-colour stroke (Bebas has one weight),
-white with #75FF78 on one word and the brand's subtle down-right shadow (James's choice for hero edits, Nov 2026;
-see `bebas-sample.jpg`).
+**Green words:** bold #75FF78 with a thin (2.5 px) outline in James's rich cherry **#8C172E** (from his colour wheel),
+then the subtle shadow. Change `CHERRY` in `build.py`.
 
 **Look:** no grade. The iPhone HLG footage is only converted to SDR (Hable tone-map) so it plays with correct colours;
 no extra contrast, saturation, vignette or flashes. The dune run is the 60 fps original at half speed.
