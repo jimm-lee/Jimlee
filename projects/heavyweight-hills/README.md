@@ -7,7 +7,7 @@ Donations: <https://movember.com/m/15440871?mc=60> (the QR code on the end card 
 
 | File | Length | Notes |
 |---|---|---|
-| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v15: Merienda house style, safe-zone layout, voice-forward mix, "How can you help?"). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
+| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v16: Merienda house style, safe-zone layout, voice-forward mix, "How can you help?", new UP/DOWN/REPEAT clips). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
 | `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.4 LUFS |
 | `*.srt` | — | Caption files for upload (Instagram / Facebook / YouTube) |
 
@@ -43,9 +43,9 @@ ffmpeg -i IMG_XXXX.mov -an -vf "fps=30,scale=1080:1920,format=yuv420p" \
 | `3220.mp4` | IMG_3220 | "CLEAN SHAVEN." |
 | `3267.mp4` | IMG_3267 | "30 KG" selfie in the vest |
 | `3244.mp4` | IMG_3244 | "HEAVYWEIGHT HILLS" over the terraces |
-| `3260.mp4` | IMG_3260 | "UP." |
-| `2650.mp4` | IMG_2650 | "DOWN." |
-| `2651.mp4` | IMG_2651 | "REPEAT." |
+| `3313.mp4` | IMG_3313 | "UP." pushing up the grassy slope (whole clip) |
+| `3324.mp4` | IMG_3324 | "DOWN." down the path under the tree (0.6 s in) |
+| `3325.mp4` | IMG_3325 | "REPEAT." back up the leafy track (2.0 s in, then a beat cut to 3.5 s) |
 | `3246.mp4` | IMG_3246 | Summit selfie, "EVERY HILL AROUND HERE" |
 | `3269.mp4` | IMG_3269 | "BY DAY." view over the harbour |
 | `3286.mp4` | IMG_3286 | "IN THE RAIN." |
