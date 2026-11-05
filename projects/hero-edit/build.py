@@ -27,16 +27,16 @@ CUT_15 = [
     ("9170", 8.5, 0.5, 0.6),        # geyser: pressure
     ("9357", 9.0, 0.5, 1.2),        # Split Apple Rock: stillness, scale
     # 04 payoff 9.5–13: strongest images, movement, then warmth
-    ("9661_slow", 9.5, 2.0, 4.4),   # dune run, half speed
-    ("2153", 11.5, 1.5, 3.6),       # golden hour, turns to camera
+    ("9661_slow", 9.5, 1.5, 4.4),   # dune run, half speed
+    ("2153", 11.0, 1.0, 4.1),       # golden hour, turns to camera
     # 05 linger 13–15: the open sea at sunset, slow push, fade to black. No name, no text
-    ("2148", 13.0, 2.0, 0.5),
+    ("2148", 12.0, 3.0, 0.1),
 ]
 # Captions: one hook line per cut, shown as chunks of 2–3 words on a single row ("|" splits chunks, *word* = green
 # accent with the cherry outline). Words pop in one at a time; each chunk clears once it has had time to be read.
 HOOK_15 = "The ordinary days | are quietly building | the *extraordinary* life | you've always imagined."
 HOOK_15_START = 0.4
-END_15 = 13.0
+END_15 = 12.0
 LEN_15 = 15.0
 
 CUT_10 = [
@@ -48,13 +48,14 @@ CUT_10 = [
     ("9161", 4.5, 0.5, 1.2),
     ("9170", 5.0, 0.5, 0.6),
     ("9319", 5.5, 0.5, 2.5),
-    ("9661_slow", 6.0, 1.5, 4.6),   # payoff
-    ("2153", 7.5, 1.0, 4.2),        # golden hour, turns to camera
-    ("2148", 8.5, 1.5, 0.9),        # linger: open sea, fade to black
+    ("9661_slow", 6.0, 1.0, 4.6),   # payoff
+    ("2153", 7.0, 0.5, 4.5),        # golden hour, turns to camera
+    ("2148", 7.5, 2.5, 0.1),        # linger: open sea, closing line, fade to black
 ]
 HOOK_10 = "Your comfort zone | can quietly become | the most | *expensive* place | you ever live."
-HOOK_10_START = 0.3
-END_10 = 8.5
+HOOK_10_START = 0.2
+HOOK_10_READ = 0.24  # slightly quicker reads so the hook clears before the payoff
+END_10 = 7.5
 LEN_10 = 10.0
 
 WORD_GAP = 0.14       # seconds between words popping in
@@ -62,7 +63,12 @@ READ_BASE = 0.35      # minimum hold once the chunk is complete
 READ_PER_WORD = 0.28  # extra reading time per word
 CHUNK_GAP = 0.1       # empty beat between chunks
 CAPTION_TOP = 250     # px; single row in the upper third
-CHERRY = "#8C172E"    # James's rich cherry (his colour wheel, Nov 2026)
+CHERRY = "#990F3D"    # James picked B (dark cherry) over #8C172E, Nov 2026
+
+# The closing line over the linger shot (replaces the name card); its last chunk stays until the fade.
+OUTRO = "Go on, | look after *yourself*"
+OUTRO_DELAY = 0.3     # after the linger shot starts
+OUTRO_TOP = 800       # px; centred over the sea
 
 END_LINE = "James"
 END_WORD = "Leahy"
@@ -70,7 +76,7 @@ END_WORD = "Leahy"
 TEMPLATE = (HERE / "template.html").read_text()
 
 
-def chunks(hook: str, start: float) -> list[tuple[str, float, float]]:
+def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> list[tuple[str, float, float]]:
     """Split a hook line into timed chunks: (html of word spans, start, end)."""
     out, at = [], start
     for part in (p.strip() for p in hook.split("|")):
@@ -78,14 +84,19 @@ def chunks(hook: str, start: float) -> list[tuple[str, float, float]]:
         spans = " ".join(
             f'<span class="w acc">{w[1:-1]}</span>' if w.startswith("*") and w.endswith("*")
             else f'<span class="w">{w}</span>' for w in words)
-        dur = WORD_GAP * (len(words) - 1) + READ_BASE + READ_PER_WORD * len(words)
+        dur = WORD_GAP * (len(words) - 1) + READ_BASE + read_per_word * len(words)
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
     return out
 
 
-def render(cut, hook, hook_start, end_at, length, title, tops=None):
-    titles = chunks(hook, hook_start)
+def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD):
+    titles = chunks(hook, hook_start, read_per_word)
+    outro = chunks(OUTRO, end_at + OUTRO_DELAY)
+    outro[-1] = (outro[-1][0], outro[-1][1], length)  # the last words stay through the fade
+    tops = dict(tops or {})
+    tops.update({len(titles) + i: OUTRO_TOP for i in range(len(outro))})
+    titles = titles + outro
     last = len(cut) - 1
     shots = "\n".join(
         f'  <div class="shot{" endshot" if i == last else ""}" id="s{i}"'
@@ -115,5 +126,5 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None):
 
 (HERE / "film-15/index.html").write_text(render(CUT_15, HOOK_15, HOOK_15_START, END_15, LEN_15, "Hero edit — 15 s"))
 (HERE / "film-10/index.html").write_text(render(CUT_10, HOOK_10, HOOK_10_START, END_10, LEN_10, "Hero edit — 10 s",
-                                                tops={4: 1130}))  # last chunk sits in the sand, clear of James on the dune)
+                                                tops={4: 1130}, read_per_word=HOOK_10_READ))  # last chunk sits in the sand, clear of James on the dune)
 print("wrote film-15/index.html, film-10/index.html")
