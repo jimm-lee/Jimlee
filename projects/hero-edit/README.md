@@ -2,21 +2,27 @@
 
 Two silent hero edits (1080×1920, H.264, no audio track; James adds the music).
 
-| File | Length | Running order |
-|---|---|---|
-| `videos/Hero-Edit-15s.mp4` | 15 s | sauna · coast · geyser · rodeo · fight night · ice bath · dune run (slow-mo) · dragon boats · Split Apple Rock · vest selfie · end card on the sunset deck |
-| `videos/Hero-Edit-10s.mp4` | 10 s | ice bath · geyser · rodeo · fight night · dune run (slow-mo) · vest selfie · end card |
+Built on James's montage brief, using the **transformation** formula (open on a challenge, build through effort,
+pay off with the breakthrough) and the five-act timing: hook ~15 % → connection ~20 % → build ~30 % → payoff ~20 % →
+linger ~15 %, alternating intimacy/scale, stillness/movement and dark/light.
 
-**Type:** Anton caps, white, with the #75FF78 green on one word (James's choice for hero edits, Nov 2026, from
-`font-options.jpg`). End card: JAMES / **LEAHY** with the green rule. No captions during the clips yet: James is
-supplying his own lines (add them to `TITLES_15` / `TITLES_10` in `build.py`).
+| | 15 s | 10 s |
+|---|---|---|
+| 01 Hook | 0–2.5 ice bath, lowering in and the splash | 0–2.0 ice bath |
+| 02 Connection | 2.5–5.5 coast from above (world) → Movember walk (human) | 2.0–3.5 coast → Movember walk |
+| 03 Build | 5.5–9.5 sauna · rodeo · fight night · dragon boats · geyser · Split Apple Rock (1 s → 0.5 s cuts) | 3.5–6.0 sauna · rodeo · fight night · geyser · dragon boats |
+| 04 Payoff | 9.5–13 dune run (half speed) → sun on the sea | 6.0–8.5 dune run → sea |
+| 05 Linger | 13–15 golden-hour selfie, turns to camera; JAMES / **LEAHY** over the sky | 8.5–10 same |
+| Hook line | "The ordinary days are quietly building / the **extraordinary** life you've always imagined." (aspiration: saves, profile visits) | "Your comfort zone can quietly become / the most **expensive** place you ever live." (challenging belief: comments) |
+
+Each hook line is split into two blocks so it can be read at this pace. **Type:** Anton caps, white, #75FF78 on one
+word (James's choice for hero edits, Nov 2026, from `font-options.jpg`).
 
 **Look:** no grade. The iPhone HLG footage is only converted to SDR (Hable tone-map) so it plays with correct colours;
-no extra contrast, saturation, vignette or flashes. The end shot is darkened (brightness .72) under the name.
-The dune run is the 60 fps original at half speed.
+no extra contrast, saturation, vignette or flashes. The dune run is the 60 fps original at half speed.
 
 **For the music:** every cut sits on a 0.5 s grid, so a 120 BPM track (or 60 BPM half-time) starting at 0 s lines up.
-The end card starts at 12.0 s (15 s cut) / 7.0 s (10 s cut).
+The linger (and the name) starts at 13.0 s (15 s cut) / 8.5 s (10 s cut); the payoff at 9.5 s / 6.0 s is where the drop should land.
 
 ## Rebuilding
 

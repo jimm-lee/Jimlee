@@ -2,8 +2,11 @@
 """Writes film-15/index.html and film-10/index.html (huashu-motion compositions) from the cut lists below.
 
 Hero edits, no soundtrack (music is added afterwards). Type: Anton caps with the #75FF78 accent (chosen by James for
-hero edits, Nov 2026). Captions during the clips are James's own lines (TITLES_*); empty until he supplies them.
-Times are seconds on a 0.5 s grid.
+hero edits, Nov 2026). Times are seconds on a 0.5 s grid.
+
+Structure (James's montage brief, "transformation" formula): hook (~15 %) → connection (~20 %) → build (~30 %)
+→ payoff (~20 %) → linger (~15 %). Contrast shot to shot: intimacy vs scale, stillness vs movement, dark vs light.
+One hook line per cut (from James's hook-line list), split into two readable blocks; the name closes the linger.
 """
 from pathlib import Path
 
@@ -11,33 +14,50 @@ HERE = Path(__file__).parent
 
 # (clip, start, duration, media_start)
 CUT_15 = [
-    ("0171", 0.0, 2.0, 15.5),       # sauna: stillness
-    ("8230", 2.0, 0.5, 3.8),        # the coast from above
-    ("9170", 2.5, 1.0, 0.4),        # geyser: pressure
-    ("7989", 3.5, 1.0, 3.3),        # rodeo: the chaos
-    ("9161", 4.5, 1.0, 1.0),        # fight night
-    ("0170", 5.5, 2.0, 1.6),        # ice bath
-    ("9661_slow", 7.5, 1.5, 4.6),   # dune run, half speed
-    ("9319", 9.0, 0.5, 2.5),        # dragon boats
-    ("9357", 9.5, 0.5, 1.2),        # Split Apple Rock
-    ("2153", 10.0, 2.0, 2.4),       # vest selfie, golden hour
-    ("0389", 12.0, 3.0, 1.0),       # end: sunset on deck
+    # 01 hook 0–2.5: emotional interruption, lowering into the ice, the splash
+    ("0170", 0.0, 2.5, 1.4),
+    # 02 connection 2.5–5.5: the world (wide, light), then the human (walking, moving)
+    ("8230", 2.5, 1.0, 3.6),        # the coast from above
+    ("2524", 3.5, 2.0, 1.3),        # Movember walk
+    # 03 build 5.5–9.5: rhythm, still/dark/loud alternating, cuts getting shorter
+    ("0171", 5.5, 1.0, 15.5),       # sauna: stillness, warm and close
+    ("7989", 6.5, 1.0, 3.3),        # rodeo: chaos, daylight
+    ("9161", 7.5, 0.5, 1.0),        # fight night: dark
+    ("9319", 8.0, 0.5, 2.5),        # dragon boats: effort
+    ("9170", 8.5, 0.5, 0.6),        # geyser: pressure
+    ("9357", 9.0, 0.5, 1.2),        # Split Apple Rock: stillness, scale
+    # 04 payoff 9.5–13: strongest images, movement and scale
+    ("9661_slow", 9.5, 2.0, 4.4),   # dune run, half speed
+    ("2148", 11.5, 1.5, 0.6),       # sun on the sea
+    # 05 linger 13–15: quiet expression; turns to camera at golden hour
+    ("2153", 13.0, 2.0, 3.3),
 ]
-TITLES_15 = []  # James's lines go here: (html, size class, start, end, top px)
-END_15 = 12.0
+# (text html, css size class, start, end, top px)
+TITLES_15 = [
+    ("The ordinary days<br>are quietly building", "h", 0.4, 2.5, 240),
+    ('the <span class="acc">extraordinary</span> life<br>you\'ve always imagined.', "h", 2.5, 5.5, 240),
+]
+END_15 = 13.0
 LEN_15 = 15.0
 
 CUT_10 = [
-    ("0170", 0.0, 1.5, 1.6),
-    ("9170", 1.5, 1.0, 0.4),
-    ("7989", 2.5, 0.5, 3.4),
-    ("9161", 3.0, 0.5, 1.2),
-    ("9661_slow", 3.5, 1.5, 4.6),
-    ("2153", 5.0, 2.0, 2.4),
-    ("0389", 7.0, 3.0, 1.0),
+    ("0170", 0.0, 2.0, 1.8),        # hook: into the ice
+    ("8230", 2.0, 0.5, 3.6),        # connection: the world
+    ("2524", 2.5, 1.0, 1.5),        # connection: the human
+    ("0171", 3.5, 0.5, 15.5),       # build
+    ("7989", 4.0, 0.5, 3.4),
+    ("9161", 4.5, 0.5, 1.2),
+    ("9170", 5.0, 0.5, 0.6),
+    ("9319", 5.5, 0.5, 2.5),
+    ("9661_slow", 6.0, 1.5, 4.6),   # payoff
+    ("2148", 7.5, 1.0, 0.9),
+    ("2153", 8.5, 1.5, 3.8),        # linger
 ]
-TITLES_10 = []
-END_10 = 7.0
+TITLES_10 = [
+    ("Your comfort zone<br>can quietly become", "h", 0.3, 2.0, 240),
+    ('the most <span class="acc">expensive</span> place<br>you ever live.', "h", 2.0, 3.8, 240),
+]
+END_10 = 8.5
 LEN_10 = 10.0
 
 END_LINE = "James"
