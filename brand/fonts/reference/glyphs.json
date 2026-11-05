@@ -1,0 +1,190 @@
+{
+ "source": "Canva sample supplied by James, Nov 2026",
+ "rows": [
+  [
+   69,
+   144
+  ],
+  [
+   201,
+   288
+  ]
+ ],
+ "glyphs": {
+  "A": {
+   "width": 63,
+   "height": 73,
+   "ink_ratio": 0.4018,
+   "aspect_w_over_h": 0.863,
+   "baseline_drop_px": -1
+  },
+  "B": {
+   "width": 57,
+   "height": 73,
+   "ink_ratio": 0.5799,
+   "aspect_w_over_h": 0.7808,
+   "baseline_drop_px": -1
+  },
+  "C": {
+   "width": 60,
+   "height": 75,
+   "ink_ratio": 0.4147,
+   "aspect_w_over_h": 0.8,
+   "baseline_drop_px": 0
+  },
+  "D": {
+   "width": 60,
+   "height": 73,
+   "ink_ratio": 0.518,
+   "aspect_w_over_h": 0.8219,
+   "baseline_drop_px": -1
+  },
+  "E": {
+   "width": 49,
+   "height": 73,
+   "ink_ratio": 0.4976,
+   "aspect_w_over_h": 0.6712,
+   "baseline_drop_px": -1
+  },
+  "F": {
+   "width": 50,
+   "height": 73,
+   "ink_ratio": 0.4236,
+   "aspect_w_over_h": 0.6849,
+   "baseline_drop_px": -1
+  },
+  "G": {
+   "width": 61,
+   "height": 75,
+   "ink_ratio": 0.513,
+   "aspect_w_over_h": 0.8133,
+   "baseline_drop_px": 0
+  },
+  "H": {
+   "width": 64,
+   "height": 73,
+   "ink_ratio": 0.5083,
+   "aspect_w_over_h": 0.8767,
+   "baseline_drop_px": -1
+  },
+  "I": {
+   "width": 21,
+   "height": 73,
+   "ink_ratio": 0.7169,
+   "aspect_w_over_h": 0.2877,
+   "baseline_drop_px": -1
+  },
+  "J": {
+   "width": 47,
+   "height": 74,
+   "ink_ratio": 0.3588,
+   "aspect_w_over_h": 0.6351,
+   "baseline_drop_px": 0
+  },
+  "K": {
+   "width": 64,
+   "height": 74,
+   "ink_ratio": 0.473,
+   "aspect_w_over_h": 0.8649,
+   "baseline_drop_px": 0
+  },
+  "L": {
+   "width": 52,
+   "height": 73,
+   "ink_ratio": 0.3628,
+   "aspect_w_over_h": 0.7123,
+   "baseline_drop_px": -1
+  },
+  "M": {
+   "width": 78,
+   "height": 73,
+   "ink_ratio": 0.5056,
+   "aspect_w_over_h": 1.0685,
+   "baseline_drop_px": -1
+  },
+  "N": {
+   "width": 56,
+   "height": 74,
+   "ink_ratio": 0.5463,
+   "aspect_w_over_h": 0.7568,
+   "baseline_drop_px": 0
+  },
+  "O": {
+   "width": 69,
+   "height": 75,
+   "ink_ratio": 0.4512,
+   "aspect_w_over_h": 0.92,
+   "baseline_drop_px": -12
+  },
+  "P": {
+   "width": 55,
+   "height": 73,
+   "ink_ratio": 0.4715,
+   "aspect_w_over_h": 0.7534,
+   "baseline_drop_px": -13
+  },
+  "Q": {
+   "width": 71,
+   "height": 87,
+   "ink_ratio": 0.4321,
+   "aspect_w_over_h": 0.8161,
+   "baseline_drop_px": 0
+  },
+  "R": {
+   "width": 60,
+   "height": 74,
+   "ink_ratio": 0.5115,
+   "aspect_w_over_h": 0.8108,
+   "baseline_drop_px": -12
+  },
+  "S": {
+   "width": 51,
+   "height": 75,
+   "ink_ratio": 0.5305,
+   "aspect_w_over_h": 0.68,
+   "baseline_drop_px": -12
+  },
+  "T": {
+   "width": 57,
+   "height": 73,
+   "ink_ratio": 0.3446,
+   "aspect_w_over_h": 0.7808,
+   "baseline_drop_px": -13
+  },
+  "U": {
+   "width": 57,
+   "height": 74,
+   "ink_ratio": 0.4587,
+   "aspect_w_over_h": 0.7703,
+   "baseline_drop_px": -12
+  },
+  "V": {
+   "width": 63,
+   "height": 73,
+   "ink_ratio": 0.3838,
+   "aspect_w_over_h": 0.863,
+   "baseline_drop_px": -13
+  },
+  "X": {
+   "width": 63,
+   "height": 73,
+   "ink_ratio": 0.4316,
+   "aspect_w_over_h": 0.863,
+   "baseline_drop_px": -13
+  },
+  "Y": {
+   "width": 63,
+   "height": 73,
+   "ink_ratio": 0.3185,
+   "aspect_w_over_h": 0.863,
+   "baseline_drop_px": -13
+  },
+  "Z": {
+   "width": 55,
+   "height": 73,
+   "ink_ratio": 0.468,
+   "aspect_w_over_h": 0.7534,
+   "baseline_drop_px": -13
+  }
+ }
+}

@@ -24,6 +24,11 @@ Verified readable over grass, bright overcast sky and night street footage (Heav
 
 > **Pending:** James is choosing a new, slightly heavier typeface, with a subtle shadow offset down and to the
 > right. The Outfit Light spec above stays until it's swapped in.
+>
+> **Brand font reference:** the chosen display face (from a Canva sample, name not yet known) is scanned letter by
+> letter in [`fonts/reference/`](fonts/reference/README.md), with its distinguishing traits and a checker that scores
+> any font file against it. No exact match exists in Google Fonts; the closest free relatives are Averia Libre
+> and Arima.
 
 ## Reels / Shorts / TikTok rules (1080×1920)
 
