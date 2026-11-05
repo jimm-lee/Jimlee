@@ -7,8 +7,8 @@ Donations: <https://movember.com/m/15440871?mc=60> (the QR code on the end card 
 
 | File | Length | Notes |
 |---|---|---|
-| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v11). 1080×1920, H.264 + AAC 256k, −14.3 LUFS, peak −1.2 dB |
-| `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.7 LUFS |
+| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v12, voice-forward mix). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
+| `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.4 LUFS |
 | `*.srt` | — | Caption files for upload (Instagram / Facebook / YouTube) |
 
 GPS location is not present in these files. The QR code on both end cards was verified to scan.
@@ -75,8 +75,14 @@ om render film         # → film/out/film-vN.mp4
 om qa film
 ```
 
-Then the final mix: music lifted 1.4× from 13.45–19.9 s (the night drop), voice added, normalised to −14 LUFS /
-−1.5 dBTP with a two-pass `loudnorm`, AAC 256k.
+Then the final mix (v12, voice-forward):
+
+- Music + effects bus: `sound.wav`, lifted 1.2× from 13.45–19.9 s (the night drop), then side-chain ducked by the
+  voice (`sidechaincompress=threshold=0.04:ratio=3:attack=10:release=300`) so the title hits don't mask words.
+- Voice: `highpass=100`, −2 dB at 250 Hz, +4 dB at 3.2 kHz, `acompressor` 4:1 with +6 dB makeup, limiter at −0.9 dB.
+- Sum, then two-pass `loudnorm` to −14 LUFS / −1.5 dBTP, AAC 256k. Every word ends up ≥ ~12 dB above the music.
+
+v10/v11 had the voice only ~10 dB over the music and the title impacts landing on words, which made it hard to hear.
 
 ### 4. The 15 s cutdown
 
