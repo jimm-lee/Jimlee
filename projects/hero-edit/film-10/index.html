@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"JAMES LEAHY"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>Hero edit — 10 s</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  /* hero grade: a little more contrast, a little less colour */
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(.88) brightness(.97); }
+  .shot.endshot video { filter: contrast(1.1) saturate(.8) brightness(.62); }
+  .vignette { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 85% 70% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.5) 100%); }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.18) 22%, rgba(0,0,0,0) 36%, rgba(0,0,0,0) 58%, rgba(0,0,0,.6) 100%); }
+  .flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.14; letter-spacing: 0; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .big { font-size: 200px; }
+  .acc { color: var(--accent); }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <!-- no soundtrack: music is added afterwards. Cuts sit on a 0.5 s grid (120 BPM, or 60 BPM half-time) -->
+  <div class="shot" id="s0" style="visibility:visible" data-om-id="shot-9661_slow"><video src="assets/clips/9661_slow.mp4" class="clip" data-start="0.0" data-duration="1.5" data-media-start="4.6" muted playsinline></video></div>
+  <div class="shot" id="s1" data-om-id="shot-7989"><video src="assets/clips/7989.mp4" class="clip" data-start="1.5" data-duration="1.0" data-media-start="3.4" muted playsinline></video></div>
+  <div class="shot" id="s2" data-om-id="shot-9161"><video src="assets/clips/9161.mp4" class="clip" data-start="2.5" data-duration="0.5" data-media-start="1.2" muted playsinline></video></div>
+  <div class="shot" id="s3" data-om-id="shot-9357"><video src="assets/clips/9357.mp4" class="clip" data-start="3.0" data-duration="0.5" data-media-start="1.2" muted playsinline></video></div>
+  <div class="shot" id="s4" data-om-id="shot-2524"><video src="assets/clips/2524.mp4" class="clip" data-start="3.5" data-duration="1.5" data-media-start="1.5" muted playsinline></video></div>
+  <div class="shot" id="s5" data-om-id="shot-2153"><video src="assets/clips/2153.mp4" class="clip" data-start="5.0" data-duration="2.0" data-media-start="2.4" muted playsinline></video></div>
+  <div class="shot endshot" id="s6" data-om-id="shot-0389"><video src="assets/clips/0389.mp4" class="clip" data-start="7.0" data-duration="3.0" data-media-start="1.0" muted playsinline></video></div>
+
+  <div class="vignette"></div>
+  <div class="shade"></div>
+
+  <div class="t m" id="t0" style="top:230px;opacity:1" data-om-id="title-0">Motivation fades.<br><span class="acc">Discipline</span> stays.</div>
+  <div class="t m" id="t1" style="top:250px" data-om-id="title-1">Control the<br><span class="acc">response.</span></div>
+  <div class="t m" id="t2" style="top:230px" data-om-id="title-2">Consistency<br>over <span class="acc">applause.</span></div>
+  <div class="t l" id="t3" style="top:230px" data-om-id="title-3">Build it<br><span class="acc">quietly.</span></div>
+
+  <!-- end card, over the last shot -->
+  <div class="t l"  id="e1" style="top:560px" data-om-id="end-line">Do the</div>
+  <div class="t acc big" id="e2" style="top:730px" data-om-id="end-word">WORK.</div>
+  <div class="bar"  id="eb" style="top:1000px" data-om-id="end-bar"></div>
+  <div class="kick" id="ek" style="top:1050px" data-om-id="end-name" data-var-text="name">JAMES LEAHY</div>
+
+  <div class="flash" id="flash"></div>
+</div>
+
+<script>
+  const V = OM.vars();
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  const CUT = [
+    ['s0', 0.0, 1.5],
+    ['s1', 1.5, 1.0],
+    ['s2', 2.5, 0.5],
+    ['s3', 3.0, 0.5],
+    ['s4', 3.5, 1.5],
+    ['s5', 5.0, 2.0],
+    ['s6', 7.0, 3.0]
+  ];
+  const TITLES = [
+    ['t0', 0.0, 1.5],
+    ['t1', 1.5, 3.5],
+    ['t2', 3.5, 5.0],
+    ['t3', 5.0, 7.0]
+  ];
+  const END = 7.0;
+  const FLASHES = [1.5, 7.0];
+
+  // shots: a slow push-in for the long holds, a harder punch for the quick ones
+  CUT.forEach(([id, at, dur]) => {
+    const el = '#' + id;
+    const quick = dur <= .5;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    if (dur > .5) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+  // white flash frames on the big cuts
+  FLASHES.forEach((at) => tl.fromTo('#flash', { opacity: .55 }, { opacity: 0, duration: .25, ease: 'power2.out', immediateRender: false }, at));
+
+  // titles: rise in with a slight blur clearing, leave on their out point
+  TITLES.forEach(([id, at, out]) => {
+    const el = '#' + id;
+    if (at === 0) tl.fromTo(el, { opacity: 1, scale: 1.04 }, { scale: 1, duration: .6 }, 0);
+    else tl.fromTo(el, { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .45 }, at);
+    tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
+  });
+
+  // end card: line, then the word lands, then the name
+  tl.addLabel('scene:end', END);
+  tl.fromTo('#e1', { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5 }, END + .2);
+  tl.fromTo('#e2', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: .4 }, END + .7);
+  tl.to('#eb', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, END + 1.1);
+  tl.fromTo('#ek', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .5 }, END + 1.3);
+  tl.to({}, { duration: 3.0 }, END);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>

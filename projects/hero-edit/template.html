@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"JAMES LEAHY"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}}</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  /* hero grade: a little more contrast, a little less colour */
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1) saturate(.88) brightness(.97); }
+  .shot.endshot video { filter: contrast(1.1) saturate(.8) brightness(.62); }
+  .vignette { position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 85% 70% at 50% 45%, rgba(0,0,0,0) 55%, rgba(0,0,0,.5) 100%); }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.62) 0%, rgba(0,0,0,.18) 22%, rgba(0,0,0,0) 36%, rgba(0,0,0,0) 58%, rgba(0,0,0,.6) 100%); }
+  .flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.14; letter-spacing: 0; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .big { font-size: 200px; }
+  .acc { color: var(--accent); }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <!-- no soundtrack: music is added afterwards. Cuts sit on a 0.5 s grid (120 BPM, or 60 BPM half-time) -->
+{{SHOTS}}
+
+  <div class="vignette"></div>
+  <div class="shade"></div>
+
+{{TYPES}}
+
+  <!-- end card, over the last shot -->
+  <div class="t l"  id="e1" style="top:560px" data-om-id="end-line">{{END_LINE}}</div>
+  <div class="t acc big" id="e2" style="top:730px" data-om-id="end-word">{{END_WORD}}</div>
+  <div class="bar"  id="eb" style="top:1000px" data-om-id="end-bar"></div>
+  <div class="kick" id="ek" style="top:1050px" data-om-id="end-name" data-var-text="name">JAMES LEAHY</div>
+
+  <div class="flash" id="flash"></div>
+</div>
+
+<script>
+  const V = OM.vars();
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  const CUT = [
+    {{CUT_JS}}
+  ];
+  const TITLES = [
+    {{TITLES_JS}}
+  ];
+  const END = {{END}};
+  const FLASHES = [{{FLASHES}}];
+
+  // shots: a slow push-in for the long holds, a harder punch for the quick ones
+  CUT.forEach(([id, at, dur]) => {
+    const el = '#' + id;
+    const quick = dur <= .5;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    if (dur > .5) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+  // white flash frames on the big cuts
+  FLASHES.forEach((at) => tl.fromTo('#flash', { opacity: .55 }, { opacity: 0, duration: .25, ease: 'power2.out', immediateRender: false }, at));
+
+  // titles: rise in with a slight blur clearing, leave on their out point
+  TITLES.forEach(([id, at, out]) => {
+    const el = '#' + id;
+    if (at === 0) tl.fromTo(el, { opacity: 1, scale: 1.04 }, { scale: 1, duration: .6 }, 0);
+    else tl.fromTo(el, { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .45 }, at);
+    tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
+  });
+
+  // end card: line, then the word lands, then the name
+  tl.addLabel('scene:end', END);
+  tl.fromTo('#e1', { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5 }, END + .2);
+  tl.fromTo('#e2', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: .4 }, END + .7);
+  tl.to('#eb', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, END + 1.1);
+  tl.fromTo('#ek', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: .5 }, END + 1.3);
+  tl.to({}, { duration: {{END_DUR}} }, END);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>
