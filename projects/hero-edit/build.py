@@ -26,11 +26,11 @@ CUT_15 = [
     ("9319", 8.0, 0.5, 2.5),        # dragon boats: effort
     ("9170", 8.5, 0.5, 0.6),        # geyser: pressure
     ("9357", 9.0, 0.5, 1.2),        # Split Apple Rock: stillness, scale
-    # 04 payoff 9.5–13: strongest images, movement and scale
+    # 04 payoff 9.5–13: strongest images, movement, then warmth
     ("9661_slow", 9.5, 2.0, 4.4),   # dune run, half speed
-    ("2148", 11.5, 1.5, 0.6),       # sun on the sea
-    # 05 linger 13–15: quiet expression; turns to camera at golden hour
-    ("2153", 13.0, 2.0, 3.3),
+    ("2153", 11.5, 1.5, 3.6),       # golden hour, turns to camera
+    # 05 linger 13–15: the open sea at sunset, slow push, fade to black. No name, no text
+    ("2148", 13.0, 2.0, 0.5),
 ]
 # Captions: one hook line per cut, shown as chunks of 2–3 words on a single row ("|" splits chunks, *word* = green
 # accent with the cherry outline). Words pop in one at a time; each chunk clears once it has had time to be read.
@@ -49,8 +49,8 @@ CUT_10 = [
     ("9170", 5.0, 0.5, 0.6),
     ("9319", 5.5, 0.5, 2.5),
     ("9661_slow", 6.0, 1.5, 4.6),   # payoff
-    ("2148", 7.5, 1.0, 0.9),
-    ("2153", 8.5, 1.5, 3.8),        # linger
+    ("2153", 7.5, 1.0, 4.2),        # golden hour, turns to camera
+    ("2148", 8.5, 1.5, 0.9),        # linger: open sea, fade to black
 ]
 HOOK_10 = "Your comfort zone | can quietly become | the most | *expensive* place | you ever live."
 HOOK_10_START = 0.3

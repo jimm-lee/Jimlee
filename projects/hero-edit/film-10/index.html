@@ -47,8 +47,8 @@
   <div class="shot" id="s6" data-om-id="shot-9170"><video src="assets/clips/9170.mp4" class="clip" data-start="5.0" data-duration="0.5" data-media-start="0.6" muted playsinline></video></div>
   <div class="shot" id="s7" data-om-id="shot-9319"><video src="assets/clips/9319.mp4" class="clip" data-start="5.5" data-duration="0.5" data-media-start="2.5" muted playsinline></video></div>
   <div class="shot" id="s8" data-om-id="shot-9661_slow"><video src="assets/clips/9661_slow.mp4" class="clip" data-start="6.0" data-duration="1.5" data-media-start="4.6" muted playsinline></video></div>
-  <div class="shot" id="s9" data-om-id="shot-2148"><video src="assets/clips/2148.mp4" class="clip" data-start="7.5" data-duration="1.0" data-media-start="0.9" muted playsinline></video></div>
-  <div class="shot endshot" id="s10" data-om-id="shot-2153"><video src="assets/clips/2153.mp4" class="clip" data-start="8.5" data-duration="1.5" data-media-start="3.8" muted playsinline></video></div>
+  <div class="shot" id="s9" data-om-id="shot-2153"><video src="assets/clips/2153.mp4" class="clip" data-start="7.5" data-duration="1.0" data-media-start="4.2" muted playsinline></video></div>
+  <div class="shot endshot" id="s10" data-om-id="shot-2148"><video src="assets/clips/2148.mp4" class="clip" data-start="8.5" data-duration="1.5" data-media-start="0.9" muted playsinline></video></div>
 
   <div class="shade"></div>
 
@@ -58,10 +58,8 @@
   <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w acc">expensive</span> <span class="w">place</span></div>
   <div class="t h cap" id="t4" style="top:1130px" data-om-id="caption-4"><span class="w">you</span> <span class="w">ever</span> <span class="w">live.</span></div>
 
-  <!-- the name, over the linger shot's sky -->
-  <div class="t" id="e1" style="top:190px;font-size:160px" data-om-id="end-first">James</div>
-  <div class="t acc" id="e2" style="top:335px;font-size:240px" data-om-id="end-last">Leahy</div>
-  <div class="bar"  id="eb" style="top:575px" data-om-id="end-bar"></div>
+  <!-- linger: no name card; the last shot fades to black -->
+  <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
 
 </div>
 
@@ -98,7 +96,8 @@
     tl.set(el, { visibility: 'visible' }, at)
       .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)
       .set(el, { visibility: 'hidden' }, at + dur);
-    if (dur > .5) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+    const isLast = id === CUT[CUT.length - 1][0];  // the linger has its own slow push
+    if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
   });
 
 
@@ -112,11 +111,10 @@
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });
 
-  // end card: line, then the word lands, then the name
-  tl.addLabel('scene:end', END);
-  tl.fromTo('#e1', { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .5 }, END + .2);
-  tl.fromTo('#e2', { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 1, duration: .4 }, END + .7);
-  tl.to('#eb', { scaleX: 1, duration: .5, ease: 'expo.inOut' }, END + 1.1);
+  // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
+  tl.addLabel('scene:linger', END);
+  tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: 1.5 - .5, ease: 'sine.inOut' }, END + .5);
+  tl.to('#fade', { opacity: 1, duration: .8, ease: 'sine.in' }, END + 1.5 - .8);
   tl.to({}, { duration: 1.5 }, END);
 
   window.__timelines['film'] = tl;

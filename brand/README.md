@@ -19,6 +19,8 @@ Use this for every video from now on, so they look designed rather than template
 > grade on the footage. (Tried and replaced: Anton, Newsreader Bold; Brasika is a paid Canva font with no free equivalent.)
 > Green words carry a thin (2.5 px) **cherry** outline, currently **#D2042D**: James asked for "the cherry colour" but
 > its exact value wasn't recorded anywhere; confirm it and record it here.
+> **No name end cards on hero edits.** James: it feels like forced promotion. End on an open, warm image (a landscape,
+> a fade) that makes people want to see more of the life, not on his name.
 > Merienda remains the face for other videos unless he says otherwise.
 
 Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.
