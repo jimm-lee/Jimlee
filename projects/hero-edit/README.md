@@ -15,7 +15,14 @@ linger ~15 %, alternating intimacy/scale, stillness/movement and dark/light.
 | 05 Linger | 13–15 golden-hour selfie, turns to camera; JAMES / **LEAHY** over the sky | 8.5–10 same |
 | Hook line | "The ordinary days are quietly building / the **extraordinary** life you've always imagined." (aspiration: saves, profile visits) | "Your comfort zone can quietly become / the most **expensive** place you ever live." (challenging belief: comments) |
 
-Each hook line is split into two blocks so it can be read at this pace. **Type:** Bebas Neue caps, tight spacing (.01em), thickened with a 3 px same-colour stroke (Bebas has one weight),
+**Captions:** the hook line plays as chunks of 2–3 words on a single row. Words pop in one at a time (0.14 s apart),
+each chunk holds for reading time (0.35 s + 0.28 s per word) and then clears. Chunks are split with `|` in
+`HOOK_15` / `HOOK_10` in `build.py`; `*word*` marks the green word. The 10 s cut's last chunk sits lower, in the sand,
+so it doesn't cover James on the dune.
+
+**Green words:** bold #75FF78 with a thin (2.5 px) cherry outline, then the subtle shadow. The cherry used is #D2042D
+(classic cherry red); James's exact cherry wasn't on record. Alternatives in `cherry-shades.jpg`: dark cherry
+#990F3D, cherry pink #DE3163. Change `CHERRY` in `build.py`. **Type:** Bebas Neue caps, tight spacing (.01em), thickened with a 3 px same-colour stroke (Bebas has one weight),
 white with #75FF78 on one word and the brand's subtle down-right shadow (James's choice for hero edits, Nov 2026;
 see `bebas-sample.jpg`).
 

@@ -17,6 +17,8 @@ Use this for every video from now on, so they look designed rather than template
 > **Hero edits (Nov 2026):** James chose **Bebas Neue** caps (Google Fonts, OFL), bold and tight: letter-spacing .01em,
 > thickened with a 3 px same-colour stroke; white with #75FF78 on one word and the same subtle down-right shadow; no colour
 > grade on the footage. (Tried and replaced: Anton, Newsreader Bold; Brasika is a paid Canva font with no free equivalent.)
+> Green words carry a thin (2.5 px) **cherry** outline, currently **#D2042D**: James asked for "the cherry colour" but
+> its exact value wasn't recorded anywhere; confirm it and record it here.
 > Merienda remains the face for other videos unless he says otherwise.
 
 Sizes for 1080×1920: XL 180 (one word), L 130, M 96, S 68. Keep lines under ~880 px wide.

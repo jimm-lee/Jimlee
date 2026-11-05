@@ -32,11 +32,10 @@ CUT_15 = [
     # 05 linger 13–15: quiet expression; turns to camera at golden hour
     ("2153", 13.0, 2.0, 3.3),
 ]
-# (text html, css size class, start, end, top px)
-TITLES_15 = [
-    ("The ordinary days<br>are quietly building", "h", 0.4, 2.5, 240),
-    ('the <span class="acc">extraordinary</span> life<br>you\'ve always imagined.', "h", 2.5, 5.5, 240),
-]
+# Captions: one hook line per cut, shown as chunks of 2–3 words on a single row ("|" splits chunks, *word* = green
+# accent with the cherry outline). Words pop in one at a time; each chunk clears once it has had time to be read.
+HOOK_15 = "The ordinary days | are quietly building | the *extraordinary* life | you've always imagined."
+HOOK_15_START = 0.4
 END_15 = 13.0
 LEN_15 = 15.0
 
@@ -53,12 +52,17 @@ CUT_10 = [
     ("2148", 7.5, 1.0, 0.9),
     ("2153", 8.5, 1.5, 3.8),        # linger
 ]
-TITLES_10 = [
-    ("Your comfort zone<br>can quietly become", "h", 0.3, 2.0, 240),
-    ('the most <span class="acc">expensive</span> place<br>you ever live.', "h", 2.0, 3.8, 240),
-]
+HOOK_10 = "Your comfort zone | can quietly become | the most | *expensive* place | you ever live."
+HOOK_10_START = 0.3
 END_10 = 8.5
 LEN_10 = 10.0
+
+WORD_GAP = 0.14       # seconds between words popping in
+READ_BASE = 0.35      # minimum hold once the chunk is complete
+READ_PER_WORD = 0.28  # extra reading time per word
+CHUNK_GAP = 0.1       # empty beat between chunks
+CAPTION_TOP = 250     # px; single row in the upper third
+CHERRY = "#D2042D"    # cherry red; James's exact cherry not on record yet
 
 END_LINE = "James"
 END_WORD = "Leahy"
@@ -66,7 +70,22 @@ END_WORD = "Leahy"
 TEMPLATE = (HERE / "template.html").read_text()
 
 
-def render(cut, titles, end_at, length, title):
+def chunks(hook: str, start: float) -> list[tuple[str, float, float]]:
+    """Split a hook line into timed chunks: (html of word spans, start, end)."""
+    out, at = [], start
+    for part in (p.strip() for p in hook.split("|")):
+        words = part.split()
+        spans = " ".join(
+            f'<span class="w acc">{w[1:-1]}</span>' if w.startswith("*") and w.endswith("*")
+            else f'<span class="w">{w}</span>' for w in words)
+        dur = WORD_GAP * (len(words) - 1) + READ_BASE + READ_PER_WORD * len(words)
+        out.append((spans, round(at, 2), round(at + dur, 2)))
+        at += dur + CHUNK_GAP
+    return out
+
+
+def render(cut, hook, hook_start, end_at, length, title, tops=None):
+    titles = chunks(hook, hook_start)
     last = len(cut) - 1
     shots = "\n".join(
         f'  <div class="shot{" endshot" if i == last else ""}" id="s{i}"'
@@ -76,22 +95,25 @@ def render(cut, titles, end_at, length, title):
         for i, (c, s, d, m) in enumerate(cut)
     )
     types = "\n".join(
-        f'  <div class="t {cls}" id="t{i}" style="top:{top}px{";opacity:1" if s == 0 else ""}" data-om-id="title-{i}">{html}</div>'
-        for i, (html, cls, s, e, top) in enumerate(titles)
+        f'  <div class="t h cap" id="t{i}" style="top:{(tops or {}).get(i, CAPTION_TOP)}px" data-om-id="caption-{i}">{html}</div>'
+        for i, (html, s, e) in enumerate(titles)
     )
     cut_js = ",\n    ".join(f"['s{i}', {s}, {d}]" for i, (_, s, d, _) in enumerate(cut))
-    titles_js = ",\n    ".join(f"['t{i}', {s}, {e}]" for i, (_, _, s, e, _) in enumerate(titles))
+    titles_js = ",\n    ".join(f"['t{i}', {s}, {e}]" for i, (_, s, e) in enumerate(titles))
     return (TEMPLATE.replace("{{TITLE}}", title)
             .replace("{{SHOTS}}", shots)
             .replace("{{TYPES}}", types)
             .replace("{{CUT_JS}}", cut_js)
             .replace("{{TITLES_JS}}", titles_js)
+            .replace("{{CHERRY}}", CHERRY)
+            .replace("{{WORD_GAP}}", str(WORD_GAP))
             .replace("{{END_LINE}}", END_LINE)
             .replace("{{END_WORD}}", END_WORD)
             .replace("{{END}}", str(end_at))
             .replace("{{END_DUR}}", str(length - end_at)))
 
 
-(HERE / "film-15/index.html").write_text(render(CUT_15, TITLES_15, END_15, LEN_15, "Hero edit — 15 s"))
-(HERE / "film-10/index.html").write_text(render(CUT_10, TITLES_10, END_10, LEN_10, "Hero edit — 10 s"))
+(HERE / "film-15/index.html").write_text(render(CUT_15, HOOK_15, HOOK_15_START, END_15, LEN_15, "Hero edit — 15 s"))
+(HERE / "film-10/index.html").write_text(render(CUT_10, HOOK_10, HOOK_10_START, END_10, LEN_10, "Hero edit — 10 s",
+                                                tops={4: 1130}))  # last chunk sits in the sand, clear of James on the dune)
 print("wrote film-15/index.html, film-10/index.html")

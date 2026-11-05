@@ -15,7 +15,7 @@
 </style>
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); --cherry: {{CHERRY}}; }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
   /* clips are ungraded (straight HDR to SDR conversion) */
   .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -25,7 +25,12 @@
   .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
   .big { font-size: 200px; }
   .h { font-size: 112px; line-height: .98; }
-  .acc { color: var(--accent); }
+  /* green words: bold green with a thin cherry outline, then the subtle down-right shadow */
+  .acc { color: var(--accent); text-shadow: none;
+    filter: drop-shadow(2.5px 0 0 var(--cherry)) drop-shadow(-2.5px 0 0 var(--cherry)) drop-shadow(0 2.5px 0 var(--cherry)) drop-shadow(0 -2.5px 0 var(--cherry))
+            drop-shadow(4px 6px 0 rgba(0,0,0,.28)) drop-shadow(6px 8px 12px rgba(0,0,0,.35)); }
+  .cap { white-space: nowrap; opacity: 1; visibility: hidden; }
+  .cap .w { display: inline-block; opacity: 0; }
   .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
   .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
 </style>
@@ -69,11 +74,13 @@
   });
 
 
-  // titles: rise in with a slight blur clearing, leave on their out point
+  // captions: words pop in one at a time, the chunk holds for reading time, then clears
   TITLES.forEach(([id, at, out]) => {
-    const el = '#' + id;
-    if (at === 0) tl.fromTo(el, { opacity: 1, scale: 1.04 }, { scale: 1, duration: .6 }, 0);
-    else tl.fromTo(el, { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .45 }, at);
+    const el = document.getElementById(id);
+    tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
+    el.querySelectorAll('.w').forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * {{WORD_GAP}});
+    });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });
 

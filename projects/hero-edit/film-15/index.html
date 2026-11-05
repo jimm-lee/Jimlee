@@ -15,7 +15,7 @@
 </style>
 <style>
   html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
-  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); --cherry: #D2042D; }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
   /* clips are ungraded (straight HDR to SDR conversion) */
   .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -25,7 +25,12 @@
   .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
   .big { font-size: 200px; }
   .h { font-size: 112px; line-height: .98; }
-  .acc { color: var(--accent); }
+  /* green words: bold green with a thin cherry outline, then the subtle down-right shadow */
+  .acc { color: var(--accent); text-shadow: none;
+    filter: drop-shadow(2.5px 0 0 var(--cherry)) drop-shadow(-2.5px 0 0 var(--cherry)) drop-shadow(0 2.5px 0 var(--cherry)) drop-shadow(0 -2.5px 0 var(--cherry))
+            drop-shadow(4px 6px 0 rgba(0,0,0,.28)) drop-shadow(6px 8px 12px rgba(0,0,0,.35)); }
+  .cap { white-space: nowrap; opacity: 1; visibility: hidden; }
+  .cap .w { display: inline-block; opacity: 0; }
   .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
   .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
 </style>
@@ -48,8 +53,10 @@
 
   <div class="shade"></div>
 
-  <div class="t h" id="t0" style="top:240px" data-om-id="title-0">The ordinary days<br>are quietly building</div>
-  <div class="t h" id="t1" style="top:240px" data-om-id="title-1">the <span class="acc">extraordinary</span> life<br>you've always imagined.</div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">The</span> <span class="w">ordinary</span> <span class="w">days</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w">are</span> <span class="w">quietly</span> <span class="w">building</span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">the</span> <span class="w acc">extraordinary</span> <span class="w">life</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">you've</span> <span class="w">always</span> <span class="w">imagined.</span></div>
 
   <!-- the name, over the linger shot's sky -->
   <div class="t" id="e1" style="top:190px;font-size:160px" data-om-id="end-first">James</div>
@@ -77,8 +84,10 @@
     ['s11', 13.0, 2.0]
   ];
   const TITLES = [
-    ['t0', 0.4, 2.5],
-    ['t1', 2.5, 5.5]
+    ['t0', 0.4, 1.87],
+    ['t1', 1.97, 3.44],
+    ['t2', 3.54, 5.01],
+    ['t3', 5.11, 6.58]
   ];
   const END = 13.0;
 
@@ -93,11 +102,13 @@
   });
 
 
-  // titles: rise in with a slight blur clearing, leave on their out point
+  // captions: words pop in one at a time, the chunk holds for reading time, then clears
   TITLES.forEach(([id, at, out]) => {
-    const el = '#' + id;
-    if (at === 0) tl.fromTo(el, { opacity: 1, scale: 1.04 }, { scale: 1, duration: .6 }, 0);
-    else tl.fromTo(el, { opacity: 0, y: 30, filter: 'blur(8px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: .45 }, at);
+    const el = document.getElementById(id);
+    tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
+    el.querySelectorAll('.w').forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+    });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });
 
