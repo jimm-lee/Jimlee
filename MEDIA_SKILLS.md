@@ -46,7 +46,7 @@ curl -X POST localhost:3900/models/install -H 'Content-Type: application/json' -
 curl -X POST localhost:3900/engines/select -H 'Content-Type: application/json' -d '{"family":"tts","backend_id":"voxcpm2"}'
 ```
 
-The default `k2-fsa/OmniVoice` weights are **non-commercial** and need explicit licence acceptance; they were declined here. Speech-to-text (transcription, captions) needs a Whisper model (`Systran/faster-whisper-large-v3`, 2.9 GB), not yet installed.
+The default `k2-fsa/OmniVoice` weights are **non-commercial**; James accepted the licence on 2026-11-05. Use `engine=omnivoice-subprocess` (in-process OmniVoice clashes with VoxCPM2). Speech-to-text (transcription, captions) needs a Whisper model (`Systran/faster-whisper-large-v3`, 2.9 GB), not yet installed.
 
 ### huashu-motion
 

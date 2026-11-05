@@ -36,8 +36,11 @@ curl -s localhost:3900/media-tools/status  # ffmpeg/ffprobe/yt-dlp
   VoxCPM2 (clone + design), CosyVoice 3 (needed for `keep_delivery`), MOSS-TTS-Nano, KittenTTS, GPT-SoVITS.
   Install: `POST /engines/sidecar/{engine}/install` + `POST /models/install {"repo_id":…}`,
   then `POST /engines/select {"family":"tts","backend_id":"voxcpm2"}` (or pass `engine=` per request).
-  The user chose this route over OmniVoice's non-commercial weights. VoxCPM2 is the active engine in this
-  workspace (CPU: ~2.5 min for a 5 s take, 48 kHz mono).
+  VoxCPM2 is the active engine in this workspace (CPU: ~2.5 min for a 5 s take, 48 kHz mono).
+- **OmniVoice licence accepted by James on 2026-11-05** (non-commercial: CC-BY-NC + Higgs Audio 2 + Meta Llama 3
+  tokenizer terms; fine for his personal Movember fundraising). Use `engine=omnivoice-subprocess`: in-process
+  `omnivoice` fails with `ImportError: AutoFeatureExtractor` once VoxCPM2 has loaded in the same server.
+  Verified: a 3.3 s line in ~3.5 min on CPU (first call includes model load), transcribed word-perfect.
 
 Pick the right tool for the edit:
 
