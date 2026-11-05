@@ -7,7 +7,7 @@ Donations: <https://movember.com/m/15440871?mc=60> (the QR code on the end card 
 
 | File | Length | Notes |
 |---|---|---|
-| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v16: Merienda house style, safe-zone layout, voice-forward mix, "How can you help?", new UP/DOWN/REPEAT clips). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
+| `Heavyweight-Hills-30s.mp4` | 30.5 s | Full cut (v17: Merienda house style, safe-zone layout, voice-forward mix, "How can you help?", new UP/DOWN/REPEAT clips, new end-card background). 1080×1920, H.264 + AAC 256k, −14.0 LUFS, peak −1.6 dB |
 | `Heavyweight-Hills-15s.mp4` | 15.0 s | Cutdown of the 30 s version, −13.4 LUFS |
 | `*.srt` | — | Caption files for upload (Instagram / Facebook / YouTube) |
 
@@ -43,8 +43,8 @@ ffmpeg -i IMG_XXXX.mov -an -vf "fps=30,scale=1080:1920,format=yuv420p" \
 | `3220.mp4` | IMG_3220 | "CLEAN SHAVEN." |
 | `3267.mp4` | IMG_3267 | "30 KG" selfie in the vest |
 | `3244.mp4` | IMG_3244 | "HEAVYWEIGHT HILLS" over the terraces |
-| `3313.mp4` | IMG_3313 | "UP." pushing up the grassy slope (whole clip) |
-| `3324.mp4` | IMG_3324 | "DOWN." down the path under the tree (0.6 s in) |
+| `3324.mp4` | IMG_3324 | "UP." up the path under the tree (0.6 s in) |
+| `3313.mp4` | IMG_3313 | "DOWN." down the grassy slope (whole clip) |
 | `3325.mp4` | IMG_3325 | "REPEAT." back up the leafy track (2.0 s in, then a beat cut to 3.5 s) |
 | `3246.mp4` | IMG_3246 | Summit selfie, "EVERY HILL AROUND HERE" |
 | `3269.mp4` | IMG_3269 | "BY DAY." view over the harbour |
@@ -52,13 +52,13 @@ ffmpeg -i IMG_XXXX.mov -an -vf "fps=30,scale=1080:1920,format=yuv420p" \
 | `3292.mp4` | IMG_3292 | "BY NIGHT." (iPhone slo-mo, already slowed) |
 | `3290.mp4` | IMG_3290 | Night wave, "ALL MOVEMBER LONG." |
 | `3262.mp4` | IMG_3262 | "NOW I NEED YOU. SPONSOR MY SUMMIT" |
-| `3267_loop.mp4` | from `3267.mp4` | Blurred end-card background, played forward then reversed |
+| `3276_loop.mp4` | from IMG_3276 | Blurred end-card background (walking selfie), played forward then reversed |
 
 ```sh
 # end-card background loop
-ffmpeg -ss 0.9 -i film/assets/clips/3267.mp4 -an \
+ffmpeg -i film/assets/clips/3276.mp4 -an \
   -filter_complex "[0:v]split[a][b];[b]reverse[r];[a][r]concat=n=2:v=1,format=yuv420p" \
-  -c:v libx264 -preset veryfast -crf 20 -g 15 film/assets/clips/3267_loop.mp4
+  -c:v libx264 -preset veryfast -crf 20 -g 15 film/assets/clips/3276_loop.mp4
 ```
 
 ### 2. Rebuild the voice track (`film/assets/voice.wav`)
