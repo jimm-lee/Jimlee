@@ -1,0 +1,10 @@
+# Raw footage, photos, voice and render caches stay out of this public repo
+film/assets/clips/
+film/assets/sign.jpg
+film/assets/voice.wav
+film/assets/sound.wav
+film/out/
+film/.om/
+map-build/osm.json
+*.mov
+*.m4a

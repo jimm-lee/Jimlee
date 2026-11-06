@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"James Leahy"},
+  {"id":"campaign","type":"string","label":"Campaign","default":"HEAVYWEIGHT HILLS"},
+  {"id":"ask","type":"string","label":"Ask","default":"Sponsor my summit"},
+  {"id":"link","type":"string","label":"Link shown","default":"movember.com/m/15440871"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"},
+  {"id":"endHold","type":"number","label":"End card hold (s)","default":3.0,"min":1,"max":10,"step":0.1,"group":"Timing"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>Heavyweight Hills — Day 1 &amp; 2 recap</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Merienda"; src: url("assets/fonts/Merienda-var.woff2") format("woff2"); font-weight: 300 900; font-style: normal; }
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+</style>
+<style>
+  /* house style: brand/house-style.css */
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #0f1c26; color: var(--ink); font-family: "Outfit", sans-serif;
+          --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .shot video, .shot img.full { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 28%, rgba(0,0,0,0) 58%, rgba(0,0,0,.65) 100%); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Merienda", cursive; font-weight: 900; line-height: 1.05; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .acc { color: var(--accent); }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  /* map */
+  #map { position: absolute; inset: 0; visibility: hidden; background: #0f1c26; }
+  #map svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+  #map .road-major { fill: none; stroke: #6a7782; stroke-width: 2.4; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  #map .road-minor { fill: none; stroke: #3d4851; stroke-width: 1.3; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  #map .path { fill: none; stroke: #4a5560; stroke-width: 1.4; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
+  #map .park { fill: #1f3a28; } #map .wood { fill: #1b3123; } #map .beach { fill: #3d3a2d; }
+  #map .coast { fill: none; stroke: #5d86a0; stroke-width: 2; vector-effect: non-scaling-stroke; }
+  #map .reserve { fill: rgba(117,255,120,.16); stroke: #75ff78; stroke-width: 4; vector-effect: non-scaling-stroke; }
+  #map .route { fill: none; stroke: #75ff78; stroke-width: 3.6; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(117,255,120,.9)); }
+  .mlabel { position: absolute; transform: translate(-50%, -50%); font-family: "Outfit"; font-weight: 500; letter-spacing: 8px; text-transform: uppercase; font-size: 34px; color: #e9f1f5; text-shadow: 0 2px 8px rgba(0,0,0,.8); opacity: 0; white-space: nowrap; }
+  .pin { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: #75ff78; box-shadow: 0 0 0 8px rgba(117,255,120,.25), 0 0 26px rgba(117,255,120,.9); opacity: 0; }
+  .dot { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; background: #fff; border: 6px solid #75ff78; box-sizing: border-box; box-shadow: 0 0 18px rgba(117,255,120,.9); opacity: 0; }
+  .osm { position: absolute; right: 24px; bottom: 500px; font: 400 20px "Outfit"; color: rgba(255,255,255,.55); opacity: 0; }
+  /* end card */
+  #end { position: absolute; inset: 0; visibility: hidden; }
+  #end .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.38); }
+  #end .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .qrwrap { position: absolute; left: 50%; top: 520px; width: 520px; height: 520px; margin-left: -290px; padding: 30px; background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
+  .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .scan { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 44px; letter-spacing: 9px; color: var(--accent); text-shadow: var(--shadow); opacity: 0; }
+  .url { position: absolute; left: 0; right: 0; top: 1215px; text-align: center; font-family: "Outfit"; font-weight: 400; font-size: 38px; text-shadow: var(--shadow); opacity: 0; }
+  .who { position: absolute; left: 0; right: 0; top: 1290px; text-align: center; font-family: "Outfit"; font-weight: 300; font-size: 34px; letter-spacing: 4px; text-shadow: var(--shadow); opacity: 0; color: #ffffffd9; }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="recap" data-width="1080" data-height="1920" data-om-signature="off">
+
+  <audio id="om-voice" src="assets/voice.wav" data-start="0" data-track-index="7" data-volume="1"></audio>
+  <script type="application/json" id="om-cues">{"words": [{"text": "now", "start": 20.145, "end": 20.366}, {"text": "i", "start": 20.826, "end": 20.906}, {"text": "need", "start": 20.926, "end": 21.067}, {"text": "you", "start": 21.107, "end": 21.347}, {"text": "sponsor", "start": 21.708, "end": 22.088}, {"text": "my", "start": 22.108, "end": 22.229}, {"text": "summit", "start": 22.249, "end": 22.609}, {"text": "scan", "start": 24.232, "end": 24.512}, {"text": "the", "start": 24.552, "end": 24.612}, {"text": "code", "start": 24.672, "end": 24.973}, {"text": "and", "start": 25.253, "end": 25.353}, {"text": "help", "start": 25.393, "end": 25.534}, {"text": "me", "start": 25.574, "end": 25.634}, {"text": "get", "start": 25.674, "end": 25.794}, {"text": "this", "start": 25.834, "end": 25.994}, {"text": "weight", "start": 26.034, "end": 26.235}, {"text": "to", "start": 26.275, "end": 26.395}, {"text": "the", "start": 26.415, "end": 26.475}, {"text": "top", "start": 26.535, "end": 26.736}]}</script>
+  <!-- 0 · hook: the Mount Drury – Hopukiore sign -->
+  <div class="shot" id="s0" style="visibility:visible" data-om-id="sign"><img class="full" src="assets/sign.jpg" alt="Mount Drury – Hopukiore sign"></div>
+
+  <!-- 1 · map -->
+  <div id="map" data-om-id="map">
+    <svg viewBox="0 0 1080 1920"><g id="world">
+      <image href="assets/map/land.png" x="0" y="0" width="__W__" height="__H__" preserveAspectRatio="none"></image>
+      <g id="lyr"></g>
+      <path id="reserve" class="reserve" d=""></path>
+      <path id="route" class="route" d=""></path>
+    </g></svg>
+    <div class="mlabel" id="lb-mount">Mount Maunganui</div>
+    <div class="mlabel" id="lb-mauao">Mauao</div>
+    <div class="mlabel" id="lb-drury" style="color:#75ff78">Mount Drury</div>
+    <div class="pin" id="pin"></div>
+    <div class="dot" id="dot"></div>
+    <div class="osm" id="osm">Map data © OpenStreetMap contributors</div>
+  </div>
+
+  <!-- 2 · Day 1 -->
+  <div class="shot" id="d1a" data-om-id="day1-path"><video src="assets/clips/3231.mp4" class="clip" data-start="9.5"  data-duration="1.5" data-media-start="0.6" muted playsinline></video></div>
+  <div class="shot" id="d1b" data-om-id="day1-terraces"><video src="assets/clips/3244.mp4" class="clip" data-start="11"  data-duration="1.5" data-media-start="1.6" muted playsinline></video></div>
+  <div class="shot" id="d1c" data-om-id="day1-selfie"><video src="assets/clips/3246.mp4" class="clip" data-start="12.5" data-duration="1.5" data-media-start="4.2" muted playsinline></video></div>
+  <!-- 3 · Day 2 -->
+  <div class="shot" id="d2a" data-om-id="day2-feet"><video src="assets/clips/3260.mp4" class="clip" data-start="14"  data-duration="1.5" data-media-start="0" muted playsinline></video></div>
+  <div class="shot" id="d2b" data-om-id="day2-trees"><video src="assets/clips/3264.mp4" class="clip" data-start="15.5" data-duration="1.5" data-media-start="0.4" muted playsinline></video></div>
+  <div class="shot" id="d2c" data-om-id="day2-selfie"><video src="assets/clips/3261.mp4" class="clip" data-start="17"  data-duration="1.5" data-media-start="2.3" muted playsinline></video></div>
+  <div class="shot" id="d2d" data-om-id="day2-peace"><video src="assets/clips/3267.mp4" class="clip" data-start="18.5" data-duration="1.5" data-media-start="0.9" muted playsinline></video></div>
+  <!-- 4 · the ask (same as the launch) -->
+  <div class="shot" id="ask" data-om-id="summit-mist"><video src="assets/clips/3262.mp4" class="clip" data-start="20" data-duration="2.5" data-media-start="2.7" muted playsinline></video></div>
+  <div id="end" data-om-id="end-card">
+    <div class="bg"><video src="assets/clips/3276_loop.mp4" class="clip" data-start="22.5" data-duration="7" data-media-start="0" muted playsinline></video></div>
+  </div>
+
+  <div class="shade" id="shade"></div>
+
+  <!-- type -->
+  <div class="kick" id="k0" style="top:250px;opacity:1">Heavyweight Hills</div>
+  <div class="t xl" id="t0" style="top:300px;opacity:1">DAY</div>
+  <div class="t xl acc" id="t0b" style="top:490px;opacity:1">1 &amp; 2</div>
+
+  <div class="kick" id="km" style="top:230px">Where it happens</div>
+  <div class="t m" id="tm" style="top:280px">Mount Drury</div>
+  <div class="t s" id="tc1" style="top:250px">Climb <span class="acc">1</span></div>
+  <div class="t s" id="tc2" style="top:250px">Climb <span class="acc">2</span></div>
+  <div class="t s" id="tc3" style="top:250px">Climb <span class="acc">3</span></div>
+  <div class="t l acc" id="tc" style="top:240px">3 CLIMBS</div>
+
+  <div class="kick" id="kd1" style="top:250px">Day 1</div>
+  <div class="t l" id="st1" style="top:300px">1.64 <span class="acc">km</span></div>
+  <div class="t l" id="st2" style="top:300px">27 <span class="acc">min</span></div>
+  <div class="t m" id="st3" style="top:300px">Peak <span class="acc">130</span> bpm</div>
+  <div class="kick" id="kd2" style="top:250px">Day 2</div>
+  <div class="t m" id="d2t1" style="top:300px">Same hill.</div>
+  <div class="t m" id="d2t2" style="top:300px">Same <span class="acc">30 kg</span>.</div>
+  <div class="t m" id="d2t3" style="top:300px">Still going.</div>
+
+  <div class="t m" id="t15a" style="top:430px;font-size:84px">Now I need you.</div>
+  <div class="t l acc" id="t15b" style="top:580px" data-var-text="ask">Sponsor my summit</div>
+
+  <div class="kick" id="ek" style="top:230px">Movember · Men's Health</div>
+  <div class="t m" id="e1" style="top:285px;font-size:76px;white-space:nowrap" data-var-text="campaign">HEAVYWEIGHT HILLS</div>
+  <div class="t s acc" id="e2" style="top:395px" data-var-text="ask">Sponsor my summit</div>
+  <div class="qrwrap" id="qr"><img src="assets/qr.svg" alt="QR code to James Leahy's Mo Space"></div>
+  <div class="scan" id="scan">SCAN TO DONATE</div>
+  <div class="url" id="url" data-var-text="link">movember.com/m/15440871</div>
+  <div class="who" id="who" data-var-text="name">James Leahy</div>
+</div>
+
+<script>
+  const MAP = __MAPJSON__;
+  const V = OM.vars();
+  OM.music({ product: 'hype', bpm: 120, drop: 'map', ending: 'button' });
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  // ---------- map: build vector layers once ----------
+  const NS = 'http://www.w3.org/2000/svg', lyr = document.getElementById('lyr');
+  const add = (cls, list) => list.forEach((d) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', cls); lyr.appendChild(p); });
+  add('wood', MAP.woods); add('park', MAP.parks); add('beach', MAP.beaches);
+  add('path', MAP.paths); add('road-minor', MAP.roads_minor); add('road-major', MAP.roads_major); add('coast', MAP.coast);
+  document.getElementById('reserve').setAttribute('d', MAP.reserve);
+  const route = document.getElementById('route'); route.setAttribute('d', MAP.route);
+  const RL = route.getTotalLength();
+  route.style.strokeDasharray = RL; route.style.strokeDashoffset = RL;
+  const world = document.getElementById('world');
+  const cam = { cx: (MAP.mauao_label[0] + MAP.drury[0]) / 2 + 300, cy: MAP.drury[1] + 400, w: 4600 };
+  const labels = [['lb-mount', MAP.mount_label], ['lb-mauao', MAP.mauao_label], ['lb-drury', [MAP.drury[0], MAP.drury[1] - 60]], ['pin', MAP.drury]];
+  const run = { p: 0 };
+  function draw() {
+    const s = 1080 / cam.w, tx = 540 - cam.cx * s, ty = 960 - cam.cy * s;
+    world.setAttribute('transform', `translate(${tx},${ty}) scale(${s})`);
+    for (const [id, [x, y]] of labels) { const el = document.getElementById(id); el.style.left = (x * s + tx) + 'px'; el.style.top = (y * s + ty) + 'px'; }
+    // marker: up and down the route; p counts laps (0..3), each lap = up then down
+    const lap = run.p % 1, f = lap < 0.5 ? lap * 2 : 2 - lap * 2;
+    const pt = route.getPointAtLength(RL * Math.min(1, Math.max(0, f)));
+    const d = document.getElementById('dot'); d.style.left = (pt.x * s + tx) + 'px'; d.style.top = (pt.y * s + ty) + 'px';
+  }
+  draw();
+
+  function shot(id, at, dur, { from = 1.12, to = 1.0, drift = 0 } = {}) {
+    const el = '#' + id;
+    tl.set(el, { visibility: 'visible' }, at).fromTo(el, { scale: from }, { scale: to, duration: Math.min(.6, dur) }, at);
+    if (drift) tl.to(el, { scale: to + drift, duration: dur - .6, ease: 'none' }, at + .6);
+    tl.set(el, { visibility: 'hidden' }, at + dur);
+  }
+  function slam(id, at, out, { sfx = 'hit', scale = 1.7 } = {}) {
+    tl.fromTo('#' + id, { opacity: 0, scale }, { opacity: 1, scale: 1, duration: .35 }, at);
+    if (sfx) OM.sfx(sfx, at);
+    if (out != null) tl.set('#' + id, { opacity: 0 }, out);
+  }
+  function rise(id, at, out) {
+    tl.fromTo('#' + id, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: .5 }, at);
+    if (out != null) tl.set('#' + id, { opacity: 0 }, out);
+  }
+
+  // 0 · hook (frame 0 already shows the sign and the title)
+  tl.addLabel('scene:hook', 0);
+  tl.fromTo('#s0', { scale: 1.0 }, { scale: 1.08, duration: 2.5, ease: 'none' }, 0).set('#s0', { visibility: 'hidden' }, 2.5);
+  tl.fromTo('#t0b', { scale: 1.12 }, { scale: 1, duration: .6 }, 0); OM.sfx('impact', .05);
+  tl.set(['#k0', '#t0', '#t0b'], { opacity: 0 }, 2.5);
+  OM.sfx('whoosh', 2.35);
+
+  // 1 · map: wide → Mount Drury → route → three climbs
+  tl.addLabel('scene:map', 2.5);
+  tl.set('#map', { visibility: 'visible' }, 2.5).set('#shade', { opacity: 0 }, 2.5).set('#shade', { opacity: 1 }, 9.5).set('#map', { visibility: 'hidden' }, 9.5);
+  tl.fromTo('#map', { opacity: 0 }, { opacity: 1, duration: .4, ease: 'none' }, 2.5);
+  tl.fromTo(cam, { w: 5600 }, { w: 4600, duration: 1.6, ease: 'power2.out', onUpdate: draw }, 2.5);
+  rise('lb-mount', 2.8, 4.4); rise('lb-mauao', 3.1, 4.4); rise('osm', 2.8, 9.5);
+  rise('km', 2.6, 4.4);
+  tl.to(cam, { cx: MAP.drury[0], cy: MAP.drury[1] + 30, w: 900, duration: 1.4, ease: 'power3.inOut', onUpdate: draw }, 4.2);
+  OM.sfx('whoosh', 4.2);
+  tl.fromTo('#pin', { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: .5, ease: 'back.out(2)' }, 5.3);
+  rise('lb-drury', 5.3, 6.3); slam('tm', 5.4, 6.3, { sfx: 'thud', scale: 1.4 });
+  tl.to(cam, { w: 420, cy: MAP.drury[1] - 10, duration: .9, ease: 'power2.inOut', onUpdate: draw }, 6.1);
+  tl.set('#pin', { opacity: 0 }, 6.4);
+  tl.fromTo(route, { strokeDashoffset: RL }, { strokeDashoffset: 0, duration: .8, ease: 'power2.inOut' }, 6.3);
+  OM.sfx('draw', 6.3, { dur: .8 });
+  tl.fromTo('#dot', { opacity: 0 }, { opacity: 1, duration: .2 }, 7.0);
+  tl.fromTo(run, { p: 0 }, { p: 2.999, duration: 1.95, ease: 'none', onUpdate: draw }, 7.0);
+  slam('tc1', 7.0, 7.65, { sfx: 'pop', scale: 1.3 }); slam('tc2', 7.65, 8.3, { sfx: 'pop', scale: 1.3 }); slam('tc3', 8.3, 8.95, { sfx: 'pop', scale: 1.3 });
+  slam('tc', 8.95, 9.5, { sfx: 'impact', scale: 1.6 });
+  tl.to(cam, { w: 380, duration: 2.5, ease: 'none', onUpdate: draw }, 7.0);
+
+  // 2 · Day 1 with the session stats
+  tl.addLabel('scene:day1', 9.5);
+  shot('d1a', 9.5, 1.5, { from: 1.15 }); shot('d1b', 11, 1.5); shot('d1c', 12.5, 1.5, { from: 1.1 });
+  rise('kd1', 9.5, 14);
+  slam('st1', 9.5, 11); slam('st2', 11, 12.5); slam('st3', 12.5, 14, { sfx: 'thud' });
+
+  // 3 · Day 2
+  tl.addLabel('scene:day2', 14);
+  shot('d2a', 14, 1.5, { from: 1.15 }); shot('d2b', 15.5, 1.5); shot('d2c', 17, 1.5, { from: 1.1 }); shot('d2d', 18.5, 1.5, { from: 1.1 });
+  rise('kd2', 14, 20);
+  slam('d2t1', 14, 15.5); slam('d2t2', 15.5, 17, { sfx: 'impact' }); slam('d2t3', 17, 20, { sfx: 'thud' });
+
+  // 4 · the ask, as in the launch video
+  tl.addLabel('scene:ask', 20);
+  shot('ask', 20, 2.5, { from: 1.08, drift: .05 });
+  rise('t15a', 20.05, 22.5);
+  slam('t15b', 21.65, 22.5, { sfx: 'impact', scale: 1.9 });
+  OM.sfx('reverse', 22.5, { dur: 1 });
+
+  // 5 · end card, one line per beat
+  tl.addLabel('scene:end', 22.5);
+  tl.set('#end', { visibility: 'visible' }, 22.5);
+  rise('ek', 22.5); OM.sfx('tick', 22.5);
+  slam('e1', 23.0, null, { sfx: 'impact', scale: 1.5 });
+  slam('e2', 23.5, null, { sfx: 'thud', scale: 1.4 });
+  tl.fromTo('#qr', { opacity: 0, scale: .7, rotation: -4 }, { opacity: 1, scale: 1, rotation: 0, duration: .7, ease: 'back.out(1.6)' }, 24.0);
+  OM.sfx('thud', 24.1);
+  rise('scan', 24.5); OM.sfx('chime', 24.5);
+  rise('url', 25.0); OM.sfx('pop', 25.0);
+  rise('who', 25.5); OM.sfx('pop', 25.5);
+  tl.to({}, { duration: V.endHold }, 26.5);
+
+  window.__timelines['recap'] = tl;
+</script>
+</body>
+</html>
