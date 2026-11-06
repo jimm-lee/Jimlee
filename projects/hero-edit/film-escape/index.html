@@ -92,6 +92,10 @@
     ['s14', 11.0, 1.0],
     ['s15', 12.0, 3.0]
   ];
+  const SPIRAL = [
+    
+  ];
+  const SPIRAL_END = 0.0;
   const TITLES = [
     ['t0', 0.3, 1.88],
     ['t1', 1.88, 3.8],
@@ -103,9 +107,19 @@
   ];
   const END = 12.0;
 
+  // opening spiral: every clip flashes by, turning and zooming, easing into the hook shot
+  SPIRAL.forEach(([id, at, dur, angle, scale], i) => {
+    const el = '#' + id;
+    const next = SPIRAL[i + 1];
+    tl.set(el, { visibility: 'visible', rotation: angle, scale: scale }, at)
+      .to(el, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.04, duration: dur, ease: 'none' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+  });
+
   // shots: a slow push-in for the long holds, a harder punch for the quick ones
   CUT.forEach(([id, at, dur]) => {
     const el = '#' + id;
+    if (SPIRAL.length && at === 0) at = SPIRAL_END, dur -= SPIRAL_END;   // the hook shot lands out of the spiral
     const quick = dur <= .5;
     tl.set(el, { visibility: 'visible' }, at)
       .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)

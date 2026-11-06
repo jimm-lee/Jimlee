@@ -48,6 +48,16 @@
   <div class="shot" id="s7" data-om-id="shot-8233"><video src="assets/clips/8233.mp4" class="clip" data-start="9.0" data-duration="0.5" data-media-start="2.0" muted playsinline></video></div>
   <div class="shot" id="s8" data-om-id="shot-3266"><video src="assets/clips/3266.mp4" class="clip" data-start="9.5" data-duration="1.5" data-media-start="1.4" muted playsinline></video></div>
   <div class="shot endshot" id="s9" data-om-id="shot-1949"><video src="assets/clips/1949.mp4" class="clip" data-start="11.0" data-duration="4.0" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot spiral" id="sp0" data-om-id="spiral-0079"><video src="assets/clips/0079.mp4" class="clip" data-start="0.0" data-duration="0.0667" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot spiral" id="sp1" data-om-id="spiral-0836"><video src="assets/clips/0836.mp4" class="clip" data-start="0.0667" data-duration="0.0667" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot spiral" id="sp2" data-om-id="spiral-9491"><video src="assets/clips/9491.mp4" class="clip" data-start="0.1334" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp3" data-om-id="spiral-2841"><video src="assets/clips/2841.mp4" class="clip" data-start="0.2001" data-duration="0.0667" data-media-start="0.8" muted playsinline></video></div>
+  <div class="shot spiral" id="sp4" data-om-id="spiral-8383"><video src="assets/clips/8383.mp4" class="clip" data-start="0.2668" data-duration="0.0667" data-media-start="10.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp5" data-om-id="spiral-2148"><video src="assets/clips/2148.mp4" class="clip" data-start="0.3335" data-duration="0.0667" data-media-start="0.5" muted playsinline></video></div>
+  <div class="shot spiral" id="sp6" data-om-id="spiral-8233"><video src="assets/clips/8233.mp4" class="clip" data-start="0.4002" data-duration="0.0667" data-media-start="2.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp7" data-om-id="spiral-3266"><video src="assets/clips/3266.mp4" class="clip" data-start="0.4669" data-duration="0.1" data-media-start="1.4" muted playsinline></video></div>
+  <div class="shot spiral" id="sp8" data-om-id="spiral-1949"><video src="assets/clips/1949.mp4" class="clip" data-start="0.5669" data-duration="0.1" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot spiral" id="sp9" data-om-id="spiral-2005"><video src="assets/clips/2005.mp4" class="clip" data-start="0.6669" data-duration="0.1" data-media-start="0.2" muted playsinline></video></div>
 
   <div class="shade"></div>
 
@@ -79,19 +89,42 @@
     ['s8', 9.5, 1.5],
     ['s9', 11.0, 4.0]
   ];
+  const SPIRAL = [
+    ['sp0', 0.0, 0.0667, -32.0, 1.862],
+    ['sp1', 0.0667, 0.0667, -27.14, 1.769],
+    ['sp2', 0.1334, 0.0667, -22.51, 1.669],
+    ['sp3', 0.2001, 0.0667, -18.14, 1.564],
+    ['sp4', 0.2668, 0.0667, -14.05, 1.458],
+    ['sp5', 0.3335, 0.0667, -10.28, 1.353],
+    ['sp6', 0.4002, 0.0667, -6.87, 1.254],
+    ['sp7', 0.4669, 0.1, -3.9, 1.163],
+    ['sp8', 0.5669, 0.1, -1.48, 1.087],
+    ['sp9', 0.6669, 0.1, -0.0, 1.04]
+  ];
+  const SPIRAL_END = 0.767;
   const TITLES = [
-    ['t0', 0.3, 2.3],
-    ['t1', 2.3, 4.0],
-    ['t2', 4.0, 5.64],
-    ['t3', 5.64, 6.94],
+    ['t0', 0.87, 2.87],
+    ['t1', 2.87, 4.57],
+    ['t2', 4.57, 6.21],
+    ['t3', 6.21, 7.51],
     ['t4', 11.1, 15.0],
     ['t5', 11.78, 15.0]
   ];
   const END = 11.0;
 
+  // opening spiral: every clip flashes by, turning and zooming, easing into the hook shot
+  SPIRAL.forEach(([id, at, dur, angle, scale], i) => {
+    const el = '#' + id;
+    const next = SPIRAL[i + 1];
+    tl.set(el, { visibility: 'visible', rotation: angle, scale: scale }, at)
+      .to(el, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.04, duration: dur, ease: 'none' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+  });
+
   // shots: a slow push-in for the long holds, a harder punch for the quick ones
   CUT.forEach(([id, at, dur]) => {
     const el = '#' + id;
+    if (SPIRAL.length && at === 0) at = SPIRAL_END, dur -= SPIRAL_END;   // the hook shot lands out of the spiral
     const quick = dur <= .5;
     tl.set(el, { visibility: 'visible' }, at)
       .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)

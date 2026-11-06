@@ -175,6 +175,6 @@ for plan in PLANS:
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
     start = 0.3 if length == 15 else 0.2
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
-                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"))
+                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True))
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

@@ -51,6 +51,19 @@
   <div class="shot" id="s10" data-om-id="shot-7185"><video src="assets/clips/7185.mp4" class="clip" data-start="9.0" data-duration="0.5" data-media-start="1.8" muted playsinline></video></div>
   <div class="shot" id="s11" data-om-id="shot-3365"><video src="assets/clips/3365.mp4" class="clip" data-start="9.5" data-duration="1.5" data-media-start="1.0" muted playsinline></video></div>
   <div class="shot endshot" id="s12" data-om-id="shot-3048"><video src="assets/clips/3048.mp4" class="clip" data-start="11.0" data-duration="4.0" data-media-start="0.92" muted playsinline></video></div>
+  <div class="shot spiral" id="sp0" data-om-id="spiral-2842"><video src="assets/clips/2842.mp4" class="clip" data-start="0.0" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp1" data-om-id="spiral-9681"><video src="assets/clips/9681.mp4" class="clip" data-start="0.0667" data-duration="0.0667" data-media-start="2.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp2" data-om-id="spiral-9522"><video src="assets/clips/9522.mp4" class="clip" data-start="0.1334" data-duration="0.0667" data-media-start="1.5" muted playsinline></video></div>
+  <div class="shot spiral" id="sp3" data-om-id="spiral-0811"><video src="assets/clips/0811.mp4" class="clip" data-start="0.2001" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp4" data-om-id="spiral-0793"><video src="assets/clips/0793.mp4" class="clip" data-start="0.2668" data-duration="0.0667" data-media-start="0.5" muted playsinline></video></div>
+  <div class="shot spiral" id="sp5" data-om-id="spiral-5222"><video src="assets/clips/5222.mp4" class="clip" data-start="0.3335" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp6" data-om-id="spiral-2772"><video src="assets/clips/2772.mp4" class="clip" data-start="0.4002" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp7" data-om-id="spiral-9504"><video src="assets/clips/9504.mp4" class="clip" data-start="0.4669" data-duration="0.0667" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp8" data-om-id="spiral-9357"><video src="assets/clips/9357.mp4" class="clip" data-start="0.5336" data-duration="0.0667" data-media-start="1.2" muted playsinline></video></div>
+  <div class="shot spiral" id="sp9" data-om-id="spiral-7185"><video src="assets/clips/7185.mp4" class="clip" data-start="0.6003" data-duration="0.0667" data-media-start="1.8" muted playsinline></video></div>
+  <div class="shot spiral" id="sp10" data-om-id="spiral-3365"><video src="assets/clips/3365.mp4" class="clip" data-start="0.667" data-duration="0.1" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot spiral" id="sp11" data-om-id="spiral-3048"><video src="assets/clips/3048.mp4" class="clip" data-start="0.767" data-duration="0.1" data-media-start="0.92" muted playsinline></video></div>
+  <div class="shot spiral" id="sp12" data-om-id="spiral-8342"><video src="assets/clips/8342.mp4" class="clip" data-start="0.867" data-duration="0.1" data-media-start="1.0" muted playsinline></video></div>
 
   <div class="shade"></div>
 
@@ -85,19 +98,45 @@
     ['s11', 9.5, 1.5],
     ['s12', 11.0, 4.0]
   ];
+  const SPIRAL = [
+    ['sp0', 0.0, 0.0667, -32.0, 1.862],
+    ['sp1', 0.0667, 0.0667, -28.33, 1.793],
+    ['sp2', 0.1334, 0.0667, -24.79, 1.719],
+    ['sp3', 0.2001, 0.0667, -21.39, 1.643],
+    ['sp4', 0.2668, 0.0667, -18.14, 1.564],
+    ['sp5', 0.3335, 0.0667, -15.05, 1.484],
+    ['sp6', 0.4002, 0.0667, -12.13, 1.405],
+    ['sp7', 0.4669, 0.0667, -9.39, 1.328],
+    ['sp8', 0.5336, 0.0667, -6.87, 1.254],
+    ['sp9', 0.6003, 0.0667, -4.59, 1.185],
+    ['sp10', 0.667, 0.1, -2.6, 1.123],
+    ['sp11', 0.767, 0.1, -0.99, 1.072],
+    ['sp12', 0.867, 0.1, -0.0, 1.04]
+  ];
+  const SPIRAL_END = 0.967;
   const TITLES = [
-    ['t0', 0.3, 2.26],
-    ['t1', 2.26, 4.12],
-    ['t2', 4.12, 5.7],
-    ['t3', 5.7, 7.86],
+    ['t0', 1.07, 3.03],
+    ['t1', 3.03, 4.89],
+    ['t2', 4.89, 6.47],
+    ['t3', 6.47, 8.63],
     ['t4', 11.1, 15.0],
     ['t5', 11.78, 15.0]
   ];
   const END = 11.0;
 
+  // opening spiral: every clip flashes by, turning and zooming, easing into the hook shot
+  SPIRAL.forEach(([id, at, dur, angle, scale], i) => {
+    const el = '#' + id;
+    const next = SPIRAL[i + 1];
+    tl.set(el, { visibility: 'visible', rotation: angle, scale: scale }, at)
+      .to(el, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.04, duration: dur, ease: 'none' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+  });
+
   // shots: a slow push-in for the long holds, a harder punch for the quick ones
   CUT.forEach(([id, at, dur]) => {
     const el = '#' + id;
+    if (SPIRAL.length && at === 0) at = SPIRAL_END, dur -= SPIRAL_END;   // the hook shot lands out of the spiral
     const quick = dur <= .5;
     tl.set(el, { visibility: 'visible' }, at)
       .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)

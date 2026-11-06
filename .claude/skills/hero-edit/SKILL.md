@@ -40,6 +40,9 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 15 s: hook 0–2.5 · connection 2.5–5.5 · build 5.5–9.5 (0.5 s cuts) · payoff 9.5–11 · linger 11–15.
 10 s: hook 0–2 · connection 2–3 · build 3–5 · payoff 5–6 · linger 6–10.
 - **Hook**: an unexpected image under the first caption chunk (geyser, ice plunge, jellyfish, motorway…).
+- **Opening spiral** (James, Nov 2026): before the hook lands, every clip in the edit flashes by for 2 frames
+  (the last three for 3), turning from 32° to level and zooming to cover the frame, landing on the hook shot
+  (~0.6 s for 8 clips, ~1 s for 13). The first caption starts as it lands. `render(..., spiral=True)`.
 - Alternate close/wide, still/moving, dark/light, alone/with people.
 - **Don't repeat clips in a similar order across a series**: each edit has its own hook, payoff and linger shot;
   a clip appears in at most two edits and never next to the same shot twice. `build_plans.py` prints a variety

@@ -8,6 +8,7 @@ Structure (James's montage brief, "transformation" formula): hook (~15 %) → co
 → payoff (~20 %) → linger (~15 %). Contrast shot to shot: intimacy vs scale, stillness vs movement, dark vs light.
 One hook line per cut (from James's hook-line list), split into two readable blocks; the name closes the linger.
 """
+import math
 import re
 from pathlib import Path
 
@@ -196,7 +197,36 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
     return out
 
 
-def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None):
+SPIRAL_FRAMES = 2       # each clip flashes for this many frames in the opening spiral
+SPIRAL_LAND_FRAMES = 3  # ... the last three slow down as the spiral lands
+SPIRAL_ANGLE = 32.0     # degrees of turn on the first flash, easing to 0 on the hook shot
+
+
+def spiral_flashes(cut):
+    """Opening spiral: every clip in the edit flashes by, turning and zooming, and lands on the hook shot.
+    Returns [(clip, at, dur, media, angle, scale)] and the time the spiral ends."""
+    seen, order = set(), []
+    for c, _, _, m in cut[1:] + cut[:1]:          # the hook clip last, so the spiral lands into it
+        if c not in seen:
+            seen.add(c); order.append((c, m))
+    flashes, at, n = [], 0.0, len(order)
+    for i, (c, m) in enumerate(order):
+        frames = SPIRAL_LAND_FRAMES if i >= n - 3 else SPIRAL_FRAMES
+        dur = round(frames / 30, 4)
+        p = i / max(1, n - 1)
+        angle = round(-SPIRAL_ANGLE * (1 - p) ** 1.4, 2)
+        rad = math.radians(abs(angle))
+        scale = round(max(1.0, math.cos(rad) + (1920 / 1080) * math.sin(rad)) * 1.04, 3)   # cover the frame while turned
+        flashes.append((c, round(at, 4), dur, m, angle, scale))
+        at += dur
+    return flashes, round(at, 3)
+
+
+def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
+           spiral=False):
+    flashes, spiral_end = spiral_flashes(cut) if spiral else ([], 0.0)
+    if spiral:
+        hook_start = max(hook_start, spiral_end + 0.1)   # the first caption starts as the spiral lands
     titles = chunks(hook, hook_start, read_per_word)
     # closing line: two stacked rows that both stay up; the second starts writing as soon as the first is said
     outro = chunks(OUTRO, end_at + OUTRO_DELAY)
@@ -215,6 +245,13 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f'data-media-start="{m}" muted playsinline></video></div>'
         for i, (c, s, d, m) in enumerate(cut)
     )
+    shots += "".join(
+        f'\n  <div class="shot spiral" id="sp{i}" data-om-id="spiral-{c}">'
+        f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{a}" data-duration="{d}" '
+        f'data-media-start="{m}" muted playsinline></video></div>'
+        for i, (c, a, d, m, _, _) in enumerate(flashes)
+    )
+    spiral_js = ",\n    ".join(f"['sp{i}', {a}, {d}, {ang}, {sc}]" for i, (_, a, d, _, ang, sc) in enumerate(flashes))
     types = "\n".join(
         f'  <div class="t h cap" id="t{i}" style="top:{(tops or {}).get(i, CAPTION_TOP)}px" data-om-id="caption-{i}">{html}</div>'
         for i, (html, s, e) in enumerate(titles)
@@ -225,6 +262,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{SHOTS}}", shots)
             .replace("{{TYPES}}", types)
             .replace("{{CUT_JS}}", cut_js)
+            .replace("{{SPIRAL_JS}}", spiral_js)
+            .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)
             .replace("{{LETTER_FADE}}", str(LETTER_FADE))
