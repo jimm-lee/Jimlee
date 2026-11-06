@@ -9,12 +9,12 @@ Clip numbers are the IMG numbers (edit copies in `clips/`). Times are for a 15 s
 
 | Kind | Clips |
 |---|---|
-| **Effort / people** | 0170 ice bath (splash at 3.2 s) · 0171 sauna · 6234 pad work at the gym · 9661 dune run (60 fps, use half speed) · 2524 Movember vest walk · 3365 running the beach (small figure, wide) · 2153 golden-hour selfie (turns to camera at 4.6 s) · 0389 sunset deck spin |
-| **Crowds / energy** | 7989 rodeo · 9161 fight night · 9319 dragon boats |
-| **Big landscape** | 2894 Aoraki / Mt Cook and the glacier lake · 3048 the Wānaka tree · 2987 Clay Cliffs · 9651 river gorge · 8230 coast from above · 9357 Split Apple Rock · 9170 geyser |
-| **Water and light** | 2148 sun on the sea · 3366 dusk beach, gold break in the cloud · 9023 palm sunrise · 5963 sunset over the ranges · 7909 splash off the bow · 5222 purple light on the water |
-| **Table** | 0793 brunch · 9733 oysters · 9644 seafood platter · 3148 candlelit board · 6169 wood-fired oven |
-| **Texture / odd** | 0989 glowing jellyfish · 9681 vintage town, red truck · 8342 / 8078 Auckland from the ferry |
+| **Effort / people** | 0170 ice bath (splash at 3.2 s) · 0171 sauna · 6234 pad work at the gym · 9661 dune run (60 fps, use half speed) · 2524 Movember vest walk · 3365 running the beach (small figure, wide) · 2153 golden-hour selfie (turns to camera at 4.6 s) · 0389 sunset deck spin · **7815 ice-filled tub by the sea, close** · **2636 wide-eyed face close-up (from 5.0 s)** · 2005 someone sitting at a waterfall's edge |
+| **Crowds / energy** | 7989 rodeo · 9161 fight night · 9319 dragon boats · 1422 rugby test · 2207 buskers and a crowd |
+| **Big landscape** | 2894 Aoraki / Mt Cook and the glacier lake · 3048 the Wānaka tree · 2987 Clay Cliffs · 9651 river gorge · 8230 coast from above · 9357 Split Apple Rock · 9170 geyser · 9070 paddock to sea stacks · 0079 bush boardwalk · 0811 rocky river · 9545 misty lake jetty · 8092 harbour of yachts |
+| **Water and light** | 2148 sun on the sea · 3366 dusk beach, gold break in the cloud · 9023 palm sunrise · 5963 sunset over the ranges · 7909 splash off the bow · 5222 purple light on the water · 9065 sunrise wave against an island · 2636 sunrise over the sea, sun flare (0–4.9 s) |
+| **Table / bars** | 0793 brunch · 9733 oysters · 9644 seafood platter · 3148 candlelit board · 6169 wood-fired oven · 9500 tasting paddle · 9504 wall of wine · 2565 the odd bar (taxidermy, taps) |
+| **Texture / odd** | 0989 glowing jellyfish · 9681 vintage town, red truck · 8342 / 8078 Auckland from the ferry · 0595 gridlocked motorway at dusk |
 
 ## 1. Some places (built: `videos/Hero-Edit-20s.mp4`)
 
@@ -87,6 +87,21 @@ Few, long shots (1.5–2.5 s), no 0.5 s burst: 0171 sauna → 3048 Wānaka tree 
 Start and finish on the same water: open on 2148 sun on the sea (mid-shot), end on 2148 (same frame) after the closing
 line, with no fade to black, so the last frame flows back into the first. Middle: any build from 3–5.
 
+## 9. The escape (built: `videos/Hero-Edit-Escape-15s.mp4`)
+
+*Challenging belief. Best for comments.* Hook (D): "Being busy isn't the same thing as building a life you're
+**proud** of."
+
+| 0–2.5 hook | 2.5–5.5 connection | 5.5–9.5 build | 9.5–12 payoff | 12–15 linger |
+|---|---|---|---|---|
+| 0595 gridlocked motorway → 7815 ice tub close-up | 9070 paddock to the sea → 0079 bush boardwalk → 2207 buskers | 0.5 s cuts: rugby, tasting paddle, river, pad work, the odd bar, yachts, wine wall, misty jetty | 9065 sunrise wave → 2153 selfie turns | 2636 sunrise over the sea + closing line |
+
+## 10. The wink (idea)
+
+*Playful, for a lighter post.* Run any composition, but end on 2636 straight through: the sunrise, then his face pops
+into frame wide-eyed at 5.0 s; hold half a second, cut to black. No closing line: the face is the sign-off. Best on a
+loose, funny week, not on the reflective ones.
+
 ## Rules that hold for all of them
 
 - **The first frame is the hook:** an image that's unexpected before anyone reads (jellyfish, splash, a wall of rock),
@@ -100,6 +115,7 @@ line, with no fade to black, so the last frame flows back into the first. Middle
 
 ## Shots that would strengthen future edits
 
-The library is strong on landscape and big moments, thin on **close human detail** (the brief's "build intimacy"):
+The library is strong on landscape and big moments. 7815 (the ice tub, close) is the first true close-up, but it's
+still thin on **close human detail** (the brief's "build intimacy"):
 hands on the pads or the bath rim, breath in the cold, a laugh with a mate, feet hitting sand, pouring a coffee.
 Two seconds of each, held steady, would give every composition above its intimate middle.

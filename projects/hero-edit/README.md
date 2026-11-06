@@ -22,6 +22,11 @@ them behind." (0–3 s) → connection (Mt Cook, Wānaka tree, pad work, 3–7 s
 7–13 s) → payoff (dune run, beach run, golden selfie, 13–17 s) → linger on the dusk sea with "Go on, look after
 yourself" (17–20 s). More structures for this footage: `COMPOSITIONS.md`.
 
+**The escape** (`videos/Hero-Edit-Escape-15s.mp4`, `film-escape/`): 15 more clips. Opens on gridlocked motorway traffic
+under "Being busy isn't the same thing as building a life you're **proud** of.", breaks into the ice tub, open land,
+buskers, a rugby crowd, bars, river, yachts and a misty jetty, pays off on a sunrise wave and the golden selfie, and
+lingers on a sunrise over the sea with "Go on, look after yourself".
+
 **Captions:** the hook line plays as chunks of 2–3 words on a single row. Words pop in one at a time (0.14 s apart),
 each chunk holds for reading time (0.35 s + 0.28 s per word) and then clears. Chunks are split with `|` in
 `HOOK_15` / `HOOK_10` in `build.py`; `*word*` marks the green word. The 10 s cut's last chunk sits lower, in the sand,
