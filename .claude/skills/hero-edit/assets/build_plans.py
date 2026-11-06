@@ -33,8 +33,9 @@ PLANS = [
          cut=[("9170", 0.0, 2.5, 0.2),                      # hook: the geyser going up
               ("9619", 2.5, 1.0, 0.2), ("9491", 3.5, 2.0, 1.0),   # wharf at sunrise, lakeside farm track
               *seq(5.5, 0.5, [("7185", 0.5), ("1422", 2.3), ("2815", 0.5), ("2565", 0.5),
-                              ("9733", 0.2), ("0989", 3.0), ("7909", 0.5), ("2207", 3.0)]),   # buskers after the caption clears
-              ("races", 9.5, 2.0, 1.2),                     # payoff: at the races with friends
+                              ("9733", 0.2), ("0989", 3.0), ("7909", 0.5), ("2207", 3.0),   # buskers after the caption clears
+                              ("9161", 2.0)]),              # fight night: the caption finishes over the dark arena
+              ("races", 10.0, 1.5, 1.2),                    # payoff: at the races with friends
               ("9355", 11.5, 3.5, 1.5)]),                   # linger: Split Apple Rock on glittering water
     dict(slug="p02-took-the-leap", length=10, read=QUICK,
          hook="POV: | You actually | took the *leap*.",

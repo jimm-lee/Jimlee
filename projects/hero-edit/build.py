@@ -197,8 +197,8 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
     return out
 
 
-SPIRAL_FRAMES = 2       # each clip flashes for this many frames in the opening spiral
-SPIRAL_LAND_FRAMES = 3  # ... the last three slow down as the spiral lands
+SPIRAL_FRAMES = 3       # each clip flashes for this many frames in the opening spiral (2 felt a touch too quick)
+SPIRAL_LAND_FRAMES = 4  # ... the last three slow down as the spiral lands
 SPIRAL_ANGLE = 32.0     # degrees of turn on the first flash, easing to 0 on the hook shot
 
 

@@ -72,7 +72,7 @@ Ten caption-led edits (10–15 s) from James's caption list, staged as storyboar
 
 | # | Caption | Status |
 |---|---|---|
-| 1 | My camera roll since moving to the other side of the world. | rendered (second pass): `videos/captions/01-Camera-Roll-15s.mp4` |
+| 1 | My camera roll since moving to the other side of the world. | rendered (second pass, with spiral): `videos/captions/01-Camera-Roll-15s.mp4` |
 | 2 | POV: You actually took the leap. | rendered (second pass): `videos/captions/02-Took-The-Leap-10s.mp4` |
 | 3–10 | see `build_plans.py` | second pass planned; rendering one at a time |
 
