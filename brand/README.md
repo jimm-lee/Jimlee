@@ -21,6 +21,7 @@ Use this for every video from now on, so they look designed rather than template
 > **Current hero-edit style, use going forward (James, Nov 2026):** Bebas Neue caps, spacing .035em, 3 px same-colour
 > stroke; captions fade in **letter by letter at speaking pace**, 2–3 words per row; closing line "Go on, / look after
 > yourself" on two stacked rows that hold before a 0.6 s fade; no name card; footage ungraded.
+> Across a series, never repeat clips in a similar order: each edit has its own opening, payoff and final shot.
 > Green words are **just the green and the subtle shadow, no outline** (Nov 2026; outlines tried and dropped: dark cherry
 > #990F3D, pastel yellow #FDE68A). Dark cherry stays on record as his second colour.
 > **No name end cards on hero edits.** James: it feels like forced promotion. End on an open, warm image (a landscape,

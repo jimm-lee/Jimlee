@@ -115,6 +115,9 @@ loose, funny week, not on the reflective ones.
 - **Captions:** one hook line, 2–3 words per chunk, letter by letter at speaking pace, one green word; nothing in the payoff; closing line (two stacked rows) on
   the linger.
 - **No name, no handle.** The edit ends on the life.
+- **Don't repeat clips in a similar order (James, Nov 2026).** Across a series every edit gets its own hook, payoff and
+  linger shot; a clip reused in another edit sits in a different place with different neighbours. `build_plans.py`
+  prints a variety report (clips used 3+ times, shot pairs repeated across edits, repeated payoff + linger) on every build.
 
 ## Shots that would strengthen future edits
 
