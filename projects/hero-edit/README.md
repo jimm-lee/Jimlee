@@ -74,7 +74,8 @@ Ten caption-led edits (10–15 s) from James's caption list, staged as storyboar
 |---|---|---|
 | 1 | My camera roll since moving to the other side of the world. | rendered (second pass, with spiral): `videos/captions/01-Camera-Roll-15s.mp4` |
 | 2 | POV: You actually took the leap. | rendered (second pass): `videos/captions/02-Took-The-Leap-10s.mp4` |
-| 3–10 | see `build_plans.py` | second pass planned; rendering one at a time |
+| 3 | A little look at what life looks like 18,000km from home. | rendered (second pass, with spiral): `videos/captions/03-18000km-From-Home-15s.mp4` |
+| 4–10 | see `build_plans.py` | second pass planned; rendering one at a time |
 
 Second pass (Nov 6): all ten re-sequenced from the full library (77 clips): each clip in at most two edits, no shot
 pair repeated, unique hook / payoff / linger. Captions moved down to y 520 (upper third, not too high). Shots with
