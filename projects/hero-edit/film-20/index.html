@@ -61,13 +61,13 @@
 
   <div class="shade"></div>
 
-  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">Some</span> <span class="w">places</span></div>
-  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w"><span class="acc">stay</span></span> <span class="w">with</span> <span class="w">you</span></div>
-  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">long</span> <span class="w">after</span></div>
-  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">you've</span> <span class="w">physically</span></div>
-  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w">left</span> <span class="w">them</span> <span class="w">behind.</span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w">Go</span> <span class="w">on,</span></div>
-  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w">look</span> <span class="w">after</span> <span class="w"><span class="acc">yourself</span></span></div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0">Some</span> <span class="w" data-t="0.38">places</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0"><span class="acc">stay</span></span> <span class="w" data-t="0.38">with</span> <span class="w" data-t="0.76">you</span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0">long</span> <span class="w" data-t="0.38">after</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0">you've</span> <span class="w" data-t="0.42">physically</span></div>
+  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w" data-t="0.0">left</span> <span class="w" data-t="0.38">them</span> <span class="w" data-t="0.76">behind.</span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0">Go</span> <span class="w" data-t="0.3">on,</span></div>
+  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0">look</span> <span class="w" data-t="0.38">after</span> <span class="w" data-t="0.8"><span class="acc">yourself</span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -101,13 +101,13 @@
     ['s19', 17.0, 3.0]
   ];
   const TITLES = [
-    ['t0', 0.3, 1.35],
-    ['t1', 1.45, 2.92],
-    ['t2', 3.02, 4.07],
-    ['t3', 4.17, 5.22],
-    ['t4', 5.32, 6.79],
-    ['t5', 17.3, 18.35],
-    ['t6', 18.45, 20.0]
+    ['t0', 0.3, 1.56],
+    ['t1', 1.66, 3.3],
+    ['t2', 3.4, 4.66],
+    ['t3', 4.76, 6.06],
+    ['t4', 6.16, 7.8],
+    ['t5', 17.3, 18.48],
+    ['t6', 18.58, 20.0]
   ];
   const END = 17.0;
 
@@ -128,7 +128,7 @@
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
     el.querySelectorAll('.w').forEach((w, i) => {
-      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + parseFloat(w.dataset.t ?? i * 0.14));
     });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });

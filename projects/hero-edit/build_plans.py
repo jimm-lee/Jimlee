@@ -7,6 +7,7 @@ yourself". Writes plans/pNN/index.html; the clips, fonts and runtime are shared 
 """
 import importlib.util
 import os
+import re
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -116,8 +117,8 @@ def caption_times(plan):
     read = plan.get("read", build.READ_PER_WORD)
     out = []
     for spans, start, end in build.chunks(plan["hook"], 0.3 if plan["length"] == 15 else 0.2, read):
-        n = spans.count('class="w"')
-        out.append(round(min(start + build.WORD_GAP * (n - 1) + 0.3, end - 0.2), 2))
+        last = max(float(t) for t in re.findall(r'data-t="([\d.]+)"', spans))
+        out.append(round(min(start + last + 0.3, end - 0.2), 2))
     return out
 
 

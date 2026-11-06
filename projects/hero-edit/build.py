@@ -120,9 +120,15 @@ HOOK_E_START = 0.3
 END_E = 12.0
 LEN_E = 15.0
 
-WORD_GAP = 0.14       # seconds between words popping in
-READ_BASE = 0.35      # minimum hold once the chunk is complete
-READ_PER_WORD = 0.28  # extra reading time per word
+WORD_GAP = 0.14       # fallback spacing if a word has no spoken timing
+# Words arrive as if read aloud: each word takes about as long as it does to say, plus a pause after punctuation.
+SPEAK_BASE = 0.2         # s per word
+SPEAK_PER_LETTER = 0.045 # s per letter (longer words take longer to say)
+SPEAK_MIN, SPEAK_MAX = 0.3, 0.7
+PAUSE_COMMA = 0.2        # extra beat after , : ;
+PAUSE_STOP = 0.3         # extra beat after . ? !
+READ_BASE = 0.35      # hold once the chunk's last word has landed (with READ_PER_WORD below)
+READ_PER_WORD = 0.28  # added to READ_BASE for the hold; the 10 s cuts pass a smaller value
 CHUNK_GAP = 0.1       # empty beat between chunks
 CAPTION_TOP = 250     # px; single row in the upper third
 CHERRY = "#990F3D"    # James picked B (dark cherry) over #8C172E, Nov 2026
@@ -138,12 +144,23 @@ END_WORD = "Leahy"
 TEMPLATE = (HERE / "template.html").read_text()
 
 
-def word_span(word: str) -> str:
-    """One word as a span; *word* (with any trailing punctuation) is the green accent."""
+def speak(word: str) -> float:
+    """Roughly how long a word takes to say aloud, including a pause after punctuation."""
+    letters = sum(ch.isalnum() for ch in word)
+    t = min(SPEAK_MAX, max(SPEAK_MIN, SPEAK_BASE + SPEAK_PER_LETTER * letters))
+    if word.rstrip("*")[-1:] in ",:;":
+        t += PAUSE_COMMA
+    elif word.rstrip("*")[-1:] in ".?!":
+        t += PAUSE_STOP
+    return round(t, 2)
+
+
+def word_span(word: str, t: float = 0.0) -> str:
+    """One word as a span arriving t s into its chunk; *word* (with any trailing punctuation) is the green accent."""
     m = re.fullmatch(r"\*(.+)\*([.,?!:;]*)", word)
     if m:
-        return f'<span class="w"><span class="acc">{m.group(1)}</span>{m.group(2)}</span>'
-    return f'<span class="w">{word}</span>'
+        return f'<span class="w" data-t="{t}"><span class="acc">{m.group(1)}</span>{m.group(2)}</span>'
+    return f'<span class="w" data-t="{t}">{word}</span>'
 
 
 def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> list[tuple[str, float, float]]:
@@ -151,8 +168,12 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
     out, at = [], start
     for part in (p.strip() for p in hook.split("|")):
         words = part.split()
-        spans = " ".join(word_span(w) for w in words)
-        dur = WORD_GAP * (len(words) - 1) + READ_BASE + read_per_word * len(words)
+        offsets, t = [], 0.0
+        for w in words:
+            offsets.append(round(t, 2))
+            t += speak(w)
+        spans = " ".join(word_span(w, o) for w, o in zip(words, offsets))
+        dur = offsets[-1] + 0.25 + READ_BASE + read_per_word
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
     return out

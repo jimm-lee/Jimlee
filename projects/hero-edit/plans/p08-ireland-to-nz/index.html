@@ -52,12 +52,12 @@
 
   <div class="shade"></div>
 
-  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">Ireland</span></div>
-  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w">to</span> <span class="w"><span class="acc">New</span></span> <span class="w"><span class="acc">Zealand</span>.</span></div>
-  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">A</span> <span class="w">decision</span></div>
-  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">I'll</span> <span class="w">never</span> <span class="w">regret.</span></div>
-  <div class="t h cap" id="t4" style="top:800px" data-om-id="caption-4"><span class="w">Go</span> <span class="w">on,</span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w">look</span> <span class="w">after</span> <span class="w"><span class="acc">yourself</span></span></div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0">Ireland</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0">to</span> <span class="w" data-t="0.3"><span class="acc">New</span></span> <span class="w" data-t="0.64"><span class="acc">Zealand</span>.</span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0">A</span> <span class="w" data-t="0.3">decision</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0">I'll</span> <span class="w" data-t="0.34">never</span> <span class="w" data-t="0.76">regret.</span></div>
+  <div class="t h cap" id="t4" style="top:800px" data-om-id="caption-4"><span class="w" data-t="0.0">Go</span> <span class="w" data-t="0.3">on,</span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0">look</span> <span class="w" data-t="0.38">after</span> <span class="w" data-t="0.8"><span class="acc">yourself</span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -82,12 +82,12 @@
     ['s10', 7.5, 2.5]
   ];
   const TITLES = [
-    ['t0', 0.2, 0.79],
-    ['t1', 0.89, 2.24],
-    ['t2', 2.34, 3.31],
-    ['t3', 3.41, 4.76],
-    ['t4', 7.8, 8.85],
-    ['t5', 8.95, 10.0]
+    ['t0', 0.2, 1.04],
+    ['t1', 1.14, 2.62],
+    ['t2', 2.72, 3.86],
+    ['t3', 3.96, 5.56],
+    ['t4', 7.8, 8.98],
+    ['t5', 9.08, 10.0]
   ];
   const END = 7.5;
 
@@ -108,7 +108,7 @@
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
     el.querySelectorAll('.w').forEach((w, i) => {
-      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + parseFloat(w.dataset.t ?? i * 0.14));
     });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });

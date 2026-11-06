@@ -27,8 +27,9 @@ under "Being busy isn't the same thing as building a life you're **proud** of.",
 buskers, a rugby crowd, bars, river, yachts and a misty jetty, pays off on a sunrise wave and the golden selfie, and
 lingers on a sunrise over the sea with "Go on, look after yourself".
 
-**Captions:** the hook line plays as chunks of 2–3 words on a single row. Words pop in one at a time (0.14 s apart),
-each chunk holds for reading time (0.35 s + 0.28 s per word) and then clears. Chunks are split with `|` in
+**Captions:** the hook line plays as chunks of 2–3 words on a single row. Words arrive **as if read aloud**: each
+word waits about as long as it takes to say (0.2 s + 0.045 s per letter, 0.3–0.7 s, plus a pause after commas and full
+stops), each chunk holds about 0.6 s after its last word, then clears. Chunks are split with `|` in
 `HOOK_15` / `HOOK_10` in `build.py`; `*word*` marks the green word. The 10 s cut's last chunk sits lower, in the sand,
 so it doesn't cover James on the dune.
 
@@ -62,3 +63,14 @@ ffmpeg -i IMG_9661.mov -an -vf "$SDR,setpts=2*PTS,fps=30,scale=1080:1920:force_o
 
 Copy them into `film-15/assets/clips/` and `film-10/assets/clips/`, edit `build.py`, then
 `python3 build.py && om render film-15 --silent && om render film-10 --silent`.
+
+
+## Caption edits (`plans/`, `build_plans.py`)
+
+Ten caption-led edits (10–15 s) from James's caption list, staged as storyboards in `plans/storyboard-1.jpg` and
+`-2.jpg`, rendered one at a time after approval into `videos/captions/`.
+
+| # | Caption | Status |
+|---|---|---|
+| 1 | My camera roll since moving to the other side of the world. | rendered: `videos/captions/01-Camera-Roll-15s.mp4` |
+| 2–10 | see `build_plans.py` | storyboard, awaiting approval |

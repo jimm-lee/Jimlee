@@ -5,3 +5,5 @@ clips/
 
 */*/assets/clips
 __pycache__/
+.om/
+out/

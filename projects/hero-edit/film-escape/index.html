@@ -57,13 +57,13 @@
 
   <div class="shade"></div>
 
-  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">Being</span> <span class="w">busy</span></div>
-  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w">isn't</span> <span class="w">the</span> <span class="w">same</span></div>
-  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">thing</span> <span class="w">as</span></div>
-  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">building</span> <span class="w">a</span> <span class="w">life</span></div>
-  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w">you're</span> <span class="w"><span class="acc">proud</span></span> <span class="w">of.</span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w">Go</span> <span class="w">on,</span></div>
-  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w">look</span> <span class="w">after</span> <span class="w"><span class="acc">yourself</span></span></div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0">Being</span> <span class="w" data-t="0.42">busy</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0">isn't</span> <span class="w" data-t="0.38">the</span> <span class="w" data-t="0.72">same</span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0">thing</span> <span class="w" data-t="0.42">as</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0">building</span> <span class="w" data-t="0.56">a</span> <span class="w" data-t="0.86">life</span></div>
+  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w" data-t="0.0">you're</span> <span class="w" data-t="0.42"><span class="acc">proud</span></span> <span class="w" data-t="0.84">of.</span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0">Go</span> <span class="w" data-t="0.3">on,</span></div>
+  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0">look</span> <span class="w" data-t="0.38">after</span> <span class="w" data-t="0.8"><span class="acc">yourself</span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -93,13 +93,13 @@
     ['s15', 12.0, 3.0]
   ];
   const TITLES = [
-    ['t0', 0.3, 1.35],
-    ['t1', 1.45, 2.92],
-    ['t2', 3.02, 4.07],
-    ['t3', 4.17, 5.64],
-    ['t4', 5.74, 7.21],
-    ['t5', 12.3, 13.35],
-    ['t6', 13.45, 15.0]
+    ['t0', 0.3, 1.6],
+    ['t1', 1.7, 3.3],
+    ['t2', 3.4, 4.7],
+    ['t3', 4.8, 6.54],
+    ['t4', 6.64, 8.36],
+    ['t5', 12.3, 13.48],
+    ['t6', 13.58, 15.0]
   ];
   const END = 12.0;
 
@@ -120,7 +120,7 @@
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
     el.querySelectorAll('.w').forEach((w, i) => {
-      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + parseFloat(w.dataset.t ?? i * 0.14));
     });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });

@@ -55,13 +55,13 @@
 
   <div class="shade"></div>
 
-  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">Three</span> <span class="w">years,</span></div>
-  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w">one</span> <span class="w">big</span> <span class="w">decision,</span></div>
-  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">and</span> <span class="w">a</span></div>
-  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">camera</span> <span class="w">roll</span></div>
-  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w">full</span> <span class="w">of</span> <span class="w"><span class="acc">memories</span>.</span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w">Go</span> <span class="w">on,</span></div>
-  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w">look</span> <span class="w">after</span> <span class="w"><span class="acc">yourself</span></span></div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0">Three</span> <span class="w" data-t="0.42">years,</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0">one</span> <span class="w" data-t="0.34">big</span> <span class="w" data-t="0.68">decision,</span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0">and</span> <span class="w" data-t="0.34">a</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0">camera</span> <span class="w" data-t="0.47">roll</span></div>
+  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w" data-t="0.0">full</span> <span class="w" data-t="0.38">of</span> <span class="w" data-t="0.68"><span class="acc">memories</span>.</span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0">Go</span> <span class="w" data-t="0.3">on,</span></div>
+  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0">look</span> <span class="w" data-t="0.38">after</span> <span class="w" data-t="0.8"><span class="acc">yourself</span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -89,13 +89,13 @@
     ['s13', 12.0, 3.0]
   ];
   const TITLES = [
-    ['t0', 0.3, 1.35],
-    ['t1', 1.45, 2.92],
-    ['t2', 3.02, 4.07],
-    ['t3', 4.17, 5.22],
-    ['t4', 5.32, 6.79],
-    ['t5', 12.3, 13.35],
-    ['t6', 13.45, 15.0]
+    ['t0', 0.3, 1.6],
+    ['t1', 1.7, 3.26],
+    ['t2', 3.36, 4.58],
+    ['t3', 4.68, 6.03],
+    ['t4', 6.13, 7.69],
+    ['t5', 12.3, 13.48],
+    ['t6', 13.58, 15.0]
   ];
   const END = 12.0;
 
@@ -116,7 +116,7 @@
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
     el.querySelectorAll('.w').forEach((w, i) => {
-      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + parseFloat(w.dataset.t ?? i * 0.14));
     });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });
