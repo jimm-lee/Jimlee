@@ -9,11 +9,11 @@ Clip numbers are the IMG numbers (edit copies in `clips/`). Times are for a 15 s
 
 | Kind | Clips |
 |---|---|
-| **Effort / people** | 0170 ice bath (splash at 3.2 s) · 0171 sauna · 6234 pad work at the gym · 9661 dune run (60 fps, use half speed) · 2524 Movember vest walk · 3365 running the beach (small figure, wide) · 2153 golden-hour selfie (turns to camera at 4.6 s) · 0389 sunset deck spin · **7815 ice-filled tub by the sea, close** · **2636 wide-eyed face close-up (from 5.0 s)** · 2005 someone sitting at a waterfall's edge |
+| **Effort / people** | 0170 ice bath (splash at 3.2 s) · 0171 sauna · 6234 pad work at the gym · 9661 dune run (60 fps, use half speed) · 2524 Movember vest walk · 3365 running the beach (small figure, wide) · 2153 golden-hour selfie (turns to camera at 4.6 s) · 0389 sunset deck spin · **7815 ice-filled tub by the sea, close** · **2636 wide-eyed face close-up (from 5.0 s)** · 2005 someone sitting at a waterfall's edge · 3225 vest selfie walking into the low sun (smiling) · 3266 POV walk in the vest, binning rubbish |
 | **Crowds / energy** | 7989 rodeo · 9161 fight night · 9319 dragon boats · 1422 rugby test · 2207 buskers and a crowd |
-| **Big landscape** | 2894 Aoraki / Mt Cook and the glacier lake · 3048 the Wānaka tree · 2987 Clay Cliffs · 9651 river gorge · 8230 coast from above · 9357 Split Apple Rock · 9170 geyser · 9070 paddock to sea stacks · 0079 bush boardwalk · 0811 rocky river · 9545 misty lake jetty · 8092 harbour of yachts |
-| **Water and light** | 2148 sun on the sea · 3366 dusk beach, gold break in the cloud · 9023 palm sunrise · 5963 sunset over the ranges · 7909 splash off the bow · 5222 purple light on the water · 9065 sunrise wave against an island · 2636 sunrise over the sea, sun flare (0–4.9 s) |
-| **Table / bars** | 0793 brunch · 9733 oysters · 9644 seafood platter · 3148 candlelit board · 6169 wood-fired oven · 9500 tasting paddle · 9504 wall of wine · 2565 the odd bar (taxidermy, taps) |
+| **Big landscape** | 2894 Aoraki / Mt Cook and the glacier lake · 3048 the Wānaka tree · 2987 Clay Cliffs · 9651 river gorge · 8230 coast from above · 9357 Split Apple Rock · 9170 geyser · 9070 paddock to sea stacks · 0079 bush boardwalk · 0811 rocky river · 9545 misty lake jetty · 8092 harbour of yachts · 0836 / 0842 abandoned car swallowed by the bush · 1949 dusk beach, then a path at night |
+| **Water and light** | 2148 sun on the sea · 3366 dusk beach, gold break in the cloud · 9023 palm sunrise · 5963 sunset over the ranges · 7909 splash off the bow · 5222 purple light on the water · 9065 sunrise wave against an island · 2636 sunrise over the sea, sun flare (0–4.9 s) · 2603 sunrise flaring through trees by the road |
+| **Table / bars** | 0793 brunch · 9733 oysters · 9644 seafood platter · 3148 candlelit board · 6169 wood-fired oven · 9500 tasting paddle · 9504 wall of wine · 2565 the odd bar (taxidermy, taps) · 2772 coffee roastery, rows of bags |
 | **Texture / odd** | 0989 glowing jellyfish · 9681 vintage town, red truck · 8342 / 8078 Auckland from the ferry · 0595 gridlocked motorway at dusk |
 
 ## 1. Some places (built: `videos/Hero-Edit-20s.mp4`)
@@ -101,6 +101,9 @@ line, with no fade to black, so the last frame flows back into the first. Middle
 *Playful, for a lighter post.* Run any composition, but end on 2636 straight through: the sunrise, then his face pops
 into frame wide-eyed at 5.0 s; hold half a second, cut to black. No closing line: the face is the sign-off. Best on a
 loose, funny week, not on the reflective ones.
+
+> **Closing payoff shot:** James is replacing the weighted-vest selfie (2153) that ends most edits; the new clip goes
+> in its place (the `2153` lines in `build.py` / `build_plans.py`).
 
 ## Rules that hold for all of them
 
