@@ -122,20 +122,22 @@ LEN_E = 15.0
 
 WORD_GAP = 0.14       # fallback spacing if a word has no spoken timing
 # Words arrive as if read aloud: each word takes about as long as it does to say, plus a pause after punctuation.
-SPEAK_BASE = 0.2         # s per word
-SPEAK_PER_LETTER = 0.045 # s per letter (longer words take longer to say)
-SPEAK_MIN, SPEAK_MAX = 0.3, 0.7
+SPEAK_BASE = 0.22        # s per word
+SPEAK_PER_LETTER = 0.06  # s per letter (longer words take longer to say; letters spell out across this)
+SPEAK_MIN, SPEAK_MAX = 0.32, 0.85
 PAUSE_COMMA = 0.2        # extra beat after , : ;
 PAUSE_STOP = 0.3         # extra beat after . ? !
-READ_BASE = 0.35      # hold once the chunk's last word has landed (with READ_PER_WORD below)
-READ_PER_WORD = 0.28  # added to READ_BASE for the hold; the 10 s cuts pass a smaller value
-CHUNK_GAP = 0.1       # empty beat between chunks
+LETTER_FADE = 0.25    # each letter's fade-in
+WRITE_SHARE = 1.0     # letters are spread over the whole of the word's spoken time
+READ_BASE = 0.07      # hold after the last letter lands = READ_BASE + READ_PER_WORD (about 0.35 s)
+READ_PER_WORD = 0.28  # the 10 s cuts pass a slightly smaller value
+CHUNK_GAP = 0.0       # the next chunk starts writing as soon as the last one clears (no dead air)
 CAPTION_TOP = 520     # px; single row in the upper third, not too high (James, Nov 2026)
 CHERRY = "#FDE68A"    # unused: green words no longer have an outline (kept so old templates still build)
 
 # The closing line over the linger shot (replaces the name card); its last chunk stays until the fade.
 OUTRO = "Go on, | look after *yourself*"
-OUTRO_DELAY = 0.2     # after the linger shot starts
+OUTRO_DELAY = 0.1     # after the linger shot starts
 OUTRO_TOP = 760       # px; first line, centred over the sea
 OUTRO_LINE = 140      # px between the two stacked lines
 FADE_OUT = 0.6        # s of fade to black at the very end
@@ -188,7 +190,7 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
             offsets.append(round(t, 2))
             t += speak(w)
         spans = " ".join(word_span(w, o, write_time(w)) for w, o in zip(words, offsets))
-        dur = offsets[-1] + 0.25 + READ_BASE + read_per_word
+        dur = offsets[-1] + write_time(words[-1]) * WRITE_SHARE + LETTER_FADE + READ_BASE + read_per_word
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
     return out
@@ -198,7 +200,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     titles = chunks(hook, hook_start, read_per_word)
     # closing line: two stacked rows that both stay up; the second starts writing as soon as the first is said
     outro = chunks(OUTRO, end_at + OUTRO_DELAY)
-    first_said = sum(speak(w) for w in OUTRO.split("|")[0].split())
+    first = OUTRO.split("|")[0].split()
+    first_said = sum(speak(w) for w in first[:-1]) + write_time(first[-1])  # line 2 follows straight on
     outro = [(outro[0][0], outro[0][1], length),
              (outro[1][0], round(outro[0][1] + first_said, 2), length)]
     tops = dict(tops or {})
@@ -224,6 +227,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{CUT_JS}}", cut_js)
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)
+            .replace("{{LETTER_FADE}}", str(LETTER_FADE))
+            .replace("{{WRITE_SHARE}}", str(WRITE_SHARE))
             .replace("{{FADE_OUT}}", str(FADE_OUT))
             .replace("{{WORD_GAP}}", str(WORD_GAP))
             .replace("{{END_LINE}}", END_LINE)

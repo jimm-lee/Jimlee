@@ -27,12 +27,11 @@ under "Being busy isn't the same thing as building a life you're **proud** of.",
 buskers, a rugby crowd, bars, river, yachts and a misty jetty, pays off on a sunrise wave and the golden selfie, and
 lingers on a sunrise over the sea with "Go on, look after yourself".
 
-**Captions:** the hook line plays as chunks of 2–3 words on a single row. Words arrive **as if read aloud**, and
-each word **fades in letter by letter** across about 70 % of its spoken time (0.2 s fade per letter; green letters
-carry their own cherry outline so they fade cleanly). Each word waits about as long as it takes to say (0.2 s + 0.045 s per letter, 0.3–0.7 s, plus a pause after commas and full
-stops), each chunk holds about 0.6 s after its last word, then clears. Chunks are split with `|` in
-`HOOK_15` / `HOOK_10` in `build.py`; `*word*` marks the green word. The 10 s cut's last chunk sits lower, in the sand,
-so it doesn't cover James on the dune.
+**Captions:** the hook line plays as chunks of 2–3 words on a single row. Words arrive **as if read aloud** and
+spell out letter by letter across each word's whole spoken time (0.22 s + 0.06 s per letter, 0.32–0.85 s; 0.25 s fade
+per letter). A chunk holds about 0.35 s after its last letter, then the next chunk starts straight away: no gap
+between captions. The final shot is 4 s so the closing line (second row following straight on from the first)
+completes about a second before the 0.6 s fade.
 
 **Ending:** no name card (James: it read as forced promotion). Both edits close on **"Go on, look after yourself"**
 (`OUTRO` in `build.py`, *yourself* in green), centred over the open sea and fading out with the picture.

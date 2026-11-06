@@ -32,8 +32,8 @@ PLANS = [
          hook="My camera roll | since moving | to the other | side of | the *world*.",
          cut=[("9170", 0.0, 2.5, 0.2),                      # hook: the geyser going up
               ("9619", 2.5, 1.0, 0.2), ("9491", 3.5, 2.0, 1.0),   # wharf at sunrise, lakeside farm track
-              *seq(5.5, 0.5, [("7185", 0.5), ("1422", 2.3), ("8297", 2.0), ("2565", 0.5),
-                              ("9733", 0.2), ("0989", 3.0), ("2207", 3.0), ("7909", 0.5)]),   # buskers after the caption clears
+              *seq(5.5, 0.5, [("7185", 0.5), ("1422", 2.3), ("2815", 0.5), ("2565", 0.5),
+                              ("9733", 0.2), ("0989", 3.0), ("7909", 0.5), ("2207", 3.0)]),   # buskers after the caption clears
               ("races", 9.5, 2.0, 1.2),                     # payoff: at the races with friends
               ("9355", 11.5, 3.5, 1.5)]),                   # linger: Split Apple Rock on glittering water
     dict(slug="p02-took-the-leap", length=10, read=QUICK,
@@ -110,6 +110,27 @@ PLANS = [
 ]
 
 
+LINGER = 4.0  # s; the closing line needs time to spell out and still hold before the fade
+
+
+def clip_length(clip: str) -> float:
+    import subprocess
+    out = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                          str(HERE / "clips" / f"{clip}.mp4")], capture_output=True, text=True).stdout
+    return float(out.strip())
+
+
+def with_long_linger(cut):
+    """Give the last shot LINGER seconds by taking the difference from the payoff shot before it."""
+    *rest, (pc, pa, pd, pm), (lc, la, ld, lm) = cut
+    extra = round(LINGER - ld, 2)
+    if extra <= 0:
+        return cut
+    limit = {"2636": 4.95}.get(lc, clip_length(lc)) - 0.05   # 2636: stop before the face enters
+    media = round(max(0.0, min(lm, limit - LINGER)), 2)
+    return [*rest, (pc, pa, round(pd - extra, 2), pm), (lc, round(la - extra, 2), LINGER, media)]
+
+
 def link(target: Path, link_path: Path) -> None:
     if link_path.is_symlink() or link_path.exists():
         return
@@ -149,6 +170,7 @@ for plan in PLANS:
     link(HERE / "clips", d / "assets" / "clips")
     link(HERE / "film-15" / "assets" / "fonts", d / "assets" / "fonts")
     link(HERE / "film-15" / "vendor", d / "vendor")
+    plan["cut"] = with_long_linger(plan["cut"])
     length = plan["length"]
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
     start = 0.3 if length == 15 else 0.2

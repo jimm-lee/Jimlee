@@ -74,8 +74,8 @@
 
 
   // captions: each word writes itself out letter by letter at speaking pace, the chunk holds, then clears
-  const LETTER_FADE = .2;   // each letter's fade-in
-  const WRITE_SHARE = .7;   // letters are spread over this share of the word's spoken time
+  const LETTER_FADE = {{LETTER_FADE}};   // each letter's fade-in
+  const WRITE_SHARE = {{WRITE_SHARE}};   // letters are spread over this share of the word's spoken time
   TITLES.forEach(([id, at, out]) => {
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
