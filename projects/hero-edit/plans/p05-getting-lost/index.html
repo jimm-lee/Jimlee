@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"JAMES LEAHY"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>p05-getting-lost</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/BebasNeue.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); --cherry: #990F3D; }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  /* clips are ungraded (straight HDR to SDR conversion) */
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Bebas Neue", sans-serif; font-weight: 400; line-height: .95; letter-spacing: .035em; text-transform: uppercase; -webkit-text-stroke: 3px currentColor; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .big { font-size: 200px; }
+  .h { font-size: 112px; line-height: .98; }
+  /* green words: bold green with a thin cherry outline, then the subtle down-right shadow */
+  .acc { color: var(--accent); text-shadow: none;
+    filter: drop-shadow(2.5px 0 0 var(--cherry)) drop-shadow(-2.5px 0 0 var(--cherry)) drop-shadow(0 2.5px 0 var(--cherry)) drop-shadow(0 -2.5px 0 var(--cherry))
+            drop-shadow(4px 6px 0 rgba(0,0,0,.28)) drop-shadow(6px 8px 12px rgba(0,0,0,.35)); }
+  .cap { white-space: nowrap; opacity: 1; visibility: hidden; }
+  .cap .w { display: inline-block; opacity: 0; }
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <!-- no soundtrack: music is added afterwards. Cuts sit on a 0.5 s grid (120 BPM, or 60 BPM half-time) -->
+  <div class="shot" id="s0" style="visibility:visible" data-om-id="shot-2005"><video src="assets/clips/2005.mp4" class="clip" data-start="0.0" data-duration="2.5" data-media-start="0.2" muted playsinline></video></div>
+  <div class="shot" id="s1" data-om-id="shot-0079"><video src="assets/clips/0079.mp4" class="clip" data-start="2.5" data-duration="1.5" data-media-start="0.2" muted playsinline></video></div>
+  <div class="shot" id="s2" data-om-id="shot-9545"><video src="assets/clips/9545.mp4" class="clip" data-start="4.0" data-duration="1.5" data-media-start="0.0" muted playsinline></video></div>
+  <div class="shot" id="s3" data-om-id="shot-0811"><video src="assets/clips/0811.mp4" class="clip" data-start="5.5" data-duration="1.0" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot" id="s4" data-om-id="shot-3048"><video src="assets/clips/3048.mp4" class="clip" data-start="6.5" data-duration="1.0" data-media-start="2.0" muted playsinline></video></div>
+  <div class="shot" id="s5" data-om-id="shot-9651"><video src="assets/clips/9651.mp4" class="clip" data-start="7.5" data-duration="0.5" data-media-start="0.3" muted playsinline></video></div>
+  <div class="shot" id="s6" data-om-id="shot-2987"><video src="assets/clips/2987.mp4" class="clip" data-start="8.0" data-duration="0.5" data-media-start="0.5" muted playsinline></video></div>
+  <div class="shot" id="s7" data-om-id="shot-3365"><video src="assets/clips/3365.mp4" class="clip" data-start="8.5" data-duration="1.0" data-media-start="1.0" muted playsinline></video></div>
+  <div class="shot" id="s8" data-om-id="shot-2894"><video src="assets/clips/2894.mp4" class="clip" data-start="9.5" data-duration="1.5" data-media-start="1.6" muted playsinline></video></div>
+  <div class="shot" id="s9" data-om-id="shot-2153"><video src="assets/clips/2153.mp4" class="clip" data-start="11.0" data-duration="1.0" data-media-start="4.1" muted playsinline></video></div>
+  <div class="shot endshot" id="s10" data-om-id="shot-3366"><video src="assets/clips/3366.mp4" class="clip" data-start="12.0" data-duration="3.0" data-media-start="1.0" muted playsinline></video></div>
+
+  <div class="shade"></div>
+
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w">Somewhere</span> <span class="w">between</span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w">getting</span> <span class="w"><span class="acc">lost</span></span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w">and</span> <span class="w">finding</span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w">yourself.</span></div>
+  <div class="t h cap" id="t4" style="top:800px" data-om-id="caption-4"><span class="w">Go</span> <span class="w">on,</span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w">look</span> <span class="w">after</span> <span class="w"><span class="acc">yourself</span></span></div>
+
+  <!-- linger: no name card; the last shot fades to black -->
+  <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+
+</div>
+
+<script>
+  const V = OM.vars();
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  const CUT = [
+    ['s0', 0.0, 2.5],
+    ['s1', 2.5, 1.5],
+    ['s2', 4.0, 1.5],
+    ['s3', 5.5, 1.0],
+    ['s4', 6.5, 1.0],
+    ['s5', 7.5, 0.5],
+    ['s6', 8.0, 0.5],
+    ['s7', 8.5, 1.0],
+    ['s8', 9.5, 1.5],
+    ['s9', 11.0, 1.0],
+    ['s10', 12.0, 3.0]
+  ];
+  const TITLES = [
+    ['t0', 0.3, 1.35],
+    ['t1', 1.45, 2.5],
+    ['t2', 2.6, 3.65],
+    ['t3', 3.75, 4.38],
+    ['t4', 12.3, 13.35],
+    ['t5', 13.45, 15.0]
+  ];
+  const END = 12.0;
+
+  // shots: a slow push-in for the long holds, a harder punch for the quick ones
+  CUT.forEach(([id, at, dur]) => {
+    const el = '#' + id;
+    const quick = dur <= .5;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    const isLast = id === CUT[CUT.length - 1][0];  // the linger has its own slow push
+    if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+
+  // captions: words pop in one at a time, the chunk holds for reading time, then clears
+  TITLES.forEach(([id, at, out]) => {
+    const el = document.getElementById(id);
+    tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
+    el.querySelectorAll('.w').forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + i * 0.14);
+    });
+    tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
+  });
+
+  // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
+  tl.addLabel('scene:linger', END);
+  tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: 3.0 - .5, ease: 'sine.inOut' }, END + .5);
+  tl.to('#fade', { opacity: 1, duration: .8, ease: 'sine.in' }, END + 3.0 - .8);
+  tl.to({}, { duration: 3.0 }, END);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>

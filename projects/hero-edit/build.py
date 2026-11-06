@@ -8,6 +8,7 @@ Structure (James's montage brief, "transformation" formula): hook (~15 %) → co
 → payoff (~20 %) → linger (~15 %). Contrast shot to shot: intimacy vs scale, stillness vs movement, dark vs light.
 One hook line per cut (from James's hook-line list), split into two readable blocks; the name closes the linger.
 """
+import re
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -137,14 +138,20 @@ END_WORD = "Leahy"
 TEMPLATE = (HERE / "template.html").read_text()
 
 
+def word_span(word: str) -> str:
+    """One word as a span; *word* (with any trailing punctuation) is the green accent."""
+    m = re.fullmatch(r"\*(.+)\*([.,?!:;]*)", word)
+    if m:
+        return f'<span class="w"><span class="acc">{m.group(1)}</span>{m.group(2)}</span>'
+    return f'<span class="w">{word}</span>'
+
+
 def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> list[tuple[str, float, float]]:
     """Split a hook line into timed chunks: (html of word spans, start, end)."""
     out, at = [], start
     for part in (p.strip() for p in hook.split("|")):
         words = part.split()
-        spans = " ".join(
-            f'<span class="w acc">{w[1:-1]}</span>' if w.startswith("*") and w.endswith("*")
-            else f'<span class="w">{w}</span>' for w in words)
+        spans = " ".join(word_span(w) for w in words)
         dur = WORD_GAP * (len(words) - 1) + READ_BASE + read_per_word * len(words)
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
