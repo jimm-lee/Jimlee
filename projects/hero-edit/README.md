@@ -40,8 +40,8 @@ so it doesn't cover James on the dune.
 **Type:** Bebas Neue caps, letter-spacing .035em, thickened with a 3 px same-colour stroke (Bebas has one weight), white
 with the brand's subtle down-right shadow.
 
-**Green words:** bold #75FF78 with a thin (2.5 px) outline in dark cherry **#990F3D** (James's pick, option B in
-`cherry-shades.jpg`), then the subtle shadow. Change `CHERRY` in `build.py`.
+**Green words:** bold #75FF78 with a thin (2.5 px) **soft pastel yellow #FDE68A** outline (was dark cherry #990F3D;
+shades compared in `yellow-outlines.jpg`), then the subtle shadow. Change `CHERRY` in `build.py`.
 
 **Look:** no grade. The iPhone HLG footage is only converted to SDR (Hable tone-map) so it plays with correct colours;
 no extra contrast, saturation, vignette or flashes. The dune run is the 60 fps original at half speed.

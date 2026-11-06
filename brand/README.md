@@ -18,7 +18,8 @@ Use this for every video from now on, so they look designed rather than template
 > **Hero edits (Nov 2026):** James chose **Bebas Neue** caps (Google Fonts, OFL), bold, letter-spacing .035em,
 > thickened with a 3 px same-colour stroke; white with #75FF78 on one word and the same subtle down-right shadow; no colour
 > grade on the footage. (Tried and replaced: Anton, Newsreader Bold; Brasika is a paid Canva font with no free equivalent.)
-> Green words carry a thin (2.5 px) outline in **dark cherry #990F3D** (his chosen second brand colour).
+> Green words carry a thin (2.5 px) outline in **soft pastel yellow #FDE68A** (Nov 2026; replaced dark cherry #990F3D,
+> which stays on record as his second colour). Alternatives he was shown: butter #FFF4B0, warm cream #FFE9A8.
 > **No name end cards on hero edits.** James: it feels like forced promotion. End on an open, warm image (a landscape,
 > a fade) that makes people want to see more of the life, not on his name. Current sign-off line: **"Go on, look after yourself"**.
 > Merienda remains the face for other videos unless he says otherwise.
