@@ -26,86 +26,87 @@ def seq(start, step, clips):
 
 
 PLANS = [
+    # Second pass (Nov 6): new sequences from the full library. Each edit has its own hook, payoff and linger;
+    # a clip appears in at most two edits and never next to the same shot twice (see variety_report()).
     dict(slug="p01-camera-roll", length=15,
          hook="My camera roll | since moving | to the other | side of | the *world*.",
-         cut=[("0989", 0.0, 2.5, 2.4),
-              ("8230", 2.5, 1.0, 3.6), ("2207", 3.5, 1.0, 2.0), ("9733", 4.5, 1.0, 0.2),
-              *seq(5.5, 0.5, [("7989", 3.3), ("2565", 0.6), ("9170", 0.6), ("1422", 2.3),
-                              ("9500", 1.0), ("9161", 1.0), ("3048", 2.0), ("6234", 4.5)]),
-              ("9661", 9.5, 1.0, 2.2), ("3276", 10.5, 1.0, 0.35),
-              ("3366", 11.5, 3.5, 0.8)]),
-    # 2–10: each has its own hook, payoff and linger; any clip used twice sits elsewhere with different neighbours
+         cut=[("9170", 0.0, 2.5, 0.2),                      # hook: the geyser going up
+              ("9619", 2.5, 1.0, 0.2), ("9491", 3.5, 2.0, 1.0),   # wharf at sunrise, lakeside farm track
+              *seq(5.5, 0.5, [("7185", 0.5), ("1422", 2.3), ("8297", 2.0), ("2565", 0.5),
+                              ("9733", 0.2), ("0989", 3.0), ("2207", 3.0), ("7909", 0.5)]),   # buskers after the caption clears
+              ("races", 9.5, 2.0, 1.2),                     # payoff: at the races with friends
+              ("9355", 11.5, 3.5, 1.5)]),                   # linger: Split Apple Rock on glittering water
     dict(slug="p02-took-the-leap", length=10, read=QUICK,
          hook="POV: | You actually | took the *leap*.",
-         cut=[("0170", 0.0, 2.0, 1.8),                      # hook: lowering into the ice, the splash
-              ("9070", 2.0, 1.0, 1.0),                      # paddock running out to the sea stacks
-              *seq(3.0, 0.5, [("7909", 0.4), ("9319", 2.5), ("2987", 0.5), ("9651", 0.3)]),
+         cut=[("0170", 0.0, 2.0, 1.8),                      # hook: into the ice, the splash
+              ("2894", 2.0, 1.0, 1.6),                      # Aoraki / Mt Cook
+              *seq(3.0, 0.5, [("9651", 0.3), ("9361", 1.0), ("9319", 2.5), ("2987", 0.5)]),
               ("0389", 5.0, 1.5, 0.8),                      # payoff: spinning on deck at sunset
               ("2636", 6.5, 3.5, 1.3)],                     # linger: sunrise over the sea
          outro_top=420),
     dict(slug="p03-18000km", length=15,
          hook="A little look | at what life | looks like | *18,000km* from home.",
          cut=[("8342", 0.0, 2.5, 1.0),                      # hook: Auckland from the ferry
-              ("2842", 2.5, 1.0, 1.0), ("9681", 3.5, 2.0, 2.0),
-              *seq(5.5, 0.5, [("0793", 0.5), ("7185", 0.8), ("0811", 1.0), ("5222", 1.0),
-                              ("7278", 3.0), ("2772", 1.0), ("9355", 2.0), ("2815", 0.6)]),
+              ("2842", 2.5, 1.0, 1.0), ("9681", 3.5, 2.0, 2.0),   # lake through the pines, vintage town
+              *seq(5.5, 0.5, [("9522", 1.5), ("0811", 1.0), ("0793", 0.5), ("5222", 1.0),
+                              ("2772", 1.0), ("9504", 1.0), ("9357", 1.2), ("7185", 1.8)]),
               ("3365", 9.5, 2.0, 1.0),                      # payoff: running the beach
               ("3048", 11.5, 3.5, 1.2)]),                   # linger: the Wānaka tree
     dict(slug="p04-comfort-zone", length=15,
          hook="Turns out, | there's a lot | of life | outside your | *comfort* zone.",
          cut=[("7815", 0.0, 2.5, 0.5),                      # hook: ice-filled tub, close
-              ("9545", 2.5, 1.0, 0.2), ("0171", 3.5, 2.0, 15.0),   # misty jetty, the sauna
-              *seq(5.5, 0.5, [("0160", 2.0), ("9525", 1.0), ("7909", 1.5), ("8297", 2.0),
-                              ("9361", 1.5), ("2005", 1.5), ("8701", 5.0), ("9371", 1.0)]),
+              ("9545", 2.5, 1.0, 0.2), ("0171", 3.5, 2.0, 15.0),  # misty jetty, the sauna
+              *seq(5.5, 0.5, [("0160", 2.0), ("9525", 1.0), ("6169", 1.0), ("8701", 5.0),
+                              ("9065", 0.6), ("3148", 2.6), ("9371", 1.0), ("9644", 0.8)]),
               ("6234", 9.5, 2.0, 3.5),                      # payoff: pad work
               ("2603", 11.5, 3.5, 0.5)]),                   # linger: sunrise through the trees
     dict(slug="p05-getting-lost", length=15,
          hook="Somewhere between | getting *lost* | and finding | yourself.",
-         cut=[("2005", 0.0, 2.5, 0.2),                      # hook: someone at the waterfall's edge
-              ("0079", 2.5, 1.0, 0.3), ("0836", 3.5, 2.0, 0.3),
-              ("9491", 5.5, 0.5, 1.0), ("2841", 6.0, 1.0, 0.8), ("8701", 7.0, 1.0, 3.0),
-              ("9065", 8.0, 1.0, 0.6), ("2148", 9.0, 0.5, 0.5),
+         cut=[("2005", 0.0, 2.5, 0.2),                      # hook: at the waterfall's edge
+              ("0079", 2.5, 1.0, 0.3), ("0836", 3.5, 2.0, 0.3),   # boardwalk, the car the bush took
+              ("9491", 5.5, 0.5, 1.0), ("2841", 6.0, 1.0, 0.8), ("8383", 7.0, 1.0, 10.0),
+              ("2148", 8.0, 1.0, 0.5), ("8233", 9.0, 0.5, 2.0),
               ("3266", 9.5, 2.0, 1.4),                      # payoff: walking up the path
               ("1949", 11.5, 3.5, 0.3)]),                   # linger: dusk beach into the night path
     dict(slug="p06-three-years", length=15,
          hook="Three years, | one big decision, | and a | camera roll | full of *memories*.",
          cut=[("8078", 0.0, 2.5, 0.1),                      # hook: the ensign over the city
-              ("6169", 2.5, 1.0, 0.8), ("0160", 3.5, 1.0, 1.0), ("2842", 4.5, 1.0, 0.5),
-              *seq(5.5, 0.5, [("1609", 2.0), ("9522", 1.5), ("2565", 1.0), ("9319", 4.0),
-                              ("7989", 4.5), ("2207", 4.0), ("9619", 0.3), ("2815", 0.5)]),
-              ("races", 9.5, 2.0, 1.2),                     # payoff: at the races with friends
+              ("8230", 2.5, 1.0, 0.5), ("2524", 3.5, 2.0, 1.3),   # coast from above, the Movember walk
+              *seq(5.5, 0.5, [("1609", 2.0), ("9733", 0.5), ("9161", 1.0), ("9500", 1.0),
+                              ("0989", 5.0), ("7989", 4.5), ("7157", 1.0), ("8092", 2.0)]),
+              ("7278", 9.5, 2.0, 2.0),                      # payoff: dinner with friends
               ("5963", 11.5, 3.5, 1.2)]),                   # linger: sunset over the ranges
     dict(slug="p07-putting-it-off", length=15,
          hook="What happens | when you stop | putting off | the life you've | *imagined*?",
          cut=[("0842", 0.0, 2.5, 0.0),                      # hook: the car the bush swallowed
-              ("9070", 2.5, 1.0, 1.5), ("9065", 3.5, 1.0, 1.6), ("8233", 4.5, 1.0, 4.0),
-              *seq(5.5, 0.5, [("9161", 2.5), ("9525", 1.0), ("8383", 6.0), ("7157", 3.0),
-                              ("9504", 2.2), ("9651", 0.8), ("9371", 1.5), ("9357", 2.5)]),
-              ("2524", 9.5, 2.0, 1.3),                      # payoff: the Movember walk
+              ("9070", 2.5, 1.0, 1.5), ("9361", 3.5, 2.0, 2.5),   # paddock to the sea, river over rocks
+              *seq(5.5, 0.5, [("5222", 2.5), ("9651", 0.8), ("2987", 1.0), ("9170", 2.8),
+                              ("9319", 4.0), ("0811", 2.0), ("9619", 0.8), ("8297", 4.5)]),
+              ("3276", 9.5, 2.0, 0.35),                     # payoff: the selfie, smiling
               ("9023", 11.5, 3.5, 1.2)]),                   # linger: palm at sunrise
     dict(slug="p08-ireland-to-nz", length=10, read=QUICK,
          hook="Ireland | to *New* *Zealand*. | A decision | I'll never regret.",
          cut=[("1422", 0.0, 2.0, 1.0),                      # hook: Ireland's green jerseys in NZ
-              ("9357", 2.0, 1.0, 1.2),                      # Split Apple Rock
-              *seq(3.0, 0.5, [("0811", 2.0), ("3148", 2.5), ("0989", 6.5), ("9361", 3.0)]),
+              ("9525", 2.0, 1.0, 1.5),                      # the valley
+              *seq(3.0, 0.5, [("3148", 2.5), ("9681", 4.0), ("7909", 2.0), ("2772", 2.0)]),
               ("3225", 5.0, 1.5, 0.2),                      # payoff: smiling into the low sun
               ("8092", 6.5, 3.5, 1.2)]),                    # linger: harbour of yachts
     dict(slug="p09-outside-your-routine", length=15,
          hook="A reminder | that there's | a whole *world* | waiting outside | your routine.",
          cut=[("0595", 0.0, 2.5, 2.4),                      # hook: the motorway
-              ("0079", 2.5, 1.0, 0.3), ("8233", 3.5, 2.0, 6.0),   # boardwalk, the deck view
-              *seq(5.5, 0.5, [("9170", 2.8), ("7157", 1.0), ("8297", 4.0), ("0793", 0.2),
-                              ("7278", 2.0), ("7185", 0.3), ("2148", 0.5), ("9681", 4.0)]),
+              ("0079", 2.5, 1.0, 1.0), ("8233", 3.5, 2.0, 6.0),   # boardwalk, the deck view
+              *seq(5.5, 0.5, [("7157", 3.0), ("7278", 1.0), ("0793", 1.2), ("6169", 2.5),
+                              ("2148", 1.5), ("9500", 2.5), ("8383", 2.0), ("9504", 2.5)]),
               ("9661", 9.5, 2.0, 0.3),                      # payoff: down the dune
               ("2894", 11.5, 3.5, 0.3)]),                   # linger: Aoraki / Mt Cook
     dict(slug="p10-not-on-instagram", length=15,
          hook="Not everything | makes it | onto Instagram. | Here's a | *little* of it.",
-         cut=[("2636", 0.0, 1.0, 4.95), ("1609", 1.0, 1.5, 3.0),   # hook: the face, then the pizza bar
-              ("2772", 2.5, 1.0, 0.5), ("9500", 3.5, 1.0, 0.5), ("3148", 4.5, 1.0, 0.3),
-              *seq(5.5, 0.5, [("9504", 0.2), ("6169", 2.0), ("0171", 10.0), ("9644", 0.2),
-                              ("0836", 1.5), ("5222", 2.5), ("9522", 2.0), ("races", 0.3)]),
+         cut=[("2636", 0.0, 1.0, 4.95), ("2565", 1.0, 1.5, 0.3),   # hook: the face, the odd bar
+              ("1609", 2.5, 1.0, 3.0), ("9522", 3.5, 1.0, 0.5), ("2207", 4.5, 1.0, 3.5),
+              *seq(5.5, 0.5, [("0171", 10.0), ("9644", 1.8), ("0160", 3.5), ("0836", 1.5),
+                              ("9065", 2.0), ("races", 0.3), ("8701", 2.0), ("2815", 1.0)]),
               ("7815", 9.5, 2.0, 4.0),                      # payoff: in the ice tub
-              ("8230", 11.5, 3.5, 0.8)]),                   # linger: the coast from above
+              ("3366", 11.5, 3.5, 0.8)]),                   # linger: dusk sea
 ]
 
 

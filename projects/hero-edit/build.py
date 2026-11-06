@@ -130,7 +130,7 @@ PAUSE_STOP = 0.3         # extra beat after . ? !
 READ_BASE = 0.35      # hold once the chunk's last word has landed (with READ_PER_WORD below)
 READ_PER_WORD = 0.28  # added to READ_BASE for the hold; the 10 s cuts pass a smaller value
 CHUNK_GAP = 0.1       # empty beat between chunks
-CAPTION_TOP = 250     # px; single row in the upper third
+CAPTION_TOP = 520     # px; single row in the upper third, not too high (James, Nov 2026)
 CHERRY = "#FDE68A"    # unused: green words no longer have an outline (kept so old templates still build)
 
 # The closing line over the linger shot (replaces the name card); its last chunk stays until the fade.

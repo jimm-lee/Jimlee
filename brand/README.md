@@ -19,7 +19,7 @@ Use this for every video from now on, so they look designed rather than template
 > thickened with a 3 px same-colour stroke; white with #75FF78 on one word and the same subtle down-right shadow; no colour
 > grade on the footage. (Tried and replaced: Anton, Newsreader Bold; Brasika is a paid Canva font with no free equivalent.)
 > **Current hero-edit style, use going forward (James, Nov 2026):** Bebas Neue caps, spacing .035em, 3 px same-colour
-> stroke; captions fade in **letter by letter at speaking pace**, 2–3 words per row; closing line "Go on, / look after
+> stroke; captions fade in **letter by letter at speaking pace**, 2–3 words per row, at y 520 (upper third, not too high); closing line "Go on, / look after
 > yourself" on two stacked rows that hold before a 0.6 s fade; no name card; footage ungraded.
 > Across a series, never repeat clips in a similar order: each edit has its own opening, payoff and final shot.
 > Green words are **just the green and the subtle shadow, no outline** (Nov 2026; outlines tried and dropped: dark cherry
