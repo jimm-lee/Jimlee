@@ -135,8 +135,10 @@ CHERRY = "#990F3D"    # James picked B (dark cherry) over #8C172E, Nov 2026
 
 # The closing line over the linger shot (replaces the name card); its last chunk stays until the fade.
 OUTRO = "Go on, | look after *yourself*"
-OUTRO_DELAY = 0.3     # after the linger shot starts
-OUTRO_TOP = 800       # px; centred over the sea
+OUTRO_DELAY = 0.2     # after the linger shot starts
+OUTRO_TOP = 760       # px; first line, centred over the sea
+OUTRO_LINE = 140      # px between the two stacked lines
+FADE_OUT = 0.6        # s of fade to black at the very end
 
 END_LINE = "James"
 END_WORD = "Leahy"
@@ -194,10 +196,13 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD):
     titles = chunks(hook, hook_start, read_per_word)
+    # closing line: two stacked rows that both stay up; the second starts writing as soon as the first is said
     outro = chunks(OUTRO, end_at + OUTRO_DELAY)
-    outro[-1] = (outro[-1][0], outro[-1][1], length)  # the last words stay through the fade
+    first_said = sum(speak(w) for w in OUTRO.split("|")[0].split())
+    outro = [(outro[0][0], outro[0][1], length),
+             (outro[1][0], round(outro[0][1] + first_said, 2), length)]
     tops = dict(tops or {})
-    tops.update({len(titles) + i: OUTRO_TOP for i in range(len(outro))})
+    tops.update({len(titles) + i: OUTRO_TOP + i * OUTRO_LINE for i in range(len(outro))})
     titles = titles + outro
     last = len(cut) - 1
     shots = "\n".join(
@@ -219,6 +224,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{CUT_JS}}", cut_js)
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)
+            .replace("{{FADE_OUT}}", str(FADE_OUT))
             .replace("{{WORD_GAP}}", str(WORD_GAP))
             .replace("{{END_LINE}}", END_LINE)
             .replace("{{END_WORD}}", END_WORD)

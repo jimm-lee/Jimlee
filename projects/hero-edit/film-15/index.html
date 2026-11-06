@@ -63,8 +63,8 @@
   <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0" data-d="0.34"><span class="l">a</span><span class="l">r</span><span class="l">e</span></span> <span class="w" data-t="0.34" data-d="0.52"><span class="l">q</span><span class="l">u</span><span class="l">i</span><span class="l">e</span><span class="l">t</span><span class="l">l</span><span class="l">y</span></span> <span class="w" data-t="0.86" data-d="0.56"><span class="l">b</span><span class="l">u</span><span class="l">i</span><span class="l">l</span><span class="l">d</span><span class="l">i</span><span class="l">n</span><span class="l">g</span></span></div>
   <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0" data-d="0.34"><span class="l">t</span><span class="l">h</span><span class="l">e</span></span> <span class="w" data-t="0.34" data-d="0.7"><span class="acc"><span class="l">e</span><span class="l">x</span><span class="l">t</span><span class="l">r</span><span class="l">a</span><span class="l">o</span><span class="l">r</span><span class="l">d</span><span class="l">i</span><span class="l">n</span><span class="l">a</span><span class="l">r</span><span class="l">y</span></span></span> <span class="w" data-t="1.04" data-d="0.38"><span class="l">l</span><span class="l">i</span><span class="l">f</span><span class="l">e</span></span></div>
   <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0" data-d="0.42"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">'</span><span class="l">v</span><span class="l">e</span></span> <span class="w" data-t="0.42" data-d="0.47"><span class="l">a</span><span class="l">l</span><span class="l">w</span><span class="l">a</span><span class="l">y</span><span class="l">s</span></span> <span class="w" data-t="0.89" data-d="0.56"><span class="l">i</span><span class="l">m</span><span class="l">a</span><span class="l">g</span><span class="l">i</span><span class="l">n</span><span class="l">e</span><span class="l">d</span><span class="l">.</span></span></div>
-  <div class="t h cap" id="t4" style="top:800px" data-om-id="caption-4"><span class="w" data-t="0.0" data-d="0.3"><span class="l">G</span><span class="l">o</span></span> <span class="w" data-t="0.3" data-d="0.3"><span class="l">o</span><span class="l">n</span><span class="l">,</span></span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0" data-d="0.38"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="0.38" data-d="0.42"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.8" data-d="0.56"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
+  <div class="t h cap" id="t4" style="top:760px" data-om-id="caption-4"><span class="w" data-t="0.0" data-d="0.3"><span class="l">G</span><span class="l">o</span></span> <span class="w" data-t="0.3" data-d="0.3"><span class="l">o</span><span class="l">n</span><span class="l">,</span></span></div>
+  <div class="t h cap" id="t5" style="top:900px" data-om-id="caption-5"><span class="w" data-t="0.0" data-d="0.38"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="0.38" data-d="0.42"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.8" data-d="0.56"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -94,8 +94,8 @@
     ['t1', 2.28, 4.02],
     ['t2', 4.12, 6.04],
     ['t3', 6.14, 7.91],
-    ['t4', 12.3, 13.48],
-    ['t5', 13.58, 15.0]
+    ['t4', 12.2, 15.0],
+    ['t5', 13.0, 15.0]
   ];
   const END = 12.0;
 
@@ -129,7 +129,7 @@
   // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
   tl.addLabel('scene:linger', END);
   tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: 3.0 - .5, ease: 'sine.inOut' }, END + .5);
-  tl.to('#fade', { opacity: 1, duration: .8, ease: 'sine.in' }, END + 3.0 - .8);
+  tl.to('#fade', { opacity: 1, duration: 0.6, ease: 'sine.in' }, END + 3.0 - 0.6);
   tl.to({}, { duration: 3.0 }, END);
 
   window.__timelines['film'] = tl;

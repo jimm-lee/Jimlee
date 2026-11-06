@@ -63,8 +63,8 @@
   <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0" data-d="0.34"><span class="l">t</span><span class="l">h</span><span class="l">e</span></span> <span class="w" data-t="0.34" data-d="0.38"><span class="l">m</span><span class="l">o</span><span class="l">s</span><span class="l">t</span></span></div>
   <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0" data-d="0.6"><span class="acc"><span class="l">e</span><span class="l">x</span><span class="l">p</span><span class="l">e</span><span class="l">n</span><span class="l">s</span><span class="l">i</span><span class="l">v</span><span class="l">e</span></span></span> <span class="w" data-t="0.6" data-d="0.42"><span class="l">p</span><span class="l">l</span><span class="l">a</span><span class="l">c</span><span class="l">e</span></span></div>
   <div class="t h cap" id="t4" style="top:1130px" data-om-id="caption-4"><span class="w" data-t="0.0" data-d="0.34"><span class="l">y</span><span class="l">o</span><span class="l">u</span></span> <span class="w" data-t="0.34" data-d="0.38"><span class="l">e</span><span class="l">v</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.72" data-d="0.38"><span class="l">l</span><span class="l">i</span><span class="l">v</span><span class="l">e</span><span class="l">.</span></span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0" data-d="0.3"><span class="l">G</span><span class="l">o</span></span> <span class="w" data-t="0.3" data-d="0.3"><span class="l">o</span><span class="l">n</span><span class="l">,</span></span></div>
-  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0" data-d="0.38"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="0.38" data-d="0.42"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.8" data-d="0.56"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
+  <div class="t h cap" id="t5" style="top:760px" data-om-id="caption-5"><span class="w" data-t="0.0" data-d="0.3"><span class="l">G</span><span class="l">o</span></span> <span class="w" data-t="0.3" data-d="0.3"><span class="l">o</span><span class="l">n</span><span class="l">,</span></span></div>
+  <div class="t h cap" id="t6" style="top:900px" data-om-id="caption-6"><span class="w" data-t="0.0" data-d="0.38"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="0.38" data-d="0.42"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.8" data-d="0.56"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -94,8 +94,8 @@
     ['t2', 3.84, 5.02],
     ['t3', 5.12, 6.56],
     ['t4', 6.66, 8.22],
-    ['t5', 7.8, 8.98],
-    ['t6', 9.08, 10.0]
+    ['t5', 7.7, 10.0],
+    ['t6', 8.5, 10.0]
   ];
   const END = 7.5;
 
@@ -129,7 +129,7 @@
   // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
   tl.addLabel('scene:linger', END);
   tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: 2.5 - .5, ease: 'sine.inOut' }, END + .5);
-  tl.to('#fade', { opacity: 1, duration: .8, ease: 'sine.in' }, END + 2.5 - .8);
+  tl.to('#fade', { opacity: 1, duration: 0.6, ease: 'sine.in' }, END + 2.5 - 0.6);
   tl.to({}, { duration: 2.5 }, END);
 
   window.__timelines['film'] = tl;

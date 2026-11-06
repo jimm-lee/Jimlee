@@ -97,7 +97,7 @@
   // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
   tl.addLabel('scene:linger', END);
   tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: {{END_DUR}} - .5, ease: 'sine.inOut' }, END + .5);
-  tl.to('#fade', { opacity: 1, duration: .8, ease: 'sine.in' }, END + {{END_DUR}} - .8);
+  tl.to('#fade', { opacity: 1, duration: {{FADE_OUT}}, ease: 'sine.in' }, END + {{END_DUR}} - {{FADE_OUT}});
   tl.to({}, { duration: {{END_DUR}} }, END);
 
   window.__timelines['film'] = tl;
