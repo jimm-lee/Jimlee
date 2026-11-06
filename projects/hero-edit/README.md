@@ -73,7 +73,7 @@ Ten caption-led edits (10–15 s) from James's caption list, staged as storyboar
 
 | # | Caption | Status |
 |---|---|---|
-| 1 | My camera roll since moving to the other side of the world. | rendered: `videos/captions/01-Camera-Roll-15s.mp4` |
+| 1 | My camera roll since moving to the other side of the world. | rendered: `videos/captions/01-Camera-Roll-15s.mp4` (payoff selfie: IMG_3276) |
 | 2–10 | see `build_plans.py` | storyboard, awaiting approval |
 
 **Caption edits, closing:** "GO ON," and "LOOK AFTER YOURSELF" sit as two stacked rows that both stay up; the linger

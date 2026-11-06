@@ -102,8 +102,8 @@ line, with no fade to black, so the last frame flows back into the first. Middle
 into frame wide-eyed at 5.0 s; hold half a second, cut to black. No closing line: the face is the sign-off. Best on a
 loose, funny week, not on the reflective ones.
 
-> **Closing payoff shot:** James is replacing the weighted-vest selfie (2153) that ends most edits; the new clip goes
-> in its place (the `2153` lines in `build.py` / `build_plans.py`).
+> **Closing payoff shot:** James replaced the golden-hour selfie (2153) with **3276** (smiling walking selfie, best from 0.35 s);
+> all caption plans use it.
 
 ## Rules that hold for all of them
 
