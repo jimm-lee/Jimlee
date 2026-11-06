@@ -50,7 +50,7 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
   a clip appears in at most two edits and never next to the same shot twice. `build_plans.py` prints a variety
   report on every build — keep it at "none / none / none".
 
-## Grid framework (from James's DaVinci reference, Nov 2026; first used on #4, awaiting approval)
+## Grid framework (from James's DaVinci reference, Nov 2026; built; use on some edits only, see TECHNIQUES.md)
 
 Plan key `fx=[...]` in `build_plans.py` (engine: `build.build_fx`):
 - `dict(kind="grid", shot=i | "last", cols, rows, frames=2, order="random"|"stair")`: **crop to grid,
@@ -64,6 +64,15 @@ Plan key `fx=[...]` in `build_plans.py` (engine: `build.build_fx`):
 - `dict(kind="flash", at)`: two frames of white (55 %) on a grid transition. Keep to grid moments only.
 - Captions stay letter by letter (no text flicker); edits stay silent (sound design is James's).
 - Grid builds push nothing later, but re-check captions against the payoff: move a shot rather than cover a face.
+
+## Technique library: pull only when it fits
+
+`TECHNIQUES.md` lists 22 graphic editing methods in the same vein (grid, collage, crop flash, split screen, echo
+trail, photo stack, film strip, freeze frame, zoom-through, nested frame, iris, blinds, mirror, match cut…), each with
+**when to use it, when not to, and whether it's built**, plus a caption-to-technique table and picks for the
+remaining edits. James's rule: **only some edits get a signature technique**. Give an edit at most one or two, never
+the same one in consecutive edits, and default to clean beat cuts. Read `TECHNIQUES.md` when planning each edit; build
+an "easy" technique into the engine only when an edit calls for it, then mark it built there.
 
 ## Process (one at a time, properly)
 
