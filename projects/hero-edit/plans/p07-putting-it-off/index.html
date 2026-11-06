@@ -77,6 +77,7 @@
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+  <div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none"></div>
 
 </div>
 
@@ -115,6 +116,10 @@
     ['sp12', 1.2666, 0.1333, -0.0, 1.04]
   ];
   const SPIRAL_END = 1.4;
+  const FX = [            // grid cells: [id, appears, gone]
+    
+  ];
+  const FLASHES = [];
   const TITLES = [
     ['t0', 1.5, 3.2],
     ['t1', 3.2, 5.12],
@@ -134,6 +139,16 @@
       .to(el, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.04, duration: dur, ease: 'none' }, at)
       .set(el, { visibility: 'hidden' }, at + dur);
   });
+
+  // grid framework: cells pop in (crop to grid / fit to grid / crop flash), then the full shot takes over
+  FX.forEach(([id, at, gone]) => {
+    const el = '#' + id;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: 1.06 }, { scale: 1, duration: .2, ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, gone);
+  });
+  // flash: two frames of white on a grid transition, kept subtle
+  FLASHES.forEach((at) => tl.fromTo('#flash', { opacity: .55 }, { opacity: 0, duration: 2 / 30, ease: 'none', immediateRender: false }, at));
 
   // shots: a slow push-in for the long holds, a harder punch for the quick ones
   CUT.forEach(([id, at, dur]) => {

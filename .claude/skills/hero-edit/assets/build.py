@@ -202,11 +202,11 @@ SPIRAL_LAND_FRAMES = 4  # ... the last three slow down as the spiral lands
 SPIRAL_ANGLE = 32.0     # degrees of turn on the first flash, easing to 0 on the hook shot
 
 
-def spiral_flashes(cut):
+def spiral_flashes(cut, extra=()):
     """Opening spiral: every clip in the edit flashes by, turning and zooming, and lands on the hook shot.
     Returns [(clip, at, dur, media, angle, scale)] and the time the spiral ends."""
     seen, order = set(), []
-    for c, _, _, m in cut[1:] + cut[:1]:          # the hook clip last, so the spiral lands into it
+    for c, _, _, m in list(cut[1:]) + list(extra) + list(cut[:1]):   # the hook clip last, so the spiral lands into it
         if c not in seen:
             seen.add(c); order.append((c, m))
     flashes, at, n = [], 0.0, len(order)
@@ -222,9 +222,62 @@ def spiral_flashes(cut):
     return flashes, round(at, 3)
 
 
+GRID_GAP = 10            # px black gutter between grid cells
+GRID_OFFSET = 0.08       # s media offset between duplicated grid cells ("duplicate clips & offset")
+
+
+def grid_cells(cols, rows, gap=GRID_GAP):
+    """Cell rectangles (left, top, width, height) in px over the 1080×1920 frame, with black gutters."""
+    w = (1080 - gap * (cols + 1)) / cols
+    h = (1920 - gap * (rows + 1)) / rows
+    return [(round(gap + c * (w + gap), 1), round(gap + r * (h + gap), 1), round(w, 1), round(h, 1))
+            for r in range(rows) for c in range(cols)]
+
+
+def build_fx(cut, fx):
+    """Grid framework: crop-to-grid builds (duplicate clips, offset), fit-to-grid collages, crop flashes, flashes.
+    Returns (html, cell timings for JS, flash times, {shot index: time the full shot takes over})."""
+    import random
+    html, cells, flashes, takeover = [], [], [], {}
+    for n, f in enumerate(fx or []):
+        kind = f["kind"]
+        if kind == "flash":
+            flashes.append(f["at"])
+            continue
+        step = f.get("frames", 2) / 30
+        if kind == "grid":                      # one clip cropped into cells that pop in, each slightly out of sync
+            i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
+            c, at, d, m = cut[i]
+            rects = grid_cells(f["cols"], f["rows"], f.get("gap", GRID_GAP))
+            order = list(range(len(rects)))
+            if f.get("order", "random") == "random":
+                random.Random(n).shuffle(order)
+            end = round(at + len(rects) * step, 3)
+            takeover[i] = end
+            for k, idx in enumerate(order):
+                l, t, w, h = rects[idx]
+                cid = f"fx{n}c{k}"
+                html.append(f'  <div class="shot cell" id="{cid}" style="clip-path:inset({t}px {1080 - l - w}px {1920 - t - h}px {l}px)">'
+                            f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{at}" data-duration="{round(end - at + .1, 3)}" '
+                            f'data-media-start="{round(m + (k % 3) * GRID_OFFSET, 2)}" muted playsinline></video></div>')
+                cells.append((cid, round(at + k * step, 3), end))
+        elif kind == "collage":                 # several clips resized into a grid, popping in one by one
+            rects = grid_cells(f["cols"], f["rows"], f.get("gap", GRID_GAP))
+            at, dur = f["at"], f["dur"]
+            for k, ((c, m), (l, t, w, h)) in enumerate(zip(f["clips"], rects)):
+                cid = f"fx{n}c{k}"
+                start = round(at + k * step, 3)
+                html.append(f'  <div class="shot cell tile" id="{cid}" style="inset:auto;left:{l}px;top:{t}px;width:{w}px;height:{h}px">'
+                            f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{start}" data-duration="{round(at + dur - start, 3)}" '
+                            f'data-media-start="{m}" muted playsinline></video></div>')
+                cells.append((cid, start, round(at + dur, 3)))
+    return "\n".join(html), cells, flashes, takeover
+
+
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
-           spiral=False):
-    flashes, spiral_end = spiral_flashes(cut) if spiral else ([], 0.0)
+           spiral=False, fx=None):
+    collage_clips = [(c, 0, 0, m) for f in (fx or []) if f["kind"] == "collage" for c, m in f["clips"]]
+    flashes, spiral_end = spiral_flashes(cut, collage_clips) if spiral else ([], 0.0)
     if spiral:
         hook_start = max(hook_start, spiral_end + 0.1)   # the first caption starts as the spiral lands
     titles = chunks(hook, hook_start, read_per_word)
@@ -251,18 +304,25 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f'data-media-start="{m}" muted playsinline></video></div>'
         for i, (c, a, d, m, _, _) in enumerate(flashes)
     )
+    fx_html, fx_cells, fx_flashes, takeover = build_fx(cut, fx)
+    shots += ("\n" + fx_html) if fx_html else ""
+    cut_js = ",\n    ".join(f"['s{i}', {takeover.get(i, s)}, {round(s + d - takeover.get(i, s), 3)}]"
+                             for i, (_, s, d, _) in enumerate(cut))
+    fx_js = ",\n    ".join(f"['{cid}', {a}, {e}]" for cid, a, e in fx_cells)
+    flash_js = ", ".join(str(t) for t in fx_flashes)
     spiral_js = ",\n    ".join(f"['sp{i}', {a}, {d}, {ang}, {sc}]" for i, (_, a, d, _, ang, sc) in enumerate(flashes))
     types = "\n".join(
         f'  <div class="t h cap" id="t{i}" style="top:{(tops or {}).get(i, CAPTION_TOP)}px" data-om-id="caption-{i}">{html}</div>'
         for i, (html, s, e) in enumerate(titles)
     )
-    cut_js = ",\n    ".join(f"['s{i}', {s}, {d}]" for i, (_, s, d, _) in enumerate(cut))
     titles_js = ",\n    ".join(f"['t{i}', {s}, {e}]" for i, (_, s, e) in enumerate(titles))
     return (TEMPLATE.replace("{{TITLE}}", title)
             .replace("{{SHOTS}}", shots)
             .replace("{{TYPES}}", types)
             .replace("{{CUT_JS}}", cut_js)
             .replace("{{SPIRAL_JS}}", spiral_js)
+            .replace("{{FX_JS}}", fx_js)
+            .replace("{{FLASH_JS}}", flash_js)
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)

@@ -56,11 +56,18 @@ PLANS = [
     dict(slug="p04-comfort-zone", length=15,
          hook="Turns out, | there's a lot | of life | outside your | *comfort* zone.",
          cut=[("7815", 0.0, 2.5, 0.5),                      # hook: ice-filled tub, close
-              ("9545", 2.5, 1.0, 0.2), ("0171", 3.5, 2.0, 15.0),  # misty jetty, the sauna
-              *seq(5.5, 0.5, [("0160", 2.0), ("9525", 1.0), ("6169", 1.0), ("8701", 5.0),
-                              ("9065", 0.6), ("3148", 2.6), ("9371", 1.0), ("9644", 0.8)]),
-              ("6234", 9.5, 2.0, 3.5),                      # payoff: pad work
-              ("2603", 11.5, 3.5, 0.5)]),                   # linger: sunrise through the trees
+              ("9545", 2.5, 1.0, 0.2), ("0171", 3.5, 2.0, 15.0),   # misty jetty, the sauna (builds on a grid)
+              ("9371", 7.5, 1.0, 1.0), ("9644", 8.5, 1.5, 0.8),    # after the collage: coastal track, seafood (caption ends here)
+              ("6234", 10.0, 1.5, 3.5),                     # payoff: pad work, once the caption has cleared
+              ("2603", 11.5, 3.5, 0.5)],                    # linger: sunrise through the trees
+         # grid framework (James's DaVinci reference): crop to grid, fit-to-grid collage, crop flash, flashes
+         fx=[dict(kind="flash", at=3.5),
+             dict(kind="grid", shot=2, cols=3, rows=3, frames=2),                 # sauna: duplicated, offset, cropped to grid
+             dict(kind="collage", at=5.5, dur=2.0, cols=2, rows=3, frames=3,      # six clips resized into a grid
+                  clips=[("0160", 2.0), ("9525", 1.0), ("6169", 1.0), ("8701", 5.0), ("9065", 0.6), ("3148", 2.6)]),
+             dict(kind="flash", at=7.5),
+             dict(kind="flash", at=10.0),
+             dict(kind="grid", shot="last", cols=2, rows=2, frames=3, order="stair")]),   # crop flash into the linger
     dict(slug="p05-getting-lost", length=15,
          hook="Somewhere between | getting *lost* | and finding | yourself.",
          cut=[("2005", 0.0, 2.5, 0.2),                      # hook: at the waterfall's edge
@@ -155,7 +162,7 @@ def variety_report():
     uses, pairs = Counter(), defaultdict(list)
     for plan in PLANS:
         clips = [c for c, *_ in plan["cut"]]
-        uses.update(clips)
+        uses.update(clips + [c for f in plan.get("fx", []) if f["kind"] == "collage" for c, _ in f["clips"]])
         for a, b in zip(clips, clips[1:]):
             pairs[tuple(sorted((a, b)))].append(plan["slug"][:3])
     repeats = {k: v for k, v in pairs.items() if len(v) > 1}
@@ -176,6 +183,6 @@ for plan in PLANS:
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
     start = 0.3 if length == 15 else 0.2
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
-                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True))
+                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True), fx=plan.get("fx"))
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

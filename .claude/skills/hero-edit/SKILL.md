@@ -50,6 +50,19 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
   a clip appears in at most two edits and never next to the same shot twice. `build_plans.py` prints a variety
   report on every build — keep it at "none / none / none".
 
+## Grid framework (from James's DaVinci reference, Nov 2026; first used on #4, awaiting approval)
+
+Plan key `fx=[...]` in `build_plans.py` (engine: `build.build_fx`):
+- `dict(kind="grid", shot=i | "last", cols, rows, frames=2, order="random"|"stair")`: **crop to grid,
+  duplicate clips & offset**. The shot's clip is duplicated into cells (each 0.08 s out of sync) that pop in on black,
+  one every `frames`, then the full shot takes over. `shot="last", cols=2, rows=2, order="stair"` = **crop flash**
+  into the linger.
+- `dict(kind="collage", at, dur, cols, rows, frames=3, clips=[(clip, media)...])`: **resized clips fit to grid**.
+  Different clips pop into a collage one by one (stair step); leave that time empty in `cut`.
+- `dict(kind="flash", at)`: two frames of white (55 %) on a grid transition. Keep to grid moments only.
+- Captions stay letter by letter (no text flicker); edits stay silent (sound design is James's).
+- Grid builds push nothing later, but re-check captions against the payoff: move a shot rather than cover a face.
+
 ## Process (one at a time, properly)
 
 1. New clips: contact sheet (4–6 frames each), note content, convert to `clips/NNNN.mp4` (HLG → SDR as above,
