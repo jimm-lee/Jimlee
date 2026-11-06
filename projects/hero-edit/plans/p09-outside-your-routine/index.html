@@ -30,7 +30,13 @@
     filter: drop-shadow(2.5px 0 0 var(--cherry)) drop-shadow(-2.5px 0 0 var(--cherry)) drop-shadow(0 2.5px 0 var(--cherry)) drop-shadow(0 -2.5px 0 var(--cherry))
             drop-shadow(4px 6px 0 rgba(0,0,0,.28)) drop-shadow(6px 8px 12px rgba(0,0,0,.35)); }
   .cap { white-space: nowrap; opacity: 1; visibility: hidden; }
-  .cap .w { display: inline-block; opacity: 0; }
+  /* in captions the outline sits on each green letter, so letter and outline fade in together (no muddy red mid-fade) */
+  .cap .acc { filter: none; }
+  .cap .acc .l { display: inline-block;
+    filter: drop-shadow(2.5px 0 0 var(--cherry)) drop-shadow(-2.5px 0 0 var(--cherry)) drop-shadow(0 2.5px 0 var(--cherry)) drop-shadow(0 -2.5px 0 var(--cherry))
+            drop-shadow(4px 6px 0 rgba(0,0,0,.28)) drop-shadow(6px 8px 12px rgba(0,0,0,.35)); }
+  .cap .w { display: inline-block; }
+  .cap .l { opacity: 0; }  /* letters fade in one by one */
   .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
   .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
 </style>
@@ -52,13 +58,13 @@
 
   <div class="shade"></div>
 
-  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0">A</span> <span class="w" data-t="0.3">reminder</span></div>
-  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0">that</span> <span class="w" data-t="0.38">there's</span></div>
-  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0">a</span> <span class="w" data-t="0.3">whole</span> <span class="w" data-t="0.72"><span class="acc">world</span></span></div>
-  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0">waiting</span> <span class="w" data-t="0.52">outside</span></div>
-  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w" data-t="0.0">your</span> <span class="w" data-t="0.38">routine.</span></div>
-  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0">Go</span> <span class="w" data-t="0.3">on,</span></div>
-  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0">look</span> <span class="w" data-t="0.38">after</span> <span class="w" data-t="0.8"><span class="acc">yourself</span></span></div>
+  <div class="t h cap" id="t0" style="top:250px" data-om-id="caption-0"><span class="w" data-t="0.0" data-d="0.3"><span class="l">A</span></span> <span class="w" data-t="0.3" data-d="0.56"><span class="l">r</span><span class="l">e</span><span class="l">m</span><span class="l">i</span><span class="l">n</span><span class="l">d</span><span class="l">e</span><span class="l">r</span></span></div>
+  <div class="t h cap" id="t1" style="top:250px" data-om-id="caption-1"><span class="w" data-t="0.0" data-d="0.38"><span class="l">t</span><span class="l">h</span><span class="l">a</span><span class="l">t</span></span> <span class="w" data-t="0.38" data-d="0.47"><span class="l">t</span><span class="l">h</span><span class="l">e</span><span class="l">r</span><span class="l">e</span><span class="l">'</span><span class="l">s</span></span></div>
+  <div class="t h cap" id="t2" style="top:250px" data-om-id="caption-2"><span class="w" data-t="0.0" data-d="0.3"><span class="l">a</span></span> <span class="w" data-t="0.3" data-d="0.42"><span class="l">w</span><span class="l">h</span><span class="l">o</span><span class="l">l</span><span class="l">e</span></span> <span class="w" data-t="0.72" data-d="0.42"><span class="acc"><span class="l">w</span><span class="l">o</span><span class="l">r</span><span class="l">l</span><span class="l">d</span></span></span></div>
+  <div class="t h cap" id="t3" style="top:250px" data-om-id="caption-3"><span class="w" data-t="0.0" data-d="0.52"><span class="l">w</span><span class="l">a</span><span class="l">i</span><span class="l">t</span><span class="l">i</span><span class="l">n</span><span class="l">g</span></span> <span class="w" data-t="0.52" data-d="0.52"><span class="l">o</span><span class="l">u</span><span class="l">t</span><span class="l">s</span><span class="l">i</span><span class="l">d</span><span class="l">e</span></span></div>
+  <div class="t h cap" id="t4" style="top:250px" data-om-id="caption-4"><span class="w" data-t="0.0" data-d="0.38"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span></span> <span class="w" data-t="0.38" data-d="0.52"><span class="l">r</span><span class="l">o</span><span class="l">u</span><span class="l">t</span><span class="l">i</span><span class="l">n</span><span class="l">e</span><span class="l">.</span></span></div>
+  <div class="t h cap" id="t5" style="top:800px" data-om-id="caption-5"><span class="w" data-t="0.0" data-d="0.3"><span class="l">G</span><span class="l">o</span></span> <span class="w" data-t="0.3" data-d="0.3"><span class="l">o</span><span class="l">n</span><span class="l">,</span></span></div>
+  <div class="t h cap" id="t6" style="top:800px" data-om-id="caption-6"><span class="w" data-t="0.0" data-d="0.38"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="0.38" data-d="0.42"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="0.8" data-d="0.56"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
 
   <!-- linger: no name card; the last shot fades to black -->
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
@@ -105,12 +111,17 @@
   });
 
 
-  // captions: words pop in one at a time, the chunk holds for reading time, then clears
+  // captions: each word writes itself out letter by letter at speaking pace, the chunk holds, then clears
+  const LETTER_FADE = .2;   // each letter's fade-in
+  const WRITE_SHARE = .7;   // letters are spread over this share of the word's spoken time
   TITLES.forEach(([id, at, out]) => {
     const el = document.getElementById(id);
     tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
     el.querySelectorAll('.w').forEach((w, i) => {
-      tl.fromTo(w, { opacity: 0, y: 18, scale: 1.18 }, { opacity: 1, y: 0, scale: 1, duration: .22, ease: 'back.out(2)' }, at + parseFloat(w.dataset.t ?? i * 0.14));
+      const start = at + parseFloat(w.dataset.t ?? i * 0.14);
+      const ls = w.querySelectorAll('.l');
+      const step = ls.length > 1 ? parseFloat(w.dataset.d || .4) * WRITE_SHARE / ls.length : 0;
+      ls.forEach((l, j) => tl.fromTo(l, { opacity: 0 }, { opacity: 1, duration: LETTER_FADE, ease: 'sine.out' }, start + j * step));
     });
     tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
   });

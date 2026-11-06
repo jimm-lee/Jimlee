@@ -144,6 +144,12 @@ END_WORD = "Leahy"
 TEMPLATE = (HERE / "template.html").read_text()
 
 
+def write_time(word: str) -> float:
+    """How long a word takes to say, without the pause after punctuation (its letters fade in over this)."""
+    letters_ = sum(ch.isalnum() for ch in word)
+    return round(min(SPEAK_MAX, max(SPEAK_MIN, SPEAK_BASE + SPEAK_PER_LETTER * letters_)), 2)
+
+
 def speak(word: str) -> float:
     """Roughly how long a word takes to say aloud, including a pause after punctuation."""
     letters = sum(ch.isalnum() for ch in word)
@@ -155,12 +161,19 @@ def speak(word: str) -> float:
     return round(t, 2)
 
 
-def word_span(word: str, t: float = 0.0) -> str:
-    """One word as a span arriving t s into its chunk; *word* (with any trailing punctuation) is the green accent."""
+def letters(text: str) -> str:
+    """Each character in its own span so a word can fade in letter by letter."""
+    return "".join(f'<span class="l">{ch}</span>' for ch in text)
+
+
+def word_span(word: str, t: float = 0.0, d: float = 0.4) -> str:
+    """One word starting t s into its chunk and writing itself out over d s, letter by letter.
+    *word* (with any trailing punctuation) is the green accent."""
     m = re.fullmatch(r"\*(.+)\*([.,?!:;]*)", word)
     if m:
-        return f'<span class="w" data-t="{t}"><span class="acc">{m.group(1)}</span>{m.group(2)}</span>'
-    return f'<span class="w" data-t="{t}">{word}</span>'
+        return (f'<span class="w" data-t="{t}" data-d="{d}"><span class="acc">{letters(m.group(1))}</span>'
+                f'{letters(m.group(2))}</span>')
+    return f'<span class="w" data-t="{t}" data-d="{d}">{letters(word)}</span>'
 
 
 def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> list[tuple[str, float, float]]:
@@ -172,7 +185,7 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
         for w in words:
             offsets.append(round(t, 2))
             t += speak(w)
-        spans = " ".join(word_span(w, o) for w, o in zip(words, offsets))
+        spans = " ".join(word_span(w, o, write_time(w)) for w, o in zip(words, offsets))
         dur = offsets[-1] + 0.25 + READ_BASE + read_per_word
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
