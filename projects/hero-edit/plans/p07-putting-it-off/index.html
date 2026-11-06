@@ -124,6 +124,12 @@
     
   ];
   const SPIN_SHOTS = SPINS.map(s => s[1]);
+  const MIRRORS = [       // mirrored right half: [id, shown, gone, punch time of the shot it copies]
+    
+  ];
+  const IRISES = [        // circular reveal: [shot, at, duration, x %, y %]
+    
+  ];
   const TITLES = [
     ['t0', 1.5, 3.2],
     ['t1', 3.2, 5.12],
@@ -156,6 +162,18 @@
     tl.to('#' + wrap, { rotation: 300, scale: .04, duration: dur * .8, ease: 'power2.in' }, at);
     tl.set('#' + shot, { visibility: 'visible', rotation: -240, scale: .04 }, at + dur * .25)
       .to('#' + shot, { rotation: 0, scale: 1, duration: dur, ease: 'power3.out' }, at + dur * .25);
+  });
+  // mirror: the right half shows the left half flipped, moving with the shot underneath
+  MIRRORS.forEach(([id, shown, gone, punch]) => {
+    tl.set('#' + id, { visibility: 'visible' }, shown)
+      .fromTo('#' + id, { scale: 1.06 }, { scale: 1, duration: .5, ease: 'expo.out', immediateRender: false }, punch)
+      .set('#' + id, { visibility: 'hidden' }, gone);
+  });
+  // iris: the shot opens out of a growing circle over the shot before it
+  IRISES.forEach(([id, at, dur, x, y]) => {
+    tl.set('#' + id, { clipPath: `circle(0% at ${x}% ${y}%)` }, at)
+      .to('#' + id, { clipPath: `circle(125% at ${x}% ${y}%)`, duration: dur, ease: 'power2.inOut' }, at)
+      .set('#' + id, { clipPath: 'none' }, at + dur);
   });
   // flash: two frames of white on a grid transition, kept subtle
   FLASHES.forEach((at) => tl.fromTo('#flash', { opacity: .55 }, { opacity: 0, duration: 2 / 30, ease: 'none', immediateRender: false }, at));

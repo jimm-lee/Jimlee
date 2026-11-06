@@ -234,11 +234,12 @@ def grid_cells(cols, rows, gap=GRID_GAP):
             for r in range(rows) for c in range(cols)]
 
 
-def build_fx(cut, fx):
+def build_fx(cut, fx, spiral_end=0.0):
     """Grid framework: crop-to-grid builds (duplicate clips, offset), fit-to-grid collages, crop flashes, flashes.
     Returns (html, cell timings for JS, flash times, {shot index: time the full shot takes over})."""
     import random
     html, cells, flashes, takeover, spins = [], [], [], {}, []
+    mirrors, irises = [], []
     for n, f in enumerate(fx or []):
         kind = f["kind"]
         if kind == "flash":
@@ -269,6 +270,19 @@ def build_fx(cut, fx):
                 cells.append((cid, round(at + k * step, 3), gone))
             if spin:
                 html.append('  </div>')
+        elif kind == "mirror":                  # the frame becomes a left-right mirror for a moment
+            i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
+            c, at, d, m = cut[i]
+            show = spiral_end if (f.get("at") == "land" or f.get("at") is None) and i == 0 else (f.get("at") or at)
+            mid = f"fx{n}m"
+            html.append(f'  <div class="shot cell" id="{mid}" style="clip-path:inset(0 0 0 50%)">'
+                        f'<video src="assets/clips/{c}.mp4" class="clip" style="transform:scaleX(-1)" data-start="{at}" '
+                        f'data-duration="{d}" data-media-start="{m}" muted playsinline></video></div>')
+            punch = spiral_end if i == 0 else at
+            mirrors.append((mid, round(show, 3), round(show + f.get("dur", 0.8), 3), round(punch, 3)))
+        elif kind == "iris":                    # the shot opens out of a growing circle over the shot before it
+            i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
+            irises.append((f"s{i}", cut[i][1], f.get("dur", 0.8), f.get("x", 50), f.get("y", 50)))
         elif kind == "collage":                 # several clips resized into a grid, popping in one by one
             rects = grid_cells(f["cols"], f["rows"], f.get("gap", GRID_GAP))
             at, dur = f["at"], f["dur"]
@@ -279,7 +293,7 @@ def build_fx(cut, fx):
                             f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{start}" data-duration="{round(at + dur - start, 3)}" '
                             f'data-media-start="{m}" muted playsinline></video></div>')
                 cells.append((cid, start, round(at + dur, 3)))
-    return "\n".join(html), cells, flashes, takeover, spins
+    return "\n".join(html), cells, flashes, takeover, spins, mirrors, irises
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
@@ -299,6 +313,11 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     tops.update({len(titles) + i: (outro_top or OUTRO_TOP) + i * OUTRO_LINE for i in range(len(outro))})
     titles = titles + outro
     last = len(cut) - 1
+    for f in fx or []:
+        if f["kind"] == "iris":
+            i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
+            pc, pa, pd, pm = cut[i - 1]
+            cut = [*cut[:i - 1], (pc, pa, round(pd + f.get("dur", 0.8), 3), pm), *cut[i:]]
     shots = "\n".join(
         f'  <div class="shot{" endshot" if i == last else ""}" id="s{i}"'
         f'{" style=\"visibility:visible\"" if i == 0 else ""} data-om-id="shot-{c}">'
@@ -312,7 +331,9 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f'data-media-start="{m}" muted playsinline></video></div>'
         for i, (c, a, d, m, _, _) in enumerate(flashes)
     )
-    fx_html, fx_cells, fx_flashes, takeover, fx_spins = build_fx(cut, fx)
+    fx_html, fx_cells, fx_flashes, takeover, fx_spins, fx_mirrors, fx_irises = build_fx(cut, fx, spiral_end)
+    mirror_js = ",\n    ".join(f"['{a}', {b}, {c}, {d}]" for a, b, c, d in fx_mirrors)
+    iris_js = ",\n    ".join(f"['{a}', {b}, {c}, {x}, {y}]" for a, b, c, x, y in fx_irises)
     spin_js = ",\n    ".join(f"['{w}', '{sid}', {a}, {d}]" for w, sid, a, d in fx_spins)
     shots += ("\n" + fx_html) if fx_html else ""
     cut_js = ",\n    ".join(f"['s{i}', {takeover.get(i, s)}, {round(s + d - takeover.get(i, s), 3)}]"
@@ -333,6 +354,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{FX_JS}}", fx_js)
             .replace("{{FLASH_JS}}", flash_js)
             .replace("{{SPIN_JS}}", spin_js)
+            .replace("{{MIRROR_JS}}", mirror_js)
+            .replace("{{IRIS_JS}}", iris_js)
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)

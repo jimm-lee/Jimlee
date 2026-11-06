@@ -75,8 +75,11 @@ PLANS = [
               ("0079", 2.5, 1.0, 0.3), ("0836", 3.5, 2.0, 0.3),   # boardwalk, the car the bush took
               ("9491", 5.5, 0.5, 1.0), ("2841", 6.0, 1.0, 0.8), ("8383", 7.0, 1.0, 10.0),
               ("2148", 8.0, 1.0, 0.5), ("8233", 9.0, 0.5, 2.0),
-              ("3266", 9.5, 2.0, 1.4),                      # payoff: walking up the path
-              ("1949", 11.5, 3.5, 0.3)]),                   # linger: dusk beach into the night path
+              ("3266", 9.5, 2.0, 1.8),                      # payoff: walking up the path (in frame from the start)
+              ("1949", 11.5, 3.5, 0.3)],                    # linger: dusk beach into the night path
+         # signature techniques (TECHNIQUES.md): mirror on the hook, iris into the linger
+         fx=[dict(kind="mirror", shot=0, at="land", dur=0.9),
+             dict(kind="iris", shot="last", dur=0.8, x=50, y=44)]),
     dict(slug="p06-three-years", length=15,
          hook="Three years, | one big decision, | and a | camera roll | full of *memories*.",
          cut=[("8078", 0.0, 2.5, 0.1),                      # hook: the ensign over the city

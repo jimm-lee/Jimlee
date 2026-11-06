@@ -59,12 +59,12 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 12. **Nested frame / infinite zoom** (the next clip appears small, framed inside the current one, then scales to
     fill; can chain 2–3). *Use*: distance and journey: "18,000km from home", "other side of the world". *Avoid*: with
     the spiral right after it (two zooms in a row).
-13. **Shape-mask iris** (a circle or rounded rectangle opens from a point, often the sun or a face, to reveal the
+13. **Shape-mask iris** (built: `kind="iris", shot="last", dur=0.8, x=50, y=44`; first used on #5) (a circle or rounded rectangle opens from a point, often the sun or a face, to reveal the
     next clip). *Use*: soft reveals into the linger: an iris opening from the sun in 2636 / 2603 / 9619 sunrises.
     Calmer than the crop flash; suits reflective captions.
 14. **Blinds / strip wipe** (5–7 vertical strips slide in, staggered). A calmer cousin of the grid. *Use*: section
     changes in a measured edit (connection to build). *Avoid*: in an edit that already has a grid.
-15. **Mirror / kaleidoscope split** (the frame mirrored left-right or into four). *Use*: sparingly, for disorientation:
+15. **Mirror / kaleidoscope split** (built as a left-right mirror: `kind="mirror", shot=0, at="land", dur=0.9`; first used on #5) (the frame mirrored left-right or into four). *Use*: sparingly, for disorientation:
     "getting lost", the hook of "putting it off". 0.5–1 s, then snap to normal. *Avoid*: with faces (looks odd).
 16. **Luma / soft fade** (brightness-led dissolve). *Use*: the slow edits only (stillness, reflection) and time
     passing. *Avoid*: energetic edits, where it kills pace.
@@ -99,3 +99,11 @@ Sources consulted (Nov 2026): vidpros "Best transitions for short-form videos"; 
 transitions"; Nikon "10 tricks to add pace and energy"; Motion Array / DaVinci Resolve Club split-screen guides;
 Opus Pro "11 editing aesthetics dominating short-form in 2026"; HitFilm stutter docs. Grid techniques: James's
 DaVinci timeline reference.
+
+## Used so far
+
+| # | Signature techniques |
+|---|---|
+| 1–3 | none (spiral + clean cuts) |
+| 4 | crop to grid + spin, collage, crop flash, flashes |
+| 5 | mirror on the hook, iris into the linger |
