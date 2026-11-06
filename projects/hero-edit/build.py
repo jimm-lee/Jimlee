@@ -194,7 +194,7 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
     return out
 
 
-def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD):
+def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None):
     titles = chunks(hook, hook_start, read_per_word)
     # closing line: two stacked rows that both stay up; the second starts writing as soon as the first is said
     outro = chunks(OUTRO, end_at + OUTRO_DELAY)
@@ -202,7 +202,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     outro = [(outro[0][0], outro[0][1], length),
              (outro[1][0], round(outro[0][1] + first_said, 2), length)]
     tops = dict(tops or {})
-    tops.update({len(titles) + i: OUTRO_TOP + i * OUTRO_LINE for i in range(len(outro))})
+    tops.update({len(titles) + i: (outro_top or OUTRO_TOP) + i * OUTRO_LINE for i in range(len(outro))})
     titles = titles + outro
     last = len(cut) - 1
     shots = "\n".join(

@@ -36,11 +36,12 @@ PLANS = [
               ("3366", 11.5, 3.5, 0.8)]),
     dict(slug="p02-took-the-leap", length=10, read=QUICK,
          hook="POV: | You actually | took the *leap*.",
-         cut=[("0170", 0.0, 2.0, 1.8),
-              ("2894", 2.0, 1.0, 1.6), ("3048", 3.0, 0.5, 2.0),
-              *seq(3.5, 0.5, [("6234", 4.5), ("7989", 3.4), ("9161", 1.2), ("9170", 0.6), ("9319", 2.5)]),
-              ("9661", 6.0, 1.0, 2.3), ("3276", 7.0, 0.5, 0.35),
-              ("2148", 7.5, 2.5, 0.1)]),
+         cut=[("0170", 0.0, 2.0, 1.8),                      # hook: lowering into the ice, the splash
+              ("2894", 2.0, 1.0, 1.6),                      # connection: Aoraki / Mt Cook
+              *seq(3.0, 0.5, [("6234", 4.5), ("7989", 3.4), ("9161", 1.2), ("9170", 0.6)]),  # build
+              ("9661", 5.0, 1.0, 2.3), ("3276", 6.0, 0.5, 0.35),   # payoff: dune run, selfie
+              ("2636", 6.5, 3.5, 1.3)],                     # linger: sunrise over the sea (ends before the face at 5.0 s)
+         outro_top=420),                                    # closing line above the sun, in clear sky
     dict(slug="p03-18000km", length=15,
          hook="A little look | at what life | looks like | *18,000km* from home.",
          cut=[("9065", 0.0, 2.5, 0.3),
@@ -131,6 +132,6 @@ for plan in PLANS:
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
     start = 0.3 if length == 15 else 0.2
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
-                        read_per_word=plan.get("read", build.READ_PER_WORD))
+                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"))
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

@@ -1,7 +1,7 @@
 # Hero-edit compositions
 
 Ready-to-cut structures for James's footage, all built on the same five-part shape (hook → connection → build →
-payoff → linger) and the same finish: Bebas Neue captions word by word, one green word with the dark-cherry outline,
+payoff → linger) and the same finish: Bebas Neue captions that fade in letter by letter at speaking pace, one green word (green + shadow, no outline),
 no name, closing on **"Go on, look after yourself"** over an open landscape, fade to black.
 Clip numbers are the IMG numbers (edit copies in `clips/`). Times are for a 15 s cut unless stated.
 
@@ -112,7 +112,7 @@ loose, funny week, not on the reflective ones.
 - **Alternate:** close/wide, still/moving, dark/light, alone/with people. Never two landscapes or two foods in a row
   in the build.
 - **Cuts speed up into the payoff** (1 s → 0.5 s), then slow down: payoff 1–1.5 s, linger 2.5–3 s.
-- **Captions:** one hook line, 2–3 words per chunk, word by word, one green word; nothing in the payoff; closing line on
+- **Captions:** one hook line, 2–3 words per chunk, letter by letter at speaking pace, one green word; nothing in the payoff; closing line (two stacked rows) on
   the linger.
 - **No name, no handle.** The edit ends on the life.
 
