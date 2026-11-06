@@ -15,6 +15,7 @@ Clip numbers are the IMG numbers (edit copies in `clips/`). Times are for a 15 s
 | **Water and light** | 2148 sun on the sea · 3366 dusk beach, gold break in the cloud · 9023 palm sunrise · 5963 sunset over the ranges · 7909 splash off the bow · 5222 purple light on the water · 9065 sunrise wave against an island · 2636 sunrise over the sea, sun flare (0–4.9 s) · 2603 sunrise flaring through trees by the road |
 | **Table / bars** | 0793 brunch · 9733 oysters · 9644 seafood platter · 3148 candlelit board · 6169 wood-fired oven · 9500 tasting paddle · 9504 wall of wine · 2565 the odd bar (taxidermy, taps) · 2772 coffee roastery, rows of bags |
 | **Texture / odd** | 0989 glowing jellyfish · 9681 vintage town, red truck · 8342 / 8078 Auckland from the ferry · 0595 gridlocked motorway at dusk |
+| **Added Nov 6** | 2842 mountains through pine branches · 2841 Lake Tekapo from under a pine · 9525 big valley vista · 7157 Auckland skyline in haze · 9355 Split Apple Rock in silhouette, glittering water · 9361 river over rocks · 9371 coastal bush track · 9491 lakeside farm track · 9619 wharf at sunrise, gold cloud · 8297 cow with a bird on its back · 8383 long pan over dusk hills · 7185 bakery counter · 7278 dinner with friends · 9522 café window · 2815 decorated shopping street |
 
 ## 1. Some places (built: `videos/Hero-Edit-20s.mp4`)
 

@@ -75,7 +75,8 @@ Ten caption-led edits (10–15 s) from James's caption list, staged as storyboar
 |---|---|---|
 | 1 | My camera roll since moving to the other side of the world. | rendered: `videos/captions/01-Camera-Roll-15s.mp4` (payoff selfie: IMG_3276) |
 | 2 | POV: You actually took the leap. | rendered: `videos/captions/02-Took-The-Leap-10s.mp4` (closing line raised above the sun) |
-| 3–10 | see `build_plans.py` | storyboard, awaiting approval |
+| 3 | A little look at what life looks like 18,000km from home. | rendered: `videos/captions/03-18000km-From-Home-15s.mp4` |
+| 4–10 | see `build_plans.py` | planned; every clip in at most two edits, no shot pair repeated |
 
 **Caption edits, closing:** "GO ON," and "LOOK AFTER YOURSELF" sit as two stacked rows that both stay up; the linger
 shot is 3.5 s (15 s cuts) so the full line holds about a second before a 0.6 s fade. The dune run (9661) plays at real
