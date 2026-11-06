@@ -90,6 +90,35 @@ HOOK_20_START = 0.3
 END_20 = 17.0
 LEN_20 = 20.0
 
+# "The escape" (15 s): open on the grind, break out into the life
+CUT_E = [
+    # 01 hook 0–2.5: gridlocked motorway under the hook line, then into the ice
+    ("0595", 0.0, 1.5, 1.0),        # motorway traffic at dusk
+    ("7815", 1.5, 1.0, 0.5),        # ice bath close-up by the sea
+    # 02 connection 2.5–5.5: open land, a path in, people
+    ("9070", 2.5, 1.0, 1.0),        # paddock running out to sea stacks
+    ("0079", 3.5, 1.0, 0.3),        # bush boardwalk
+    ("2207", 4.5, 1.0, 2.0),        # buskers and a crowd
+    # 03 build 5.5–9.5: 0.5 s cuts, loud/quiet, in/out
+    ("1422", 5.5, 0.5, 2.3),        # rugby test
+    ("9500", 6.0, 0.5, 1.0),        # tasting paddle
+    ("0811", 6.5, 0.5, 1.0),        # rocky river
+    ("6234", 7.0, 0.5, 4.5),        # pad work
+    ("2565", 7.5, 0.5, 0.6),        # the odd bar
+    ("8092", 8.0, 0.5, 2.0),        # harbour of yachts
+    ("9504", 8.5, 0.5, 1.0),        # wall of wine
+    ("9545", 9.0, 0.5, 0.5),        # misty jetty
+    # 04 payoff 9.5–12: the sunrise wave, then warmth
+    ("9065", 9.5, 1.5, 0.6),        # sunrise breaking against the island
+    ("2153", 11.0, 1.0, 4.1),       # golden hour, turns to camera
+    # 05 linger 12–15: sunrise over the sea (stops before the face at 5.0 s), closing line, fade
+    ("2636", 12.0, 3.0, 1.8),
+]
+HOOK_E = "Being busy | isn't the same | thing as | building a life | you're *proud* of."
+HOOK_E_START = 0.3
+END_E = 12.0
+LEN_E = 15.0
+
 WORD_GAP = 0.14       # seconds between words popping in
 READ_BASE = 0.35      # minimum hold once the chunk is complete
 READ_PER_WORD = 0.28  # extra reading time per word
@@ -160,4 +189,5 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
 (HERE / "film-10/index.html").write_text(render(CUT_10, HOOK_10, HOOK_10_START, END_10, LEN_10, "Hero edit — 10 s",
                                                 tops={4: 1130}, read_per_word=HOOK_10_READ))  # last chunk sits in the sand, clear of James on the dune)
 (HERE / "film-20/index.html").write_text(render(CUT_20, HOOK_20, HOOK_20_START, END_20, LEN_20, "Hero edit — 20 s"))
-print("wrote film-15, film-10 and film-20 index.html")
+(HERE / "film-escape/index.html").write_text(render(CUT_E, HOOK_E, HOOK_E_START, END_E, LEN_E, "Hero edit — The escape"))
+print("wrote film-15, film-10, film-20 and film-escape index.html")
