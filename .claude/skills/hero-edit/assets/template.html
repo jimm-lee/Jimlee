@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"name","type":"string","label":"Name","default":"JAMES LEAHY"},
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}}</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/BebasNeue.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); --cherry: {{CHERRY}}; }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  /* clips are ungraded (straight HDR to SDR conversion) */
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Bebas Neue", sans-serif; font-weight: 400; line-height: .95; letter-spacing: .035em; text-transform: uppercase; -webkit-text-stroke: 3px currentColor; opacity: 0; text-shadow: var(--shadow); }
+  .xl { font-size: 180px; } .l { font-size: 130px; } .m { font-size: 96px; } .s { font-size: 68px; }
+  .big { font-size: 200px; }
+  .h { font-size: 112px; line-height: .98; }
+  /* green words: bold green with a thin cherry outline, then the subtle down-right shadow */
+  /* green words: just the green and the same subtle shadow as the white type (no outline) */
+  .acc { color: var(--accent); text-shadow: var(--shadow); }
+  .cap { white-space: nowrap; opacity: 1; visibility: hidden; }
+  .cap .w { display: inline-block; }
+  .cap .l { opacity: 0; }  /* letters fade in one by one */
+  .kick { position: absolute; left: 0; right: 0; text-align: center; font-family: "Outfit"; font-weight: 500; font-size: 36px; letter-spacing: 13px; text-transform: uppercase; text-shadow: var(--shadow); opacity: 0; }
+  .bar { position: absolute; left: 50%; width: 420px; height: 6px; margin-left: -210px; box-shadow: 4px 6px 10px rgba(0,0,0,.35); background: var(--accent); transform: scaleX(0); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <!-- no soundtrack: music is added afterwards. Cuts sit on a 0.5 s grid (120 BPM, or 60 BPM half-time) -->
+{{SHOTS}}
+
+  <div class="shade"></div>
+
+{{TYPES}}
+
+  <!-- linger: no name card; the last shot fades to black -->
+  <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+
+</div>
+
+<script>
+  const V = OM.vars();
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+
+  const CUT = [
+    {{CUT_JS}}
+  ];
+  const TITLES = [
+    {{TITLES_JS}}
+  ];
+  const END = {{END}};
+
+  // shots: a slow push-in for the long holds, a harder punch for the quick ones
+  CUT.forEach(([id, at, dur]) => {
+    const el = '#' + id;
+    const quick = dur <= .5;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: quick ? 1.14 : 1.06 }, { scale: quick ? 1.04 : 1.0, duration: Math.min(.5, dur), ease: 'expo.out' }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    const isLast = id === CUT[CUT.length - 1][0];  // the linger has its own slow push
+    if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+
+  // captions: each word writes itself out letter by letter at speaking pace, the chunk holds, then clears
+  const LETTER_FADE = {{LETTER_FADE}};   // each letter's fade-in
+  const WRITE_SHARE = {{WRITE_SHARE}};   // letters are spread over this share of the word's spoken time
+  TITLES.forEach(([id, at, out]) => {
+    const el = document.getElementById(id);
+    tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
+    el.querySelectorAll('.w').forEach((w, i) => {
+      const start = at + parseFloat(w.dataset.t ?? i * {{WORD_GAP}});
+      const ls = w.querySelectorAll('.l');
+      const step = ls.length > 1 ? parseFloat(w.dataset.d || .4) * WRITE_SHARE / ls.length : 0;
+      ls.forEach((l, j) => tl.fromTo(l, { opacity: 0 }, { opacity: 1, duration: LETTER_FADE, ease: 'sine.out' }, start + j * step));
+    });
+    tl.to(el, { opacity: 0, duration: .15, ease: 'none' }, out - .15);
+  });
+
+  // linger: a slower push on the open landscape, then a soft fade to black over the last 0.8 s
+  tl.addLabel('scene:linger', END);
+  tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.1, duration: {{END_DUR}} - .5, ease: 'sine.inOut' }, END + .5);
+  tl.to('#fade', { opacity: 1, duration: {{FADE_OUT}}, ease: 'sine.in' }, END + {{END_DUR}} - {{FADE_OUT}});
+  tl.to({}, { duration: {{END_DUR}} }, END);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>
