@@ -62,7 +62,8 @@ PLANS = [
               ("2603", 11.5, 3.5, 0.5)],                    # linger: sunrise through the trees
          # grid framework (James's DaVinci reference): crop to grid, fit-to-grid collage, crop flash, flashes
          fx=[dict(kind="flash", at=3.5),
-             dict(kind="grid", shot=2, cols=3, rows=3, frames=2),                 # sauna: duplicated, offset, cropped to grid
+             dict(kind="grid", shot=2, cols=3, rows=3, frames=2, spin=True),      # sauna: duplicated, offset, cropped to grid,
+                                                                                  # then the grid spirals into the full clip
              dict(kind="collage", at=5.5, dur=2.0, cols=2, rows=3, frames=3,      # six clips resized into a grid
                   clips=[("0160", 2.0), ("9525", 1.0), ("6169", 1.0), ("8701", 5.0), ("9065", 0.6), ("3148", 2.6)]),
              dict(kind="flash", at=7.5),

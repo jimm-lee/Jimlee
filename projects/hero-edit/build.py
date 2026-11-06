@@ -238,7 +238,7 @@ def build_fx(cut, fx):
     """Grid framework: crop-to-grid builds (duplicate clips, offset), fit-to-grid collages, crop flashes, flashes.
     Returns (html, cell timings for JS, flash times, {shot index: time the full shot takes over})."""
     import random
-    html, cells, flashes, takeover = [], [], [], {}
+    html, cells, flashes, takeover, spins = [], [], [], {}, []
     for n, f in enumerate(fx or []):
         kind = f["kind"]
         if kind == "flash":
@@ -253,14 +253,22 @@ def build_fx(cut, fx):
             if f.get("order", "random") == "random":
                 random.Random(n).shuffle(order)
             end = round(at + len(rects) * step, 3)
-            takeover[i] = end
+            spin = f.get("spin")                # when every cell is in: the grid spirals into the full clip
+            hold, spin_dur = f.get("hold", 0.15), f.get("spin_dur", 0.6)
+            gone = round(end + hold + spin_dur, 3) if spin else end
+            takeover[i] = round(end + hold, 3) if spin else end
+            if spin:
+                spins.append((f"fx{n}g", f"s{i}", takeover[i], spin_dur))
+                html.append(f'  <div class="spinwrap" id="fx{n}g" style="position:absolute;inset:0">')
             for k, idx in enumerate(order):
                 l, t, w, h = rects[idx]
                 cid = f"fx{n}c{k}"
                 html.append(f'  <div class="shot cell" id="{cid}" style="clip-path:inset({t}px {1080 - l - w}px {1920 - t - h}px {l}px)">'
-                            f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{at}" data-duration="{round(end - at + .1, 3)}" '
+                            f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{at}" data-duration="{round(gone - at + .1, 3)}" '
                             f'data-media-start="{round(m + (k % 3) * GRID_OFFSET, 2)}" muted playsinline></video></div>')
-                cells.append((cid, round(at + k * step, 3), end))
+                cells.append((cid, round(at + k * step, 3), gone))
+            if spin:
+                html.append('  </div>')
         elif kind == "collage":                 # several clips resized into a grid, popping in one by one
             rects = grid_cells(f["cols"], f["rows"], f.get("gap", GRID_GAP))
             at, dur = f["at"], f["dur"]
@@ -271,7 +279,7 @@ def build_fx(cut, fx):
                             f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{start}" data-duration="{round(at + dur - start, 3)}" '
                             f'data-media-start="{m}" muted playsinline></video></div>')
                 cells.append((cid, start, round(at + dur, 3)))
-    return "\n".join(html), cells, flashes, takeover
+    return "\n".join(html), cells, flashes, takeover, spins
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
@@ -304,7 +312,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f'data-media-start="{m}" muted playsinline></video></div>'
         for i, (c, a, d, m, _, _) in enumerate(flashes)
     )
-    fx_html, fx_cells, fx_flashes, takeover = build_fx(cut, fx)
+    fx_html, fx_cells, fx_flashes, takeover, fx_spins = build_fx(cut, fx)
+    spin_js = ",\n    ".join(f"['{w}', '{sid}', {a}, {d}]" for w, sid, a, d in fx_spins)
     shots += ("\n" + fx_html) if fx_html else ""
     cut_js = ",\n    ".join(f"['s{i}', {takeover.get(i, s)}, {round(s + d - takeover.get(i, s), 3)}]"
                              for i, (_, s, d, _) in enumerate(cut))
@@ -323,6 +332,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{SPIRAL_JS}}", spiral_js)
             .replace("{{FX_JS}}", fx_js)
             .replace("{{FLASH_JS}}", flash_js)
+            .replace("{{SPIN_JS}}", spin_js)
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)

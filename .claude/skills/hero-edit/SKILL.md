@@ -57,6 +57,8 @@ Plan key `fx=[...]` in `build_plans.py` (engine: `build.build_fx`):
   duplicate clips & offset**. The shot's clip is duplicated into cells (each 0.08 s out of sync) that pop in on black,
   one every `frames`, then the full shot takes over. `shot="last", cols=2, rows=2, order="stair"` = **crop flash**
   into the linger.
+  Add `spin=True` (James, Nov 2026): once every cell is in, the grid holds 0.15 s, then **circles and spirals into
+  the centre** (turns 300°, shrinks) while the full clip spirals out of it (from -240°, tiny, to full) over 0.6 s.
 - `dict(kind="collage", at, dur, cols, rows, frames=3, clips=[(clip, media)...])`: **resized clips fit to grid**.
   Different clips pop into a collage one by one (stair step); leave that time empty in `cut`.
 - `dict(kind="flash", at)`: two frames of white (55 %) on a grid transition. Keep to grid moments only.
