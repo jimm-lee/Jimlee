@@ -32,6 +32,8 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
   pause loses attention).
 - Closing line: row 2 starts writing as soon as row 1's last word is written; final shot is **4 s** so the full line
   holds about a second before a 0.6 s fade (anything shorter "fades too quickly to read").
+- **Weighted-vest clips** (2524, 2153, 3225, 3266, 3276) only where training fits the caption; never in reflective
+  or lifestyle edits ("it takes from the overall experience"). Prefer the sauna, beach, deck, races or ice for a vest-free you.
 - Never put a caption over a face. If a clip with people sits under a caption, move the clip after the caption clears.
 - Check every caption is readable on its background (white on white sky fails).
 

@@ -75,7 +75,7 @@ PLANS = [
               ("0079", 2.5, 1.0, 0.3), ("0836", 3.5, 2.0, 0.3),   # boardwalk, the car the bush took
               ("9491", 5.5, 0.5, 1.0), ("2841", 6.0, 1.0, 0.8), ("8383", 7.0, 1.0, 10.0),
               ("2148", 8.0, 1.0, 0.5), ("8233", 9.0, 0.5, 2.0),
-              ("3266", 9.5, 2.0, 1.8),                      # payoff: walking up the path (in frame from the start)
+              ("0171", 9.5, 2.0, 18.5),                     # payoff: still in the sauna, no vest (James: the vest breaks the mood here)
               ("1949", 11.5, 3.5, 0.3)],                    # linger: dusk beach into the night path
          # signature techniques (TECHNIQUES.md): mirror on the hook, iris into the linger
          fx=[dict(kind="mirror", shot=0, at="land", dur=0.9),
@@ -115,7 +115,7 @@ PLANS = [
          hook="Not everything | makes it | onto Instagram. | Here's a | *little* of it.",
          cut=[("2636", 0.0, 1.0, 4.95), ("2565", 1.0, 1.5, 0.3),   # hook: the face, the odd bar
               ("1609", 2.5, 1.0, 3.0), ("9522", 3.5, 1.0, 0.5), ("2207", 4.5, 1.0, 3.5),
-              *seq(5.5, 0.5, [("0171", 10.0), ("9644", 1.8), ("0160", 3.5), ("0836", 1.5),
+              *seq(5.5, 0.5, [("2842", 0.5), ("9644", 1.8), ("0160", 3.5), ("0836", 1.5),
                               ("9065", 2.0), ("races", 0.3), ("8701", 2.0), ("2815", 1.0)]),
               ("7815", 9.5, 2.0, 4.0),                      # payoff: in the ice tub
               ("3366", 11.5, 3.5, 0.8)]),                   # linger: dusk sea
