@@ -4,8 +4,11 @@
 
 | File | Length | Story |
 |---|---|---|
-| `Heavyweight-Hills-Intro-A-30s.mp4` | 29.5 s | **The challenge.** "Just because I haven't posted it doesn't mean I haven't been doing it" over the night road climb → the vest → up / down → a map pin for every day (Day 1–8, 4 hills) → "Heavyweight Hills" on the Mount Drury Reserve sign → "We all carry our own weight, but this one is visible" on the vest's shadow → "Go on, look after yourself" over the harbour |
-| `Heavyweight-Hills-Intro-B-30s.mp4` | 29.0 s | **The why.** Opens on the map pulling back from Mount Drury to every hill so far (8 days · 4 hills) → "a bigger reason behind it" → his uncle and two grandparents over empty paths and the sea → "we all carry weight, just some of it is invisible" (the vest, then its shadow) → "no one has to carry that weight alone" → "Go on, look after yourself" over the Mount at night |
+| `Heavyweight-Hills-Intro-A-30s.mp4` | 28.8 s | **The challenge.** "Just because I haven't posted it doesn't mean I haven't been doing it" over the night road climb and the rain → the vest at night → up (feet, the dirt track) / down (the grass slope, the steep path) → "30 kilos on my back" walking selfie → a map pin for every day (Day 1–8, 4 hills) → "Heavyweight Hills" over the terraces → summit selfie → "this one is visible" on the vest in full view → "Go on, look after yourself" over the harbour |
+| `Heavyweight-Hills-Intro-B-30s.mp4` | 29.0 s | **The why.** Opens on the map pulling back from Mount Drury to every hill so far (8 days · 4 hills) → "a bigger reason behind it" → "a memory of someone special" over the harbour with someone sitting alone → his uncle and two grandparents over the night path, the street and the rain → "we all carry weight" on the walking selfie → "some of it is invisible" on the vest's shadow → "this month" on the Running for Movember sign → "no one has to carry that weight alone" on the night wave → "Go on, look after yourself" over the Mount at night |
+
+Clips used: IMG_3220–3290 (launch footage, re-supplied) and IMG_3313–3430 (Nov 4–8). Captions move up to 300 px over
+3276, where James's head sits high in frame (`HIGH_FACE` in `build_intros.py`); nothing is captioned over a face.
 
 1080×1920, 30 fps, H.264 + AAC 256k, voice only (about −15 LUFS, peak −1.5 dBFS); music is added afterwards, ducked
 under the voice. House style from the `hero-edit` skill: no grade, real speed, Bebas Neue captions that spell out

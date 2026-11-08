@@ -48,26 +48,31 @@ DAYS = ["drury", "drury", "ave", "drury", "drury", "17th", "cliff", "drury"]   #
 MAP["hills"] = HILLS
 MAP["days"] = DAYS
 
+# shots where James's head sits high in frame: captions starting over them move up into the sky
+HIGH_FACE = {"3276": 300}
+
 OUTRO = [("Go on,", 0.0, 0.32), ("look", 0.38, 0.30), ("after", 0.36, 0.40), ("*yourself*", 0.40, 0.70)]
 
 INTROS = {
     "intro-a": dict(
         title="Heavyweight Hills — intro A: the challenge",
-        length=29.5,
+        length=28.75,
         # (clip, start, duration, media start); "MAP" is the map scene
-        cut=[("3373", 0.0, 3.35, 0.0),     # hook: night road climb, nobody saw it
-             ("3352", 3.35, 3.15, 0.9),    # the vest, at night, with a mate
-             ("3327", 6.5, 2.0, 0.0),      # "up the hill": the dirt track
-             ("3313", 8.5, 1.0, 0.0),      # "down the hill": the grass slope
-             ("3377", 9.5, 1.1, 0.6),      # night road down
-             ("3315", 10.6, 1.6, 0.0),     # "30 kilos on my back": Running for Movember sign
+        cut=[("3373", 0.0, 1.7, 0.0),      # hook: night road climb, nobody saw it
+             ("3286", 1.7, 1.65, 1.4),     # "haven't been doing it": in the rain
+             ("3352", 3.35, 1.85, 0.9),    # "30 kilo weight vest": the vest, at night, with a mate
+             ("3290", 5.2, 1.3, 1.8),      # "same as last year": night selfie in the vest
+             ("3260", 6.5, 0.8, 0.0),      # "walking up the hill": feet on the track
+             ("3327", 7.3, 1.1, 0.0),      # up the dirt track
+             ("3313", 8.4, 1.0, 0.0),      # "walking down the hill": the grass slope
+             ("3265", 9.4, 1.2, 1.0),      # the steep path
+             ("3276", 10.6, 1.6, 0.2),     # "30 kilos on my back": walking selfie in the vest
              ("MAP", 12.2, 6.3, 0.0),      # "one hill every day": a pin per day
-             ("3430", 18.5, 2.6, 1.1),     # "Heavyweight Hills": the Mount Drury Reserve sign
-             ("3401", 21.1, 2.0, 0.6),     # "we all carry our own weight"
-             ("3389", 23.1, 2.4, 0.8),     # "this one is visible": the vest's shadow
-             ("3319", 25.5, 4.0, 0.0)],    # linger: the harbour from the top
+             ("3244", 18.5, 2.6, 2.0),     # "Heavyweight Hills": the terraces
+             ("3246", 21.1, 2.5, 3.8),     # "we all carry our own weight": summit selfie
+             ("3267", 23.6, 1.6, 0.85),     # "this one is visible": the vest in full view (before the camera drops)
+             ("3319", 25.2, 3.55, 0.0)],   # linger: the harbour from the top (the whole clip)
         map=dict(kind="days", at=12.2),
-        tops={18: 300, 19: 300},   # "and calling it Heavyweight Hills" sits above the Mount Drury sign
         chunks=("Just because | I haven't *posted* it | doesn't mean I | haven't been *doing* it. | *30* kilo | "
                 "weight vest, | same as last year. | So walking | *up* the hill, | walking *down* | the hill, obviously. | "
                 "*30* kilos | on my back, | at least | one hill | *every* day | for the whole | month of *Movember,* | "
@@ -79,14 +84,14 @@ INTROS = {
         length=29.0,
         cut=[("MAP", 0.0, 3.3, 0.0),       # hook: every hill so far, pulling back from Mount Drury
              ("3322", 3.3, 2.05, 0.2),     # "a bigger reason": Main Beach through the trees
-             ("3402", 5.35, 3.55, 0.0),    # "a memory of someone special": the empty path at night
-             ("3320", 8.9, 1.3, 0.0),      # "my uncle": branch over the surf
-             ("3373", 10.2, 2.4, 0.6),     # "the last three months"
-             ("3377", 12.6, 2.0, 0.0),     # "two grandparents"
-             ("3352", 14.6, 3.0, 0.9),     # "we all carry weight": the vest
-             ("3389", 17.6, 2.0, 1.2),     # "some of it is invisible": the shadow
+             ("3269", 5.35, 2.35, 0.0),    # "a memory of someone special": the harbour, someone sitting alone
+             ("3402", 7.7, 2.5, 0.3),      # "my uncle": the empty path at night
+             ("3292", 10.2, 2.2, 1.0),     # "the last three months": night street
+             ("3286", 12.4, 2.2, 0.5),     # "two grandparents": the rain
+             ("3276", 14.6, 2.4, 0.0),     # "we all carry weight": walking selfie in the vest
+             ("3389", 17.0, 2.6, 0.6),     # "some of it is invisible": the shadow
              ("3315", 19.6, 2.4, 0.0),     # "this month": Running for Movember
-             ("3327", 22.0, 2.6, 1.4),     # "no one has to carry that weight alone"
+             ("3290", 22.0, 2.6, 0.95),    # "no one has to carry that weight alone": the wave
              ("3428", 24.6, 4.4, 1.3)],    # linger: the Mount at night
         map=dict(kind="all", at=0.0),
         chunks=("It's a | physical challenge, | but as always, | there's a *bigger* | reason behind it. | It's a memory | "
@@ -174,7 +179,11 @@ def build(name, cfg):
                      f'class="clip" data-start="{s}" data-duration="{dur}" data-media-start="{m}" muted playsinline>'
                      f'</video></div>')
     cut_js = ", ".join(f"['{'map' if c == 'MAP' else f's{i}'}', {s}, {dur}]" for i, (c, s, dur, m) in enumerate(cut))
-    tops = cfg.get("tops", {})
+    tops = dict(cfg.get("tops", {}))
+    for i, (_, a, _) in enumerate(caps):
+        clip = next((c for c, s, dd, _ in cut if s <= a + 0.05 < s + dd), None)
+        if clip in HIGH_FACE:
+            tops.setdefault(i, HIGH_FACE[clip])
     types = [f'  <div class="t h cap" id="c{i}" data-om-id="caption-{i}" style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
              for i, (h, a, o) in enumerate(caps)]
     types.append(f'  <div class="t h cap" id="o1" data-om-id="outro-1" style="top:{OUTRO_TOP}px">{row1}</div>')

@@ -124,7 +124,6 @@
   tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
   if (MAP_KIND === 'days') {
     // a pin for every day: the hill lights up (or pulses again), the day counter ticks over
-    tl.fromTo('#map', { opacity: 0 }, { opacity: 1, duration: .3, ease: 'none', immediateRender: false }, MAP_AT);
     tl.fromTo(cam, { w: WIDE * 1.12 }, { w: WIDE, duration: MAP_END - MAP_AT, ease: 'sine.inOut', onUpdate: draw, immediateRender: false }, MAP_AT);
     rise(['#lb-tga', '#lb-mount'], MAP_AT + .1);
     tl.to(['#lb-tga', '#lb-mount'], { opacity: 0, duration: .3 }, MAP_AT + 1.0);
