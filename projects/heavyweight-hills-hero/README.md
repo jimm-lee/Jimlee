@@ -1,4 +1,27 @@
-# Heavyweight Hills: campaign intro hero edit (voice-led)
+# Heavyweight Hills: campaign intros (voice-led)
+
+## Finished: two 30 s intros (`videos/`)
+
+| File | Length | Story |
+|---|---|---|
+| `Heavyweight-Hills-Intro-A-30s.mp4` | 29.5 s | **The challenge.** "Just because I haven't posted it doesn't mean I haven't been doing it" over the night road climb → the vest → up / down → a map pin for every day (Day 1–8, 4 hills) → "Heavyweight Hills" on the Mount Drury Reserve sign → "We all carry our own weight, but this one is visible" on the vest's shadow → "Go on, look after yourself" over the harbour |
+| `Heavyweight-Hills-Intro-B-30s.mp4` | 29.0 s | **The why.** Opens on the map pulling back from Mount Drury to every hill so far (8 days · 4 hills) → "a bigger reason behind it" → his uncle and two grandparents over empty paths and the sea → "we all carry weight, just some of it is invisible" (the vest, then its shadow) → "no one has to carry that weight alone" → "Go on, look after yourself" over the Mount at night |
+
+1080×1920, 30 fps, H.264 + AAC 256k, voice only (about −15 LUFS, peak −1.5 dBFS); music is added afterwards, ducked
+under the voice. House style from the `hero-edit` skill: no grade, real speed, Bebas Neue captions that spell out
+letter by letter **in time with the voice** (Whisper word timings), one green word per line, no name card.
+
+**Map:** the Day 3 & 4 recap map (OpenStreetMap, credited on screen). Pins from the clips' GPS and the earlier recaps:
+Mount Drury (1, 2, 4, 5, 8 Nov), 3rd Avenue (3 Nov), 17th Avenue, Tauranga (6 Nov: IMG_3373/3377/3389) and
+Cliff Road, Tauranga (7 Nov: IMG_3401/3402/3404). Day list: `DAYS` in `build_intros.py`.
+
+**Rebuild:** clips in `clips/` (edit copies of the IMG_33xx/34xx originals: `fps=30,scale=1080:1920:…crop`, SDR so no
+tone-map), voice with `voiceover/stitch_vo.py intro-a|intro-b`, word timings into `voiceover/words-<intro>.json`,
+then `python3 build_intros.py`, `om render intro-a --silent`, and mux the voice (`loudnorm=I=-14:TP=-1.5`).
+
+---
+
+# Full-length voice-over plan (65 s)
 
 The intro piece for James's Movember 2026 campaign: his own voice-over, stitched from three voice memos, laid over
 the vest footage from `projects/heavyweight-hills/`. Unlike the silent 10–15 s hero edits, the voice drives this one:

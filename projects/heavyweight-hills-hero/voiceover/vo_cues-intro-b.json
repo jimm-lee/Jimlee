@@ -1,0 +1,42 @@
+[
+ {
+  "take": "m3",
+  "src": [
+   27.35,
+   32.05
+  ],
+  "at": 0.3,
+  "end": 5.0,
+  "text": "It's a physical challenge, but as always, there's a bigger reason behind it."
+ },
+ {
+  "take": "m3",
+  "src": [
+   32.22,
+   41.45
+  ],
+  "at": 5.35,
+  "end": 14.58,
+  "text": "It's a memory of someone special. I lost my uncle last year, and in the last three months, I've lost two grandparents."
+ },
+ {
+  "take": "m1",
+  "src": [
+   41.45,
+   45.45
+  ],
+  "at": 15.08,
+  "end": 19.08,
+  "text": "Because we all carry weight, just some of it is invisible."
+ },
+ {
+  "take": "m3",
+  "src": [
+   71.95,
+   76.55
+  ],
+  "at": 19.63,
+  "end": 24.23,
+  "text": "So this month, let's make sure no one has to carry that weight alone."
+ }
+]
