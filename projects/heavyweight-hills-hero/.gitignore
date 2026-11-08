@@ -13,3 +13,4 @@ clips/
 out/
 .om/
 intro-*/assets/clips
+__pycache__/
