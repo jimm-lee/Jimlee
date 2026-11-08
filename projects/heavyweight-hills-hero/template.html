@@ -23,7 +23,7 @@
   /* house type: Bebas Neue caps, thickened with a same-colour stroke; one green word per line, no outline */
   .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Bebas Neue", sans-serif; font-weight: 400; line-height: .95;
        letter-spacing: .035em; text-transform: uppercase; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); }
-  .h { font-size: 112px; }
+  .h { font-size: 124px; }
   .acc { color: var(--accent); text-shadow: var(--shadow); }
   .cap { white-space: nowrap; visibility: hidden; }
   .cap .w { display: inline-block; }
@@ -83,7 +83,7 @@
 
   // long caption lines shrink to fit the frame
   document.querySelectorAll('.cap').forEach((el) => {
-    const w = el.scrollWidth; if (w > 1000) el.style.fontSize = (112 * 1000 / w) + 'px';
+    const w = el.scrollWidth; if (w > 1000) el.style.fontSize = (124 * 1000 / w) + 'px';
   });
 
   // ---------- map ----------
@@ -105,9 +105,9 @@
   }
   const xs = Object.values(MAP.hills).map(h => h.at[0]), ys = Object.values(MAP.hills).map(h => h.at[1]);
   const centre = [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
-  // frame every hill between the caption row and the lower third (y 680–1640)
-  const WIDE = 1080 * (Math.max(...ys) - Math.min(...ys)) / 960;
-  const cam = { cx: centre[0], cy: centre[1], w: WIDE, sy: 1160 };
+  // frame every hill below the caption row (y 810–1690), labels clear of the captions
+  const WIDE = 1080 * (Math.max(...ys) - Math.min(...ys)) / 880;
+  const cam = { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250 };
   function draw() {
     const s = 1080 / cam.w, tx = 540 - cam.cx * s, ty = cam.sy - cam.cy * s;
     world.setAttribute('transform', `translate(${tx},${ty}) scale(${s})`);
@@ -140,8 +140,8 @@
   } else {
     // every hill so far, pulling back from Mount Drury
     Object.keys(MAP.hills).forEach((key) => { tl.set('#pn-' + key, { opacity: 1 }, MAP_AT); });
-    tl.fromTo(cam, { cx: MAP.drury[0], cy: MAP.drury[1], w: 900, sy: 960 },
-              { cx: centre[0], cy: centre[1], w: WIDE, sy: 1160, duration: 2.4, ease: 'power3.inOut', onUpdate: draw, immediateRender: false }, MAP_AT + .2);
+    tl.fromTo(cam, { cx: MAP.drury[0], cy: MAP.drury[1], w: 900, sy: 1180 },
+              { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250, duration: 2.4, ease: 'power3.inOut', onUpdate: draw, immediateRender: false }, MAP_AT + .2);
     rise('#lb-drury', MAP_AT + .1);
     ['ave', 'cliff', '17th'].forEach((key, k) => { rise('#lb-' + key, MAP_AT + 1.5 + k * .15); pulse(key, MAP_AT + 1.5 + k * .15); });
     pulse('drury', MAP_AT + .3);

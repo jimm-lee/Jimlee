@@ -12,7 +12,7 @@ Clips used: IMG_3220–3290 (launch footage, re-supplied) and IMG_3313–3430 (N
 
 1080×1920, 30 fps, H.264 + AAC 256k, voice only (about −15 LUFS, peak −1.5 dBFS); music is added afterwards, ducked
 under the voice. House style from the `hero-edit` skill: no grade, real speed, Bebas Neue captions that spell out
-letter by letter **in time with the voice** (Whisper word timings), one green word per line, no name card.
+letter by letter **in time with the voice** (Whisper word timings), no name card. Captions are 1–2 words at a time (3 at most), each arriving with its first spoken word and staying until the next (at least 0.45 s), with the impact words in green: the phrasing is the `chunks` spec in `build_intros.py`.
 
 **Map:** the Day 3 & 4 recap map (OpenStreetMap, credited on screen). Pins from the clips' GPS and the earlier recaps:
 Mount Drury (1, 2, 4, 5, 8 Nov), 3rd Avenue (3 Nov), 17th Avenue, Tauranga (6 Nov: IMG_3373/3377/3389) and

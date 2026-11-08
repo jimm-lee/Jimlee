@@ -23,7 +23,7 @@ CAPTION_TOP = 520     # px; the house caption row (upper third)
 OUTRO_TOP = 760       # px; "Go on," then "look after yourself" 140 px below
 OUTRO_LINE = 140
 FADE_OUT = 0.6
-LETTER_FADE = 0.25
+LETTER_FADE = 0.15
 WORD_MIN, WORD_MAX = 0.28, 0.85   # a word's letters spread over its spoken time, within these bounds
 HOLD_MAX = 0.9                    # a chunk stays up at most this long after its last word, if nothing follows
 
@@ -73,10 +73,12 @@ INTROS = {
              ("3267", 23.6, 1.6, 0.85),     # "this one is visible": the vest in full view (before the camera drops)
              ("3319", 25.2, 3.55, 0.0)],   # linger: the harbour from the top (the whole clip)
         map=dict(kind="days", at=12.2),
-        chunks=("Just because | I haven't *posted* it | doesn't mean I | haven't been *doing* it. | *30* kilo | "
-                "weight vest, | same as last year. | So walking | *up* the hill, | walking *down* | the hill, obviously. | "
-                "*30* kilos | on my back, | at least | one hill | *every* day | for the whole | month of *Movember,* | "
-                "and calling it | *Heavyweight* Hills. | We all carry | our own *weight,* | but this one | is *visible.*"),
+        chunks=("Just because I | haven't *posted* it, | doesn't mean I | haven't been | *doing* it. | "
+                "*30* kilo weight | *vest,* | same as | last year. | "
+                "So walking | *up* the hill, | walking *down* | the hill, | obviously. | "
+                "*30* kilos | on my back, | at least | one hill | *every* day | for the whole | month of | *Movember,* | "
+                "and calling it | *Heavyweight* *Hills.* | "
+                "We all carry | our own *weight,* | but this one | is *visible.*"),
         fix={0: 0.62, 48: 18.62},   # word index → start (Whisper places a few segment starts early)
     ),
     "intro-b": dict(
@@ -94,10 +96,11 @@ INTROS = {
              ("3290", 22.0, 2.6, 0.95),    # "no one has to carry that weight alone": the wave
              ("3428", 24.6, 4.4, 1.3)],    # linger: the Mount at night
         map=dict(kind="all", at=0.0),
-        chunks=("It's a | physical challenge, | but as always, | there's a *bigger* | reason behind it. | It's a memory | "
-                "of someone *special.* | I lost my *uncle* | last year, | and in the | last three months, | I've lost two | "
-                "*grandparents.* | Because we all | carry *weight.* | Just some | of it | is *invisible.* | So this month, | "
-                "let's make sure | no one has | to carry | that weight *alone.*"),
+        chunks=("It's a physical | *challenge,* | but as always, | there's a | *bigger* reason | behind it. | "
+                "It's a memory | of someone | *special.* | I lost my | *uncle* last year, | and in | the last | "
+                "three months, | I've lost two | *grandparents.* | Because we all | carry *weight.* | "
+                "Just some of | it is *invisible.* | So this month, | let's make sure | no one has | to carry | "
+                "that weight *alone.*"),
         fix={0: 0.66, 46: 20.1, 47: 20.62},
     ),
 }
@@ -116,32 +119,36 @@ def word_span(word, t, d):
     return f'<span class="w" data-t="{t:.2f}" data-d="{d:.2f}">{body}</span>'
 
 
+MAX_WORDS = 3      # never more than three words on screen (most captions are one or two)
+END_HOLD = 1.1     # s: at a pause, the last caption stays this long after its last word
+MIN_SHOW = 0.45    # s: no caption flashes by faster than this (the next one waits a moment if it has to)
+WRITE_MAX = 0.3    # s: a word's letters are all in within this, so it reads as it is said
+
+
 def captions(spec, words, fix):
-    """Map the hand-made chunk spec onto Whisper's word timings: [(html, at, out)]."""
+    """Captions that track the voice: [(html, at, out)]. Phrasing and green words from the hand-made spec,
+    timing from Whisper: each caption arrives with its first word and stays until the next one is spoken."""
+    parts = [p.split() for p in spec.split("|")]
+    assert all(len(p) <= MAX_WORDS for p in parts), [p for p in parts if len(p) > MAX_WORDS]
+    n = sum(map(len, parts))
+    assert n == len(words), f"spec has {n} words, the voice has {len(words)}"
     words = [list(w) for w in words]
     for i, start in fix.items():
         words[i][1] = start
-    parts = [p.strip().split() for p in spec.split("|")]
-    n = sum(map(len, parts))
-    assert n == len(words), f"chunk spec has {n} words, the voice has {len(words)}"
-    starts = [w[1] for w in words]
-    out, i = [], 0
-    for k, part in enumerate(parts):
+    out, i, free = [], 0, 0.0
+    for part in parts:
         ws = words[i:i + len(part)]
-        at = ws[0][1] - 0.05
-        spans = []
-        for j, (shown, w) in enumerate(zip(part, ws)):
-            nxt = starts[i + j + 1] if i + j + 1 < len(starts) else w[2] + 0.4
-            d = min(WORD_MAX, max(WORD_MIN, min(nxt, w[2] + 0.25) - w[1]))
-            spans.append(word_span(shown, w[1] - at, d))
         i += len(part)
-        written = ws[-1][1] - at + min(WORD_MAX, max(WORD_MIN, ws[-1][2] - ws[-1][1])) + LETTER_FADE
-        nxt_at = words[i][1] - 0.05 if i < len(words) else None
-        out_t = at + max(written + 0.35, ws[-1][2] - at + 0.2)
-        out_t = max(out_t, min(nxt_at if nxt_at else 1e9, ws[-1][2] + HOLD_MAX))
-        if nxt_at is not None:
-            out_t = min(out_t, nxt_at)
-        out.append((" ".join(spans), round(at, 2), round(out_t, 2)))
+        at = round(max(ws[0][1] - 0.05, free), 2)   # after a quick caption, this one may land a moment late
+        spans = [word_span(t, max(0.0, w[1] - at), min(WRITE_MAX, max(0.15, w[2] - w[1]))) for t, w in zip(part, ws)]
+        last_end = ws[-1][2]
+        nxt = words[i][1] - 0.05 if i < len(words) else None
+        if nxt is None or nxt - last_end > END_HOLD:
+            out_t = last_end + END_HOLD      # a pause: hold, then clear
+        else:
+            out_t = max(nxt, at + MIN_SHOW)   # straight on: replaced as the next word is said
+        free = out_t
+        out.append((" ".join(spans), at, round(out_t, 2)))
     return out
 
 

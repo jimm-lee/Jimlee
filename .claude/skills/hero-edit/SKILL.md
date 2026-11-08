@@ -37,6 +37,18 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 - Never put a caption over a face. If a clip with people sits under a caption, move the clip after the caption clears.
 - Check every caption is readable on its background (white on white sky fails).
 
+## Voice-led edits (James, Nov 2026)
+
+When an edit carries James's voice-over (e.g. `projects/heavyweight-hills-hero/`), captions **track the voice**
+instead of the hook-line pacing above:
+- **1–2 words on screen at a time, 3 at most**, phrased by hand as natural groups ("Just because I | haven't *posted* it,").
+- Each caption arrives with its first spoken word (Whisper word timings) and stays until the next one is said;
+  never shorter than 0.45 s (the next waits a moment), and it holds 1.1 s at a pause. "They were jumping off the
+  screen too quickly" when they cleared early.
+- Letters still spell in, but fast: a word is complete within 0.3 s of being said.
+- **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
+  most one per caption; 124 px Bebas.
+
 ## Structure (five parts) and variety
 
 15 s: hook 0–2.5 · connection 2.5–5.5 · build 5.5–9.5 (0.5 s cuts) · payoff 9.5–11 · linger 11–15.
