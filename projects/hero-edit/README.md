@@ -78,7 +78,8 @@ Ten caption-led edits (10–15 s) from James's caption list, staged as storyboar
 | 4 | Turns out, there's a lot of life outside your comfort zone. | rendered for review (grid framework + grid spiral): `videos/captions/04-Comfort-Zone-15s.mp4` |
 | 5 | Somewhere between getting lost and finding yourself. | rendered (mirror on the hook, iris into the linger; vest-free sauna payoff): `videos/captions/05-Getting-Lost-15s.mp4` |
 | 6 | Three years, one big decision, and a camera roll full of memories. | rendered (impact frame intro, photo stack): `videos/captions/06-Three-Years-15s.mp4` |
-| 7–10 | see `build_plans.py` | second pass planned; rendering one at a time |
+| 7 | What happens when you stop putting off the life you've imagined? | rendered (split screen, zoom-through; ice-bath payoff, no vest): `videos/captions/07-Putting-It-Off-15s.mp4` |
+| 8–10 | see `build_plans.py` | second pass planned; rendering one at a time |
 
 Second pass (Nov 6): all ten re-sequenced from the full library (77 clips): each clip in at most two edits, no shot
 pair repeated, unique hook / payoff / linger. Captions moved down to y 520 (upper third, not too high). Shots with

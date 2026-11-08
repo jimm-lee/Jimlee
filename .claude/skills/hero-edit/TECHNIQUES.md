@@ -39,7 +39,7 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 
 ### Easy to add (post-only, from the existing library)
 
-6. **Split screen** (2 or 3 vertical or horizontal panels, one clip each, sliding in). *Use*: contrast captions: the
+6. **Split screen** (built, top/bottom: `kind="split", a=(clip, media), into=i, dur=0.8`; B slides up beside A, holds, then fills the frame; masks + transforms only; first used on #7) (2 or 3 vertical or horizontal panels, one clip each, sliding in). *Use*: contrast captions: the
    motorway beside the coast ("routine"), the abandoned car beside the open paddock ("putting it off"), the Irish
    jerseys beside the NZ landscape ("Ireland to New Zealand"). Hold 1–1.5 s, then the winning panel expands to fill.
 7. **Echo / stack trail** (duplicates of a moving clip, offset 2–3 frames, fading copies behind). The grid's "duplicate
@@ -54,7 +54,7 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 10. **Freeze frame and stutter** (hold the peak frame for 0.3–0.6 s, optionally stepping 2–3 held frames).
     *Use*: the peak of an action: the splash in the ice bath on "LEAP", the wave crashing, the face pop in #10. The
     held frame gives a caption word room to land. *Watch*: blurry peaks look soft frozen, so pick a sharp frame.
-11. **Zoom-through / punch-in** (end of clip A scales up fast into clip B, which settles from slightly large).
+11. **Zoom-through / punch-in** (built: `kind="zoom", into=i`, the payoff index; first used on #7) (end of clip A scales up fast into clip B, which settles from slightly large).
     *Use*: between build shots for momentum, or into the payoff. Replaces a hard cut once or twice, not every cut.
 12. **Nested frame / infinite zoom** (the next clip appears small, framed inside the current one, then scales to
     fill; can chain 2–3). *Use*: distance and journey: "18,000km from home", "other side of the world". *Avoid*: with
@@ -115,3 +115,4 @@ DaVinci timeline reference.
 | 4 | crop to grid + spin, collage, crop flash, flashes |
 | 5 | mirror on the hook, iris into the linger |
 | 6 | impact frame intro (no spiral), photo stack in the build |
+| 7 | split screen in the connection, zoom-through into the payoff |

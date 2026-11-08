@@ -116,6 +116,12 @@
   const SHAKES = [        // screen shake after the impact: [shot, at, duration]
     
   ];
+  const SPLITS = [        // split screen: [top panel, bottom panel, at, duration]
+    
+  ];
+  const ZOOMS = [         // zoom-through: [outgoing shot, incoming shot, cut time]
+    
+  ];
   const STACKS = [        // photo stack: [background, at, end, [[print, drop, rotation, dx, dy], ...]]
     
   ];
@@ -203,6 +209,20 @@
     if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
   });
 
+
+  // split screen: B slides up into the bottom half beside A, holds, then grows to fill the frame
+  SPLITS.forEach(([a, b, at, dur]) => {
+    tl.set(['#' + a, '#' + b], { visibility: 'visible' }, at)
+      .fromTo('#' + b, { y: 960 }, { y: 0, duration: .28, ease: 'power3.out', immediateRender: false }, at)
+      .to('#' + b, { clipPath: 'inset(0px 0px 0px 0px)', duration: .3, ease: 'expo.inOut' }, at + dur - .3)
+      .to('#' + b + ' video', { y: 0, duration: .3, ease: 'expo.inOut' }, at + dur - .3)
+      .set(['#' + a, '#' + b], { visibility: 'hidden' }, at + dur);
+  });
+  // zoom-through (after the shot punches, so it wins): out punches forward, in lands from the zoom
+  ZOOMS.forEach(([out, inn, at]) => {
+    tl.to('#' + out, { scale: 2.2, duration: .22, ease: 'power2.in' }, at - .22)
+      .fromTo('#' + inn, { scale: 1.35 }, { scale: 1, duration: .4, ease: 'expo.out', immediateRender: false }, at);
+  });
 
   // captions: each word writes itself out letter by letter at speaking pace, the chunk holds, then clears
   const LETTER_FADE = 0.25;   // each letter's fade-in

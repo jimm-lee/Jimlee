@@ -239,7 +239,7 @@ def build_fx(cut, fx, spiral_end=0.0):
     Returns (html, cell timings for JS, flash times, {shot index: time the full shot takes over})."""
     import random
     html, cells, flashes, takeover, spins = [], [], [], {}, []
-    mirrors, irises, impacts, shakes, stacks = [], [], [], [], []
+    mirrors, irises, impacts, shakes, stacks, splits, zooms = [], [], [], [], [], [], []
     for n, f in enumerate(fx or []):
         kind = f["kind"]
         if kind == "flash":
@@ -317,6 +317,22 @@ def build_fx(cut, fx, spiral_end=0.0):
                             f'data-duration="{round(at + dur - drop, 3)}" data-media-start="{m}" muted playsinline></video></div></div>')
                 cards.append((cid, drop, rot, dx, dy))
             stacks.append((f"fx{n}bg", at, round(at + dur, 3), cards))
+        elif kind == "split":                   # split screen: shot A on top, B slides into the bottom, then B fills the frame
+            (ac, am), i = f["a"], f["into"]
+            bc, at_b, d_b, bm = cut[i]
+            at, dur = at_b, f.get("dur", 0.8)
+            # each half shows the middle band of its clip (masks + transforms only, no layout motion)
+            gap = GRID_GAP // 2
+            for cid, c, m, clip, shift in ((f"fx{n}a", ac, am, f"inset(0px 0px {960 + gap}px 0px)", -480),
+                                           (f"fx{n}b", bc, bm, f"inset({960 + gap}px 0px 0px 0px)", 480)):
+                html.append(f'  <div class="shot cell" id="{cid}" style="clip-path:{clip}">'
+                            f'<video src="assets/clips/{c}.mp4" class="clip" style="transform:translateY({shift}px)" '
+                            f'data-start="{at}" data-duration="{dur}" data-media-start="{m}" muted playsinline></video></div>')
+            takeover[i] = round(at + dur, 3)
+            splits.append((f"fx{n}a", f"fx{n}b", at, dur))
+        elif kind == "zoom":                    # zoom-through: the outgoing shot punches forward, the next lands out of it
+            i = f["into"]
+            zooms.append((f"s{i - 1}", f"s{i}", cut[i][1]))
         elif kind == "iris":                    # the shot opens out of a growing circle over the shot before it
             i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
             irises.append((f"s{i}", cut[i][1], f.get("dur", 0.8), f.get("x", 50), f.get("y", 50)))
@@ -330,7 +346,7 @@ def build_fx(cut, fx, spiral_end=0.0):
                             f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{start}" data-duration="{round(at + dur - start, 3)}" '
                             f'data-media-start="{m}" muted playsinline></video></div>')
                 cells.append((cid, start, round(at + dur, 3)))
-    return "\n".join(html), cells, flashes, takeover, spins, mirrors, irises, impacts, shakes, stacks
+    return "\n".join(html), cells, flashes, takeover, spins, mirrors, irises, impacts, shakes, stacks, splits, zooms
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
@@ -369,7 +385,9 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         for i, (c, a, d, m, _, _) in enumerate(flashes)
     )
     (fx_html, fx_cells, fx_flashes, takeover, fx_spins, fx_mirrors, fx_irises,
-     fx_impacts, fx_shakes, fx_stacks) = build_fx(cut, fx, spiral_end)
+     fx_impacts, fx_shakes, fx_stacks, fx_splits, fx_zooms) = build_fx(cut, fx, spiral_end)
+    split_js = ",\n    ".join(f"['{a}', '{b_}', {at}, {d}]" for a, b_, at, d in fx_splits)
+    zoom_js = ",\n    ".join(f"['{a}', '{b_}', {at}]" for a, b_, at in fx_zooms)
     impact_js = ",\n    ".join(f"['{a}', {b}, {c}]" for a, b, c in fx_impacts)
     shake_js = ",\n    ".join(f"['{a}', {b}, {c}]" for a, b, c in fx_shakes)
     stack_js = ",\n    ".join(
@@ -402,6 +420,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{IMPACT_JS}}", impact_js)
             .replace("{{SHAKE_JS}}", shake_js)
             .replace("{{STACK_JS}}", stack_js)
+            .replace("{{SPLIT_JS}}", split_js)
+            .replace("{{ZOOM_JS}}", zoom_js)
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)

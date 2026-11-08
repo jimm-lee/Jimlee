@@ -93,11 +93,14 @@ PLANS = [
     dict(slug="p07-putting-it-off", length=15,
          hook="What happens | when you stop | putting off | the life you've | *imagined*?",
          cut=[("0842", 0.0, 2.5, 0.0),                      # hook: the car the bush swallowed
-              ("9070", 2.5, 1.0, 1.5), ("9361", 3.5, 2.0, 2.5),   # paddock to the sea, river over rocks
+              ("9070", 2.5, 1.5, 1.0), ("9361", 4.0, 1.5, 2.5),   # paddock to the sea (split in), river over rocks
               *seq(5.5, 0.5, [("5222", 2.5), ("9651", 0.8), ("2987", 1.0), ("9170", 2.8),
                               ("9319", 4.0), ("0811", 2.0), ("9619", 0.8), ("8297", 4.5)]),
-              ("3276", 9.5, 2.0, 0.35),                     # payoff: the selfie, smiling
-              ("9023", 11.5, 3.5, 1.2)]),                   # linger: palm at sunrise
+              ("0170", 9.5, 2.0, 1.8),                      # payoff: actually getting into the ice (no vest)
+              ("9023", 11.5, 3.5, 1.2)],                    # linger: palm at sunrise
+         # signature techniques (TECHNIQUES.md): split screen (the car the bush took / the open paddock), zoom-through
+         fx=[dict(kind="split", a=("0842", 2.5), into=1, dur=0.8),
+             dict(kind="zoom", into=11)]),
     dict(slug="p08-ireland-to-nz", length=10, read=QUICK,
          hook="Ireland | to *New* *Zealand*. | A decision | I'll never regret.",
          cut=[("1422", 0.0, 2.0, 1.0),                      # hook: Ireland's green jerseys in NZ
