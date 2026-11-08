@@ -80,14 +80,16 @@ PLANS = [
          # signature techniques (TECHNIQUES.md): mirror on the hook, iris into the linger
          fx=[dict(kind="mirror", shot=0, at="land", dur=0.9),
              dict(kind="iris", shot="last", dur=0.8, x=50, y=44)]),
-    dict(slug="p06-three-years", length=15,
+    dict(slug="p06-three-years", length=15, spiral=False,   # opens on an impact frame instead of the spiral
          hook="Three years, | one big decision, | and a | camera roll | full of *memories*.",
-         cut=[("8078", 0.0, 2.5, 0.1),                      # hook: the ensign over the city
-              ("8230", 2.5, 1.0, 0.5), ("2524", 3.5, 2.0, 1.3),   # coast from above, the Movember walk
-              *seq(5.5, 0.5, [("1609", 2.0), ("9733", 0.5), ("9161", 1.0), ("9500", 1.0),
-                              ("0989", 5.0), ("7989", 4.5), ("7157", 1.0), ("8092", 2.0)]),
+         cut=[("8078", 0.0, 2.5, 0.1),                      # hook: the ensign over the city, hit by impact frames
+              ("8230", 2.5, 1.0, 3.6), ("3048", 3.5, 2.0, 0.5),   # coast from above (past the wine box), the Wānaka tree (no vest here)
               ("7278", 9.5, 2.0, 2.0),                      # payoff: dinner with friends
-              ("5963", 11.5, 3.5, 1.2)]),                   # linger: sunset over the ranges
+              ("5963", 11.5, 3.5, 1.2)],                    # linger: sunset over the ranges
+         fx=[dict(kind="impact", shot=0, at=0.0, looks=["invert", "mono", "invert", "mono"], shake=0.3),
+             dict(kind="stack", at=5.5, dur=4.0,             # the build as a photo stack of prints
+                  clips=[("1609", 2.0), ("9733", 0.5), ("9161", 1.0), ("9500", 1.0),
+                         ("0989", 5.0), ("7989", 4.5), ("7157", 1.0), ("8092", 2.0)])]),
     dict(slug="p07-putting-it-off", length=15,
          hook="What happens | when you stop | putting off | the life you've | *imagined*?",
          cut=[("0842", 0.0, 2.5, 0.0),                      # hook: the car the bush swallowed
@@ -166,7 +168,7 @@ def variety_report():
     uses, pairs = Counter(), defaultdict(list)
     for plan in PLANS:
         clips = [c for c, *_ in plan["cut"]]
-        uses.update(clips + [c for f in plan.get("fx", []) if f["kind"] == "collage" for c, _ in f["clips"]])
+        uses.update(clips + [c for f in plan.get("fx", []) if f["kind"] in ("collage", "stack") for c, _ in f["clips"]])
         for a, b in zip(clips, clips[1:]):
             pairs[tuple(sorted((a, b)))].append(plan["slug"][:3])
     repeats = {k: v for k, v in pairs.items() if len(v) > 1}

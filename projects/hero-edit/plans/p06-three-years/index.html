@@ -18,6 +18,10 @@
   #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); --cherry: #FDE68A; }
   .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
   /* clips are ungraded (straight HDR to SDR conversion) */
+  /* photo stack: a white-bordered print, slightly turned */
+  .print { inset: auto; left: 160px; top: 420px; width: 760px; height: 1120px; background: #fbfaf6; overflow: visible;
+           box-shadow: 0 18px 40px rgba(0,0,0,.45); transform: translate(var(--dx), var(--dy)) rotate(var(--r)); }
+  .print .photo { position: absolute; left: 26px; top: 26px; right: 26px; bottom: 120px; overflow: hidden; background: #000; }
   .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .shade { position: absolute; inset: 0; pointer-events: none;
     background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
@@ -39,31 +43,23 @@
 <div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
   <!-- no soundtrack: music is added afterwards. Cuts sit on a 0.5 s grid (120 BPM, or 60 BPM half-time) -->
   <div class="shot" id="s0" style="visibility:visible" data-om-id="shot-8078"><video src="assets/clips/8078.mp4" class="clip" data-start="0.0" data-duration="2.5" data-media-start="0.1" muted playsinline></video></div>
-  <div class="shot" id="s1" data-om-id="shot-8230"><video src="assets/clips/8230.mp4" class="clip" data-start="2.5" data-duration="1.0" data-media-start="0.5" muted playsinline></video></div>
-  <div class="shot" id="s2" data-om-id="shot-2524"><video src="assets/clips/2524.mp4" class="clip" data-start="3.5" data-duration="2.0" data-media-start="1.3" muted playsinline></video></div>
-  <div class="shot" id="s3" data-om-id="shot-1609"><video src="assets/clips/1609.mp4" class="clip" data-start="5.5" data-duration="0.5" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot" id="s4" data-om-id="shot-9733"><video src="assets/clips/9733.mp4" class="clip" data-start="6.0" data-duration="0.5" data-media-start="0.5" muted playsinline></video></div>
-  <div class="shot" id="s5" data-om-id="shot-9161"><video src="assets/clips/9161.mp4" class="clip" data-start="6.5" data-duration="0.5" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot" id="s6" data-om-id="shot-9500"><video src="assets/clips/9500.mp4" class="clip" data-start="7.0" data-duration="0.5" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot" id="s7" data-om-id="shot-0989"><video src="assets/clips/0989.mp4" class="clip" data-start="7.5" data-duration="0.5" data-media-start="5.0" muted playsinline></video></div>
-  <div class="shot" id="s8" data-om-id="shot-7989"><video src="assets/clips/7989.mp4" class="clip" data-start="8.0" data-duration="0.5" data-media-start="4.5" muted playsinline></video></div>
-  <div class="shot" id="s9" data-om-id="shot-7157"><video src="assets/clips/7157.mp4" class="clip" data-start="8.5" data-duration="0.5" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot" id="s10" data-om-id="shot-8092"><video src="assets/clips/8092.mp4" class="clip" data-start="9.0" data-duration="0.5" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot" id="s11" data-om-id="shot-7278"><video src="assets/clips/7278.mp4" class="clip" data-start="9.5" data-duration="1.5" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot endshot" id="s12" data-om-id="shot-5963"><video src="assets/clips/5963.mp4" class="clip" data-start="11.0" data-duration="4.0" data-media-start="0.72" muted playsinline></video></div>
-  <div class="shot spiral" id="sp0" data-om-id="spiral-8230"><video src="assets/clips/8230.mp4" class="clip" data-start="0.0" data-duration="0.1" data-media-start="0.5" muted playsinline></video></div>
-  <div class="shot spiral" id="sp1" data-om-id="spiral-2524"><video src="assets/clips/2524.mp4" class="clip" data-start="0.1" data-duration="0.1" data-media-start="1.3" muted playsinline></video></div>
-  <div class="shot spiral" id="sp2" data-om-id="spiral-1609"><video src="assets/clips/1609.mp4" class="clip" data-start="0.2" data-duration="0.1" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp3" data-om-id="spiral-9733"><video src="assets/clips/9733.mp4" class="clip" data-start="0.3" data-duration="0.1" data-media-start="0.5" muted playsinline></video></div>
-  <div class="shot spiral" id="sp4" data-om-id="spiral-9161"><video src="assets/clips/9161.mp4" class="clip" data-start="0.4" data-duration="0.1" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp5" data-om-id="spiral-9500"><video src="assets/clips/9500.mp4" class="clip" data-start="0.5" data-duration="0.1" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp6" data-om-id="spiral-0989"><video src="assets/clips/0989.mp4" class="clip" data-start="0.6" data-duration="0.1" data-media-start="5.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp7" data-om-id="spiral-7989"><video src="assets/clips/7989.mp4" class="clip" data-start="0.7" data-duration="0.1" data-media-start="4.5" muted playsinline></video></div>
-  <div class="shot spiral" id="sp8" data-om-id="spiral-7157"><video src="assets/clips/7157.mp4" class="clip" data-start="0.8" data-duration="0.1" data-media-start="1.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp9" data-om-id="spiral-8092"><video src="assets/clips/8092.mp4" class="clip" data-start="0.9" data-duration="0.1" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp10" data-om-id="spiral-7278"><video src="assets/clips/7278.mp4" class="clip" data-start="1.0" data-duration="0.1333" data-media-start="2.0" muted playsinline></video></div>
-  <div class="shot spiral" id="sp11" data-om-id="spiral-5963"><video src="assets/clips/5963.mp4" class="clip" data-start="1.1333" data-duration="0.1333" data-media-start="0.72" muted playsinline></video></div>
-  <div class="shot spiral" id="sp12" data-om-id="spiral-8078"><video src="assets/clips/8078.mp4" class="clip" data-start="1.2666" data-duration="0.1333" data-media-start="0.1" muted playsinline></video></div>
+  <div class="shot" id="s1" data-om-id="shot-8230"><video src="assets/clips/8230.mp4" class="clip" data-start="2.5" data-duration="1.0" data-media-start="3.6" muted playsinline></video></div>
+  <div class="shot" id="s2" data-om-id="shot-3048"><video src="assets/clips/3048.mp4" class="clip" data-start="3.5" data-duration="2.0" data-media-start="0.5" muted playsinline></video></div>
+  <div class="shot" id="s3" data-om-id="shot-7278"><video src="assets/clips/7278.mp4" class="clip" data-start="9.5" data-duration="1.5" data-media-start="2.0" muted playsinline></video></div>
+  <div class="shot endshot" id="s4" data-om-id="shot-5963"><video src="assets/clips/5963.mp4" class="clip" data-start="11.0" data-duration="4.0" data-media-start="0.72" muted playsinline></video></div>
+  <div class="shot cell" id="fx0i0" style="visibility:visible"><video src="assets/clips/8078.mp4" class="clip" style="filter:grayscale(1) contrast(9) brightness(1.15) invert(1)" data-start="0.0" data-duration="2.5" data-media-start="0.1" muted playsinline></video></div>
+  <div class="shot cell" id="fx0i1"><video src="assets/clips/8078.mp4" class="clip" style="filter:grayscale(1) contrast(9) brightness(1.05)" data-start="0.0" data-duration="2.5" data-media-start="0.1" muted playsinline></video></div>
+  <div class="shot cell" id="fx0i2"><video src="assets/clips/8078.mp4" class="clip" style="filter:grayscale(1) contrast(9) brightness(1.15) invert(1)" data-start="0.0" data-duration="2.5" data-media-start="0.1" muted playsinline></video></div>
+  <div class="shot cell" id="fx0i3"><video src="assets/clips/8078.mp4" class="clip" style="filter:grayscale(1) contrast(9) brightness(1.05)" data-start="0.0" data-duration="2.5" data-media-start="0.1" muted playsinline></video></div>
+  <div class="shot cell" id="fx1bg"><video src="assets/clips/1609.mp4" class="clip" style="filter:blur(28px) brightness(.4);transform:scale(1.15)" data-start="5.5" data-duration="4.0" data-media-start="2.0" muted playsinline></video></div>
+  <div class="shot cell print" id="fx1p0" style="--r:-6.6deg;--dx:-32px;--dy:2px"><div class="photo"><video src="assets/clips/1609.mp4" class="clip" data-start="5.5" data-duration="4.0" data-media-start="2.0" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p1" style="--r:-6.9deg;--dx:17px;--dy:30px"><div class="photo"><video src="assets/clips/9733.mp4" class="clip" data-start="5.956" data-duration="3.544" data-media-start="0.5" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p2" style="--r:2.7deg;--dx:-14px;--dy:-18px"><div class="photo"><video src="assets/clips/9161.mp4" class="clip" data-start="6.412" data-duration="3.088" data-media-start="1.0" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p3" style="--r:-0.2deg;--dx:9px;--dy:25px"><div class="photo"><video src="assets/clips/9500.mp4" class="clip" data-start="6.868" data-duration="2.632" data-media-start="1.0" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p4" style="--r:1.9deg;--dx:-40px;--dy:27px"><div class="photo"><video src="assets/clips/0989.mp4" class="clip" data-start="7.324" data-duration="2.176" data-media-start="5.0" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p5" style="--r:-4.2deg;--dx:-11px;--dy:45px"><div class="photo"><video src="assets/clips/7989.mp4" class="clip" data-start="7.78" data-duration="1.72" data-media-start="4.5" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p6" style="--r:8.0deg;--dx:0px;--dy:-27px"><div class="photo"><video src="assets/clips/7157.mp4" class="clip" data-start="8.236" data-duration="1.264" data-media-start="1.0" muted playsinline></video></div></div>
+  <div class="shot cell print" id="fx1p7" style="--r:-8.6deg;--dx:29px;--dy:-29px"><div class="photo"><video src="assets/clips/8092.mp4" class="clip" data-start="8.692" data-duration="0.808" data-media-start="2.0" muted playsinline></video></div></div>
 
   <div class="shade"></div>
 
@@ -89,33 +85,13 @@
     ['s0', 0.0, 2.5],
     ['s1', 2.5, 1.0],
     ['s2', 3.5, 2.0],
-    ['s3', 5.5, 0.5],
-    ['s4', 6.0, 0.5],
-    ['s5', 6.5, 0.5],
-    ['s6', 7.0, 0.5],
-    ['s7', 7.5, 0.5],
-    ['s8', 8.0, 0.5],
-    ['s9', 8.5, 0.5],
-    ['s10', 9.0, 0.5],
-    ['s11', 9.5, 1.5],
-    ['s12', 11.0, 4.0]
+    ['s3', 9.5, 1.5],
+    ['s4', 11.0, 4.0]
   ];
   const SPIRAL = [
-    ['sp0', 0.0, 0.1, -32.0, 1.862],
-    ['sp1', 0.1, 0.1, -28.33, 1.793],
-    ['sp2', 0.2, 0.1, -24.79, 1.719],
-    ['sp3', 0.3, 0.1, -21.39, 1.643],
-    ['sp4', 0.4, 0.1, -18.14, 1.564],
-    ['sp5', 0.5, 0.1, -15.05, 1.484],
-    ['sp6', 0.6, 0.1, -12.13, 1.405],
-    ['sp7', 0.7, 0.1, -9.39, 1.328],
-    ['sp8', 0.8, 0.1, -6.87, 1.254],
-    ['sp9', 0.9, 0.1, -4.59, 1.185],
-    ['sp10', 1.0, 0.1333, -2.6, 1.123],
-    ['sp11', 1.1333, 0.1333, -0.99, 1.072],
-    ['sp12', 1.2666, 0.1333, -0.0, 1.04]
+    
   ];
-  const SPIRAL_END = 1.4;
+  const SPIRAL_END = 0.0;
   const FX = [            // grid cells: [id, appears, gone]
     
   ];
@@ -127,15 +103,27 @@
   const MIRRORS = [       // mirrored right half: [id, shown, gone, punch time of the shot it copies]
     
   ];
+  const IMPACTS = [       // impact frames: [id, on, off] (one frame each)
+    ['fx0i0', 0.0, 0.0293],
+    ['fx0i1', 0.0293, 0.0627],
+    ['fx0i2', 0.0627, 0.096],
+    ['fx0i3', 0.096, 0.1293]
+  ];
+  const SHAKES = [        // screen shake after the impact: [shot, at, duration]
+    ['s0', 0.1333, 0.3]
+  ];
+  const STACKS = [        // photo stack: [background, at, end, [[print, drop, rotation, dx, dy], ...]]
+    ['fx1bg', 5.5, 9.5, [['fx1p0', 5.5, -6.6, -32, 2], ['fx1p1', 5.956, -6.9, 17, 30], ['fx1p2', 6.412, 2.7, -14, -18], ['fx1p3', 6.868, -0.2, 9, 25], ['fx1p4', 7.324, 1.9, -40, 27], ['fx1p5', 7.78, -4.2, -11, 45], ['fx1p6', 8.236, 8.0, 0, -27], ['fx1p7', 8.692, -8.6, 29, -29]]]
+  ];
   const IRISES = [        // circular reveal: [shot, at, duration, x %, y %]
     
   ];
   const TITLES = [
-    ['t0', 1.5, 3.14],
-    ['t1', 3.14, 5.24],
-    ['t2', 5.24, 6.56],
-    ['t3', 6.56, 8.2],
-    ['t4', 8.2, 10.3],
+    ['t0', 0.3, 1.94],
+    ['t1', 1.94, 4.04],
+    ['t2', 4.04, 5.36],
+    ['t3', 5.36, 7.0],
+    ['t4', 7.0, 9.1],
     ['t5', 11.1, 15.0],
     ['t6', 11.78, 15.0]
   ];
@@ -168,6 +156,24 @@
     tl.set('#' + id, { visibility: 'visible' }, shown)
       .fromTo('#' + id, { scale: 1.06 }, { scale: 1, duration: .5, ease: 'expo.out', immediateRender: false }, punch)
       .set('#' + id, { visibility: 'hidden' }, gone);
+  });
+  // impact frames: stark single frames, then the shot snaps back with a short shake
+  IMPACTS.forEach(([id, on, off]) => tl.set('#' + id, { visibility: 'visible' }, on).set('#' + id, { visibility: 'hidden' }, off));
+  SHAKES.forEach(([id, at, dur]) => {
+    const xs = [18, -15, 11, -8, 5, -2, 0], step = dur / xs.length;
+    xs.forEach((x, k) => tl.to('#' + id, { x, duration: step, ease: 'none' }, at + k * step));
+  });
+  // photo stack: prints drop in and pile up; the top print sweeps up and away into the next shot
+  STACKS.forEach(([bg, at, end, cards]) => {
+    tl.set('#' + bg, { visibility: 'visible' }, at).set('#' + bg, { visibility: 'hidden' }, end);
+    cards.forEach(([id, drop, r, dx, dy], k) => {
+      tl.set('#' + id, { visibility: 'visible' }, drop)
+        .fromTo('#' + id, { opacity: 0, scale: 1.35, rotation: r + 12, x: dx, y: dy - 160 },
+                { opacity: 1, scale: 1, rotation: r, x: dx, y: dy, duration: .32, ease: 'power3.out' }, drop)
+        .set('#' + id, { visibility: 'hidden' }, end);
+      if (k === cards.length - 1)
+        tl.to('#' + id, { scale: 2.6, rotation: 0, x: 0, y: 0, opacity: 0, duration: .32, ease: 'power2.in' }, end - .32);
+    });
   });
   // iris: the shot opens out of a growing circle over the shot before it
   IRISES.forEach(([id, at, dur, x, y]) => {

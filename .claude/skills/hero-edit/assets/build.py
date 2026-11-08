@@ -239,7 +239,7 @@ def build_fx(cut, fx, spiral_end=0.0):
     Returns (html, cell timings for JS, flash times, {shot index: time the full shot takes over})."""
     import random
     html, cells, flashes, takeover, spins = [], [], [], {}, []
-    mirrors, irises = [], []
+    mirrors, irises, impacts, shakes, stacks = [], [], [], [], []
     for n, f in enumerate(fx or []):
         kind = f["kind"]
         if kind == "flash":
@@ -280,6 +280,43 @@ def build_fx(cut, fx, spiral_end=0.0):
                         f'data-duration="{d}" data-media-start="{m}" muted playsinline></video></div>')
             punch = spiral_end if i == 0 else at
             mirrors.append((mid, round(show, 3), round(show + f.get("dur", 0.8), 3), round(punch, 3)))
+        elif kind == "impact":                  # impact frames: single frames of stark mono / inverted, then a shake
+            i = f.get("shot", 0)
+            c, at, d, m = cut[i]
+            start = f.get("at", at)
+            looks = f.get("looks", ["invert", "mono", "invert", "mono"])
+            css = {"invert": "grayscale(1) contrast(9) brightness(1.15) invert(1)",
+                   "mono": "grayscale(1) contrast(9) brightness(1.05)"}
+            for j, look in enumerate(looks):
+                cid = f"fx{n}i{j}"
+                t0 = round(start + j / 30 - 0.004, 4) if j or start else 0.0   # a hair early so it lands on its frame
+                vis = ' style="visibility:visible"' if t0 == 0.0 else ""        # frame 0 renders before anything is scheduled
+                html.append(f'  <div class="shot cell" id="{cid}"{vis}><video src="assets/clips/{c}.mp4" class="clip" '
+                            f'style="filter:{css[look]}" data-start="{at}" data-duration="{d}" data-media-start="{m}" '
+                            f'muted playsinline></video></div>')
+                impacts.append((cid, t0, round(start + (j + 1) / 30 - 0.004, 4)))
+            shakes.append((f"s{i}", round(start + len(looks) / 30, 4), f.get("shake", 0.3)))
+        elif kind == "stack":                   # photo stack: clips drop in as white-bordered prints and pile up
+            import random as _r
+            rnd = _r.Random(n)
+            at, dur = f["at"], f["dur"]
+            clips_ = f["clips"]
+            step = round((dur - 0.35) / len(clips_), 3)        # leave room for the top print to sweep out
+            bg_c, bg_m = clips_[0]
+            html.append(f'  <div class="shot cell" id="fx{n}bg"><video src="assets/clips/{bg_c}.mp4" class="clip" '
+                        f'style="filter:blur(28px) brightness(.4);transform:scale(1.15)" data-start="{at}" '
+                        f'data-duration="{dur}" data-media-start="{bg_m}" muted playsinline></video></div>')
+            cards = []
+            for k, (c, m) in enumerate(clips_):
+                cid = f"fx{n}p{k}"
+                drop = round(at + k * step, 3)
+                rot = round(rnd.uniform(-9, 9), 1)
+                dx, dy = rnd.randint(-40, 40), rnd.randint(-30, 50)
+                html.append(f'  <div class="shot cell print" id="{cid}" style="--r:{rot}deg;--dx:{dx}px;--dy:{dy}px">'
+                            f'<div class="photo"><video src="assets/clips/{c}.mp4" class="clip" data-start="{drop}" '
+                            f'data-duration="{round(at + dur - drop, 3)}" data-media-start="{m}" muted playsinline></video></div></div>')
+                cards.append((cid, drop, rot, dx, dy))
+            stacks.append((f"fx{n}bg", at, round(at + dur, 3), cards))
         elif kind == "iris":                    # the shot opens out of a growing circle over the shot before it
             i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
             irises.append((f"s{i}", cut[i][1], f.get("dur", 0.8), f.get("x", 50), f.get("y", 50)))
@@ -293,12 +330,12 @@ def build_fx(cut, fx, spiral_end=0.0):
                             f'<video src="assets/clips/{c}.mp4" class="clip" data-start="{start}" data-duration="{round(at + dur - start, 3)}" '
                             f'data-media-start="{m}" muted playsinline></video></div>')
                 cells.append((cid, start, round(at + dur, 3)))
-    return "\n".join(html), cells, flashes, takeover, spins, mirrors, irises
+    return "\n".join(html), cells, flashes, takeover, spins, mirrors, irises, impacts, shakes, stacks
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
            spiral=False, fx=None):
-    collage_clips = [(c, 0, 0, m) for f in (fx or []) if f["kind"] == "collage" for c, m in f["clips"]]
+    collage_clips = [(c, 0, 0, m) for f in (fx or []) if f["kind"] in ("collage", "stack") for c, m in f["clips"]]
     flashes, spiral_end = spiral_flashes(cut, collage_clips) if spiral else ([], 0.0)
     if spiral:
         hook_start = max(hook_start, spiral_end + 0.1)   # the first caption starts as the spiral lands
@@ -331,7 +368,13 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f'data-media-start="{m}" muted playsinline></video></div>'
         for i, (c, a, d, m, _, _) in enumerate(flashes)
     )
-    fx_html, fx_cells, fx_flashes, takeover, fx_spins, fx_mirrors, fx_irises = build_fx(cut, fx, spiral_end)
+    (fx_html, fx_cells, fx_flashes, takeover, fx_spins, fx_mirrors, fx_irises,
+     fx_impacts, fx_shakes, fx_stacks) = build_fx(cut, fx, spiral_end)
+    impact_js = ",\n    ".join(f"['{a}', {b}, {c}]" for a, b, c in fx_impacts)
+    shake_js = ",\n    ".join(f"['{a}', {b}, {c}]" for a, b, c in fx_shakes)
+    stack_js = ",\n    ".join(
+        f"['{bg}', {a}, {e}, [" + ", ".join(f"['{cid}', {d}, {r}, {x}, {y}]" for cid, d, r, x, y in cards) + "]]"
+        for bg, a, e, cards in fx_stacks)
     mirror_js = ",\n    ".join(f"['{a}', {b}, {c}, {d}]" for a, b, c, d in fx_mirrors)
     iris_js = ",\n    ".join(f"['{a}', {b}, {c}, {x}, {y}]" for a, b, c, x, y in fx_irises)
     spin_js = ",\n    ".join(f"['{w}', '{sid}', {a}, {d}]" for w, sid, a, d in fx_spins)
@@ -356,6 +399,9 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{SPIN_JS}}", spin_js)
             .replace("{{MIRROR_JS}}", mirror_js)
             .replace("{{IRIS_JS}}", iris_js)
+            .replace("{{IMPACT_JS}}", impact_js)
+            .replace("{{SHAKE_JS}}", shake_js)
+            .replace("{{STACK_JS}}", stack_js)
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)

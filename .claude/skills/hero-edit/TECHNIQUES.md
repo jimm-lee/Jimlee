@@ -45,7 +45,7 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 7. **Echo / stack trail** (duplicates of a moving clip, offset 2–3 frames, fading copies behind). The grid's "duplicate
    & offset" idea applied to motion. *Use*: one movement payoff (dune run, beach run, deck spin, dragon boats) at the
    energy peak. *Avoid*: still shots (nothing to trail), and more than ~0.5 s.
-8. **Photo stack / Polaroid drop** (frames drop in as white-bordered cards, slightly rotated, piling up, then the top
+8. **Photo stack / Polaroid drop** (built: `kind="stack", at, dur, clips=[...]`; first used on #6) (frames drop in as white-bordered cards, slightly rotated, piling up, then the top
    card scales to full screen). *Use*: memory captions: "three years", "camera roll full of memories", "not
    everything makes it onto Instagram". Feels personal, like flicking through prints.
 9. **Film strip scroll** (a vertical strip of frames scrolls up, slows, and the centre frame expands to full).
@@ -75,6 +75,13 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
     (e.g. the sunset on the deck to the sunrise over the sea).
 19. **Spin transition** (the motion of a spinning clip, such as 0389 on the deck, carried into the next clip by
     rotating it the same way). *Use*: high-energy edits, once. *Avoid*: right after the opening spiral.
+
+23. **Impact frame** (built: `kind="impact", shot=0, at=0.0, looks=["invert","mono","invert","mono"], shake=0.3`;
+    first used on #6, as the intro instead of the spiral). Anime-style hit: four single frames of the shot as stark
+    high-contrast mono / inverted, then colour snaps back with a 0.3 s screen shake. *Use*: to open an edit with a
+    punch, especially on a bold silhouette (a flag, a skyline, a figure against sky); or on one hard moment (the
+    splash, a wave). *Avoid*: with the spiral in the same intro (pick one); on soft, low-contrast shots (mono turns to
+    mush); more than once per edit. *Note*: `om qa` reports the single frames as "pops"; that's intended.
 
 ### Needs shooting (add to the shot list, not fakeable well)
 
@@ -107,3 +114,4 @@ DaVinci timeline reference.
 | 1–3 | none (spiral + clean cuts) |
 | 4 | crop to grid + spin, collage, crop flash, flashes |
 | 5 | mirror on the hook, iris into the linger |
+| 6 | impact frame intro (no spiral), photo stack in the build |
