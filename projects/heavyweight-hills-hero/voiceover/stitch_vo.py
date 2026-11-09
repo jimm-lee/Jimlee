@@ -2,6 +2,7 @@
 """Stitch the Heavyweight Hills intro voice-overs from James's three Movember voice memos.
 
 Usage: python3 stitch_vo.py <plan> take=file ... [out.wav]
+  Prefer cleaned takes (clean_take.py → <take>.clean.wav): less breathing and hiss, clearer voice.
   full / intro-a:  m1=Movember_1.m4a m2=Movember_2.m4a m3=Movember_3.m4a
   intro-b:         m4=Movember_4.m4a o=New_Recording_10.m4a   (the longer second take + the closing-line reads)
 
@@ -111,6 +112,9 @@ def main() -> None:
     missing = [t for t in order if t not in takes]
     if missing:
         sys.exit(f"missing takes for {name}: {', '.join(missing)}\n{__doc__}")
+    # takes already run through clean_take.py carry their own EQ/de-ess/compression: only set the level here
+    cleaned = all(takes[t].endswith(".clean.wav") for t in order)
+    voice = "loudnorm=I=-16:TP=-1.5:LRA=7" if cleaned else VOICE
     levelled = []
     for i, t in enumerate(order):
         dst = f"_{t}.wav"
@@ -126,7 +130,7 @@ def main() -> None:
         cues.append({"take": take, "src": [a, b], "at": round(t, 2), "end": round(t + d, 2), "text": words})
         t += d + gap
     graph = ";".join(chains) + ";" + "".join(labels) + \
-        f"concat=n={len(plan)}:v=0:a=1,adelay={int(LEAD * 1000)},apad=pad_dur={TAIL},{VOICE}[vo]"
+        f"concat=n={len(plan)}:v=0:a=1,adelay={int(LEAD * 1000)},apad=pad_dur={TAIL},{voice}[vo]"
     inputs = [x for f in levelled for x in ("-i", f)]
     ffmpeg(*inputs, "-filter_complex", graph, "-map", "[vo]", "-ar", "48000", out)
     for f in levelled:

@@ -120,3 +120,19 @@ After the closing line every edit now ends on a 3 s end card: "HEAVYWEIGHT HILLS
 QR code on a white card (scans to <https://movember.com/m/15440871?mc=60>, checked on the rendered frame),
 "SCAN TO DONATE" and the link, over the blurred summit selfie (IMG_3246). `ENDCARD` in `build_intros.py`; set
 `endcard=0` in a plan to leave it off. Lengths: intro A 31.75 s, intro B 34.0 s, promos 13.4–14.5 s.
+
+## Voice clean-up (Nov 9)
+
+James asked for less breathing and a clearer sound. Every take now goes through `voiceover/clean_take.py` before it
+is cut (`<take>.clean.wav`, not committed), then `stitch_vo.py` only levels it:
+
+1. **Hiss:** noisereduce spectral gating (80 %) with the noise profile taken from the gaps between words. (The
+   adaptive mode was tried first and ate quiet consonants, e.g. the "v" in "vest".)
+2. **Breaths:** everything outside the spoken words (Whisper timings, padded 60 ms before / 100 ms after each word),
+   plus long breathy stretches inside word spans, turned down 24 dB with 25 ms ramps. Speech-to-gap level went from
+   10–16 dB to 30–42 dB.
+3. **Clarity:** high-pass 85 Hz, −2.5 dB at 250 Hz, +3 dB presence at 3.8 kHz, +1 dB air, light de-ess, 2.5:1 compression.
+
+Checked by re-transcribing every stitched voice-over against the uncleaned one (same words) and measuring the word
+levels and consonant energy (within 2 dB of the raw recording). The audio in all eight videos was replaced (video
+stream copied, timings unchanged).
