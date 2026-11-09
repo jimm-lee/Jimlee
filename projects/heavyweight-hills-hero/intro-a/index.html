@@ -119,7 +119,7 @@
   const MAP_KIND = 'days', MAP_AT = 12.2;
   const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
   const CUT = [['s0', 0.0, 1.7], ['s1', 1.7, 1.65], ['s2', 3.35, 1.85], ['s3', 5.2, 1.3], ['s4', 6.5, 0.8], ['s5', 7.3, 1.1], ['s6', 8.4, 1.0], ['s7', 9.4, 1.2], ['s8', 10.6, 1.6], ['map', 12.2, 6.3], ['s10', 18.5, 2.6], ['s11', 21.1, 2.5], ['s12', 23.6, 1.6], ['s13', 25.2, 3.55]];
-  const TITLES = [['c0', 0.57, 1.02], ['c1', 1.02, 1.69], ['c2', 1.69, 2.27], ['c3', 2.27, 2.72], ['c4', 2.72, 3.87], ['c5', 3.87, 4.41], ['c6', 4.41, 5.13], ['c7', 5.13, 5.58], ['c8', 5.58, 6.65], ['c9', 6.65, 7.17], ['c10', 7.17, 8.39], ['c11', 8.39, 8.95], ['c12', 8.95, 9.4], ['c13', 9.4, 10.57], ['c14', 10.57, 11.31], ['c15', 11.31, 12.21], ['c16', 12.21, 12.66], ['c17', 12.66, 13.11], ['c18', 13.11, 13.59], ['c19', 13.59, 14.77], ['c20', 14.77, 15.23], ['c21', 15.23, 16.76], ['c22', 18.57, 19.37], ['c23', 19.37, 21.17], ['c24', 21.17, 21.79], ['c25', 21.79, 22.67], ['c26', 22.67, 23.41], ['c27', 23.41, 25.7], ['o1', 25.349999999999998, 28.75], ['o2', 25.729999999999997, 28.75]];
+  const TITLES = [['c0', 0.57, 1.02], ['c1', 1.02, 1.69], ['c2', 1.69, 2.27], ['c3', 2.27, 2.72], ['c4', 2.72, 3.87], ['c5', 3.87, 4.41], ['c6', 4.41, 5.13], ['c7', 5.13, 5.58], ['c8', 5.58, 6.65], ['c9', 6.65, 7.17], ['c10', 7.17, 8.39], ['c11', 8.39, 8.95], ['c12', 8.95, 9.4], ['c13', 9.4, 10.57], ['c14', 10.57, 11.31], ['c15', 11.31, 12.21], ['c16', 12.21, 12.66], ['c17', 12.66, 13.11], ['c18', 13.11, 13.59], ['c19', 13.59, 14.77], ['c20', 14.77, 15.23], ['c21', 15.23, 16.76], ['c22', 18.57, 19.37], ['c23', 19.37, 21.17], ['c24', 21.17, 21.79], ['c25', 21.79, 22.67], ['c26', 22.67, 23.41], ['c27', 23.41, 25.349999999999998], ['o1', 25.349999999999998, 28.75], ['o2', 25.729999999999997, 28.75]];
   const END = 25.2, LENGTH = 28.75;
 
   // long caption lines shrink to fit the frame
@@ -161,9 +161,11 @@
   const pulse = (key, at) => tl.fromTo('#rg-' + key, { opacity: 1, scale: 1 }, { opacity: 0, scale: 3.2, duration: .55, ease: 'power2.out', immediateRender: false }, at);
   const rise = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .45, immediateRender: false }, at);
 
-  const mapCut = CUT.find(c => c[0] === 'map'), MAP_END = mapCut[1] + mapCut[2];
-  tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
-  if (MAP_KIND === 'days') {
+  const mapCut = CUT.find(c => c[0] === 'map'), MAP_END = mapCut ? mapCut[1] + mapCut[2] : 0;
+  if (mapCut) tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
+  if (!mapCut) {
+    // no map in this edit
+  } else if (MAP_KIND === 'days') {
     // a pin for every day: the hill lights up (or pulses again), the day counter ticks over
     tl.fromTo(cam, { w: WIDE * 1.12 }, { w: WIDE, duration: MAP_END - MAP_AT, ease: 'sine.inOut', onUpdate: draw, immediateRender: false }, MAP_AT);
     rise(['#lb-tga', '#lb-mount'], MAP_AT + .1);

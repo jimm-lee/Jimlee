@@ -120,9 +120,11 @@
   const pulse = (key, at) => tl.fromTo('#rg-' + key, { opacity: 1, scale: 1 }, { opacity: 0, scale: 3.2, duration: .55, ease: 'power2.out', immediateRender: false }, at);
   const rise = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .45, immediateRender: false }, at);
 
-  const mapCut = CUT.find(c => c[0] === 'map'), MAP_END = mapCut[1] + mapCut[2];
-  tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
-  if (MAP_KIND === 'days') {
+  const mapCut = CUT.find(c => c[0] === 'map'), MAP_END = mapCut ? mapCut[1] + mapCut[2] : 0;
+  if (mapCut) tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
+  if (!mapCut) {
+    // no map in this edit
+  } else if (MAP_KIND === 'days') {
     // a pin for every day: the hill lights up (or pulses again), the day counter ticks over
     tl.fromTo(cam, { w: WIDE * 1.12 }, { w: WIDE, duration: MAP_END - MAP_AT, ease: 'sine.inOut', onUpdate: draw, immediateRender: false }, MAP_AT);
     rise(['#lb-tga', '#lb-mount'], MAP_AT + .1);

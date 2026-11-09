@@ -172,13 +172,17 @@ def build(name, cfg):
         clips.symlink_to("../../clips")
 
     words = json.loads((HERE / f"voiceover/words-{name}.json").read_text())
+    for i in sorted(cfg.get("drop", []), reverse=True):   # Whisper ghosts (words that are not in the audio)
+        del words[i]
     for i, start in cfg["fix"].items():
         words[i][1] = start
     cut_at = cfg.get("spoken_outro", len(words))
     caps = captions(cfg["chunks"], words[:cut_at], {})
     length, cut = cfg["length"], cfg["cut"]
     end_at = cut[-1][1]
-    if "spoken_outro" in cfg:   # the closing line is in James's voice: each word appears as he says it
+    if not cfg.get("outro", True):   # no closing line: the last caption holds into the fade
+        o_html = []
+    elif "spoken_outro" in cfg:   # the closing line is in James's voice: each word appears as he says it
         spoken = words[cut_at:]
         outro_at = round(spoken[0][1] - 0.05, 2)
         o_html = [(w, s, min(WRITE_MAX, max(0.15, e - s))) for (w, *_), (_, s, e) in zip(OUTRO, spoken)]
@@ -188,9 +192,12 @@ def build(name, cfg):
         for k, (w, gap, dur) in enumerate(OUTRO):
             t += gap
             o_html.append((w, t, dur))
-    row1 = " ".join(word_span(w, t - outro_at, dd) for w, t, dd in o_html[:1])
-    row2_at = o_html[1][1]
-    row2 = " ".join(word_span(w, t - row2_at, dd) for w, t, dd in o_html[1:])
+    if o_html and caps and caps[-1][2] > outro_at:   # the last caption clears as the closing line starts
+        caps[-1] = (caps[-1][0], caps[-1][1], outro_at)
+    if o_html:
+        row1 = " ".join(word_span(w, t - outro_at, dd) for w, t, dd in o_html[:1])
+        row2_at = o_html[1][1]
+        row2 = " ".join(word_span(w, t - row2_at, dd) for w, t, dd in o_html[1:])
 
     shots = []
     for i, (c, s, dur, m) in enumerate(cut):
@@ -208,11 +215,17 @@ def build(name, cfg):
             tops.setdefault(i, HIGH_FACE[clip])
     types = [f'  <div class="t h cap" id="c{i}" data-om-id="caption-{i}" style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
              for i, (h, a, o) in enumerate(caps)]
-    types.append(f'  <div class="t h cap" id="o1" data-om-id="outro-1" style="top:{OUTRO_TOP}px">{row1}</div>')
-    types.append(f'  <div class="t h cap" id="o2" data-om-id="outro-2" style="top:{OUTRO_TOP + OUTRO_LINE}px">{row2}</div>')
-    titles = [(f"c{i}", a, o) for i, (h, a, o) in enumerate(caps)] + [("o1", outro_at, length), ("o2", row2_at, length)]
+    titles = [(f"c{i}", a, o) for i, (h, a, o) in enumerate(caps)]
+    if o_html:
+        types.append(f'  <div class="t h cap" id="o1" data-om-id="outro-1" style="top:{OUTRO_TOP}px">{row1}</div>')
+        types.append(f'  <div class="t h cap" id="o2" data-om-id="outro-2" '
+                     f'style="top:{OUTRO_TOP + OUTRO_LINE}px">{row2}</div>')
+        titles += [("o1", outro_at, length), ("o2", row2_at, length)]
+    elif titles:   # the last caption stays up to the end
+        i, a, _ = titles[-1]
+        titles[-1] = (i, a, length)
     titles_js = ", ".join(f"['{i}', {a}, {o}]" for i, a, o in titles)
-    mp = cfg["map"]
+    mp = cfg.get("map", dict(kind="none", at=-1))
     html = (HERE / "template.html").read_text()
     for k, v in {"TITLE": cfg["title"], "SHOTS": "\n".join(shots), "TYPES": "\n".join(types), "CUT_JS": cut_js,
                  "TITLES_JS": titles_js, "END": str(end_at), "END_DUR": str(round(length - end_at, 2)),
@@ -223,6 +236,7 @@ def build(name, cfg):
         html = html.replace("{{" + k + "}}", v)
     (d / "index.html").write_text(html)
     print(f"{name}: {len(caps)} captions, {len(cut)} shots, {length} s")
+    return caps
 
 
 if __name__ == "__main__":

@@ -1,0 +1,42 @@
+[
+ {
+  "take": "m4",
+  "src": [
+   121.18,
+   123.82
+  ],
+  "at": 0.3,
+  "end": 2.94,
+  "text": "Because we all carry weight."
+ },
+ {
+  "take": "m4",
+  "src": [
+   132.3,
+   135.95
+  ],
+  "at": 3.39,
+  "end": 7.04,
+  "text": "Sometimes, most of the time even, it's invisible."
+ },
+ {
+  "take": "m4",
+  "src": [
+   136.2,
+   137.1
+  ],
+  "at": 7.39,
+  "end": 8.29,
+  "text": "You don't see it."
+ },
+ {
+  "take": "o",
+  "src": [
+   5.1,
+   6.95
+  ],
+  "at": 8.84,
+  "end": 10.69,
+  "text": "Go on, look after yourself."
+ }
+]

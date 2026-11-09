@@ -54,6 +54,30 @@ PLANS = {"full": [
     ("m4", 298.00, 299.10, 0.30, "There's always a way out,"),
     ("m4", 299.90, 301.95, 0.60, "and you need to be strong enough to ask."),
     ("o", 0.80, 3.05, 0.00, "Go on, look after yourself."),
+],
+    # 10 s promos from the unused Movember_4 lines (takes: m4=Movember_4.m4a o=New_Recording_10.m4a)
+    "promo-invisible": [
+    ("m4", 121.18, 123.82, 0.45, "Because we all carry weight."),
+    ("m4", 132.30, 135.95, 0.35, "Sometimes, most of the time even, it's invisible."),
+    ("m4", 136.20, 137.10, 0.55, "You don't see it."),
+    ("o", 5.10, 6.95, 0.00, "Go on, look after yourself."),
+],
+    "promo-lifetime": [
+    ("m4", 182.40, 186.72, 0.50, "Some people hold that weight on their shoulders for a lifetime and don't tell anyone."),
+    ("m4", 275.60, 279.55, 0.00, "There's always someone who can relate to your story."),
+],
+    "promo-stare": [
+    ("m4", 150.40, 153.62, 0.10, "Most of the times I stare at that vest for two minutes"),
+    ("m4", 154.95, 156.95, 0.50, "before even trying to pick it up."),
+    ("m4", 158.70, 160.20, 0.25, "Preparing myself"),
+    ("m4", 161.45, 164.12, 0.00, "for a little bit of suffering."),
+],
+    "promo-change": [
+    ("m4", 216.12, 217.98, 0.15, "So many men"),
+    ("m4", 219.20, 221.12, 0.10, "hold this weight on their shoulders and"),
+    ("m4", 222.05, 223.22, 0.50, "don't tell anyone."),
+    ("m4", 230.15, 231.36, 0.60, "And that needs to change."),
+    ("o", 29.40, 31.15, 0.00, "Go on, look after yourself."),
 ]}
 VOICE = ("highpass=f=90,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1:g=3,"
          "acompressor=threshold=0.08:ratio=3:attack=8:release=200:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7")

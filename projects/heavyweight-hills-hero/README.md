@@ -96,3 +96,15 @@ needs one.
 3. Build the composition with the hero-edit engine, using `captions.json` timings instead of the synthetic
    reading pace, then `om render`, `om qa`, and the voice-forward mix from `projects/heavyweight-hills/README.md`
    (music ducked under the voice, −14 LUFS).
+
+## 10 s promos (`videos/Heavyweight-Hills-Promo-*`)
+
+Built from lines in the Nov 9 voice-over (Movember_4) that the intros don't use. Same engine and caption style
+(`build_promos.py` → `promo-*/`; voice: `voiceover/stitch_vo.py promo-<name> m4=… o=…`).
+
+| File | Length | Line | Ends on |
+|---|---|---|---|
+| `Promo-Invisible-10s.mp4` | 11.5 s | "Because we all carry weight. Sometimes, most of the time even, it's invisible. You don't see it." (vest selfies → night path → the vest's shadow) | James: "Go on, look after yourself" over the harbour |
+| `Promo-Lifetime-10s.mp4` | 10.4 s | "Some people hold that weight on their shoulders for a lifetime and don't tell anyone. There's always someone who can relate to your story." (vest at night → night road → people on the steep path) | "your story." over the Mount at night |
+| `Promo-The-Stare-10s.mp4` | 11.4 s | "Most of the times I stare at that vest for two minutes before even trying to pick it up, preparing myself for a little bit of suffering." (vest selfies → track → feet → slope) | "of suffering." on the grinning summit selfie |
+| `Promo-Needs-To-Change-10s.mp4` | 10.6 s | "So many men hold this weight on their shoulders and don't tell anyone. And that needs to change." (rain → vest at night → night flax → Running for Movember sign) | James: "Go on, look after yourself" over the harbour |
