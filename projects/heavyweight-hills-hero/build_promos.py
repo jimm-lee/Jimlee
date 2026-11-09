@@ -10,13 +10,13 @@ PROMOS = {
     "promo-invisible": dict(
         title="Heavyweight Hills — promo: invisible",
         length=11.5,
-        cut=[("3307", 0.0, 2.0, 1.9),      # "Because we all": the Running for Movember sign at the top (trees behind the caption)
+        cut=[("3273", 0.0, 2.0, 0.2),      # "Because we all": the view through the branches at the top
              ("3267", 2.0, 1.4, 0.85),     # "carry weight": the vest in full view
              ("3402", 3.4, 1.6, 0.3),      # "sometimes, most of the time": the empty path at night
              ("3292", 5.0, 1.0, 1.0),      # "even": night street
              ("3389", 6.0, 2.8, 0.6),      # "it's invisible. You don't see it.": the vest's shadow
              ("3305", 8.8, 2.7, 0.0)],     # James: "Go on, look after yourself", the old tree over the town
-        chunks=("Because | we all | carry *weight,* | sometimes, | most of | the time even, | it's *invisible.* | "
+        chunks=("Because we all | carry *weight,* | sometimes, | most of the | time even, | it's *invisible.* | "
                 "You don't | *see* it."),
         spoken_outro=17,
         fix={0: 0.35},
@@ -28,8 +28,8 @@ PROMOS = {
              ("3373", 2.4, 2.3, 0.6),      # "for a lifetime and don't tell anyone": night road climb
              ("3265", 4.7, 2.7, 1.0),      # "There's always someone": people on the steep path
              ("3428", 7.4, 3.0, 1.3)],     # "who can relate to your story": the Mount at night
-        chunks=("Some people | hold that *weight* | on their | shoulders | for a | *lifetime* | and don't | "
-                "tell *anyone.* | There's always | *someone* | who can | relate to | your *story.*"),
+        chunks=("Some people | hold that *weight* | on their shoulders | for a *lifetime* | and don't tell | "
+                "*anyone.* | There's always | *someone* who | can relate | to your *story.*"),
         drop=[15, 16],                     # Whisper heard "a story" twice; the audio ends cleanly on "anyone"
         outro=False,
         fix={0: 0.35, 15: 5.46},
@@ -44,8 +44,8 @@ PROMOS = {
              ("3313", 5.8, 1.0, 0.0),      # "preparing": the grass slope
              ("3265", 6.8, 1.8, 1.0),      # "myself, for a little bit": the steep path
              ("3246", 8.6, 2.8, 3.8)],     # "of suffering.": summit selfie, grinning
-        chunks=("Most of | the times | I stare | at that *vest* | for *two* minutes | before even | trying to | "
-                "pick it up, | *preparing* | myself | for a | little bit | of *suffering.*"),
+        chunks=("Most of the | times I stare | at that *vest* | for *two* minutes | before even | trying to | "
+                "pick it up, | *preparing* myself | for a little | bit of *suffering.*"),
         outro=False,
         fix={0: 0.35, 12: 3.65, 19: 6.15, 21: 7.92},
     ),
@@ -57,8 +57,8 @@ PROMOS = {
              ("3401", 4.3, 1.7, 0.5),      # "and don't tell anyone": night flax
              ("3315", 6.0, 1.7, 0.0),      # "And that needs to change": Running for Movember
              ("3319", 7.7, 2.9, 0.0)],     # James: "Go on, look after yourself", over the harbour
-        chunks=("So many | *men* | hold this | *weight* | on their | shoulders and | don't tell | *anyone.* | "
-                "And that | needs to | *change.*"),
+        chunks=("So many *men* | hold this *weight* | on their shoulders | and don't tell | *anyone.* | "
+                "And that needs | to *change.*"),
         spoken_outro=18,
         fix={0: 0.36, 3: 2.35},
     ),
@@ -69,8 +69,8 @@ PROMOS = {
              ("3402", 3.6, 1.8, 0.3),      # "inside your mind.": the empty path at night
              ("3290", 5.4, 1.75, 1.5),     # "You just need to say it.": straight to camera
              ("3304", 7.15, 3.25, 0.9)],   # James: "Go on, look after yourself", the terraces in golden light
-        chunks=("No one | ever *knows* | how bad | it really is | inside | your *mind.* | You just | need to | "
-                "*say* it."),
+        chunks=("No one | ever *knows* | how bad it | really is | inside | your *mind.* | You just need | "
+                "to *say* it."),
         spoken_outro=18,
         fix={0: 0.38, 9: 3.72, 12: 5.5},
     ),
@@ -81,7 +81,7 @@ PROMOS = {
              ("3334", 1.7, 1.4, 0.3),      # "under": the view from under the tree
              ("3327", 3.1, 1.8, 0.0),      # "stressful situations.": up the dirt track
              ("3276", 4.9, 1.8, 0.2),      # "I can hold that weight": walking selfie in the vest
-             ("3307", 6.7, 1.75, 1.3),     # "on my shoulders.": the sign, tapping the summit bin
+             ("3352", 6.7, 1.75, 1.0),     # "on my shoulders.": the vest at night
              ("3310", 8.45, 2.75, 0.0)],   # James: "Go on, look after yourself", the golden view from the top
         chunks=("I can | put myself | under *stressful* | situations. | I can *hold* | that weight | "
                 "on my *shoulders.*"),

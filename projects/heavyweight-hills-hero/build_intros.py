@@ -53,7 +53,7 @@ MAP["days"] = DAYS
 # the dark jersey)
 HIGH_FACE = {"3276": 300, "3220": 1300}
 # pale backgrounds (concrete footpath, dirt, the white bin): captions over them get a soft dark halo
-LIGHT_BG = {"3386", "3307", "3353"}
+LIGHT_BG = {"3386"}   # (3307/3353, the summit-bin tap, are not used: James found them distracting)
 
 ENDCARD = 3.0      # s: the ask (QR code to the Movember page) after the closing line; cfg endcard=0 leaves it off
 QR = PROJECTS / "heavyweight-hills/film/assets/qr.svg"
@@ -80,13 +80,12 @@ INTROS = {
              ("3267", 23.6, 1.6, 0.85),     # "this one is visible": the vest in full view (before the camera drops)
              ("3319", 25.2, 3.55, 0.0)],   # linger: the harbour from the top (the whole clip)
         map=dict(kind="days", at=12.2),
-        chunks=("Just because I | haven't *posted* it, | doesn't mean I | haven't been | *doing* it. | "
-                "*30* kilo weight | *vest,* | same as | last year. | "
-                "So walking | *up* the hill, | walking *down* | the hill, | obviously. | "
-                "*30* kilos | on my back, | at least | one hill | *every* day | for the whole | month of | *Movember,* | "
-                "and calling it | *Heavyweight* *Hills.* | "
-                "We all carry | our own *weight,* | but this one | is *visible.*"),
-        fix={0: 0.62, 48: 18.62},   # word index → start (Whisper places a few segment starts early)
+        chunks=("Just because I | haven't *posted* it, | doesn't mean | I haven't been | *doing* it. | "
+                "*30* kilo weight | *vest,* same as | last year. | So walking | *up* the hill, | walking *down* | "
+                "the hill, obviously. | *30* kilos | on my back, | at least one | hill *every* day | for the whole | "
+                "month of *Movember,* | and calling it | *Heavyweight* *Hills.* | We all carry | our own *weight,* | "
+                "but this one | is *visible.*"),
+        fix={0: 0.3, 48: 18.62},   # 0: the first caption is up as the video opens   # word index → start (Whisper places a few segment starts early)
     ),
     "intro-b": dict(
         title="Heavyweight Hills — intro B: the why",
@@ -108,10 +107,11 @@ INTROS = {
              ("3290", 24.3, 2.3, 0.95),    # "strong enough to ask": the wave
              ("3428", 26.6, 4.4, 1.3)],    # linger: the Mount at night, James says "Go on, look after yourself"
         map=dict(kind="all", at=1.65),
-        chunks=("So why | bother? | Why do | *Movember?* | Last year | my *uncle* | made the | irreversible | decision | "
-                "that ended up | *shattering* | both sides | of our *family,* | and in | the last | three months, | "
-                "I've lost | two *grandparents.* | So for me, | putting on | this *vest* | is a sign | of *strength.* | "
-                "There's always | a way *out,* | and you | need to be | *strong* enough | to *ask.*"),
+        chunks=("So why | *bother?* | Why do | *Movember?* | Last year | my *uncle* | made the | *irreversible* | "
+                "decision | that ended up | *shattering* | both sides | of our *family,* | and in the | "
+                "last three months, | I've lost two | *grandparents.* | So for me, | putting on | this *vest* | "
+                "is a sign | of *strength.* | There's always | a way *out,* | and you need | to be *strong* | "
+                "enough to *ask.*"),
         spoken_outro=59,   # words from here are James saying "Go on, look after yourself": the closing rows follow them
         fix={0: 0.35, 23: 13.35, 40: 21.1, 45: 23.05, 59: 27.05},
     ),
@@ -133,13 +133,16 @@ def word_span(word, t, d):
 
 MAX_WORDS = 3      # never more than three words on screen (most captions are one or two)
 END_HOLD = 1.1     # s: at a pause, the last caption stays this long after its last word
-MIN_SHOW = 0.45    # s: no caption flashes by faster than this (the next one waits a moment if it has to)
+MIN_SHOW = 0.7     # s: no caption is up for less than this (0.45 s was too quick to read)
+PHRASE_STAGGER = 0.07   # s between words as a phrase writes on
+PHRASE_WRITE = 0.18     # s for a word's letters to fade in
 WRITE_MAX = 0.3    # s: a word's letters are all in within this, so it reads as it is said
 
 
 def captions(spec, words, fix):
     """Captions that track the voice: [(html, at, out)]. Phrasing and green words from the hand-made spec,
-    timing from Whisper: each caption arrives with its first word and stays until the next one is spoken."""
+    timing from Whisper: each phrase arrives (whole) with its first spoken word and stays until the next phrase is
+    spoken, never less than MIN_SHOW (James, Nov 9: one-word captions tied to fast speech flashed by too quickly)."""
     parts = [p.split() for p in spec.split("|")]
     assert all(len(p) <= MAX_WORDS for p in parts), [p for p in parts if len(p) > MAX_WORDS]
     n = sum(map(len, parts))
@@ -152,7 +155,8 @@ def captions(spec, words, fix):
         ws = words[i:i + len(part)]
         i += len(part)
         at = round(max(ws[0][1] - 0.05, free), 2)   # after a quick caption, this one may land a moment late
-        spans = [word_span(t, max(0.0, w[1] - at), min(WRITE_MAX, max(0.15, w[2] - w[1]))) for t, w in zip(part, ws)]
+        # the whole phrase writes on at once (a quick ripple across the words), so it can be read for its full time
+        spans = [word_span(t, j * PHRASE_STAGGER, PHRASE_WRITE) for j, t in enumerate(part)]
         last_end = ws[-1][2]
         nxt = words[i][1] - 0.05 if i < len(words) else None
         if nxt is None or nxt - last_end > END_HOLD:
@@ -161,6 +165,8 @@ def captions(spec, words, fix):
             out_t = max(nxt, at + MIN_SHOW)   # straight on: replaced as the next word is said
         free = out_t
         out.append((" ".join(spans), at, round(out_t, 2)))
+    quick = [(round(o - a, 2), re.sub("<[^>]+>", "", h)) for h, a, o in out if o - a < MIN_SHOW - 0.01]
+    assert not quick, f"captions on screen for less than {MIN_SHOW} s: {quick}"   # never again too quick to read
     return out
 
 
@@ -200,6 +206,7 @@ def build(name, cfg):
             o_html.append((w, t, dur))
     if o_html and caps and caps[-1][2] > outro_at:   # the last caption clears as the closing line starts
         caps[-1] = (caps[-1][0], caps[-1][1], outro_at)
+        assert outro_at - caps[-1][1] >= MIN_SHOW - 0.01, f"{name}: last caption too quick before the closing line"
     if o_html:
         row1 = " ".join(word_span(w, t - outro_at, dd) for w, t, dd in o_html[:1])
         row2_at = o_html[1][1]

@@ -41,11 +41,12 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 
 When an edit carries James's voice-over (e.g. `projects/heavyweight-hills-hero/`), captions **track the voice**
 instead of the hook-line pacing above:
-- **1–2 words on screen at a time, 3 at most**, phrased by hand as natural groups ("Just because I | haven't *posted* it,").
-- Each caption arrives with its first spoken word (Whisper word timings) and stays until the next one is said;
-  never shorter than 0.45 s (the next waits a moment), and it holds 1.1 s at a pause. "They were jumping off the
-  screen too quickly" when they cleared early.
-- Letters still spell in, but fast: a word is complete within 0.3 s of being said.
+- **Phrases of up to 3 words** (mostly 3 in fast speech, 1–2 where he slows down), phrased by hand
+  ("Just because I | haven't *posted* it, | doesn't mean | I haven't been | *doing* it.").
+- Each phrase **writes on whole** (a quick 0.07 s ripple across the words) as its first word is said, and stays until
+  the next phrase is said: **never less than 0.7 s** (the next one waits; keep any lag under ~0.5 s by rephrasing),
+  1.1 s at a pause. James flagged captions "jumping off too quickly" twice: the first fix (1-word captions revealed
+  word by word, 0.45 s minimum) still flashed by in fast speech. `build_intros.captions` now refuses anything shorter.
 - **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
   most one per caption; 124 px Bebas.
 - Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
