@@ -136,3 +136,7 @@ is cut (`<take>.clean.wav`, not committed), then `stitch_vo.py` only levels it:
 Checked by re-transcribing every stitched voice-over against the uncleaned one (same words) and measuring the word
 levels and consonant energy (within 2 dB of the raw recording). The audio in all eight videos was replaced (video
 stream copied, timings unchanged).
+
+UVR check (Nov 9): Ultimate Vocal Remover's Mel-Roformer denoise and De-Echo/De-Reverb models were run on Movember_1;
+they removed almost nothing (−66 / −77 dB), so the takes have little hiss or echo. They stay installed for noisier
+takes (see `MEDIA_SKILLS.md`, "Ultimate Vocal Remover models").

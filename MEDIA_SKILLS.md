@@ -31,6 +31,24 @@ above y 1440 (Instagram UI). Copy the fonts from `brand/fonts/`. Don't fall back
 
 The programs, drivers and models are not stored in the repo. These steps rebuild them (Linux x86_64, as verified; see each project's README for macOS/Windows).
 
+### Ultimate Vocal Remover models (audio-separator)
+
+[Ultimate Vocal Remover](https://github.com/Anjok07/ultimatevocalremovergui) is a desktop (Tk) app; in a headless
+session use its model runner, [audio-separator](https://github.com/nomadkaraoke/python-audio-separator) (same UVR
+models, MIT):
+
+```sh
+pip install "audio-separator[cpu]" audioread        # ~3 GB with PyTorch; add [gpu] on CUDA
+audio-separator take.wav -m denoise_mel_band_roformer_aufr33_sdr_27.9959.ckpt --output_format WAV   # hiss / noise
+audio-separator take.wav -m UVR-DeEcho-DeReverb.pth --output_format WAV                           # room echo
+audio-separator -l --list_filter vocals                                                            # all models
+```
+
+CPU speed here: Mel-Roformer denoise ~6 min per minute of audio, VR De-Echo ~1 min per minute. On James's Nov 2026
+voice memos both removed almost nothing (−66 / −77 dB): the recordings are dry and quiet, and breaths count as voice
+to these models. Breathing is handled by `projects/heavyweight-hills-hero/voiceover/clean_take.py`; reach for UVR
+when a take has wind, traffic, music or a roomy echo under it.
+
 ### VoiceStudio backend (~6 GB with one TTS model)
 
 ```sh
