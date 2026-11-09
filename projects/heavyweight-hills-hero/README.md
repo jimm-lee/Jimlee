@@ -5,7 +5,7 @@
 | File | Length | Story |
 |---|---|---|
 | `Heavyweight-Hills-Intro-A-30s.mp4` | 28.8 s | **The challenge.** "Just because I haven't posted it doesn't mean I haven't been doing it" over the night road climb and the rain → the vest at night → up (feet, the dirt track) / down (the grass slope, the steep path) → "30 kilos on my back" walking selfie → a map pin for every day (Day 1–8, 4 hills) → "Heavyweight Hills" over the terraces → summit selfie → "this one is visible" on the vest in full view → "Go on, look after yourself" over the harbour |
-| `Heavyweight-Hills-Intro-B-30s.mp4` | 29.0 s | **The why.** Opens on the map pulling back from Mount Drury to every hill so far (8 days · 4 hills) → "a bigger reason behind it" → "a memory of someone special" over the harbour with someone sitting alone → his uncle and two grandparents over the night path, the street and the rain → "we all carry weight" on the walking selfie → "some of it is invisible" on the vest's shadow → "this month" on the Running for Movember sign → "no one has to carry that weight alone" on the night wave → "Go on, look after yourself" over the Mount at night |
+| `Heavyweight-Hills-Intro-B-30s.mp4` | 31.0 s | **The why** (Nov 9 re-record). "So why bother?" over the beard coming off (IMG_3220, captions on the dark jersey below the faces) → "Why do Movember?" over the map pulling back to every hill so far → "Last year my uncle made the irreversible decision that ended up shattering both sides of our family" over the harbour, the night path, the surf, the rain → "in the last three months I've lost two grandparents" on the night roads → "So for me, putting on this vest is a sign of strength" on the vest selfies → "There's always a way out, and you need to be strong enough to ask" → James saying "Go on, look after yourself" over the Mount at night, the closing rows appearing word by word with his voice |
 
 Clips used: IMG_3220–3290 (launch footage, re-supplied) and IMG_3313–3430 (Nov 4–8). Captions move up to 300 px over
 3276, where James's head sits high in frame (`HIGH_FACE` in `build_intros.py`); nothing is captioned over a face.
@@ -19,7 +19,7 @@ Mount Drury (1, 2, 4, 5, 8 Nov), 3rd Avenue (3 Nov), 17th Avenue, Tauranga (6 No
 Cliff Road, Tauranga (7 Nov: IMG_3401/3402/3404). Day list: `DAYS` in `build_intros.py`.
 
 **Rebuild:** clips in `clips/` (edit copies of the IMG_33xx/34xx originals: `fps=30,scale=1080:1920:…crop`, SDR so no
-tone-map), voice with `voiceover/stitch_vo.py intro-a|intro-b`, word timings into `voiceover/words-<intro>.json`,
+tone-map), voice with `voiceover/stitch_vo.py intro-a m1=… m2=… m3=…` / `intro-b m4=Movember_4.m4a o=New_Recording_10.m4a`, word timings into `voiceover/words-<intro>.json`,
 then `python3 build_intros.py`, `om render intro-a --silent`, and mux the voice (`loudnorm=I=-14:TP=-1.5`).
 
 ---

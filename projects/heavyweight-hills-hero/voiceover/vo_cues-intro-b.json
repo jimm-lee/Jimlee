@@ -1,42 +1,82 @@
 [
  {
-  "take": "m3",
+  "take": "m4",
   "src": [
-   27.35,
-   32.05
+   1.0,
+   3.8
   ],
   "at": 0.3,
-  "end": 5.0,
-  "text": "It's a physical challenge, but as always, there's a bigger reason behind it."
+  "end": 3.1,
+  "text": "So why bother? Why do Movember?"
  },
  {
-  "take": "m3",
+  "take": "m4",
   "src": [
-   32.22,
-   41.45
+   22.3,
+   31.85
   ],
-  "at": 5.35,
-  "end": 14.58,
-  "text": "It's a memory of someone special. I lost my uncle last year, and in the last three months, I've lost two grandparents."
+  "at": 3.45,
+  "end": 13.0,
+  "text": "Last year my uncle made the irreversible decision that ended up shattering both sides of our family,"
  },
  {
-  "take": "m1",
+  "take": "m4",
   "src": [
-   41.45,
-   45.45
+   70.3,
+   74.65
   ],
-  "at": 15.08,
-  "end": 19.08,
-  "text": "Because we all carry weight, just some of it is invisible."
+  "at": 13.3,
+  "end": 17.65,
+  "text": "and in the last three months I've lost two grandparents."
  },
  {
-  "take": "m3",
+  "take": "m4",
   "src": [
-   71.95,
-   76.55
+   188.05,
+   190.6
   ],
-  "at": 19.63,
-  "end": 24.23,
-  "text": "So this month, let's make sure no one has to carry that weight alone."
+  "at": 18.15,
+  "end": 20.7,
+  "text": "So for me, putting on this vest"
+ },
+ {
+  "take": "m4",
+  "src": [
+   191.45,
+   192.92
+  ],
+  "at": 21.05,
+  "end": 22.52,
+  "text": "is a sign of strength."
+ },
+ {
+  "take": "m4",
+  "src": [
+   298.0,
+   299.1
+  ],
+  "at": 23.02,
+  "end": 24.12,
+  "text": "There's always a way out,"
+ },
+ {
+  "take": "m4",
+  "src": [
+   299.9,
+   301.95
+  ],
+  "at": 24.42,
+  "end": 26.47,
+  "text": "and you need to be strong enough to ask."
+ },
+ {
+  "take": "o",
+  "src": [
+   0.8,
+   3.05
+  ],
+  "at": 27.07,
+  "end": 29.32,
+  "text": "Go on, look after yourself."
  }
 ]

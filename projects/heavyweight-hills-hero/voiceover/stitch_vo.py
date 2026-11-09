@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Stitch the Heavyweight Hills intro voice-overs from James's three Movember voice memos.
 
-Usage: python3 stitch_vo.py <full|intro-a|intro-b> Movember_1.m4a Movember_2.m4a Movember_3.m4a [out.wav]
+Usage: python3 stitch_vo.py <plan> take=file ... [out.wav]
+  full / intro-a:  m1=Movember_1.m4a m2=Movember_2.m4a m3=Movember_3.m4a
+  intro-b:         m4=Movember_4.m4a o=New_Recording_10.m4a   (the longer second take + the closing-line reads)
 
-Each memo is level-matched to -20 LUFS, the selects below are cut at the silences between phrases (20 ms fade in,
+Each take is level-matched to -20 LUFS, the selects below are cut at the silences between phrases (20 ms fade in,
 40 ms fade out), joined with short breaths, then voice-processed and normalised to -16 LUFS / -1.5 dBTP.
 Writes vo_cues-<plan>.json next to this script (where each select sits on the timeline).
 """
@@ -41,13 +43,17 @@ PLANS = {"full": [
     ("m2", 31.30, 33.42, 0.60, "and calling it Heavyweight Hills."),
     ("m3", 57.40, 60.92, 0.00, "We all carry our own weight, but this one is visible."),
 ],
-    # 30 s intro B, "the why": uncle and grandparents, the invisible weight, nobody carries it alone
+    # 30 s intro B, "the why" (Nov 9 re-record: Movember_4 + New Recording 10 for the spoken closing line)
     "intro-b": [
-    ("m3", 27.35, 32.05, 0.35, "It's a physical challenge, but as always, there's a bigger reason behind it."),
-    ("m3", 32.22, 41.45, 0.50, "It's a memory of someone special. I lost my uncle last year, and in the last three "
-                               "months, I've lost two grandparents."),
-    ("m1", 41.45, 45.45, 0.55, "Because we all carry weight, just some of it is invisible."),
-    ("m3", 71.95, 76.55, 0.00, "So this month, let's make sure no one has to carry that weight alone."),
+    ("m4", 1.00, 3.80, 0.35, "So why bother? Why do Movember?"),
+    ("m4", 22.30, 31.85, 0.30, "Last year my uncle made the irreversible decision that ended up shattering both sides "
+                               "of our family,"),
+    ("m4", 70.30, 74.65, 0.50, "and in the last three months I've lost two grandparents."),
+    ("m4", 188.05, 190.60, 0.35, "So for me, putting on this vest"),
+    ("m4", 191.45, 192.92, 0.50, "is a sign of strength."),
+    ("m4", 298.00, 299.10, 0.30, "There's always a way out,"),
+    ("m4", 299.90, 301.95, 0.60, "and you need to be strong enough to ask."),
+    ("o", 0.80, 3.05, 0.00, "Go on, look after yourself."),
 ]}
 VOICE = ("highpass=f=90,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1:g=3,"
          "acompressor=threshold=0.08:ratio=3:attack=8:release=200:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7")
@@ -58,20 +64,26 @@ def ffmpeg(*args: str) -> None:
 
 
 def main() -> None:
-    if len(sys.argv) < 5 or sys.argv[1] not in PLANS:
+    args = sys.argv[1:]
+    if not args or args[0] not in PLANS:
         sys.exit(__doc__)
-    name, memos = sys.argv[1], sys.argv[2:5]
-    out = sys.argv[5] if len(sys.argv) > 5 else f"Heavyweight-Hills-{name}-VO.wav"
-    plan = PLANS[name]
+    name, plan = args[0], PLANS[args[0]]
+    takes = dict(a.split("=", 1) for a in args[1:] if "=" in a)
+    rest = [a for a in args[1:] if "=" not in a]
+    out = rest[0] if rest else f"Heavyweight-Hills-{name}-VO.wav"
+    order = sorted({t for t, *_ in plan})
+    missing = [t for t in order if t not in takes]
+    if missing:
+        sys.exit(f"missing takes for {name}: {', '.join(missing)}\n{__doc__}")
     levelled = []
-    for i, memo in enumerate(memos, 1):
-        dst = f"_m{i}.wav"
-        ffmpeg("-i", memo, "-ac", "1", "-af", "loudnorm=I=-20:TP=-3:LRA=11", "-ar", "48000", dst)
+    for i, t in enumerate(order):
+        dst = f"_{t}.wav"
+        ffmpeg("-i", takes[t], "-ac", "1", "-af", "loudnorm=I=-20:TP=-3:LRA=11", "-ar", "48000", dst)
         levelled.append(dst)
     chains, labels, cues, t = [], [], [], LEAD
     for i, (take, a, b, gap, words) in enumerate(plan):
         d = b - a
-        src = int(take[1]) - 1
+        src = order.index(take)
         chains.append(f"[{src}:a]atrim={a}:{b},asetpts=PTS-STARTPTS,afade=t=in:d=0.02,"
                       f"afade=t=out:st={d - 0.04:.3f}:d=0.04,apad=pad_dur={gap}[s{i}]")
         labels.append(f"[s{i}]")

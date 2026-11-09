@@ -181,12 +181,13 @@
   } else {
     // every hill so far, pulling back from Mount Drury
     Object.keys(MAP.hills).forEach((key) => { tl.set('#pn-' + key, { opacity: 1 }, MAP_AT); });
+    const D = MAP_END - MAP_AT, k = Math.min(1, D / 3.3);   // the pull-back fits the time the map has
     tl.fromTo(cam, { cx: MAP.drury[0], cy: MAP.drury[1], w: 900, sy: 1180 },
-              { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250, duration: 2.4, ease: 'power3.inOut', onUpdate: draw, immediateRender: false }, MAP_AT + .2);
-    rise('#lb-drury', MAP_AT + .1);
-    ['ave', 'cliff', '17th'].forEach((key, k) => { rise('#lb-' + key, MAP_AT + 1.5 + k * .15); pulse(key, MAP_AT + 1.5 + k * .15); });
-    pulse('drury', MAP_AT + .3);
-    rise('#cnt-all', MAP_AT + 1.9);
+              { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250, duration: 2.4 * k, ease: 'power3.inOut', onUpdate: draw, immediateRender: false }, MAP_AT + .1);
+    rise('#lb-drury', MAP_AT + .05);
+    ['ave', 'cliff', '17th'].forEach((key, j) => { rise('#lb-' + key, MAP_AT + (1.5 + j * .15) * k); pulse(key, MAP_AT + (1.5 + j * .15) * k); });
+    pulse('drury', MAP_AT + .2);
+    rise('#cnt-all', MAP_AT + 1.9 * k);
   }
 
   // ---------- shots: a slow push-in on the holds, a punch on the quick ones ----------

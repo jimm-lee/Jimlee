@@ -85,25 +85,30 @@ INTROS = {
     ),
     "intro-b": dict(
         title="Heavyweight Hills — intro B: the why",
-        length=29.0,
-        cut=[("3220", 0.0, 2.6, 1.2),      # hook: the beard coming off, the start of Movember
-             ("MAP", 2.6, 2.75, 0.0),      # "a bigger reason": every hill so far, pulling back from Mount Drury
-             ("3269", 5.35, 2.35, 0.0),    # "a memory of someone special": the harbour, someone sitting alone
-             ("3402", 7.7, 2.5, 0.3),      # "my uncle": the empty path at night
-             ("3292", 10.2, 2.2, 1.0),     # "the last three months": night street
-             ("3286", 12.4, 2.2, 0.5),     # "two grandparents": the rain
-             ("3276", 14.6, 2.4, 0.0),     # "we all carry weight": walking selfie in the vest
-             ("3389", 17.0, 2.6, 0.6),     # "some of it is invisible": the shadow
-             ("3315", 19.6, 2.4, 0.0),     # "this month": Running for Movember
-             ("3290", 22.0, 2.6, 0.95),    # "no one has to carry that weight alone": the wave
-             ("3428", 24.6, 4.4, 1.3)],    # linger: the Mount at night
-        map=dict(kind="all", at=2.6),
-        chunks=("It's a physical | *challenge,* | but as always, | there's a | *bigger* reason | behind it. | "
-                "It's a memory | of someone | *special.* | I lost my | *uncle* last year, | and in | the last | "
-                "three months, | I've lost two | *grandparents.* | Because we all | carry *weight.* | "
-                "Just some of | it is *invisible.* | So this month, | let's make sure | no one has | to carry | "
-                "that weight *alone.*"),
-        fix={0: 0.66, 46: 20.1, 47: 20.62},
+        length=31.0,
+        # voice: the Nov 9 re-record (Movember_4) + James saying the closing line (New Recording 10)
+        cut=[("3220", 0.0, 1.65, 1.2),     # hook: the beard coming off, "So why bother?"
+             ("MAP", 1.65, 1.95, 0.0),     # "Why do Movember?": every hill so far, pulling back from Mount Drury
+             ("3269", 3.6, 2.4, 0.0),      # "Last year my uncle": the harbour, someone sitting alone
+             ("3402", 6.0, 2.5, 0.3),      # "made the irreversible decision": the empty path at night
+             ("3320", 8.5, 1.3, 0.0),      # "that ended up": branch over the surf
+             ("3286", 9.8, 2.2, 0.5),      # "shattering both sides": the rain
+             ("3292", 12.0, 1.3, 1.0),     # "of our family": night street
+             ("3373", 13.3, 2.2, 0.6),     # "in the last three months": night road climb
+             ("3377", 15.5, 2.4, 0.0),     # "I've lost two grandparents"
+             ("3276", 17.9, 1.6, 0.2),     # "So for me, putting on": walking selfie in the vest
+             ("3267", 19.5, 1.6, 0.85),    # "this vest": the vest in full view
+             ("3246", 21.1, 1.8, 3.8),     # "is a sign of strength": summit selfie
+             ("3265", 22.9, 1.4, 1.0),     # "There's always a way out": the steep path up
+             ("3290", 24.3, 2.3, 0.95),    # "strong enough to ask": the wave
+             ("3428", 26.6, 4.4, 1.3)],    # linger: the Mount at night, James says "Go on, look after yourself"
+        map=dict(kind="all", at=1.65),
+        chunks=("So why | bother? | Why do | *Movember?* | Last year | my *uncle* | made the | irreversible | decision | "
+                "that ended up | *shattering* | both sides | of our *family,* | and in | the last | three months, | "
+                "I've lost | two *grandparents.* | So for me, | putting on | this *vest* | is a sign | of *strength.* | "
+                "There's always | a way *out,* | and you | need to be | *strong* enough | to *ask.*"),
+        spoken_outro=59,   # words from here are James saying "Go on, look after yourself": the closing rows follow them
+        fix={0: 0.35, 23: 13.35, 40: 21.1, 45: 23.05, 59: 27.05},
     ),
 }
 
@@ -167,14 +172,22 @@ def build(name, cfg):
         clips.symlink_to("../../clips")
 
     words = json.loads((HERE / f"voiceover/words-{name}.json").read_text())
-    caps = captions(cfg["chunks"], words, cfg["fix"])
+    for i, start in cfg["fix"].items():
+        words[i][1] = start
+    cut_at = cfg.get("spoken_outro", len(words))
+    caps = captions(cfg["chunks"], words[:cut_at], {})
     length, cut = cfg["length"], cfg["cut"]
     end_at = cut[-1][1]
-    outro_at = end_at + 0.15
-    o_html, t = [], outro_at
-    for k, (w, gap, dur) in enumerate(OUTRO):
-        t += gap
-        o_html.append((w, t, dur))
+    if "spoken_outro" in cfg:   # the closing line is in James's voice: each word appears as he says it
+        spoken = words[cut_at:]
+        outro_at = round(spoken[0][1] - 0.05, 2)
+        o_html = [(w, s, min(WRITE_MAX, max(0.15, e - s))) for (w, *_), (_, s, e) in zip(OUTRO, spoken)]
+    else:
+        outro_at = end_at + 0.15
+        o_html, t = [], outro_at
+        for k, (w, gap, dur) in enumerate(OUTRO):
+            t += gap
+            o_html.append((w, t, dur))
     row1 = " ".join(word_span(w, t - outro_at, dd) for w, t, dd in o_html[:1])
     row2_at = o_html[1][1]
     row2 = " ".join(word_span(w, t - row2_at, dd) for w, t, dd in o_html[1:])
