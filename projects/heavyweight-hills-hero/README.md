@@ -113,3 +113,10 @@ Built from lines in the Nov 9 voice-over (Movember_4) that the intros don't use.
 
 Captions over pale backgrounds (concrete, dirt, the white bin: `LIGHT_BG` in `build_intros.py`) get a soft dark halo.
 New clips Nov 9: IMG_3273, 3304, 3305, 3307, 3310, 3314, 3334, 3353, 3386.
+
+## End card (all intros and promos, Nov 9)
+
+After the closing line every edit now ends on a 3 s end card: "HEAVYWEIGHT HILLS", "SPONSOR MY *SUMMIT*", the launch
+QR code on a white card (scans to <https://movember.com/m/15440871?mc=60>, checked on the rendered frame),
+"SCAN TO DONATE" and the link, over the blurred summit selfie (IMG_3246). `ENDCARD` in `build_intros.py`; set
+`endcard=0` in a plan to leave it off. Lengths: intro A 31.75 s, intro B 34.0 s, promos 13.4–14.5 s.

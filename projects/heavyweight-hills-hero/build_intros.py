@@ -55,6 +55,9 @@ HIGH_FACE = {"3276": 300, "3220": 1300}
 # pale backgrounds (concrete footpath, dirt, the white bin): captions over them get a soft dark halo
 LIGHT_BG = {"3386", "3307", "3353"}
 
+ENDCARD = 3.0      # s: the ask (QR code to the Movember page) after the closing line; cfg endcard=0 leaves it off
+QR = PROJECTS / "heavyweight-hills/film/assets/qr.svg"
+
 OUTRO = [("Go on,", 0.0, 0.32), ("look", 0.38, 0.30), ("after", 0.36, 0.40), ("*yourself*", 0.40, 0.70)]
 
 INTROS = {
@@ -169,6 +172,7 @@ def build(name, cfg):
     for f in ("BebasNeue.woff2", "BebasNeue-OFL.txt", "Outfit-var.woff2", "Outfit-OFL.txt"):
         shutil.copy(FONTS / f, d / "assets/fonts" / f)
     shutil.copy(MAP_SRC / "land.png", d / "assets/map/land.png")
+    shutil.copy(QR, d / "assets/qr.svg")
     clips = d / "assets/clips"
     if not clips.exists():
         clips.symlink_to("../../clips")
@@ -234,13 +238,15 @@ def build(name, cfg):
     html = (HERE / "template.html").read_text()
     for k, v in {"TITLE": cfg["title"], "SHOTS": "\n".join(shots), "TYPES": "\n".join(types), "CUT_JS": cut_js,
                  "TITLES_JS": titles_js, "END": str(end_at), "END_DUR": str(round(length - end_at, 2)),
-                 "LENGTH": str(length), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
+                 "LENGTH": str(length), "ENDCARD_DUR": str(cfg.get("endcard", ENDCARD)), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
                  "MAP_KIND": mp["kind"], "MAP_AT": str(mp["at"]), "MAP_W": str(MAP["width_m"]),
                  "MAP_H": str(MAP["height_m"]),
                  "MAP_STYLE": ' style="visibility:visible"' if mp["at"] == 0 else "", "MAPJSON": json.dumps(MAP, separators=(",", ":"))}.items():
         html = html.replace("{{" + k + "}}", v)
     (d / "index.html").write_text(html)
-    print(f"{name}: {len(caps)} captions, {len(cut)} shots, {length} s")
+    total = round(length + cfg.get("endcard", ENDCARD), 2)
+    (d / "LENGTH").write_text(f"{total}\n")
+    print(f"{name}: {len(caps)} captions, {len(cut)} shots, {total} s (end card from {length} s)")
     return caps
 
 

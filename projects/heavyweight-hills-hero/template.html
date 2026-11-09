@@ -46,6 +46,18 @@
   .place { color: #e9f1f5; }
   .count { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-family: "Bebas Neue"; font-size: 150px; letter-spacing: .035em; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); opacity: 0; }
   .osm { position: absolute; right: 24px; bottom: 470px; font: 400 20px "Outfit"; color: rgba(255,255,255,.55); }
+  /* end card: the ask, as in the launch video, in the hero type (blurred summit selfie behind) */
+  #endcard { position: absolute; inset: 0; visibility: hidden; background: #000; }
+  #endcard .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.4); }
+  #endcard .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ec-title { top: 290px; font-size: 128px; }
+  .ec-ask { top: 420px; font-size: 100px; }
+  .qrwrap { position: absolute; left: 50%; top: 575px; width: 480px; height: 480px; margin-left: -270px; padding: 30px;
+            background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .ec-scan { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font: 500 46px "Outfit"; letter-spacing: 10px;
+             color: var(--accent); text-shadow: var(--shadow); }
+  .ec-url { position: absolute; left: 0; right: 0; top: 1222px; text-align: center; font: 400 40px "Outfit"; text-shadow: var(--shadow); }
 </style>
 </head>
 <body>
@@ -73,6 +85,15 @@
 {{TYPES}}
 
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+
+  <div id="endcard" data-om-id="end-card">
+    <div class="bg"><video src="assets/clips/3246.mp4" class="clip" data-start="{{LENGTH}}" data-duration="{{ENDCARD_DUR}}" data-media-start="1.0" muted playsinline></video></div>
+    <div class="t ec-title" id="ec1" style="opacity:0">Heavyweight Hills</div>
+    <div class="t ec-ask" id="ec2" style="opacity:0">Sponsor my <span class="acc">summit</span></div>
+    <div class="qrwrap" id="ecq" style="opacity:0"><img src="assets/qr.svg" alt="QR code to James Leahy's Movember page"></div>
+    <div class="ec-scan" id="ec3" style="opacity:0">SCAN TO DONATE</div>
+    <div class="ec-url" id="ec4" style="opacity:0">movember.com/m/15440871</div>
+  </div>
 </div>
 
 <script>
@@ -180,7 +201,19 @@
   tl.addLabel('scene:linger', END);
   tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.08, duration: {{END_DUR}} - .5, ease: 'sine.inOut' }, END + .5);
   tl.to('#fade', { opacity: 1, duration: {{FADE_OUT}}, ease: 'sine.in' }, LENGTH - {{FADE_OUT}});
-  tl.to({}, { duration: .001 }, LENGTH - .001);
+  // ---------- end card: the ask, a beat after the closing line ----------
+  const ENDCARD = {{ENDCARD_DUR}};
+  if (ENDCARD > 0) {
+    tl.addLabel('scene:endcard', LENGTH);
+    tl.set('#endcard', { visibility: 'visible' }, LENGTH)
+      .fromTo('#endcard', { opacity: 0 }, { opacity: 1, duration: .35, ease: 'none', immediateRender: false }, LENGTH);
+    rise('#ec1', LENGTH + .15);
+    rise('#ec2', LENGTH + .4);
+    tl.fromTo('#ecq', { opacity: 0, scale: .75, rotation: -4 }, { opacity: 1, scale: 1, rotation: 0, duration: .6, ease: 'back.out(1.6)', immediateRender: false }, LENGTH + .65);
+    rise('#ec3', LENGTH + 1.0);
+    rise('#ec4', LENGTH + 1.2);
+  }
+  tl.to({}, { duration: .001 }, LENGTH + ENDCARD - .001);
 
   window.__timelines['film'] = tl;
 </script>

@@ -48,6 +48,9 @@ instead of the hook-line pacing above:
 - Letters still spell in, but fast: a word is complete within 0.3 s of being said.
 - **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
   most one per caption; 124 px Bebas.
+- Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
+  the call to action, Nov 9): Heavyweight Hills / Sponsor my *summit* / QR / Scan to donate / link, 3 s. The
+  "no name card" rule still holds for lifestyle hero edits.
 
 ## Structure (five parts) and variety
 
