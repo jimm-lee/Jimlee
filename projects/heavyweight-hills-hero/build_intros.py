@@ -48,8 +48,10 @@ DAYS = ["drury", "drury", "ave", "drury", "drury", "17th", "cliff", "drury"]   #
 MAP["hills"] = HILLS
 MAP["days"] = DAYS
 
-# shots where James's head sits high in frame: captions starting over them move up into the sky
-HIGH_FACE = {"3276": 300}
+# shots where the faces sit where the caption row would be: captions starting over them move to clear space
+# (3276: James's head sits high, so up into the sky; 3220: faces mid-frame under a white ceiling, so down onto
+# the dark jersey)
+HIGH_FACE = {"3276": 300, "3220": 1300}
 
 OUTRO = [("Go on,", 0.0, 0.32), ("look", 0.38, 0.30), ("after", 0.36, 0.40), ("*yourself*", 0.40, 0.70)]
 
@@ -84,8 +86,8 @@ INTROS = {
     "intro-b": dict(
         title="Heavyweight Hills — intro B: the why",
         length=29.0,
-        cut=[("MAP", 0.0, 3.3, 0.0),       # hook: every hill so far, pulling back from Mount Drury
-             ("3322", 3.3, 2.05, 0.2),     # "a bigger reason": Main Beach through the trees
+        cut=[("3220", 0.0, 2.6, 1.2),      # hook: the beard coming off, the start of Movember
+             ("MAP", 2.6, 2.75, 0.0),      # "a bigger reason": every hill so far, pulling back from Mount Drury
              ("3269", 5.35, 2.35, 0.0),    # "a memory of someone special": the harbour, someone sitting alone
              ("3402", 7.7, 2.5, 0.3),      # "my uncle": the empty path at night
              ("3292", 10.2, 2.2, 1.0),     # "the last three months": night street
@@ -95,7 +97,7 @@ INTROS = {
              ("3315", 19.6, 2.4, 0.0),     # "this month": Running for Movember
              ("3290", 22.0, 2.6, 0.95),    # "no one has to carry that weight alone": the wave
              ("3428", 24.6, 4.4, 1.3)],    # linger: the Mount at night
-        map=dict(kind="all", at=0.0),
+        map=dict(kind="all", at=2.6),
         chunks=("It's a physical | *challenge,* | but as always, | there's a | *bigger* reason | behind it. | "
                 "It's a memory | of someone | *special.* | I lost my | *uncle* last year, | and in | the last | "
                 "three months, | I've lost two | *grandparents.* | Because we all | carry *weight.* | "
