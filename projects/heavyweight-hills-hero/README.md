@@ -104,7 +104,12 @@ Built from lines in the Nov 9 voice-over (Movember_4) that the intros don't use.
 
 | File | Length | Line | Ends on |
 |---|---|---|---|
-| `Promo-Invisible-10s.mp4` | 11.5 s | "Because we all carry weight. Sometimes, most of the time even, it's invisible. You don't see it." (vest selfies → night path → the vest's shadow) | James: "Go on, look after yourself" over the harbour |
+| `Promo-Invisible-10s.mp4` | 11.5 s | "Because we all carry weight. Sometimes, most of the time even, it's invisible. You don't see it." (the Running for Movember sign at the top → vest selfie → night path → the vest's shadow) | James: "Go on, look after yourself" under the old tree over the town |
 | `Promo-Lifetime-10s.mp4` | 10.4 s | "Some people hold that weight on their shoulders for a lifetime and don't tell anyone. There's always someone who can relate to your story." (vest at night → night road → people on the steep path) | "your story." over the Mount at night |
 | `Promo-The-Stare-10s.mp4` | 11.4 s | "Most of the times I stare at that vest for two minutes before even trying to pick it up, preparing myself for a little bit of suffering." (vest selfies → track → feet → slope) | "of suffering." on the grinning summit selfie |
 | `Promo-Needs-To-Change-10s.mp4` | 10.6 s | "So many men hold this weight on their shoulders and don't tell anyone. And that needs to change." (rain → vest at night → night flax → Running for Movember sign) | James: "Go on, look after yourself" over the harbour |
+| `Promo-Inside-Your-Mind-10s.mp4` | 10.4 s | "No one ever knows how bad it really is inside your mind. You just need to say it." (footpath, day into night → empty night path → straight to camera) | James: "Go on, look after yourself" over the terraces in golden light |
+| `Promo-I-Can-Hold-It-10s.mp4` | 11.2 s | "I can put myself under stressful situations. I can hold that weight on my shoulders." (footpath → view under the tree → dirt track → walking selfie → tapping the summit bin with the sign) | James: "Go on, look after yourself" over the golden view from the top |
+
+Captions over pale backgrounds (concrete, dirt, the white bin: `LIGHT_BG` in `build_intros.py`) get a soft dark halo.
+New clips Nov 9: IMG_3273, 3304, 3305, 3307, 3310, 3314, 3334, 3353, 3386.

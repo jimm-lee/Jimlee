@@ -25,6 +25,8 @@
        letter-spacing: .035em; text-transform: uppercase; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); }
   .h { font-size: 124px; }
   .acc { color: var(--accent); text-shadow: var(--shadow); }
+  /* over pale ground (concrete, dirt): a soft dark halo so the words stay readable */
+  .halo, .halo .acc { text-shadow: var(--shadow), 0 0 26px rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.55); }
   .cap { white-space: nowrap; visibility: hidden; }
   .cap .w { display: inline-block; }
   .cap .l { opacity: 0; }

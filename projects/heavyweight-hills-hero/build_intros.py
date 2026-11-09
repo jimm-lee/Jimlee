@@ -52,6 +52,8 @@ MAP["days"] = DAYS
 # (3276: James's head sits high, so up into the sky; 3220: faces mid-frame under a white ceiling, so down onto
 # the dark jersey)
 HIGH_FACE = {"3276": 300, "3220": 1300}
+# pale backgrounds (concrete footpath, dirt, the white bin): captions over them get a soft dark halo
+LIGHT_BG = {"3386", "3307", "3353"}
 
 OUTRO = [("Go on,", 0.0, 0.32), ("look", 0.38, 0.30), ("after", 0.36, 0.40), ("*yourself*", 0.40, 0.70)]
 
@@ -208,12 +210,15 @@ def build(name, cfg):
                      f'class="clip" data-start="{s}" data-duration="{dur}" data-media-start="{m}" muted playsinline>'
                      f'</video></div>')
     cut_js = ", ".join(f"['{'map' if c == 'MAP' else f's{i}'}', {s}, {dur}]" for i, (c, s, dur, m) in enumerate(cut))
-    tops = dict(cfg.get("tops", {}))
-    for i, (_, a, _) in enumerate(caps):
+    tops, halo = dict(cfg.get("tops", {})), set()
+    for i, (_, a, o) in enumerate(caps):
         clip = next((c for c, s, dd, _ in cut if s <= a + 0.05 < s + dd), None)
         if clip in HIGH_FACE:
             tops.setdefault(i, HIGH_FACE[clip])
-    types = [f'  <div class="t h cap" id="c{i}" data-om-id="caption-{i}" style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
+        if any(c in LIGHT_BG and s < o and a < s + dd for c, s, dd, _ in cut):
+            halo.add(i)
+    types = [f'  <div class="t h cap{" halo" if i in halo else ""}" id="c{i}" data-om-id="caption-{i}" '
+             f'style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
              for i, (h, a, o) in enumerate(caps)]
     titles = [(f"c{i}", a, o) for i, (h, a, o) in enumerate(caps)]
     if o_html:

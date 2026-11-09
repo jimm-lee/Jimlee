@@ -78,6 +78,18 @@ PLANS = {"full": [
     ("m4", 222.05, 223.22, 0.50, "don't tell anyone."),
     ("m4", 230.15, 231.36, 0.60, "And that needs to change."),
     ("o", 29.40, 31.15, 0.00, "Go on, look after yourself."),
+],
+    "promo-mind": [
+    ("m4", 253.20, 256.30, 0.30, "No one ever knows how bad it really is"),
+    ("m4", 258.38, 259.56, 0.60, "inside your mind."),
+    ("m4", 282.28, 283.40, 0.60, "You just need to say it."),
+    ("o", 9.25, 11.42, 0.00, "Go on, look after yourself."),
+],
+    "promo-hold": [
+    ("m4", 194.40, 197.10, 0.15, "I can put myself under"),
+    ("m4", 197.85, 199.40, 0.40, "stressful situations."),
+    ("m4", 200.35, 203.10, 0.60, "I can hold that weight on my shoulders"),
+    ("o", 17.62, 19.28, 0.00, "Go on, look after yourself."),
 ]}
 VOICE = ("highpass=f=90,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3200:t=q:w=1:g=3,"
          "acompressor=threshold=0.08:ratio=3:attack=8:release=200:makeup=2,loudnorm=I=-16:TP=-1.5:LRA=7")
