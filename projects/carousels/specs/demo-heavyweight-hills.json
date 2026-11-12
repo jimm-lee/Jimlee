@@ -1,0 +1,20 @@
+{
+  "title": "Heavyweight Hills - halfway (demo built from video stills)",
+  "caption": "Halfway through Heavyweight Hills. 30 kg on my back, up and down every hill around here, all Movember long. Sponsor my summit: link in bio.",
+  "slides": [
+    { "layout": "cover", "image": "../demo-photos/vest-selfie.jpg", "focus": "50% 35%",
+      "kicker": "Movember · Heavyweight Hills", "title": "30 KG.\n*EVERY* HILL.", "position": "bottom" },
+    { "layout": "photo", "image": "../demo-photos/steep-track.jpg",
+      "kicker": "Day 4 · Mount Drury", "line": "Twice straight up the *steep* face." },
+    { "layout": "stat", "image": "../demo-photos/summit-view.jpg",
+      "kicker": "Day 4", "value": "*4*", "line": "summits. Burning the calves." },
+    { "layout": "pair", "images": ["../demo-photos/rain.jpg", "../demo-photos/night.jpg"],
+      "kicker": "Day 3 · 3rd Avenue", "line": "*5* summits. In the rain. By night." },
+    { "layout": "words", "image": "../demo-photos/grass-hill.jpg",
+      "kicker": "Why", "line": "Why carry *30 kg*?",
+      "small": "Because plenty of blokes are carrying something heavier, and not talking about it. Movember funds men's mental health, prostate and testicular cancer." },
+    { "layout": "ask", "image": "../demo-photos/movember-card.jpg",
+      "kicker": "18 days to go", "title": "Sponsor my *summit*",
+      "line": "Every dollar goes to Movember.", "link": "movember.com/m/15440871 · link in bio" }
+  ]
+}

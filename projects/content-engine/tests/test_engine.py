@@ -54,6 +54,16 @@ def test_full_run_writes_report_and_json(fake_model, tmp_path):
     assert len(data["briefs"]) == 2
 
 
+def test_context_file_is_added_to_what_the_model_knows(tmp_path):
+    creator = tmp_path / "creator.md"
+    creator.write_text("A creator in Tauranga.")
+    context = tmp_path / "campaign.md"
+    context.write_text("Fight on 3 December.")
+    args = engine.parse_args(["x", "--creator-file", str(creator), "--context-file", str(context)])
+    background = engine.load_background(args)
+    assert "A creator in Tauranga." in background and "Fight on 3 December." in background
+
+
 def test_theme_count_is_capped_at_the_number_of_posting_days():
     assert engine.parse_args(["x", "--themes", "5", "--days", "mon,fri"]).themes == 2
 

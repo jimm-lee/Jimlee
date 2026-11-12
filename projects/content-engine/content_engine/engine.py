@@ -29,6 +29,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Turn one campaign objective into ideas, briefs and a content calendar.")
     parser.add_argument("objective", help="The campaign objective, in a sentence or two.")
     parser.add_argument("--creator-file", type=Path, default=PROJECT_DIR / "creator.md", help="Who the content is for and about.")
+    parser.add_argument("--context-file", type=Path, default=None, help="Campaign facts the model must use (dates, numbers, links).")
     parser.add_argument("--model", default=DEFAULT_MODEL, help="Ollama model name.")
     parser.add_argument("--host", default=DEFAULT_HOST, help="Ollama address.")
     parser.add_argument("--count", type=int, default=20, help="How many ideas to generate.")
@@ -71,8 +72,17 @@ def texts_to_check(ideas: list[Idea], briefs: list[Brief]) -> dict[str, str]:
     return texts
 
 
+def load_background(args: argparse.Namespace) -> str:
+    """Who the creator is, plus any campaign facts, for the model's system prompt."""
+    background = args.creator_file.read_text(encoding="utf-8").strip()
+    if args.context_file:
+        facts = args.context_file.read_text(encoding="utf-8").strip()
+        background += "\n\nCampaign facts (use these exactly; don't invent other numbers, dates or links):\n" + facts
+    return background
+
+
 def run(args: argparse.Namespace) -> Path:
-    creator = args.creator_file.read_text(encoding="utf-8").strip()
+    creator = load_background(args)
     model = OllamaClient(model=args.model, host=args.host)
     today = dt.date.today()
 

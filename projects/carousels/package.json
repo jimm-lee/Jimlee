@@ -1,0 +1,12 @@
+{
+  "name": "carousels",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs",
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.40.0"
+  }
+}
