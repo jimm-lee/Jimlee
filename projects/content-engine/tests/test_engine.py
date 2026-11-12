@@ -105,3 +105,10 @@ def test_milestones_are_parsed_and_shown_in_the_calendar(fake_model, tmp_path):
 def test_bad_milestones_are_rejected():
     with pytest.raises(SystemExit):
         engine.parse_args(["x", "--milestone", "28 Nov=Fight"])
+
+
+def test_report_says_thing_for_a_single_grammar_issue():
+    from content_engine.models import GrammarIssue
+    from content_engine.report import _grammar
+    plan = type("P", (), {"grammar": (GrammarIssue("a", "r", "m", "e", "s"),)})()
+    assert "1 thing to look at" in _grammar(plan)

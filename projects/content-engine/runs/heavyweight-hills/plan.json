@@ -1,0 +1,814 @@
+{
+  "objective": "Keep people following Heavyweight Hills through the second half of Movember and turn followers into sponsors: get them to share the challenge and donate to sponsor my summit",
+  "model": "llama3.2:3b",
+  "created": "2026-11-12",
+  "ideas": [
+    {
+      "id": 1,
+      "title": "Rainy Days and Heavy Vests",
+      "hook": "Rain, sweat, and 30kg of steel",
+      "format": "Reel Montage",
+      "summary": "A sneak peek at how the weighted vest is affecting everyday life in the rain."
+    },
+    {
+      "id": 2,
+      "title": "The Struggle is Real",
+      "hook": "When the rain gets in your face",
+      "format": "Talking to Camera",
+      "summary": "The creator shares a raw, honest moment of struggle with the weighted vest."
+    },
+    {
+      "id": 3,
+      "title": "Weighted Vest Workout",
+      "hook": "My gym routine just got a whole lot harder",
+      "format": "POV",
+      "summary": "The creator takes the weighted vest to the gym for a grueling workout."
+    },
+    {
+      "id": 4,
+      "title": "Hills, Sweat, and Tears",
+      "hook": "I'm not kidding when I say it hurts",
+      "format": "Reel Montage",
+      "summary": "A montage of the toughest hills, the creator's sweat, and their tears."
+    },
+    {
+      "id": 5,
+      "title": "The Weight of It All",
+      "hook": "What's the weight I'm carrying, and is it too much?",
+      "format": "Talking to Camera",
+      "summary": "The creator reflects on the weight of the vest and its impact on mental health."
+    },
+    {
+      "id": 6,
+      "title": "Coffee and Sore Muscles",
+      "hook": "Coffee, pain, and a warm bath",
+      "format": "Talking to Camera",
+      "summary": "The creator shares a morning routine that's as tough as the weighted vest."
+    },
+    {
+      "id": 7,
+      "title": "Hill Repeats",
+      "hook": "The repetitive hill sprints that'll break you",
+      "format": "POV",
+      "summary": "The creator puts the weighted vest to the test with hill repeats."
+    },
+    {
+      "id": 8,
+      "title": "A Night of Rest",
+      "hook": "When the hills take over, but the night says no",
+      "format": "Reel Montage",
+      "summary": "A montage of the creator's nighttime routine, still recovering from the day's hills."
+    },
+    {
+      "id": 9,
+      "title": "The First 10 Days",
+      "hook": "From day one to ten, the story's still unfolding",
+      "format": "Reel Montage",
+      "summary": "A montage of the first 10 days of the challenge, with the creator's voiceover."
+    },
+    {
+      "id": 10,
+      "title": "Sweat, Tears, and Victory",
+      "hook": "When the hills feel like a victory",
+      "format": "Reel Montage",
+      "summary": "A montage of the creator's triumphs on the hills, with a voiceover of pride."
+    },
+    {
+      "id": 11,
+      "title": "Donation Reminder",
+      "hook": "Sponsor my summit, and I'll share more",
+      "format": "Carousel",
+      "summary": "A reminder to donate and sponsor the creator's summit, with a call to action."
+    },
+    {
+      "id": 12,
+      "title": "A Break from the Hills",
+      "hook": "When the hills take a break, and so do I",
+      "format": "Talking to Camera",
+      "summary": "The creator shares a rare moment of downtime, away from the hills."
+    },
+    {
+      "id": 13,
+      "title": "K-1 Conditioning",
+      "hook": "The hills are my new fight conditioning",
+      "format": "POV",
+      "summary": "The creator shares their unique approach to fight conditioning, using the weighted vest."
+    },
+    {
+      "id": 14,
+      "title": "A Reminder of the Goal",
+      "hook": "What I'm fighting for, and why it matters",
+      "format": "Talking to Camera",
+      "summary": "The creator shares the reason behind the challenge and the importance of the Movember fundraiser."
+    },
+    {
+      "id": 15,
+      "title": "The Weight of Movember",
+      "hook": "What Movember means to me, and why I'm doing this",
+      "format": "Reel Montage",
+      "summary": "A montage of the creator's thoughts on Movember and the reason behind their challenge."
+    },
+    {
+      "id": 16,
+      "title": "Day 15 Update",
+      "hook": "I'm halfway through, but the hills don't care",
+      "format": "Reel Montage",
+      "summary": "A mid-point update on the challenge, with the creator's voiceover."
+    },
+    {
+      "id": 17,
+      "title": "A Moment of Self-Reflection",
+      "hook": "When the hills make me question everything",
+      "format": "Talking to Camera",
+      "summary": "The creator shares a moment of self-reflection, highlighting the mental challenge of the weighted vest."
+    },
+    {
+      "id": 18,
+      "title": "The Power of Community",
+      "hook": "Why I need your support, and what it means to me",
+      "format": "Reel Montage",
+      "summary": "A montage of the creator's experiences with the community, highlighting the importance of support."
+    },
+    {
+      "id": 19,
+      "title": "The Last 18 Days",
+      "hook": "The final stretch, and I'm not alone",
+      "format": "Reel Montagne",
+      "summary": "A montage of the creator's journey, with the final 18 days counted down."
+    },
+    {
+      "id": 20,
+      "title": "The Fight Before Movember",
+      "hook": "My first K-1 fight, and the weighted vest",
+      "format": "POV",
+      "summary": "The creator shares their experience of their first K-1 fight, and how the weighted vest prepared them."
+    }
+  ],
+  "ranked": [
+    [
+      {
+        "id": 5,
+        "title": "The Weight of It All",
+        "hook": "What's the weight I'm carrying, and is it too much?",
+        "format": "Talking to Camera",
+        "summary": "The creator reflects on the weight of the vest and its impact on mental health."
+      },
+      {
+        "idea_id": 5,
+        "originality": 9,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "Reflecting on the weight of the vest and its impact on mental health is a thought-provoking topic, but might require some context for maximum impact."
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "title": "The Struggle is Real",
+        "hook": "When the rain gets in your face",
+        "format": "Talking to Camera",
+        "summary": "The creator shares a raw, honest moment of struggle with the weighted vest."
+      },
+      {
+        "idea_id": 2,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 7,
+        "reason": "Sharing a raw, honest moment of struggle with the weighted vest resonates deeply, but might not be a new concept for some viewers."
+      }
+    ],
+    [
+      {
+        "id": 20,
+        "title": "The Fight Before Movember",
+        "hook": "My first K-1 fight, and the weighted vest",
+        "format": "POV",
+        "summary": "The creator shares their experience of their first K-1 fight, and how the weighted vest prepared them."
+      },
+      {
+        "idea_id": 20,
+        "originality": 8,
+        "relatability": 7,
+        "emotional": 9,
+        "reason": "Sharing the experience of a first K-1 fight, combined with the weighted vest, can be intense and relatable for fight enthusiasts."
+      }
+    ],
+    [
+      {
+        "id": 8,
+        "title": "A Night of Rest",
+        "hook": "When the hills take over, but the night says no",
+        "format": "Reel Montage",
+        "summary": "A montage of the creator's nighttime routine, still recovering from the day's hills."
+      },
+      {
+        "idea_id": 8,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 5,
+        "reason": "The montage is visually appealing, but the concept of nighttime recovery is not unique"
+      }
+    ],
+    [
+      {
+        "id": 10,
+        "title": "Sweat, Tears, and Victory",
+        "hook": "When the hills feel like a victory",
+        "format": "Reel Montage",
+        "summary": "A montage of the creator's triumphs on the hills, with a voiceover of pride."
+      },
+      {
+        "idea_id": 10,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 8,
+        "reason": "The victory montage is inspiring, but the concept is somewhat familiar"
+      }
+    ],
+    [
+      {
+        "id": 17,
+        "title": "A Moment of Self-Reflection",
+        "hook": "When the hills make me question everything",
+        "format": "Talking to Camera",
+        "summary": "The creator shares a moment of self-reflection, highlighting the mental challenge of the weighted vest."
+      },
+      {
+        "idea_id": 17,
+        "originality": 7,
+        "relatability": 6,
+        "emotional": 8,
+        "reason": "Sharing a moment of self-reflection can be intense, but the concept might be familiar to some viewers."
+      }
+    ],
+    [
+      {
+        "id": 18,
+        "title": "The Power of Community",
+        "hook": "Why I need your support, and what it means to me",
+        "format": "Reel Montage",
+        "summary": "A montage of the creator's experiences with the community, highlighting the importance of support."
+      },
+      {
+        "idea_id": 18,
+        "originality": 5,
+        "relatability": 9,
+        "emotional": 7,
+        "reason": "A montage of community experiences can be heartwarming, but it's a common format for charity content."
+      }
+    ],
+    [
+      {
+        "id": 14,
+        "title": "A Reminder of the Goal",
+        "hook": "What I'm fighting for, and why it matters",
+        "format": "Talking to Camera",
+        "summary": "The creator shares the reason behind the challenge and the importance of the Movember fundraiser."
+      },
+      {
+        "idea_id": 14,
+        "originality": 5,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "Sharing the reason behind the challenge can be a powerful moment, but it needs to feel genuine and not just a scripted message."
+      }
+    ],
+    [
+      {
+        "id": 15,
+        "title": "The Weight of Movember",
+        "hook": "What Movember means to me, and why I'm doing this",
+        "format": "Reel Montage",
+        "summary": "A montage of the creator's thoughts on Movember and the reason behind their challenge."
+      },
+      {
+        "idea_id": 15,
+        "originality": 3,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "A montage of thoughts on Movember can be a strong emotional connection, but it's a familiar format and might not stand out."
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "title": "Rainy Days and Heavy Vests",
+        "hook": "Rain, sweat, and 30kg of steel",
+        "format": "Reel Montage",
+        "summary": "A sneak peek at how the weighted vest is affecting everyday life in the rain."
+      },
+      {
+        "idea_id": 1,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 5,
+        "reason": "The concept of struggling with a weighted vest in the rain is relatable, but the execution might feel a bit predictable."
+      }
+    ],
+    [
+      {
+        "id": 16,
+        "title": "Day 15 Update",
+        "hook": "I'm halfway through, but the hills don't care",
+        "format": "Reel Montage",
+        "summary": "A mid-point update on the challenge, with the creator's voiceover."
+      },
+      {
+        "idea_id": 16,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 5,
+        "reason": "It's a common format, but the creator's voiceover and a montage of hills can make it relatable."
+      }
+    ],
+    [
+      {
+        "id": 12,
+        "title": "A Break from the Hills",
+        "hook": "When the hills take a break, and so do I",
+        "format": "Talking to Camera",
+        "summary": "The creator shares a rare moment of downtime, away from the hills."
+      },
+      {
+        "idea_id": 12,
+        "originality": 7,
+        "relatability": 6,
+        "emotional": 5,
+        "reason": "A rare moment of downtime could be a welcome respite from the hills, but the execution needs to feel authentic and not just a break from the content."
+      }
+    ],
+    [
+      {
+        "id": 11,
+        "title": "Donation Reminder",
+        "hook": "Sponsor my summit, and I'll share more",
+        "format": "Carousel",
+        "summary": "A reminder to donate and sponsor the creator's summit, with a call to action."
+      },
+      {
+        "idea_id": 11,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 4,
+        "reason": "A standard donation reminder can be seen as a formulaic way to ask for support, but the promise of more content could encourage engagement."
+      }
+    ],
+    [
+      {
+        "id": 4,
+        "title": "Hills, Sweat, and Tears",
+        "hook": "I'm not kidding when I say it hurts",
+        "format": "Reel Montage",
+        "summary": "A montage of the toughest hills, the creator's sweat, and their tears."
+      },
+      {
+        "idea_id": 4,
+        "originality": 4,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "The montage of tough hills and sweat is visually striking, but might not evoke a strong emotional response for some viewers."
+      }
+    ],
+    [
+      {
+        "id": 6,
+        "title": "Coffee and Sore Muscles",
+        "hook": "Coffee, pain, and a warm bath",
+        "format": "Talking to Camera",
+        "summary": "The creator shares a morning routine that's as tough as the weighted vest."
+      },
+      {
+        "idea_id": 6,
+        "originality": 4,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "The morning routine is relatable, but the addition of a weighted vest is not common"
+      }
+    ],
+    [
+      {
+        "id": 19,
+        "title": "The Last 18 Days",
+        "hook": "The final stretch, and I'm not alone",
+        "format": "Reel Montagne",
+        "summary": "A montage of the creator's journey, with the final 18 days counted down."
+      },
+      {
+        "idea_id": 19,
+        "originality": 4,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "Counting down the final stretch can be suspenseful, but the concept is familiar to anyone following a challenge."
+      }
+    ],
+    [
+      {
+        "id": 7,
+        "title": "Hill Repeats",
+        "hook": "The repetitive hill sprints that'll break you",
+        "format": "POV",
+        "summary": "The creator puts the weighted vest to the test with hill repeats."
+      },
+      {
+        "idea_id": 7,
+        "originality": 3,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "The repetitive hill sprints are intense, but the format is fairly common"
+      }
+    ],
+    [
+      {
+        "id": 13,
+        "title": "K-1 Conditioning",
+        "hook": "The hills are my new fight conditioning",
+        "format": "POV",
+        "summary": "The creator shares their unique approach to fight conditioning, using the weighted vest."
+      },
+      {
+        "idea_id": 13,
+        "originality": 4,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "Using the weighted vest as fight conditioning feels like a rehash of existing content, but the POV format could make it feel more intimate."
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "title": "Weighted Vest Workout",
+        "hook": "My gym routine just got a whole lot harder",
+        "format": "POV",
+        "summary": "The creator takes the weighted vest to the gym for a grueling workout."
+      },
+      {
+        "idea_id": 3,
+        "originality": 5,
+        "relatability": 6,
+        "emotional": 4,
+        "reason": "The idea of a weighted vest workout is common, but the execution and specificity of the routine might not stand out."
+      }
+    ],
+    [
+      {
+        "id": 9,
+        "title": "The First 10 Days",
+        "hook": "From day one to ten, the story's still unfolding",
+        "format": "Reel Montage",
+        "summary": "A montage of the first 10 days of the challenge, with the creator's voiceover."
+      },
+      {
+        "idea_id": 9,
+        "originality": 2,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "The first 10 days montage is a generic recap, lacking in depth or originality"
+      }
+    ]
+  ],
+  "selected_ids": [
+    5,
+    2,
+    20,
+    8,
+    10
+  ],
+  "angles": {
+    "5": [
+      {
+        "name": "The Weight of It All (Confession)",
+        "description": "The creator opens up about their mental health struggles and how the weighted vest is affecting them.",
+        "example_hook": "I was struggling to breathe, and I couldn't tell anyone, but the weight of the vest was a silent killer."
+      },
+      {
+        "name": "The Weight of It All (Before-and-After Transformation)",
+        "description": "The creator shows the impact of wearing the weighted vest on their mental state, from frustration to acceptance.",
+        "example_hook": "One day I woke up, and the weight wasn't just on my back - it was on my shoulders, but I was still standing."
+      },
+      {
+        "name": "The Weight of It All (Contrarian Take)",
+        "description": "The creator argues that the weighted vest is actually helping them cope with stress and anxiety.",
+        "example_hook": "They say I'm crazy for doing this, but the weight is my therapy - my therapy that makes me want to scream."
+      },
+      {
+        "name": "The Weight of It All (POV)",
+        "description": "The creator puts themselves in the shoes of someone struggling with mental health and shares their own experience.",
+        "example_hook": "I know what it's like to feel like you're drowning in a sea of expectations - and that's exactly what the weight feels like."
+      }
+    ],
+    "2": [
+      {
+        "name": "Contrarian Take",
+        "description": "The creator challenges the common perception that they're somehow 'tough' or 'dedicated' by sharing a raw, relatable moment of struggle.",
+        "example_hook": "When the rain gets in your face, people think you're just 'toughing it out' but the truth is, I'm just as miserable as the rest of us."
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "The creator shares a moment of intense struggle with the weighted vest, but contrasts it with a previous, more carefree moment.",
+        "example_hook": "I used to think running in the rain was fun, but now I'm not so sure..."
+      },
+      {
+        "name": "Confession",
+        "description": "The creator opens up about their own struggles with the weighted vest, making it a more relatable and honest moment.",
+        "example_hook": "I'm not gonna lie, some days it feels like I'm carrying 30kg of rocks on my back."
+      },
+      {
+        "name": "POV",
+        "description": "The creator puts themselves in the shoes of someone struggling with the weighted vest, making it a more empathetic and personal moment.",
+        "example_hook": "I'm standing here, sweating and gasping, and all I can think is, 'why did I sign up for this?'"
+      }
+    ],
+    "20": [
+      {
+        "name": "Confession",
+        "description": "The creator shares a personal struggle or fear related to the fight, and how the weighted vest helped them overcome it.",
+        "example_hook": "To be honest, I've always been terrified of being punched in the face."
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "The creator shares their experience of training with the weighted vest and how it transformed them for the fight.",
+        "example_hook": "Fast-forward to 16 days before the fight, and I'm now more ready than ever."
+      },
+      {
+        "name": "Contrarian Take",
+        "description": "The creator takes an unconventional view on what it takes to prepare for a fight, and how the weighted vest played a role.",
+        "example_hook": "People think you need to be ripped and lean to take on a K-1 fight, but I think you need to be heavy and strong."
+      },
+      {
+        "name": "POV",
+        "description": "The creator shares their experience of being in the ring, and how the weighted vest prepared them for the physical and mental challenge.",
+        "example_hook": "As I stepped into the ring, the crowd was silent, and all I could think of was the weighted vest that's been with me every step of the way."
+      }
+    ],
+    "8": [
+      {
+        "name": "Small Everyday Moment",
+        "description": "The story would be told through a serene and intimate atmosphere, showcasing the creator's nighttime routine as a means to relax and recharge after a day of intense hill climbing.",
+        "example_hook": "When I'm done with the hills, I'm just done. No more hills for the night."
+      },
+      {
+        "name": "Confession",
+        "description": "The story would be told in a raw and honest tone, with the creator confessing their struggles to recover from the day's hills and how they find solace in their nighttime routine.",
+        "example_hook": "To be honest, some nights I'm lying in bed, wondering if it's all worth it"
+      },
+      {
+        "name": "Contrarian Take",
+        "description": "The story would be told with a humorous and lighthearted tone, poking fun at the idea that recovery is easy and that the creator's nighttime routine is actually just a fancy way of saying 'I'm too tired to do anything'.",
+        "example_hook": "Newsflash: the hills don't take a holiday just because the sun goes down"
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "The story would be told through a before-and-after visual narrative, showcasing the creator's transformation from exhaustion to relaxation through their nighttime routine.",
+        "example_hook": "From exhausted to zen: how my nighttime routine saved the day (and my sanity)"
+      }
+    ],
+    "10": [
+      {
+        "name": "Contrarian Take",
+        "description": "Tell the story from the perspective of someone who thinks the creator is crazy for taking on the challenge.",
+        "example_hook": "When people say you're crazy for doing this, prove 'em wrong."
+      },
+      {
+        "name": "Small Everyday Moment that Stands for Something Bigger",
+        "description": "Show a single, relatable moment on the hills that represents the creator's dedication and perseverance.",
+        "example_hook": "One day, it's just me and the hills, but today it's about more than that."
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "Show the creator's transformation from struggling to complete a hill, to overcoming the weight of the vest and finding success.",
+        "example_hook": "When the only thing heavier than my vest is my doubts."
+      },
+      {
+        "name": "POV - The Hills",
+        "description": "Tell the story from the perspective of the hills themselves, as if they're a character that the creator is battling.",
+        "example_hook": "They're waiting for me, but I'm not giving up."
+      }
+    ]
+  },
+  "briefs": [
+    {
+      "idea_id": 5,
+      "title": "The Weight of It All",
+      "angle": "The Weight of It All (Confession)",
+      "hook": "I'm carrying 30kg, but the weight I'm hiding is worse",
+      "audience": "People in their 20s-40s who want to get outdoors, look after their health, and say yes to more",
+      "core_message": "The weighted vest is not just physical, but also mental",
+      "beginning": "I thought I was just toughening up, but the truth is, I've been struggling",
+      "middle": "The weight I'm carrying is not just 30kg, it's the weight of my secrets",
+      "end": "Now I'm facing my demons, one summit at a time",
+      "emotional_beat": "Vulnerability, Honesty, and Courage",
+      "shots": [],
+      "voiceover": "I was struggling to breathe, and I couldn't tell anyone, but the weight of the vest was a silent killer. It's made me question my limits, but also face my fears. It's time to confront the weight I've been hiding",
+      "caption": "Sponsor my summit and help me carry the weight of mental health. movember.com/m/15440871",
+      "call_to_action": "Donate today and let's conquer the hill together"
+    },
+    {
+      "idea_id": 2,
+      "title": "The Struggle is Real",
+      "angle": "Contrarian Take",
+      "hook": "When the rain gets in your face",
+      "audience": "folowers of @HeavyweightHills who want to be inspired to support Movember",
+      "core_message": "even with dedication, struggle is real and it's okay to admit it",
+      "beginning": "I put on my weighted vest, ready to take on the hills",
+      "middle": "but as I start running, I'm hit with a wave of exhaustion and doubt",
+      "end": "and that's when I remind myself, I'm not alone",
+      "emotional_beat": "vulnerability, self-acceptance",
+      "shots": [
+        "Phone camera on the creator's face, looking down in exhaustion",
+        "Phone camera on the creator's hands, holding the weighted vest",
+        "Phone camera on the creator's body, running uphill",
+        "Phone camera on the creator's face, looking frustrated",
+        "Phone camera on the creator's hands, wiping sweat",
+        "Phone camera on the creator's face, taking a deep breath and smiling",
+        "Phone camera on the creator's hands, unclipping the weighted vest"
+      ],
+      "voiceover": "When the rain gets in your face, people think you're just 'toughing it out' but the truth is, I'm just as miserable as the rest of us. Even with dedication, struggle is real and it's okay to admit it. It's about being honest with yourself, not pretending to be perfect. #HeavyweightHills #Movember #SponsorMySummit",
+      "caption": "Sponsor my summit and let's get through this together",
+      "call_to_action": "link in bio @movember.com/m/15440871"
+    },
+    {
+      "idea_id": 20,
+      "title": "Fear of the Punch",
+      "angle": "Confession",
+      "hook": "My biggest fear, and how it almost stopped me",
+      "audience": "People following Heavyweight Hills on Instagram, particularly men aged 20-40",
+      "core_message": "The weighted vest helped me overcome my fear and prepare for the fight",
+      "beginning": "I'll be honest, I've had a lot of people ask me if I'm crazy for taking on a K-1 fight on Movember. I'd be lying if I said I wasn't scared.",
+      "middle": "But the weighted vest has been my secret training partner, pushing me to face my fears head-on and build up my confidence.",
+      "end": "Now, I'm ready to step into the ring and take on whatever comes my way. Bring it on!",
+      "emotional_beat": "Vulnerability, empowerment, and a hint of nervous energy",
+      "shots": [
+        "A shot of the creator looking nervous and uncertain in front of a mirror or in a dimly lit room. A close-up of the weighted vest, with the creator's hands visible on the straps. A shot of the creator doing a training session, with the weighted vest visible. A shot of the creator looking determined and focused, with a background of a city or a ring. A shot of the creator's face, with a mix of emotions, from fear to confidence."
+      ],
+      "voiceover": "I'd be lying if I said I wasn't scared. But the weighted vest has been my secret training partner. I've faced my fears head-on and built up my confidence. Now, I'm ready to step into the ring.",
+      "caption": "16 days to fight night, and the hills are my conditioning. But my biggest fear? Being punched in the face. Thanks for supporting my summit - every donation counts! [link in bio] #movember #heavyweighthills #sponormysummit",
+      "call_to_action": "Donate now and help me summit the hills and the ring"
+    },
+    {
+      "idea_id": 8,
+      "title": "A Night of Rest",
+      "angle": "Small Everyday Moment",
+      "hook": "When the hills take over, but the night says no",
+      "audience": "Heavyweight Hills followers, aged 20-40, interested in fitness and outdoor activities",
+      "core_message": "The importance of self-care after pushing yourself to the limit.",
+      "beginning": "I sink into the couch, exhausted from a day of hill climbing.",
+      "middle": "A warm bath, a good book, and a quiet evening, all I need.",
+      "end": "The night whispers 'enough' and I surrender.",
+      "emotional_beat": "Relaxation, vulnerability, and acceptance.",
+      "shots": [
+        "A shot of the creator's hands holding a warm cup of tea",
+        "A photo of the couch, with a good book and a throw blanket",
+        "A selfie of the creator face-first in a pillow",
+        "A shot of the clock ticking away on a bedside table",
+        "A quiet moment of the creator sitting on the couch, reading",
+        "A blurred shot of the creator walking outside, into the night",
+        "A final shot of the creator snuggled under a blanket, eyes closed"
+      ],
+      "voiceover": "I'm done with the hills for the night. Just me, my couch, and a good book.",
+      "caption": "[Your name] - Rest is just as important as the climb",
+      "call_to_action": "[Link to Movember donation page] Go on, look after yourself"
+    },
+    {
+      "idea_id": 10,
+      "title": "When People Say I'm Crazy",
+      "angle": "Contrarian Take",
+      "hook": "When people say I'm crazy for doing this, prove 'em wrong",
+      "audience": "Heavyweight Hills followers",
+      "core_message": "Even when others doubt me, I know my determination will see me through",
+      "beginning": "I've had people tell me I'm crazy for taking on 30kg of weight on the hills of Tauranga, but I know my why.",
+      "middle": "I'm not doing it for the likes or the comments, I'm doing it for the challenge.",
+      "end": "And when the hills feel like a victory, they'll be the ones who say I'm not crazy.",
+      "emotional_beat": "Determination and confidence in the face of doubt",
+      "shots": [
+        "A close-up of the creator's face, looking determined",
+        "A shot of the creator lugging the 30kg weighted vest up a hill",
+        "A wide shot of the creator running uphill, sweat pouring down their face",
+        "A shot of the creator's reflection in a lake or water, looking strong",
+        "A short clip of the creator doing a quick workout or exercise",
+        "A shot of the creator's progress tracker or GPS on their phone",
+        "A shot of the creator's mo growing in, as part of the challenge"
+      ],
+      "voiceover": "I've had people doubt me, but I know my why. I'm not doing this for the likes or the comments, I'm doing it for the challenge. When the hills feel like a victory, they'll be the ones who say I'm not crazy. #HeavyweightHills #Movember #SponsorMySummit [link in bio]",
+      "caption": "When people say I'm crazy for doing this, prove 'em wrong",
+      "call_to_action": "Donate now to help me conquer the hills and grow a mo for Movember"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Hill Repeats and Struggle",
+      "description": "Unvarnished looks at the creator's struggles with the weighted vest and hill repeats.",
+      "idea_ids": [
+        2,
+        4,
+        7,
+        17,
+        1,
+        9,
+        11
+      ]
+    },
+    {
+      "name": "The Weight of Movember",
+      "description": "Exploring the creator's thoughts on Movember, the challenge, and the importance of the fundraiser.",
+      "idea_ids": [
+        14,
+        15,
+        18,
+        19,
+        5,
+        10
+      ]
+    },
+    {
+      "name": "Life with the Vest",
+      "description": "A glimpse into the creator's daily life with the weighted vest, from workouts to downtime.",
+      "idea_ids": [
+        3,
+        6,
+        8,
+        12,
+        13,
+        16,
+        20
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-11-13",
+      "theme": "Life with the Vest",
+      "idea_id": 20
+    },
+    {
+      "date": "2026-11-16",
+      "theme": "Hill Repeats and Struggle",
+      "idea_id": 2
+    },
+    {
+      "date": "2026-11-18",
+      "theme": "The Weight of Movember",
+      "idea_id": 5
+    },
+    {
+      "date": "2026-11-20",
+      "theme": "Life with the Vest",
+      "idea_id": 8
+    },
+    {
+      "date": "2026-11-23",
+      "theme": "Hill Repeats and Struggle",
+      "idea_id": 17
+    },
+    {
+      "date": "2026-11-25",
+      "theme": "The Weight of Movember",
+      "idea_id": 10
+    },
+    {
+      "date": "2026-11-27",
+      "theme": "Life with the Vest",
+      "idea_id": 16
+    },
+    {
+      "date": "2026-11-30",
+      "theme": "Hill Repeats and Struggle",
+      "idea_id": 1
+    },
+    {
+      "date": "2026-12-02",
+      "theme": "The Weight of Movember",
+      "idea_id": 18
+    }
+  ],
+  "grammar": [
+    {
+      "item": "idea-09-hook",
+      "rule": "DayOneNames",
+      "message": "Ensure proper capitalization of Day One and Day One Premium as brand names.",
+      "excerpt": "day one",
+      "suggestion": "Replace with: “Day One”"
+    }
+  ],
+  "fact_flags": [
+    {
+      "item": "brief-20-middle",
+      "message": "mentions partner; is this true and yours to share?",
+      "excerpt": "But the weighted vest has been my secret training partner, pushing me to face my fears head-on and build up my confidence."
+    },
+    {
+      "item": "brief-20-voiceover",
+      "message": "mentions partner; is this true and yours to share?",
+      "excerpt": "But the weighted vest has been my secret training partner."
+    }
+  ],
+  "milestones": [
+    {
+      "date": "2026-11-28",
+      "label": "Fight night (K-1)"
+    },
+    {
+      "date": "2026-11-30",
+      "label": "Movember ends"
+    }
+  ]
+}

@@ -143,7 +143,7 @@ def _grammar(plan: Plan) -> str:
         for i in plan.grammar
     ]
     return (
-        f"{heading}\n\n{len(plan.grammar)} things to look at. Harper checks against Australian English, "
+        f"{heading}\n\n{len(plan.grammar)} {'thing' if len(plan.grammar) == 1 else 'things'} to look at. Harper checks against Australian English, "
         "the closest dialect it has to New Zealand English.\n\n"
         "| Where | Text | Issue | Suggestion |\n|---|---|---|---|\n" + "\n".join(rows)
     )
