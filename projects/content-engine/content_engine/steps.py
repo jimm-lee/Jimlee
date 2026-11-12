@@ -122,7 +122,7 @@ def group_themes(model: JsonModel, objective: str, creator: str, ideas: list[Ide
         )
         for n, t in enumerate(reply.get("themes", []), start=1)
     ]
-    return normalise_themes(themes, ideas)
+    return normalise_themes(themes, ideas, max_themes=theme_count)
 
 
 def _idea_json(idea: Idea) -> str:

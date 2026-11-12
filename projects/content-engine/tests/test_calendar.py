@@ -28,6 +28,18 @@ def test_normalise_themes_gives_unassigned_ideas_to_smallest_theme():
     assert result[1].idea_ids == (4, 5, 6)
 
 
+def test_normalise_themes_keeps_the_largest_themes_and_folds_in_the_rest():
+    themes = [
+        Theme("Small", "", (1,)),
+        Theme("Big", "", (2, 3, 4)),
+        Theme("Medium", "", (5, 6)),
+        Theme("Tiny", "", (7,)),
+    ]
+    result = normalise_themes(themes, ideas(7), max_themes=2)
+    assert [t.name for t in result] == ["Big", "Medium"]
+    assert sorted(i for t in result for i in t.idea_ids) == [1, 2, 3, 4, 5, 6, 7]
+
+
 def test_each_weekday_keeps_the_same_theme_every_week():
     themes = [Theme("A", "", (1, 2)), Theme("B", "", (3, 4)), Theme("C", "", (5, 6))]
     slots = build_calendar(themes, [1, 2, 3, 4, 5, 6], MONDAY, weeks=2, post_weekdays=(MON, WED, FRI))

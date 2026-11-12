@@ -1,0 +1,822 @@
+{
+  "objective": "Grow my Instagram by getting people who feel stuck in routine to save and share reels that show how small everyday adventures in New Zealand make life better",
+  "model": "llama3.2:3b",
+  "created": "2026-11-12",
+  "ideas": [
+    {
+      "id": 1,
+      "title": "Cold Water Blues",
+      "hook": "Ditching the sauna for a cold water swim",
+      "format": "Reel Montage",
+      "summary": "I share my struggles with cold water swims and the surprising benefits I've found"
+    },
+    {
+      "id": 2,
+      "title": "Running from the Daily Grind",
+      "hook": "Running in my weighted vest on a Monday morning",
+      "format": "POV",
+      "summary": "I take you on a run with me, and show how exercise gets me through the day"
+    },
+    {
+      "id": 3,
+      "title": "Gym vs Sauna",
+      "hook": "Which one wins: the gym or the sauna?",
+      "format": "Talking to Camera",
+      "summary": "I weigh up the pros and cons of each and tell you which one I prefer"
+    },
+    {
+      "id": 4,
+      "title": "Fuel for the Soul",
+      "hook": "Coffee and cake on the road trip",
+      "format": "Reel Montage",
+      "summary": "I show you my go-to breakfast spots on the road and why they're my faves"
+    },
+    {
+      "id": 5,
+      "title": "Mountain Moments",
+      "hook": "Finding peace on a solo mountain hike",
+      "format": "POV",
+      "summary": "I take you on a solo hike and show you how being in nature clears my head"
+    },
+    {
+      "id": 6,
+      "title": "Rugby Sundays",
+      "hook": "The thrill of watching a live rugby match",
+      "format": "Reel Montage",
+      "summary": "I share my passion for rugby and the social side of watching a live match"
+    },
+    {
+      "id": 7,
+      "title": "Sweat, Snot, and Glory",
+      "hook": "Ice bath recovery after a tough run",
+      "format": "Talking to Camera",
+      "summary": "I open up about my ice bath routine and how it's helped me recover from tough workouts"
+    },
+    {
+      "id": 8,
+      "title": "New Zealand Road Trip",
+      "hook": "Exploring the Pacific Highway in a camper van",
+      "format": "Reel Montage",
+      "summary": "I show you my epic road trip and why I'm obsessed with exploring NZ's backroads"
+    },
+    {
+      "id": 9,
+      "title": "Coffee and Friends",
+      "hook": "Meeting up with mates at a new cafe",
+      "format": "Talking to Camera",
+      "summary": "I chat with friends about our favorite cafes and why they're must-visits"
+    },
+    {
+      "id": 10,
+      "title": "Sauna Sessions",
+      "hook": "My favorite sauna spot and why I love it",
+      "format": "Reel Montage",
+      "summary": "I share my go-to sauna spot and the benefits I get from spending time in the heat"
+    },
+    {
+      "id": 11,
+      "title": "Stuck in Routine",
+      "hook": "When the daily grind gets to you",
+      "format": "Talking to Camera",
+      "summary": "I share my struggles with routine and how small adventures can break it"
+    },
+    {
+      "id": 12,
+      "title": "The Weight of it All",
+      "hook": "Lifting heavy and crushing it in the gym",
+      "format": "POV",
+      "summary": "I take you on a tough gym session and show how exercise helps me feel alive"
+    },
+    {
+      "id": 13,
+      "title": "Lake Life",
+      "hook": "Finding peace by the lake",
+      "format": "Reel Montage",
+      "summary": "I show you my favorite lake spots and why I love spending time by the water"
+    },
+    {
+      "id": 14,
+      "title": "Foodie Adventures",
+      "hook": "Trying new foods on the road",
+      "format": "Reel Montage",
+      "summary": "I share my favorite foodie spots on the road and why they're must-tries"
+    },
+    {
+      "id": 15,
+      "title": "Fight Night Frenzy",
+      "hook": "The energy of a live fight night",
+      "format": "Talking to Camera",
+      "summary": "I share my passion for fight nights and the social side of attending live events"
+    },
+    {
+      "id": 16,
+      "title": "Mountain Mist",
+      "hook": "Chasing the mist on a mountain morning",
+      "format": "POV",
+      "summary": "I take you on a solo hike at dawn and show you the magic of the misty mountains"
+    },
+    {
+      "id": 17,
+      "title": "Running in the Rain",
+      "hook": "Rainy day run with a twist",
+      "format": "Reel Montage",
+      "summary": "I show you how running in the rain can be refreshing and exhilarating"
+    },
+    {
+      "id": 18,
+      "title": "Coffee Shop Confessions",
+      "hook": "Coffee shop confessions and guilty pleasures",
+      "format": "Talking to Camera",
+      "summary": "I share my favorite coffee shop confessions and why they're my go-to spots"
+    },
+    {
+      "id": 19,
+      "title": "Cozy Nights In",
+      "hook": "Cozy night in with a good book",
+      "format": "Reel Montage",
+      "summary": "I show you my favorite cozy nights in and why they're essential for self-care"
+    },
+    {
+      "id": 20,
+      "title": "Summer in the City",
+      "hook": "Summer in the city: a different vibe",
+      "format": "POV",
+      "summary": "I take you on a summer day in the city and show you how it's different from the rest of the year"
+    }
+  ],
+  "ranked": [
+    [
+      {
+        "id": 9,
+        "title": "Coffee and Friends",
+        "hook": "Meeting up with mates at a new cafe",
+        "format": "Talking to Camera",
+        "summary": "I chat with friends about our favorite cafes and why they're must-visits"
+      },
+      {
+        "idea_id": 9,
+        "originality": 9,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "Meeting up with friends over coffee is a relatable and common experience, but the excitement and warmth will shine through with your genuine tone"
+      }
+    ],
+    [
+      {
+        "id": 15,
+        "title": "Fight Night Frenzy",
+        "hook": "The energy of a live fight night",
+        "format": "Talking to Camera",
+        "summary": "I share my passion for fight nights and the social side of attending live events"
+      },
+      {
+        "idea_id": 15,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 9,
+        "reason": "Sharing passion for fight nights can be infectious and energetic"
+      }
+    ],
+    [
+      {
+        "id": 7,
+        "title": "Sweat, Snot, and Glory",
+        "hook": "Ice bath recovery after a tough run",
+        "format": "Talking to Camera",
+        "summary": "I open up about my ice bath routine and how it's helped me recover from tough workouts"
+      },
+      {
+        "idea_id": 7,
+        "originality": 8,
+        "relatability": 8,
+        "emotional": 9,
+        "reason": "Sharing an honest and vulnerable experience about ice bath recovery will resonate with viewers who've struggled with post-workout recovery"
+      }
+    ],
+    [
+      {
+        "id": 4,
+        "title": "Fuel for the Soul",
+        "hook": "Coffee and cake on the road trip",
+        "format": "Reel Montage",
+        "summary": "I show you my go-to breakfast spots on the road and why they're my faves"
+      },
+      {
+        "idea_id": 4,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 7,
+        "reason": "The focus on breakfast spots on the road could be an interesting and relatable topic for a reel."
+      }
+    ],
+    [
+      {
+        "id": 5,
+        "title": "Mountain Moments",
+        "hook": "Finding peace on a solo mountain hike",
+        "format": "POV",
+        "summary": "I take you on a solo hike and show you how being in nature clears my head"
+      },
+      {
+        "idea_id": 5,
+        "originality": 7,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "A solo mountain hike POV could be a peaceful and inspiring watch, but it might not be a new idea for many viewers."
+      }
+    ],
+    [
+      {
+        "id": 12,
+        "title": "The Weight of it All",
+        "hook": "Lifting heavy and crushing it in the gym",
+        "format": "POV",
+        "summary": "I take you on a tough gym session and show how exercise helps me feel alive"
+      },
+      {
+        "idea_id": 12,
+        "originality": 7,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "Using POV adds a fresh twist on a familiar gym routine"
+      }
+    ],
+    [
+      {
+        "id": 14,
+        "title": "Foodie Adventures",
+        "hook": "Trying new foods on the road",
+        "format": "Reel Montage",
+        "summary": "I share my favorite foodie spots on the road and why they're must-tries"
+      },
+      {
+        "idea_id": 14,
+        "originality": 7,
+        "relatability": 9,
+        "emotional": 7,
+        "reason": "Foodie adventures are a popular theme, but showcasing local eats can be unique"
+      }
+    ],
+    [
+      {
+        "id": 8,
+        "title": "New Zealand Road Trip",
+        "hook": "Exploring the Pacific Highway in a camper van",
+        "format": "Reel Montage",
+        "summary": "I show you my epic road trip and why I'm obsessed with exploring NZ's backroads"
+      },
+      {
+        "idea_id": 8,
+        "originality": 7,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "A road trip montage is a familiar format, but adding unique angles or personal anecdotes will make it stand out"
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "title": "Running from the Daily Grind",
+        "hook": "Running in my weighted vest on a Monday morning",
+        "format": "POV",
+        "summary": "I take you on a run with me, and show how exercise gets me through the day"
+      },
+      {
+        "idea_id": 2,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 8,
+        "reason": "The weighted vest idea is fresh and might resonate with viewers who are looking for ways to boost their exercise routine."
+      }
+    ],
+    [
+      {
+        "id": 16,
+        "title": "Mountain Mist",
+        "hook": "Chasing the mist on a mountain morning",
+        "format": "POV",
+        "summary": "I take you on a solo hike at dawn and show you the magic of the misty mountains"
+      },
+      {
+        "idea_id": 16,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "While solo hikes are popular, the misty mountain morning is a fairly common trope in NZ outdoor content."
+      }
+    ],
+    [
+      {
+        "id": 19,
+        "title": "Cozy Nights In",
+        "hook": "Cozy night in with a good book",
+        "format": "Reel Montage",
+        "summary": "I show you my favorite cozy nights in and why they're essential for self-care"
+      },
+      {
+        "idea_id": 19,
+        "originality": 5,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "Cozy nights in are a popular self-care activity, but the idea of showcasing them as essential for relaxation is relatable but not particularly new."
+      }
+    ],
+    [
+      {
+        "id": 10,
+        "title": "Sauna Sessions",
+        "hook": "My favorite sauna spot and why I love it",
+        "format": "Reel Montage",
+        "summary": "I share my go-to sauna spot and the benefits I get from spending time in the heat"
+      },
+      {
+        "idea_id": 10,
+        "originality": 6,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "While saunas are a popular wellness trend, sharing your personal experience will help build a connection with viewers"
+      }
+    ],
+    [
+      {
+        "id": 13,
+        "title": "Lake Life",
+        "hook": "Finding peace by the lake",
+        "format": "Reel Montage",
+        "summary": "I show you my favorite lake spots and why I love spending time by the water"
+      },
+      {
+        "idea_id": 13,
+        "originality": 5,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "Lake life is a common New Zealand theme, but visually appealing nonetheless"
+      }
+    ],
+    [
+      {
+        "id": 17,
+        "title": "Running in the Rain",
+        "hook": "Rainy day run with a twist",
+        "format": "Reel Montage",
+        "summary": "I show you how running in the rain can be refreshing and exhilarating"
+      },
+      {
+        "idea_id": 17,
+        "originality": 4,
+        "relatability": 9,
+        "emotional": 6,
+        "reason": "Rainy day running is a relatable experience for many, but the novelty of doing it in the rain is low."
+      }
+    ],
+    [
+      {
+        "id": 6,
+        "title": "Rugby Sundays",
+        "hook": "The thrill of watching a live rugby match",
+        "format": "Reel Montage",
+        "summary": "I share my passion for rugby and the social side of watching a live match"
+      },
+      {
+        "idea_id": 6,
+        "originality": 6,
+        "relatability": 7,
+        "emotional": 5,
+        "reason": "While rugby Sundays are a common theme, the execution and personal touch are what will set your reels apart"
+      }
+    ],
+    [
+      {
+        "id": 11,
+        "title": "Stuck in Routine",
+        "hook": "When the daily grind gets to you",
+        "format": "Talking to Camera",
+        "summary": "I share my struggles with routine and how small adventures can break it"
+      },
+      {
+        "idea_id": 11,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 4,
+        "reason": "Feels like a common 'struggle is real' trope, but relatable nonetheless"
+      }
+    ],
+    [
+      {
+        "id": 18,
+        "title": "Coffee Shop Confessions",
+        "hook": "Coffee shop confessions and guilty pleasures",
+        "format": "Talking to Camera",
+        "summary": "I share my favorite coffee shop confessions and why they're my go-to spots"
+      },
+      {
+        "idea_id": 18,
+        "originality": 5,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "Coffee shop confessions are a common theme, but the idea of sharing personal guilty pleasures is fairly relatable and familiar."
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "title": "Cold Water Blues",
+        "hook": "Ditching the sauna for a cold water swim",
+        "format": "Reel Montage",
+        "summary": "I share my struggles with cold water swims and the surprising benefits I've found"
+      },
+      {
+        "idea_id": 1,
+        "originality": 4,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "The idea of sharing cold water swim struggles is relatable, but the 'blues' title might be a bit too dramatic."
+      }
+    ],
+    [
+      {
+        "id": 20,
+        "title": "Summer in the City",
+        "hook": "Summer in the city: a different vibe",
+        "format": "POV",
+        "summary": "I take you on a summer day in the city and show you how it's different from the rest of the year"
+      },
+      {
+        "idea_id": 20,
+        "originality": 4,
+        "relatability": 8,
+        "emotional": 5,
+        "reason": "Summer in the city is a common theme in NZ content, and the idea of showing it as a different vibe is fairly obvious."
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "title": "Gym vs Sauna",
+        "hook": "Which one wins: the gym or the sauna?",
+        "format": "Talking to Camera",
+        "summary": "I weigh up the pros and cons of each and tell you which one I prefer"
+      },
+      {
+        "idea_id": 3,
+        "originality": 5,
+        "relatability": 6,
+        "emotional": 5,
+        "reason": "The 'gym vs sauna' format is familiar, but the title could be more creative to stand out."
+      }
+    ]
+  ],
+  "selected_ids": [
+    9,
+    15,
+    7,
+    4,
+    5
+  ],
+  "angles": {
+    "9": [
+      {
+        "name": "The Confession",
+        "description": "You'd share a personal struggle with feeling stuck in routine and how it's been alleviated by grabbing coffee with friends",
+        "example_hook": "I've been stuck in a rut, meeting the same old mates for coffee every week. But then I discovered this hidden gem..."
+      },
+      {
+        "name": "The Contrarian Take",
+        "description": "You'd take a contrarian stance on the idea that coffee shops are a necessary evil, and instead share your go-to spot",
+        "example_hook": "I know everyone says the best coffee shops are the ones that are always crowded, but mine's the one that's quiet and worth the wait"
+      },
+      {
+        "name": "The Before-and-After Transformation",
+        "description": "You'd show the audience how grabbing coffee with friends completely flipped your day around",
+        "example_hook": "One of my worst days turned into one of my best when I stumbled upon this little cafe with friends"
+      },
+      {
+        "name": "The POV",
+        "description": "You'd put yourself in the shoes of a friend and recount a memorable coffee date",
+        "example_hook": "I was stuck in a meeting when my mate surprised me with a coffee break at this amazing new spot"
+      }
+    ],
+    "15": [
+      {
+        "name": "Contrarian Take",
+        "description": "I'd argue that fight nights are the perfect antidote to a sedentary lifestyle",
+        "example_hook": "People say fight nights are just about the bloodsport, but I see it as a chance to shake off the week and live a little"
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "I'll share a dramatic shift in how I used to spend my Friday nights vs. how I do now",
+        "example_hook": "From Netflix binges to screaming at the TV with a pint in hand, I used to live for Friday nights, but then I discovered something else"
+      },
+      {
+        "name": "List",
+        "description": "I'll count down the top 3 reasons why I love fight nights",
+        "example_hook": "If you're anything like me, you need a night out that's more than just a drink and a screen, so here's my top 3 for why I'm hooked on fight nights"
+      },
+      {
+        "name": "POV",
+        "description": "I'll put the viewer in the shoes of a seasoned fight night attendee, sharing the thrill and camaraderie",
+        "example_hook": "You're the guy on the edge of your seat, screaming at the screen, and the beer in your hand is getting colder by the minute"
+      }
+    ],
+    "7": [
+      {
+        "name": "Confession",
+        "description": "The story is told from the perspective of a raw, honest confession, with the goal of building trust and relatability.",
+        "example_hook": "I'm not gonna lie, ice baths still freak me out, but they've become the one thing that gets me out of bed in the morning"
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "The story showcases a dramatic transformation, with the goal of inspiring and motivating the audience.",
+        "example_hook": "If you thought ice baths were just for professional athletes, think again"
+      },
+      {
+        "name": "Contrarian Take",
+        "description": "The story presents an unconventional viewpoint, with the goal of sparking curiosity and debate.",
+        "example_hook": "Why do we still think ice baths are only for the elite, when they're actually a lifesaver for us mere mortals"
+      },
+      {
+        "name": "Small Everyday Moment that Stands for Something Bigger",
+        "description": "The story highlights an ordinary moment that reveals a deeper truth or insight, with the goal of inspiring introspection and self-reflection.",
+        "example_hook": "For me, ice baths are about more than just recovery – they're about finding the courage to push past the discomfort"
+      }
+    ],
+    "4": [
+      {
+        "name": "Ordinary Story, Big Impact",
+        "description": "Tell a relatable story that showcases how this small everyday adventure makes a big difference in your life.",
+        "example_hook": "I'm not just fueling up for the drive, I'm fueling up for the day ahead."
+      },
+      {
+        "name": "Fuel for the Soul: A Confession",
+        "description": "Share a personal confession about how your go-to breakfast spots on the road help you overcome a particular challenge or mindset.",
+        "example_hook": "I'll be the first to admit, some mornings I'm a hot mess – but a good breakfast always puts me back on track."
+      },
+      {
+        "name": "Before-and-After Breakfast",
+        "description": "Show a split-screen or before-and-after style comparison of how your breakfast spots have impacted your daily routine or mindset.",
+        "example_hook": "Morning coffee and cake: from sluggish to supercharged – my go-to breakfast spots are a total game-changer."
+      },
+      {
+        "name": "Contrarian Take: Why I Love Road Trip Breakfasts",
+        "description": "Take a contrarian view on why people often overlook the importance of breakfast on road trips, and make a case for why it's essential.",
+        "example_hook": "You might think road trip breakfasts are just a guilty pleasure, but I'm here to tell you – they're a necessity."
+      }
+    ],
+    "5": [
+      {
+        "name": "Confession",
+        "description": "I share a personal struggle with feeling stuck in routine and how being in nature helped me find my way",
+        "example_hook": "I've been stuck in a rut, but a solo hike changed everything"
+      },
+      {
+        "name": "Contrarian take",
+        "description": "I challenge the common myth that solo hiking is only for experienced adventurers and show that it's accessible to anyone",
+        "example_hook": "Don't believe the hype - I'm a city boy who found peace on a solo mountain hike"
+      },
+      {
+        "name": "Before-and-after transformation",
+        "description": "I take you on a solo hike and show how the experience transformed my mind and body",
+        "example_hook": "From burnt-out to refreshed: my solo hike on the mountains"
+      },
+      {
+        "name": "POV",
+        "description": "I put the viewer in my shoes and take them on a solo hike, sharing my thoughts and feelings along the way",
+        "example_hook": "I'll take you on this solo hike and show you what it's really like"
+      }
+    ]
+  },
+  "briefs": [
+    {
+      "idea_id": 9,
+      "title": "Coffee and Friends",
+      "angle": "The Confession",
+      "hook": "Meeting old mates for coffee",
+      "audience": "Those feeling stuck in routine, wanting to break free",
+      "core_message": "Finding joy in everyday adventures with friends",
+      "beginning": "I used to feel like I was stuck in a rut",
+      "middle": "But then I stumbled upon a hidden cafe that changed everything",
+      "end": "Now, every week is a chance to catch up and explore",
+      "emotional_beat": "Warm, uplifting, and relatable",
+      "shots": [
+        "Shot 1: Me chatting with a friend in the cafe",
+        "Shot 2: Close-up of a coffee cup with a smile",
+        "Shot 3: Me walking into the cafe for the first time",
+        "Shot 4: A quick glance at a cafe menu",
+        "Shot 5: Me and my friend laughing and chatting",
+        "Shot 6: A final shot of the cafe exterior",
+        "Shot 7: Me looking directly at the camera with a smile"
+      ],
+      "voiceover": "I was feeling stuck, but then I discovered a new cafe that brought me back to life. Now, every week is a chance to catch up with mates and try something new. It's the little things that make life better",
+      "caption": "Grab a coffee, meet a mate, and shake off the routine",
+      "call_to_action": "Go on, find your own hidden gems and shake off the stuck feeling"
+    },
+    {
+      "idea_id": 15,
+      "title": "Fight Night Frenzy",
+      "angle": "Contrarian Take",
+      "hook": "Sip, scream, repeat: my fight night ritual",
+      "audience": "Young adults stuck in routine, seeking an adrenaline fix",
+      "core_message": "Fight nights offer a social outlet to shake off the week and live a little",
+      "beginning": "I'm not just a fan, I'm a convert",
+      "middle": "There's something about the electric atmosphere that gets me moving",
+      "end": "Now, I'm hooked on the social side",
+      "emotional_beat": "Excitement and liberation",
+      "shots": [
+        "A phone camera shot of a packed arena, with a blur of cheering crowds and flashing lights"
+      ],
+      "voiceover": "I used to think fight nights were just about the fight. Now, it's about the energy, the camaraderie, and the freedom to let go. There's no better way to shake off the week and live a little.",
+      "caption": "When was the last time you let loose and lived a little? #fightnightfrenzy #shaketheweek",
+      "call_to_action": "Tag a friend who's with you at the next fight night"
+    },
+    {
+      "idea_id": 7,
+      "title": "Sweat, Snot, and Glory",
+      "angle": "Confession",
+      "hook": "Ice bath recovery after a tough run",
+      "audience": "People feeling stuck in routine who want to get outdoors",
+      "core_message": "Small everyday adventures can lead to big gains in mental clarity and physical recovery",
+      "beginning": "I'll admit, my ice bath routine still feels like a wild gamble",
+      "middle": "But it's the only thing that gets me out of bed after a tough run",
+      "end": "And for that, I'll take the snot and the sweat",
+      "emotional_beat": "Vulnerability and self-acceptance",
+      "shots": [
+        "My ice bath setup",
+        "A before-and-after shot of my workout face",
+        "A shot of the ice bath water",
+        "A close-up of me taking a breath after the bath",
+        "A shot of me getting out of the bath, wiping my face",
+        "A post-bath shot of me smiling, looking refreshed",
+        "Optional: A quick cut of my sweaty workout gear",
+        "Optional: A shot of my journal or notes with my recovery routine scribbled on it"
+      ],
+      "voiceover": "Ice baths, they're not for the faint of heart, but they've become my go-to recovery hack",
+      "caption": "Ice bath recovery: the hard truth",
+      "call_to_action": "Go on, take the leap and try it yourself"
+    },
+    {
+      "idea_id": 4,
+      "title": "Fuel for the Soul",
+      "angle": "Ordinary Story, Big Impact",
+      "hook": "Coffee and cake on the road trip",
+      "audience": "people feeling stuck in routine, 20s-40s, outdoorsy type",
+      "core_message": "Small adventures spark joy and fuel for the day ahead",
+      "beginning": "I've found that sometimes it's the little things that make all the difference",
+      "middle": "Coffee and cake on the road, the perfect way to refuel and get moving",
+      "end": "Gives me the energy to take on whatever the day throws at me",
+      "emotional_beat": "excitement and optimism",
+      "shots": [
+        "Phone footage of road trip scenic views",
+        "Quick shots of coffee and cake",
+        "Creator's hands holding a coffee cup",
+        "Creator taking a sip of coffee",
+        "Creator smiling at the camera",
+        "Phone footage of a busy road with a hint of a scenic view in the distance"
+      ],
+      "voiceover": "You don't need a big adventure to make a big impact, just a great cuppa and a good story.",
+      "caption": "Coffee and cake on the road, my daily dose of joy",
+      "call_to_action": "Go on, grab a coffee and see where the day takes you"
+    },
+    {
+      "idea_id": 5,
+      "title": "Finding Peace on the Mountain",
+      "angle": "Confession",
+      "hook": "I was stuck, but nature set me free",
+      "audience": "People feeling stuck in routine, looking for a fresh perspective",
+      "core_message": "Nature can be a powerful catalyst for change",
+      "beginning": "I've been feeling stuck in a rut, like I'm just going through the motions",
+      "middle": "But then I laced up my hiking boots and hit the trails",
+      "end": "Now, I'm finding my way again, one mountain at a time",
+      "emotional_beat": "Longing for freedom",
+      "shots": [
+        "Walking into the forest, camera low",
+        "Hiking up the mountain, wind in hair",
+        "Sitting on a rock, taking it all in",
+        "Looking out at the view, feeling the peace",
+        "Returning to the car, feeling refreshed",
+        "Closing shot of the mountain, sunset behind",
+        "Shot of a journal or a book with a few scribbled notes, representing reflection and growth"
+      ],
+      "voiceover": "I was stuck, but nature set me free. Being in the wilderness, I feel my mind clear and my soul lift. It's like the trees and the wind and the sun are reminding me to breathe, to be present, to be me.",
+      "caption": "Finding peace on the mountain. #getoutside #naturetherapy #freedomfound",
+      "call_to_action": "Take a deep breath, and hit the trails with me next week Go on, look after yourself"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Monday Motivation",
+      "description": "Get ready to tackle the week with a dose of exercise and adventure",
+      "idea_ids": [
+        2,
+        12,
+        17,
+        3,
+        7,
+        9,
+        15
+      ]
+    },
+    {
+      "name": "Fuel for the Soul",
+      "description": "Discover the best cafes, food, and drinks to fuel your adventures",
+      "idea_ids": [
+        4,
+        14,
+        18,
+        6,
+        8,
+        10,
+        19
+      ]
+    },
+    {
+      "name": "Escape the Grind",
+      "description": "Escape into nature and explore the best of New Zealand's outdoors",
+      "idea_ids": [
+        1,
+        5,
+        13,
+        16,
+        20,
+        11
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-11-16",
+      "theme": "Monday Motivation",
+      "idea_id": 9
+    },
+    {
+      "date": "2026-11-18",
+      "theme": "Fuel for the Soul",
+      "idea_id": 4
+    },
+    {
+      "date": "2026-11-20",
+      "theme": "Escape the Grind",
+      "idea_id": 5
+    },
+    {
+      "date": "2026-11-23",
+      "theme": "Monday Motivation",
+      "idea_id": 15
+    },
+    {
+      "date": "2026-11-25",
+      "theme": "Fuel for the Soul",
+      "idea_id": 14
+    },
+    {
+      "date": "2026-11-27",
+      "theme": "Escape the Grind",
+      "idea_id": 16
+    },
+    {
+      "date": "2026-11-30",
+      "theme": "Monday Motivation",
+      "idea_id": 7
+    },
+    {
+      "date": "2026-12-02",
+      "theme": "Fuel for the Soul",
+      "idea_id": 8
+    },
+    {
+      "date": "2026-12-04",
+      "theme": "Escape the Grind",
+      "idea_id": 13
+    },
+    {
+      "date": "2026-12-07",
+      "theme": "Monday Motivation",
+      "idea_id": 12
+    },
+    {
+      "date": "2026-12-09",
+      "theme": "Fuel for the Soul",
+      "idea_id": 19
+    },
+    {
+      "date": "2026-12-11",
+      "theme": "Escape the Grind",
+      "idea_id": 11
+    }
+  ],
+  "grammar": [
+    {
+      "item": "idea-10-hook",
+      "rule": "SpellCheck",
+      "message": "Did you mean to spell `favorite` this way?",
+      "excerpt": "favorite",
+      "suggestion": "Replace with: “favourite”"
+    },
+    {
+      "item": "brief-15-caption",
+      "rule": "LetsConfusion",
+      "message": "To suggest an action, use 'let's' or 'let us'.",
+      "excerpt": "let",
+      "suggestion": "Replace with: “let's”"
+    }
+  ]
+}

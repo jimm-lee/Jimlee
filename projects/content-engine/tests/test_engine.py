@@ -54,6 +54,10 @@ def test_full_run_writes_report_and_json(fake_model, tmp_path):
     assert len(data["briefs"]) == 2
 
 
+def test_theme_count_is_capped_at_the_number_of_posting_days():
+    assert engine.parse_args(["x", "--themes", "5", "--days", "mon,fri"]).themes == 2
+
+
 def test_parse_args_rejects_unknown_weekdays():
     with pytest.raises(SystemExit):
         engine.parse_args(["x", "--days", "mon,funday"])

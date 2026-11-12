@@ -9,12 +9,15 @@ from .models import Idea, Slot, Theme
 DAYS_PER_WEEK = 7
 
 
-def normalise_themes(themes: list[Theme], ideas: list[Idea]) -> tuple[Theme, ...]:
-    """Make every idea belong to exactly one theme.
+def normalise_themes(
+    themes: list[Theme], ideas: list[Idea], max_themes: int | None = None
+) -> tuple[Theme, ...]:
+    """Make every idea belong to exactly one of at most `max_themes` themes.
 
-    Small models repeat ids, invent ids or forget some ideas, so: keep the first
-    mention of each real id, drop empty themes, and hand leftover ideas to the
-    smallest theme one at a time.
+    Small models repeat ids, invent ids, forget ideas and return more themes than
+    asked for, so: keep the first mention of each real id, drop empty themes, keep
+    only the largest `max_themes` themes, and hand leftover ideas to the smallest
+    theme one at a time.
     """
     known = {idea.id for idea in ideas}
     seen: set[int] = set()
@@ -26,6 +29,10 @@ def normalise_themes(themes: list[Theme], ideas: list[Idea]) -> tuple[Theme, ...
             cleaned.append(Theme(theme.name, theme.description, ids))
     if not cleaned:
         return (Theme("Everything", "All ideas", tuple(sorted(known))),)
+    if max_themes is not None and len(cleaned) > max_themes:
+        largest = sorted(range(len(cleaned)), key=lambda k: (-len(cleaned[k].idea_ids), k))[:max_themes]
+        cleaned = [cleaned[k] for k in sorted(largest)]
+        seen = {i for theme in cleaned for i in theme.idea_ids}
     for leftover in sorted(known - seen):
         smallest = min(range(len(cleaned)), key=lambda k: len(cleaned[k].idea_ids))
         target = cleaned[smallest]

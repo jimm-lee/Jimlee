@@ -46,6 +46,10 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error(f"--days must be weekday names like mon,wed,fri (got {args.days!r})")
     if min(args.count, args.top, args.themes, args.weeks) < 1:
         parser.error("--count, --top, --themes and --weeks must all be at least 1")
+    posting_days = len(set(args.post_weekdays))
+    if args.themes > posting_days:
+        log.warning("Only %d posting days, so using %d themes (each day owns one).", posting_days, posting_days)
+        args.themes = posting_days
     return args
 
 

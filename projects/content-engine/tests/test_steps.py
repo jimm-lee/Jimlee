@@ -112,3 +112,11 @@ def test_group_themes_cleans_up_model_output():
     reply = {"themes": [{"name": "A", "description": "", "idea_ids": [1, 1, 9]}]}
     themes = group_themes(FakeModel([reply]), "o", "c", ideas, theme_count=2)
     assert sorted(i for t in themes for i in t.idea_ids) == [1, 2, 3]
+
+
+def test_group_themes_never_returns_more_themes_than_asked_for():
+    ideas = [Idea(i, str(i), "", "", "") for i in range(1, 7)]
+    reply = {"themes": [{"name": f"T{i}", "description": "", "idea_ids": [i]} for i in range(1, 7)]}
+    themes = group_themes(FakeModel([reply]), "o", "c", ideas, theme_count=3)
+    assert len(themes) == 3
+    assert sorted(i for t in themes for i in t.idea_ids) == list(range(1, 7))
