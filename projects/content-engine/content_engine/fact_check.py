@@ -14,6 +14,8 @@ from .models import FactFlag
 
 LINK = re.compile(r"\S+\.(?:com|org|nz|net|io)\S*|https?://\S+", re.I)
 PLACEHOLDER = re.compile(r"\[[^\]]*\]")
+# "Shot 2:", "Slide 3 -", or a list marker like "3." at the start of a line or sentence.
+NUMBERING = re.compile(r"\b(?:shot|slide|scene|step|part)\s*\d+\s*[:.\-–]|(?:^|(?<=[.!?]\s))\d+\.\s", re.I)
 NUMBER = re.compile(r"\d+(?:[.,]\d+)?")
 SENTENCE_END = re.compile(r"(?<=[.!?])\s+")
 
@@ -26,7 +28,7 @@ SENSITIVE_TERMS = (
 
 
 def _strip(text: str) -> str:
-    return PLACEHOLDER.sub(" ", LINK.sub(" ", text))
+    return NUMBERING.sub(" ", PLACEHOLDER.sub(" ", LINK.sub(" ", text)))
 
 
 def _numbers(text: str) -> list[str]:

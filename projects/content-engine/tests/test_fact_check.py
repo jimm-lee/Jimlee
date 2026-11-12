@@ -31,3 +31,8 @@ def test_check_brief_texts_quotes_the_sentence_for_each_problem():
     assert flags[0].item == "brief-10-voiceover"
     assert flags[0].excerpt == "I'm doing this for my brother."
     assert "brother" in flags[0].message
+
+
+def test_shot_and_list_numbering_is_not_a_claim():
+    assert unsupported_numbers("Shot 2: stretching. 3. A messy bed", FACTS) == []
+    assert unsupported_numbers("Shot 2: 7 rounds of pads", FACTS) == ["7"]

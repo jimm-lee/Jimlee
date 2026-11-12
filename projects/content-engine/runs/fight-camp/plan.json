@@ -1,0 +1,800 @@
+{
+  "objective": "Launch my first fight in a ring, a K-1 kickboxing bout on Saturday 28 November, and bring my audience through the last two weeks of camp so they are invested in fight night and the result",
+  "model": "llama3.2:3b",
+  "created": "2026-11-12",
+  "ideas": [
+    {
+      "id": 1,
+      "title": "First Fight Jitters",
+      "hook": "Two years of training and now I'm actually scared",
+      "format": "Talking to camera",
+      "summary": "You see a mix of nerves and determination as I talk about my first fight"
+    },
+    {
+      "id": 2,
+      "title": "K-1 Rules vs MMA",
+      "hook": "New rules, new challenges, new me",
+      "format": "Voice-over story",
+      "summary": "An animated explainer on the key differences between K-1 and MMA"
+    },
+    {
+      "id": 3,
+      "title": "Training Montage",
+      "hook": "Sweat, blood, and tears – just another day",
+      "format": "Reel montage",
+      "summary": "A fast-paced montage of me training for the fight"
+    },
+    {
+      "id": 4,
+      "title": "Fight Conditioning",
+      "hook": "I'm not just fighting for myself, I'm fighting for you",
+      "format": "Talking to camera",
+      "summary": "You see how I'm pushing myself with the Heavyweight Hills challenge"
+    },
+    {
+      "id": 5,
+      "title": "The Opponent",
+      "hook": "My opponent's a beast, but I'm feeling hungry",
+      "format": "Voice-over story",
+      "summary": "An introduction to the person I'll be facing in the ring"
+    },
+    {
+      "id": 6,
+      "title": "Fight Night is Coming",
+      "hook": "16 days to go – the countdown begins",
+      "format": "Reel montage",
+      "summary": "A quick recap of the final two weeks of camp"
+    },
+    {
+      "id": 7,
+      "title": "Sore Mornings",
+      "hook": "The price of progress – a healthy dose of pain",
+      "format": "Talking to camera",
+      "summary": "I share my struggles with morning soreness after training"
+    },
+    {
+      "id": 8,
+      "title": "K-1 Lessons",
+      "hook": "Learning the new rules, one kick at a time",
+      "format": "Voice-over story",
+      "summary": "A look at how I'm adapting to K-1's unique rules and requirements"
+    },
+    {
+      "id": 9,
+      "title": "Support System",
+      "hook": "The people in my corner, my greatest allies",
+      "format": "Talking to camera",
+      "summary": "You see the people who are supporting me through this journey"
+    },
+    {
+      "id": 10,
+      "title": "Heavyweight Hills",
+      "hook": "30kg of weight and 10km of hills – it's a beast",
+      "format": "Reel montage",
+      "summary": "A glimpse into my Heavyweight Hills training challenge"
+    },
+    {
+      "id": 11,
+      "title": "Why I Fight",
+      "hook": "It's not just about me – it's about the people who believe",
+      "format": "Talking to camera",
+      "summary": "I share why I'm putting myself through this, for all the people who support me"
+    },
+    {
+      "id": 12,
+      "title": "The Opponent's Stats",
+      "hook": "My opponent's stats don't scare me, my training does",
+      "format": "Voice-over story",
+      "summary": "An overview of the opponent's stats and accomplishments"
+    },
+    {
+      "id": 13,
+      "title": "The Weight Class",
+      "hook": "I'm stepping up to the heavyweight division – the challenge is real",
+      "format": "Talking to camera",
+      "summary": "I explain the weight class I'm competing in and its implications"
+    },
+    {
+      "id": 14,
+      "title": "The Venue",
+      "hook": "The venue is set, the stage is ready",
+      "format": "Talking to camera",
+      "summary": "You see the venue where the fight will take place"
+    },
+    {
+      "id": 15,
+      "title": "The Rounds",
+      "hook": "Three rounds to go – the strategy is set",
+      "format": "Voice-over story",
+      "summary": "An explanation of the fight's round structure and strategy"
+    },
+    {
+      "id": 16,
+      "title": "The Corner",
+      "hook": "The people who have my back, and the people who make me strong",
+      "format": "Talking to camera",
+      "summary": "I talk about the people who are in my corner and how they support me"
+    },
+    {
+      "id": 17,
+      "title": "The Opponent's Fight History",
+      "hook": "My opponent's fight history is long, but mine is just beginning",
+      "format": "Voice-over story",
+      "summary": "A look at the opponent's past fights and their accomplishments"
+    },
+    {
+      "id": 18,
+      "title": "The Crowd",
+      "hook": "The crowd will be electric, and I'll be ready",
+      "format": "Talking to camera",
+      "summary": "I share my thoughts on the crowd's energy and how I plan to feed off it"
+    },
+    {
+      "id": 19,
+      "title": "The Result",
+      "hook": "The result is what matters – will I come out on top?",
+      "format": "Voice-over story",
+      "summary": "A look at the possible outcomes and my strategy for each"
+    },
+    {
+      "id": 20,
+      "title": "Fight Night Predictions",
+      "hook": "I've got a plan, but the fight is never won until it's over",
+      "format": "Talking to camera",
+      "summary": "You see my predictions for the fight and how I plan to execute my strategy"
+    }
+  ],
+  "ranked": [
+    [
+      {
+        "id": 9,
+        "title": "Support System",
+        "hook": "The people in my corner, my greatest allies",
+        "format": "Talking to camera",
+        "summary": "You see the people who are supporting me through this journey"
+      },
+      {
+        "idea_id": 9,
+        "originality": 9,
+        "relatability": 10,
+        "emotional": 9,
+        "reason": "Talking to camera about the people in the corner can create an emotional connection with the audience and make them invested in the journey."
+      }
+    ],
+    [
+      {
+        "id": 7,
+        "title": "Sore Mornings",
+        "hook": "The price of progress – a healthy dose of pain",
+        "format": "Talking to camera",
+        "summary": "I share my struggles with morning soreness after training"
+      },
+      {
+        "idea_id": 7,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 8,
+        "reason": "Sharing personal struggles with morning soreness is a common topic, but being vulnerable about it can make it relatable and engaging."
+      }
+    ],
+    [
+      {
+        "id": 2,
+        "title": "K-1 Rules vs MMA",
+        "hook": "New rules, new challenges, new me",
+        "format": "Voice-over story",
+        "summary": "An animated explainer on the key differences between K-1 and MMA"
+      },
+      {
+        "idea_id": 2,
+        "originality": 8,
+        "relatability": 9,
+        "emotional": 4,
+        "reason": "The explainer format is engaging, but the topic itself is relatively straightforward and might not be new to the audience."
+      }
+    ],
+    [
+      {
+        "id": 15,
+        "title": "The Rounds",
+        "hook": "Three rounds to go – the strategy is set",
+        "format": "Voice-over story",
+        "summary": "An explanation of the fight's round structure and strategy"
+      },
+      {
+        "idea_id": 15,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "Explaining the fight's strategy is a common narrative device, but executed well"
+      }
+    ],
+    [
+      {
+        "id": 18,
+        "title": "The Crowd",
+        "hook": "The crowd will be electric, and I'll be ready",
+        "format": "Talking to camera",
+        "summary": "I share my thoughts on the crowd's energy and how I plan to feed off it"
+      },
+      {
+        "idea_id": 18,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "Talking about the crowd's energy could be a unique perspective, but it's still a common theme"
+      }
+    ],
+    [
+      {
+        "id": 19,
+        "title": "The Result",
+        "hook": "The result is what matters – will I come out on top?",
+        "format": "Voice-over story",
+        "summary": "A look at the possible outcomes and my strategy for each"
+      },
+      {
+        "idea_id": 19,
+        "originality": 5,
+        "relatability": 8,
+        "emotional": 8,
+        "reason": "A voice-over story on possible outcomes is a decent way to showcase strategy, but it's been done before"
+      }
+    ],
+    [
+      {
+        "id": 12,
+        "title": "The Opponent's Stats",
+        "hook": "My opponent's stats don't scare me, my training does",
+        "format": "Voice-over story",
+        "summary": "An overview of the opponent's stats and accomplishments"
+      },
+      {
+        "idea_id": 12,
+        "originality": 6,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "The format is familiar, but presenting an opponent's stats in a story format can be engaging"
+      }
+    ],
+    [
+      {
+        "id": 4,
+        "title": "Fight Conditioning",
+        "hook": "I'm not just fighting for myself, I'm fighting for you",
+        "format": "Talking to camera",
+        "summary": "You see how I'm pushing myself with the Heavyweight Hills challenge"
+      },
+      {
+        "idea_id": 4,
+        "originality": 5,
+        "relatability": 8,
+        "emotional": 7,
+        "reason": "The idea of pushing oneself for a cause is familiar, but the specific context of the Heavyweight Hills challenge adds a unique twist."
+      }
+    ],
+    [
+      {
+        "id": 8,
+        "title": "K-1 Lessons",
+        "hook": "Learning the new rules, one kick at a time",
+        "format": "Voice-over story",
+        "summary": "A look at how I'm adapting to K-1's unique rules and requirements"
+      },
+      {
+        "idea_id": 8,
+        "originality": 6,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "Explaining the rules of K-1 kickboxing may not be new to most fans, but showcasing the difficulties of adapting to new rules can still be informative and entertaining."
+      }
+    ],
+    [
+      {
+        "id": 1,
+        "title": "First Fight Jitters",
+        "hook": "Two years of training and now I'm actually scared",
+        "format": "Talking to camera",
+        "summary": "You see a mix of nerves and determination as I talk about my first fight"
+      },
+      {
+        "idea_id": 1,
+        "originality": 6,
+        "relatability": 7,
+        "emotional": 5,
+        "reason": "The idea is relatable, but the sentiment of being scared is common and not particularly unique."
+      }
+    ],
+    [
+      {
+        "id": 3,
+        "title": "Training Montage",
+        "hook": "Sweat, blood, and tears – just another day",
+        "format": "Reel montage",
+        "summary": "A fast-paced montage of me training for the fight"
+      },
+      {
+        "idea_id": 3,
+        "originality": 4,
+        "relatability": 8,
+        "emotional": 6,
+        "reason": "The montage format is familiar, but the specific context of training for a fight is relatable and could work well."
+      }
+    ],
+    [
+      {
+        "id": 11,
+        "title": "Why I Fight",
+        "hook": "It's not just about me – it's about the people who believe",
+        "format": "Talking to camera",
+        "summary": "I share why I'm putting myself through this, for all the people who support me"
+      },
+      {
+        "idea_id": 11,
+        "originality": 4,
+        "relatability": 6,
+        "emotional": 7,
+        "reason": "While relatable, the idea of sharing why you fight is a common motivational trope"
+      }
+    ],
+    [
+      {
+        "id": 14,
+        "title": "The Venue",
+        "hook": "The venue is set, the stage is ready",
+        "format": "Talking to camera",
+        "summary": "You see the venue where the fight will take place"
+      },
+      {
+        "idea_id": 14,
+        "originality": 5,
+        "relatability": 7,
+        "emotional": 4,
+        "reason": "The venue reveal is a standard promotional tactic"
+      }
+    ],
+    [
+      {
+        "id": 13,
+        "title": "The Weight Class",
+        "hook": "I'm stepping up to the heavyweight division – the challenge is real",
+        "format": "Talking to camera",
+        "summary": "I explain the weight class I'm competing in and its implications"
+      },
+      {
+        "idea_id": 13,
+        "originality": 3,
+        "relatability": 8,
+        "emotional": 5,
+        "reason": "Discussing the weight class is straightforward, but lacks unique insights"
+      }
+    ],
+    [
+      {
+        "id": 20,
+        "title": "Fight Night Predictions",
+        "hook": "I've got a plan, but the fight is never won until it's over",
+        "format": "Talking to camera",
+        "summary": "You see my predictions for the fight and how I plan to execute my strategy"
+      },
+      {
+        "idea_id": 20,
+        "originality": 3,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "Predicting the fight and strategy is a common format, and the 'I've got a plan' line feels like a cliché"
+      }
+    ],
+    [
+      {
+        "id": 16,
+        "title": "The Corner",
+        "hook": "The people who have my back, and the people who make me strong",
+        "format": "Talking to camera",
+        "summary": "I talk about the people who are in my corner and how they support me"
+      },
+      {
+        "idea_id": 16,
+        "originality": 4,
+        "relatability": 6,
+        "emotional": 5,
+        "reason": "A generic 'people in my corner' concept is overused and not particularly original"
+      }
+    ],
+    [
+      {
+        "id": 10,
+        "title": "Heavyweight Hills",
+        "hook": "30kg of weight and 10km of hills – it's a beast",
+        "format": "Reel montage",
+        "summary": "A glimpse into my Heavyweight Hills training challenge"
+      },
+      {
+        "idea_id": 10,
+        "originality": 2,
+        "relatability": 8,
+        "emotional": 5,
+        "reason": "A montage of training challenges may feel like a typical 'training montage', and while it can be engaging, it may not be particularly original."
+      }
+    ],
+    [
+      {
+        "id": 17,
+        "title": "The Opponent's Fight History",
+        "hook": "My opponent's fight history is long, but mine is just beginning",
+        "format": "Voice-over story",
+        "summary": "A look at the opponent's past fights and their accomplishments"
+      },
+      {
+        "idea_id": 17,
+        "originality": 2,
+        "relatability": 7,
+        "emotional": 6,
+        "reason": "A straightforward look at the opponent's past fights is predictable and unengaging"
+      }
+    ],
+    [
+      {
+        "id": 6,
+        "title": "Fight Night is Coming",
+        "hook": "16 days to go – the countdown begins",
+        "format": "Reel montage",
+        "summary": "A quick recap of the final two weeks of camp"
+      },
+      {
+        "idea_id": 6,
+        "originality": 3,
+        "relatability": 5,
+        "emotional": 6,
+        "reason": "The idea of a montage showcasing the final two weeks of camp feels familiar and may not be enough to grab the audience's attention."
+      }
+    ],
+    [
+      {
+        "id": 5,
+        "title": "The Opponent",
+        "hook": "My opponent's a beast, but I'm feeling hungry",
+        "format": "Voice-over story",
+        "summary": "An introduction to the person I'll be facing in the ring"
+      },
+      {
+        "idea_id": 5,
+        "originality": 3,
+        "relatability": 6,
+        "emotional": 3,
+        "reason": "The idea of introducing an opponent is common, and the description of the opponent as 'a beast' feels more like a cliché than a unique perspective."
+      }
+    ]
+  ],
+  "selected_ids": [
+    9,
+    7,
+    2,
+    15,
+    18
+  ],
+  "angles": {
+    "9": [],
+    "7": [
+      {
+        "name": "Contrarian Take",
+        "description": "I share a common misconception about morning soreness, and how it relates to my K-1 training",
+        "example_hook": "People say you're sore because you're not sore enough? Maybe I'm just not sore enough yet"
+      },
+      {
+        "name": "Confession",
+        "description": "I share a personal struggle with morning soreness, and how I'm learning to cope with it",
+        "example_hook": "I used to think I'd be a morning person, but two years of training have taught me otherwise"
+      },
+      {
+        "name": "POV",
+        "description": "I put myself in the shoes of someone who's struggling with morning soreness, and share my own experience",
+        "example_hook": "Waking up with aches and pains, wondering if it's worth getting out of bed"
+      },
+      {
+        "name": "List",
+        "description": "I share a list of things that are 'not working' when it comes to morning soreness, and what I'm trying instead",
+        "example_hook": "The things that are killing me in the morning: why coffee and stretching aren't enough"
+      }
+    ],
+    "2": [
+      {
+        "name": "Contrarian Take",
+        "description": "The story is told from the creator's perspective, where they question the idea of stepping up to K-1 from MMA and challenge the assumption that a switch to K-1 will be a natural progression.",
+        "example_hook": "I've spent years mastering the art of MMA, but people keep telling me I should just switch to K-1. Easy for them to say, but what if I'm not ready?"
+      },
+      {
+        "name": "Letter to Someone",
+        "description": "The story is told from the creator's perspective, where they write a letter to themselves or someone else, explaining their doubts and fears about making the switch to K-1.",
+        "example_hook": "Dear [self], I'm scared to think about stepping into the K-1 ring for the first time. Two years of MMA training is being tossed out the window, and I'm not sure if I'm ready."
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "The story is told from the creator's perspective, where they describe their transformation from an MMA fighter to a K-1 fighter, highlighting the challenges and adaptations they've had to make.",
+        "example_hook": "From MMA to K-1: where two years of training and two different rulesets have taken me on a journey of self-discovery and growth."
+      },
+      {
+        "name": "Small Everyday Moment",
+        "description": "The story is told from the creator's perspective, where they describe a small everyday moment that stands for the bigger challenge of switching to K-1, like trying to adapt to new footwork or hand positioning.",
+        "example_hook": "It's the little things that get in the way - like when I first tried to throw a roundhouse kick with the K-1 guard, and my arm just wasn't cooperating."
+      },
+      {
+        "name": "POV",
+        "description": "The story is told from the creator's perspective, where they describe their experience of trying to adapt to K-1 rules and training, and how it's making them question their decisions.",
+        "example_hook": "I'm standing in front of the mirror, trying to perfect my K-1 stance, but my brain is telling me I'm doing it all wrong."
+      },
+      {
+        "name": "List",
+        "description": "The story is told from the creator's perspective, where they create a list of the things they need to work on to be ready for the K-1 fight, and how it's making them feel overwhelmed.",
+        "example_hook": "I've got a long list of things to work on before I step into the K-1 ring, and it's making me wonder if I'm crazy for thinking I can do this."
+      },
+      {
+        "name": "Confession",
+        "description": "The story is told from the creator's perspective, where they confess their doubts and fears about making the switch to K-1, and how it's making them question their decision to fight.",
+        "example_hook": "I've been lying to myself for years, telling everyone I'm a K-1 fighter, but the truth is, I have no idea what I'm doing."
+      }
+    ],
+    "15": [
+      {
+        "name": "Contrarian Take",
+        "description": "The strategy is not about winning, but about surviving",
+        "example_hook": "The 3-minute warning – what does that mean to me?"
+      },
+      {
+        "name": "POV",
+        "description": "You're in the corner, feeling the weight of the next round",
+        "example_hook": "The weight of the next round – can I even lift it?"
+      },
+      {
+        "name": "Before-and-After Transformation",
+        "description": "I went from a nervous beginner to a strategic fighter",
+        "example_hook": "Two years after my last fight, I'm feeling the pressure again – but this time, I know what I'm doing"
+      },
+      {
+        "name": "Letter to Someone",
+        "description": "I'm writing to myself, to remind myself of what I want to achieve",
+        "example_hook": "Dear [Myself], the stakes are high, but I've got this – can I?"
+      }
+    ],
+    "18": [
+      {
+        "name": "Contrarian Take",
+        "description": "I'll share my take on why the crowd's energy can actually be intimidating, and how I plan to harness it",
+        "example_hook": "I've been told the crowd's energy is what gets me pumped up, but what if it's actually the opposite?"
+      }
+    ]
+  },
+  "briefs": [
+    {
+      "idea_id": 9,
+      "title": "Corner of My Mind",
+      "angle": "Straight story",
+      "hook": "The people in my corner, my greatest allies",
+      "audience": "People in their 20s-40s who want to get outdoors, look after their health and say yes to more",
+      "core_message": "I'm not doing this alone.",
+      "beginning": "I'm standing in my backyard, surrounded by the people who've got my back",
+      "middle": "They're the ones who've been pushing me to train harder, to believe in myself",
+      "end": "And when I step into that ring, I'll be ready, because I've got them with me",
+      "emotional_beat": "Warm, honest, vulnerable",
+      "shots": [
+        "backyard with family and friends",
+        "me talking to the camera with a hint of nervousness",
+        "me doing a heavy pad work session with a friend",
+        "me running in the hills with a weighted vest",
+        "me in the sauna, sweating and looking focused",
+        "me talking to my cornermen in the gym",
+        "me putting on my boxing gloves, looking determined"
+      ],
+      "voiceover": "My corner, my greatest allies. They're the ones who've seen me at my worst and my best. They're the ones who've pushed me to train harder, to believe in myself. They're the ones who've got my back. And when I step into that ring, I'll be ready, because I've got them with me. Go on, look after yourself",
+      "caption": "Follow my journey to fight camp and find out if I can take the hit #FightCamp #K1Kickboxing",
+      "call_to_action": "Follow along for the next two weeks of camp and find out what it's like to be in my corner"
+    },
+    {
+      "idea_id": 7,
+      "title": "People Say I'm Sore",
+      "angle": "Contrarian Take",
+      "hook": "I'm not sore enough",
+      "audience": "Fans and followers who want to get outdoors, look after their health and say yes to more",
+      "core_message": "Morning soreness isn't about how hard you hit, it's about how hard you're willing to work for it",
+      "beginning": "I wake up every morning with aches and pains, wondering if it's all worth it",
+      "middle": "But then I think about why I'm doing this - for the first time in two years, I'm stepping into a ring with a new challenge",
+      "end": "And with that, the pain starts to feel like progress",
+      "emotional_beat": "Relatable, honest, and a hint of cheekiness",
+      "shots": [
+        "Shot 1: Close-up of a bruise or ache on the creator's skin",
+        "Shot 2: The creator stretching or doing a gentle morning movement",
+        "Shot 3: A messy bed with clothes scattered around, implying a rough morning",
+        "Shot 4: The creator speaking directly to the camera with a hint of a smile",
+        "Shot 5: A faint image of a K-1 poster or ring gear in the background",
+        "Shot 6: The creator taking a sip of water or coffee, showing a small glimmer of determination",
+        "Shot 7: A blurred shot of the creator walking outside into the morning light, symbolizing a new day and a new challenge"
+      ],
+      "voiceover": "I'm not sore enough. I'd rather be pushing myself to the limit, not just limping through the day.",
+      "caption": "People say I'm sore enough. Maybe I'm just not sore enough yet. Go on, look after yourself",
+      "call_to_action": "Follow along as I count down to fight night on [link]"
+    },
+    {
+      "idea_id": 2,
+      "title": "Second Guessing",
+      "angle": "Contrarian Take",
+      "hook": "I've spent years mastering the art of MMA, but people keep telling me I should just switch to K-1",
+      "audience": "People in their 20s-40s who want to get outdoors, look after their health and say yes to more",
+      "core_message": "Don't take things at face value, question what you're getting into",
+      "beginning": "I've been training for months, but people keep telling me I should switch to K-1",
+      "middle": "I've always felt like I'm still learning, still figuring out my game",
+      "end": "So, what if I'm not ready? What if I'm making a mistake?",
+      "emotional_beat": "nervous uncertainty",
+      "shots": [
+        "Me in the gym, doing pad work",
+        "Me sitting in front of a whiteboard, studying K-1 techniques",
+        "Me on the road, talking to a coach about my game",
+        "Me doing a Heavyweight Hill training session with a weighted vest",
+        "Me looking at my phone, scrolling through fight tips and strategies",
+        "Me in a sauna, sweating and reflecting on my training",
+        "Me talking to a friend or family member about my doubts"
+      ],
+      "voiceover": "I'm questioning the switch to K-1. Is it a natural progression? Or am I just getting caught up in the hype? I need to stay focused and make sure I'm ready for this new challenge. Go on, look after yourself",
+      "caption": "Second guessing K-1. Am I ready for the change?",
+      "call_to_action": "Follow along as I take you through the last two weeks of camp"
+    },
+    {
+      "idea_id": 15,
+      "title": "The Rounds",
+      "angle": "Contrarian Take",
+      "hook": "3 rounds to go – surviving the test",
+      "audience": "my audience, people who want to get outdoors, look after their health",
+      "core_message": "The strategy is not about winning, but about surviving",
+      "beginning": "[the creator is shown sitting on a bench, looking out at a road ahead]",
+      "middle": "[the creator is shown doing a short workout, sweating and out of breath]",
+      "end": "[the creator is shown sitting on the bench again, looking more relaxed] go on, look after yourself",
+      "emotional_beat": "nervous anticipation",
+      "shots": [
+        "a shot of the road ahead, with the creator's face in the frame",
+        "a close-up of the creator's sweaty face, with a brief pause for breath",
+        "a shot of the creator doing a short workout, with a blurred background",
+        "a medium shot of the creator sitting on the bench, looking out at the road",
+        "a close-up of the creator's hands, with a faint weight vest visible",
+        "a short clip of the creator's corner, with their trainer or coach in the background",
+        "a final shot of the creator sitting on the bench, looking relaxed",
+        "a shot of the creator's phone, with the fight schedule displayed on the screen"
+      ],
+      "voiceover": "I'm not here to win, I'm here to make it through. The 3-minute warning, that's what it's all about for me.",
+      "caption": "Follow me into the ring, fight night is 16 days away",
+      "call_to_action": "[link in bio to follow the creator's journey]"
+    },
+    {
+      "idea_id": 18,
+      "title": "The Crowd's Dark Side",
+      "angle": "Contrarian Take",
+      "hook": "Crowd energy can be a curse, not a blessing",
+      "audience": "Fans who've seen you train and get ready for your fight",
+      "core_message": "Crowd energy can be intimidating, but how do you harness it?",
+      "beginning": "I've been told the crowd's energy is what gets me pumped up",
+      "middle": "But what if it's actually the opposite? What if it's a weight on my shoulders?",
+      "end": "I'll find a way to feed off it, but on my terms",
+      "emotional_beat": "Anxiety, vulnerability, self-awareness",
+      "shots": [
+        "My hands on the ringside rope",
+        "A slow-motion shot of my face in the ring",
+        "Me talking to the corner people",
+        "A quick cut of a crowded arena",
+        "A shot of my weighted vest, with the hills in the background",
+        "Me doing some intense training",
+        "A final shot of me looking straight at the camera"
+      ],
+      "voiceover": "I'll find a way to harness the crowd's energy, but on my terms",
+      "caption": "Can you handle the truth about crowd energy? #FightCamp #CrowdIntimidation",
+      "call_to_action": "Follow along as I prepare for the biggest fight of my life"
+    }
+  ],
+  "themes": [
+    {
+      "name": "Camp Life",
+      "description": "Getting ready for the big fight, one day at a time",
+      "idea_ids": [
+        1,
+        4,
+        7,
+        8,
+        11,
+        17,
+        18,
+        20
+      ]
+    },
+    {
+      "name": "The Opponent",
+      "description": "Learning more about my opponent, and what makes them tick",
+      "idea_ids": [
+        5,
+        12,
+        15,
+        19,
+        6
+      ]
+    },
+    {
+      "name": "Fight Prep",
+      "description": "Training, strategy, and mental preparation for the big day",
+      "idea_ids": [
+        2,
+        3,
+        9,
+        10,
+        13,
+        14,
+        16
+      ]
+    }
+  ],
+  "calendar": [
+    {
+      "date": "2026-11-14",
+      "theme": "Fight Prep",
+      "idea_id": 9
+    },
+    {
+      "date": "2026-11-17",
+      "theme": "Camp Life",
+      "idea_id": 7
+    },
+    {
+      "date": "2026-11-19",
+      "theme": "The Opponent",
+      "idea_id": 15
+    },
+    {
+      "date": "2026-11-21",
+      "theme": "Fight Prep",
+      "idea_id": 2
+    },
+    {
+      "date": "2026-11-24",
+      "theme": "Camp Life",
+      "idea_id": 18
+    },
+    {
+      "date": "2026-11-26",
+      "theme": "The Opponent",
+      "idea_id": 19
+    },
+    {
+      "date": "2026-11-28",
+      "theme": "Fight Prep",
+      "idea_id": 3
+    },
+    {
+      "date": "2026-12-01",
+      "theme": "Camp Life",
+      "idea_id": 4
+    },
+    {
+      "date": "2026-12-03",
+      "theme": "The Opponent",
+      "idea_id": 12
+    }
+  ],
+  "grammar": [],
+  "fact_flags": [
+    {
+      "item": "brief-15-hook",
+      "message": "number not in your facts: 3",
+      "excerpt": "3 rounds to go – surviving the test"
+    },
+    {
+      "item": "brief-15-voiceover",
+      "message": "number not in your facts: 3",
+      "excerpt": "The 3-minute warning, that's what it's all about for me."
+    }
+  ],
+  "milestones": [
+    {
+      "date": "2026-11-23",
+      "label": "Fight week"
+    },
+    {
+      "date": "2026-11-28",
+      "label": "Fight night (K-1)"
+    }
+  ]
+}
