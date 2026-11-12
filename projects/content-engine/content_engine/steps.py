@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 from typing import Any
 
 from . import prompts
@@ -11,7 +12,11 @@ from .models import Angle, Brief, Idea, Score, Theme
 from .ollama_client import JsonModel
 from .scoring import clamp_score
 
+log = logging.getLogger(__name__)
+
 MAX_IDEA_ROUNDS = 3
+MAX_SCORE_ROUNDS = 3
+SCORE_BATCH = 5
 
 
 def _text(value: Any) -> str:
@@ -47,13 +52,30 @@ def generate_ideas(model: JsonModel, objective: str, creator: str, count: int = 
 
 
 def score_ideas(model: JsonModel, objective: str, creator: str, ideas: list[Idea]) -> dict[int, Score]:
-    """Step 2: originality, relatability and emotional potential, 1-10 each."""
-    reply = model.ask_json(prompts.system(creator), prompts.score_prompt(objective, _ideas_json(ideas)), prompts.SCORES_SCHEMA)
-    known = {idea.id for idea in ideas}
+    """Step 2: originality, relatability and emotional potential, 1-10 each.
+
+    Small models sometimes return nothing for a long list, so ideas are scored in
+    batches and any the model skips are asked about again.
+    """
+    scores: dict[int, Score] = {}
+    for _ in range(MAX_SCORE_ROUNDS):
+        missing = [idea for idea in ideas if idea.id not in scores]
+        for start in range(0, len(missing), SCORE_BATCH):
+            batch = missing[start:start + SCORE_BATCH]
+            prompt = prompts.score_prompt(objective, _ideas_json(batch))
+            reply = model.ask_json(prompts.system(creator), prompt, prompts.SCORES_SCHEMA)
+            scores.update(_parse_scores(reply, {idea.id for idea in batch} - set(scores)))
+    unscored = [idea.id for idea in ideas if idea.id not in scores]
+    if unscored:
+        log.warning("The model never scored ideas %s; they rank last.", unscored)
+    return scores
+
+
+def _parse_scores(reply: Any, wanted: set[int]) -> dict[int, Score]:
     scores: dict[int, Score] = {}
     for raw in reply.get("scores", []):
         idea_id = _int_or_none(raw.get("id"))
-        if idea_id not in known or idea_id in scores:
+        if idea_id not in wanted or idea_id in scores:
             continue
         scores[idea_id] = Score(
             idea_id=idea_id,

@@ -80,12 +80,15 @@ def _angles(plan: Plan) -> str:
 
 
 def _briefs(plan: Plan) -> str:
+    titles = {i.id: i.title for i in plan.ideas}
     parts = ["## 4. Creative briefs"]
     for b in plan.briefs:
         shots = "\n".join(f"{n}. {s}" for n, s in enumerate(b.shots, start=1))
+        heading = titles.get(b.idea_id, b.title)
+        working = f"| **Working title** | {cell(b.title)} |\n" if b.title and b.title != heading else ""
         parts.append(
-            f"### #{b.idea_id} {b.title}\n\n"
-            f"| | |\n|---|---|\n"
+            f"### #{b.idea_id} {heading}\n\n"
+            f"| | |\n|---|---|\n{working}"
             f"| **Angle** | {cell(b.angle)} |\n| **Hook** | {cell(b.hook)} |\n"
             f"| **Audience** | {cell(b.audience)} |\n| **Core message** | {cell(b.core_message)} |\n"
             f"| **Emotional beat** | {cell(b.emotional_beat)} |\n| **Call to action** | {cell(b.call_to_action)} |\n\n"

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import shutil
 import subprocess
 import tempfile
@@ -20,6 +21,14 @@ log = logging.getLogger(__name__)
 DEFAULT_DIALECT = "au"
 DICTIONARY = Path(__file__).resolve().parent.parent / "dictionary.txt"
 HARPER_TIMEOUT_S = 300
+# NZ English skips the Oxford comma and writes "wellbeing" unhyphenated.
+IGNORED_RULES = ("OxfordComma", "WellBeing")
+HASHTAG_OR_MENTION = re.compile(r"[#@][\w\u0100-\u024f]+")
+
+
+def prepare_text(text: str) -> str:
+    """Hashtags and @mentions aren't prose, so leave them out of the check."""
+    return re.sub(r"\s{2,}", " ", HASHTAG_OR_MENTION.sub("", text)).strip()
 
 
 def parse_harper_json(output: str) -> list[GrammarIssue]:
@@ -54,9 +63,9 @@ def check_texts(
         paths = []
         for key, text in texts.items():
             path = Path(folder) / f"{key}.txt"
-            path.write_text(text + "\n", encoding="utf-8")
+            path.write_text(prepare_text(text) + "\n", encoding="utf-8")
             paths.append(str(path))
-        command = [binary, "lint", "--format", "json", "--quiet", "--dialect", dialect]
+        command = [binary, "lint", "--format", "json", "--quiet", "--dialect", dialect, "--ignore", ",".join(IGNORED_RULES)]
         if DICTIONARY.exists():
             command += ["--user-dict-path", str(DICTIONARY)]
         result = subprocess.run(

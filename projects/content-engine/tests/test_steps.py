@@ -61,9 +61,29 @@ def test_score_ideas_clamps_and_ignores_unknown_ids():
             {"id": 42, "originality": 5, "relatability": 5, "emotional": 5, "reason": ""},
         ]
     }
-    scores = score_ideas(FakeModel([reply]), "o", "c", ideas)
+    scores = score_ideas(FakeModel([reply, {"scores": []}, {"scores": []}]), "o", "c", ideas)
     assert list(scores) == [1]
     assert (scores[1].originality, scores[1].emotional) == (10, 1)
+
+
+def scores_for(*ids: int) -> dict:
+    return {"scores": [
+        {"id": i, "originality": 5, "relatability": 5, "emotional": 5, "reason": ""} for i in ids
+    ]}
+
+
+def test_score_ideas_scores_in_batches_of_five():
+    ideas = [Idea(i, str(i), "", "", "") for i in range(1, 8)]
+    model = FakeModel([scores_for(1, 2, 3, 4, 5), scores_for(6, 7)])
+    assert sorted(score_ideas(model, "o", "c", ideas)) == list(range(1, 8))
+    assert len(model.prompts) == 2
+
+
+def test_score_ideas_asks_again_for_ideas_the_model_skipped():
+    ideas = [Idea(i, str(i), "", "", "") for i in (1, 2, 3)]
+    model = FakeModel([{"scores": []}, scores_for(1, 3), scores_for(2)])
+    assert sorted(score_ideas(model, "o", "c", ideas)) == [1, 2, 3]
+    assert '"id": 2' in model.prompts[2] and '"id": 1' not in model.prompts[2]
 
 
 def test_find_angles_drops_unnamed_angles():

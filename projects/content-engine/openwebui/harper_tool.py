@@ -6,12 +6,14 @@ license: MIT
 """
 
 import json
+import re
 import shutil
 import subprocess
 
 from pydantic import BaseModel, Field
 
 HARPER_TIMEOUT_S = 60
+HASHTAG_OR_MENTION = re.compile(r"[#@][\w\u0100-\u024f]+")
 
 
 class Tools:
@@ -19,8 +21,8 @@ class Tools:
         harper_bin: str = Field(default="harper-cli", description="Path or name of the harper-cli binary.")
         dialect: str = Field(default="au", description="us, uk, au, ca or in. Australian is closest to NZ English.")
         known_words: str = Field(
-            default="Aotearoa,Aoraki,Wānaka,Wanaka,Tekapo,Tāmaki,Makaurau,Kiwi,Kiwis,Māori,Kia,ora,whānau,Movember,POV",
-            description="Comma-separated words Harper should not flag as misspelt.",
+            default="Aotearoa,Aoraki,Wānaka,Wanaka,Tekapo,Tāmaki,Makaurau,Kiwi,Kiwis,Māori,Kia,ora,whānau,mateship,wellbeing,Movember,POV",
+            description="Comma-separated words Harper should never flag.",
         )
 
     def __init__(self) -> None:
@@ -38,8 +40,8 @@ class Tools:
         if binary is None:
             return f"Harper is not installed ({self.valves.harper_bin} not found)."
         result = subprocess.run(
-            [binary, "lint", "--format", "json", "--quiet", "--dialect", self.valves.dialect],
-            input=text, capture_output=True, text=True, timeout=HARPER_TIMEOUT_S, check=False,
+            [binary, "lint", "--format", "json", "--quiet", "--dialect", self.valves.dialect, "--ignore", "OxfordComma,WellBeing"],
+            input=re.sub(r"\s{2,}", " ", HASHTAG_OR_MENTION.sub("", text)).strip(), capture_output=True, text=True, timeout=HARPER_TIMEOUT_S, check=False,
         )
         try:
             files = json.loads(result.stdout)
@@ -48,7 +50,7 @@ class Tools:
         known = {w.strip().lower() for w in self.valves.known_words.split(",") if w.strip()}
         lints = [
             lint for f in files for lint in f.get("lints", [])
-            if not (lint.get("rule") == "SpellCheck" and lint.get("matched_text", "").lower() in known)
+            if lint.get("matched_text", "").strip().lower() not in known
         ]
         if not lints:
             return "Harper found no spelling or grammar issues."

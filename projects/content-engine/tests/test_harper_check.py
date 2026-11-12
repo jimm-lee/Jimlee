@@ -3,7 +3,7 @@ import shutil
 
 import pytest
 
-from content_engine.harper_check import check_texts, parse_harper_json
+from content_engine.harper_check import check_texts, parse_harper_json, prepare_text
 
 HARPER_OUTPUT = json.dumps([
     {
@@ -32,6 +32,16 @@ def test_parse_handles_lints_without_suggestions():
     raw = json.loads(HARPER_OUTPUT)
     raw[0]["lints"][0]["suggestions"] = []
     assert parse_harper_json(json.dumps(raw))[0].suggestion == ""
+
+
+def test_prepare_text_drops_hashtags_and_mentions():
+    assert prepare_text("Cold swim today #NZadventures #selfcare @mate") == "Cold swim today"
+
+
+@pytest.mark.skipif(shutil.which("harper-cli") is None, reason="harper-cli not installed")
+def test_nz_style_is_not_flagged():
+    text = "Coffee, mateship and wellbeing with the whānau at Wānaka #selfcare"
+    assert check_texts({"nz": text}) == []
 
 
 def test_check_texts_returns_none_when_harper_is_not_installed():
