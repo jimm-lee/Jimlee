@@ -11,5 +11,6 @@ prevention, prostate cancer and testicular cancer).
 - Day 3: 3rd Avenue, Mount Maunganui, 5 summits at night in the rain.
 - Day 4: Mount Drury, 4 summits, two of them straight up the steep north-east face.
 - Today is 12 November; Movember ends on 30 November, so there are about 18 days left.
-- The creator also has a fight in about three weeks (early December), so the vest hills double as
-  fight conditioning. Content can link the two, but the Movember cause and the ask come first here.
+- The creator also has a kickboxing fight (K-1 rules) on Saturday 28 November, two days before Movember
+  ends: their first fight in a ring. The vest hills double as fight conditioning. Content can link the
+  two, but the Movember cause and the ask come first here.

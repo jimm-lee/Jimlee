@@ -84,3 +84,24 @@ def test_next_monday_is_always_in_the_future():
 
 def test_slug_is_short_and_url_safe():
     assert engine.slug("Get 1,000 new followers — by Christmas!") == "get-1-000-new-followers-by-christmas"
+
+
+def test_milestones_are_parsed_and_shown_in_the_calendar(fake_model, tmp_path):
+    args = engine.parse_args([
+        "Fight", "--count", "6", "--top", "1", "--themes", "2", "--weeks", "1", "--days", "mon,thu",
+        "--start", "2026-11-16", "--out", str(tmp_path),
+        "--milestone", "2026-11-28=Fight night", "--milestone", "2026-11-19=Weigh-in",
+    ])
+    assert [(m.date.isoformat(), m.label) for m in args.milestones] == [
+        ("2026-11-19", "Weigh-in"), ("2026-11-28", "Fight night"),
+    ]
+    report = (engine.run(args) / "plan.md").read_text()
+    calendar = report.split("## 5. Content calendar")[1].split("## Grammar")[0]
+    rows = [line for line in calendar.splitlines() if line.startswith("| ") and "Date" not in line]
+    assert [r.split(" | ")[0] for r in rows] == ["| Mon 16 Nov", "| Thu 19 Nov", "| Thu 19 Nov", "| Sat 28 Nov"]
+    assert "📍 **Weigh-in**" in rows[1] and "📍 **Fight night**" in rows[3]
+
+
+def test_bad_milestones_are_rejected():
+    with pytest.raises(SystemExit):
+        engine.parse_args(["x", "--milestone", "28 Nov=Fight"])

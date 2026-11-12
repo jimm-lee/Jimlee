@@ -14,7 +14,7 @@ from . import steps
 from .calendar_plan import build_calendar
 from .fact_check import check_brief_texts
 from .harper_check import check_texts
-from .models import Angle, Brief, Idea
+from .models import Angle, Brief, Idea, Milestone
 from .ollama_client import DEFAULT_HOST, DEFAULT_MODEL, OllamaClient
 from .report import Plan, render
 from .scoring import rank, select_top
@@ -39,6 +39,8 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser.add_argument("--weeks", type=int, default=4, help="Calendar length in weeks.")
     parser.add_argument("--days", default="mon,wed,fri", help="Posting days, e.g. mon,wed,fri.")
     parser.add_argument("--start", type=dt.date.fromisoformat, default=None, help="Calendar start date (YYYY-MM-DD); default next Monday.")
+    parser.add_argument("--milestone", action="append", default=[], metavar="YYYY-MM-DD=LABEL",
+                        help='A key date to show in the calendar, e.g. 2026-11-28="Fight night". Repeatable.')
     parser.add_argument("--out", type=Path, default=None, help="Output folder; default runs/<date>-<objective>.")
     parser.add_argument("--no-harper", action="store_true", help="Skip the Harper grammar check.")
     args = parser.parse_args(argv)
@@ -48,6 +50,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         parser.error(f"--days must be weekday names like mon,wed,fri (got {args.days!r})")
     if min(args.count, args.top, args.themes, args.weeks) < 1:
         parser.error("--count, --top, --themes and --weeks must all be at least 1")
+    try:
+        args.milestones = tuple(sorted(
+            (Milestone(dt.date.fromisoformat(d.strip()), label.strip()) for d, label in (m.split("=", 1) for m in args.milestone)),
+            key=lambda m: m.date,
+        ))
+    except ValueError:
+        parser.error('--milestone must look like 2026-11-28="Fight night"')
     posting_days = len(set(args.post_weekdays))
     if args.themes > posting_days:
         log.warning("Only %d posting days, so using %d themes (each day owns one).", posting_days, posting_days)
@@ -130,7 +139,7 @@ def run(args: argparse.Namespace) -> Path:
     plan = Plan(
         objective=args.objective, model=args.model, created=today.isoformat(),
         ideas=tuple(ideas), ranked=tuple(ranked), selected_ids=tuple(i.id for i in selected),
-        angles=angles, briefs=tuple(briefs), themes=themes, calendar=tuple(calendar), grammar=grammar, fact_flags=fact_flags,
+        angles=angles, briefs=tuple(briefs), themes=themes, calendar=tuple(calendar), grammar=grammar, fact_flags=fact_flags, milestones=args.milestones,
     )
     out = args.out or PROJECT_DIR / "runs" / f"{today.isoformat()}-{slug(args.objective)}"
     out.mkdir(parents=True, exist_ok=True)

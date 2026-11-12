@@ -84,3 +84,9 @@ class FactFlag:
     item: str
     message: str
     excerpt: str
+
+
+@dataclass(frozen=True)
+class Milestone:
+    date: dt.date
+    label: str

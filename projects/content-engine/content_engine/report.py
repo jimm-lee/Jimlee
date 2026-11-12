@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .models import Angle, Brief, FactFlag, GrammarIssue, Idea, Score, Slot, Theme
+from .models import Angle, Brief, FactFlag, GrammarIssue, Idea, Milestone, Score, Slot, Theme
 
 
 @dataclass(frozen=True)
@@ -21,6 +21,7 @@ class Plan:
     calendar: tuple[Slot, ...]
     grammar: tuple[GrammarIssue, ...] | None
     fact_flags: tuple[FactFlag, ...] = ()
+    milestones: tuple[Milestone, ...] = ()
 
 
 def cell(text: str) -> str:
@@ -116,12 +117,15 @@ def _briefs(plan: Plan) -> str:
 def _calendar(plan: Plan) -> str:
     ideas = {i.id: i for i in plan.ideas}
     themes = "\n".join(f"- **{t.name}**: {t.description} ({len(t.idea_ids)} ideas)" for t in plan.themes)
-    rows = []
+    entries = []
     for slot in plan.calendar:
         idea = ideas.get(slot.idea_id) if slot.idea_id is not None else None
         what = f"#{idea.id}{' ★' if idea.id in plan.selected_ids else ''} {cell(idea.title)}" if idea else "*Open slot: repurpose or respond to the week*"
         hook = cell(idea.hook) if idea else ""
-        rows.append(f"| {slot.date:%a %d %b} | {cell(slot.theme)} | {what} | {hook} |")
+        entries.append((slot.date, 1, f"| {slot.date:%a %d %b} | {cell(slot.theme)} | {what} | {hook} |"))
+    for milestone in plan.milestones:
+        entries.append((milestone.date, 0, f"| {milestone.date:%a %d %b} | 📍 **{cell(milestone.label)}** | | |"))
+    rows = [row for _, _, row in sorted(entries, key=lambda e: (e[0], e[1]))]
     return (
         "## 5. Content calendar\n\nEach posting day keeps the same theme every week so the audience knows what's coming.\n\n"
         f"{themes}\n\n| Date | Theme | Idea | Hook |\n|---|---|---|---|\n" + "\n".join(rows)
