@@ -12,5 +12,7 @@ prevention, prostate cancer and testicular cancer).
 - Day 4: Mount Drury, 4 summits, two of them straight up the steep north-east face.
 - Today is 12 November; Movember ends on 30 November, so there are about 18 days left.
 - The creator also has a kickboxing fight (K-1 rules) on Saturday 28 November, two days before Movember
-  ends: their first fight in a ring. The vest hills double as fight conditioning. Content can link the
-  two, but the Movember cause and the ask come first here.
+  ends: their first fight in a ring. The vest hills double as fight conditioning.
+- The two campaigns run separately but reference each other: here the fight is a side note (a line, a
+  shot or a caption mention, e.g. "16 days to fight night, and the hills are my conditioning"), never the
+  main story, and the call to action is always the Movember donation, not the fight.

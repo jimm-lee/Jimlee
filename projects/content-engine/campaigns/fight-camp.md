@@ -9,6 +9,10 @@ building to fight night, then the result and what comes after.
   same time: up and down the hills around Tauranga and Mount Maunganui in a 30 kg weighted vest
   (movember.com/m/15440871). The hills double as fight conditioning. Fight night is two days before
   Movember ends on 30 November.
+- The two campaigns run separately but reference each other: here Heavyweight Hills is a side note (the
+  vest hills as conditioning, a line or a shot, "link in bio if you want to back the hills"), never the
+  main story. Calls to action are about the fight (follow along, come and watch, back me on the night),
+  not the Movember donation.
 - Don't invent the opponent, the weight class, the venue, the number of rounds, the result of the MMA fight
   or anything else about the creator's past: leave those as [placeholders] for the creator to fill in.
 - Honest is better than hype: nerves, two years away, learning K-1 after MMA, sore mornings, the people in
