@@ -24,11 +24,12 @@ HARPER_TIMEOUT_S = 300
 # NZ English skips the Oxford comma and writes "wellbeing" unhyphenated.
 IGNORED_RULES = ("OxfordComma", "WellBeing")
 HASHTAG_OR_MENTION = re.compile(r"[#@][\w\u0100-\u024f]+")
+LINK = re.compile(r"\S+\.(?:com|org|nz|net|io)\S*|https?://\S+", re.I)
 
 
 def prepare_text(text: str) -> str:
-    """Hashtags and @mentions aren't prose, so leave them out of the check."""
-    return re.sub(r"\s{2,}", " ", HASHTAG_OR_MENTION.sub("", text)).strip()
+    """Hashtags, @mentions and links aren't prose, so leave them out of the check."""
+    return re.sub(r"\s{2,}", " ", HASHTAG_OR_MENTION.sub("", LINK.sub("", text))).strip()
 
 
 def parse_harper_json(output: str) -> list[GrammarIssue]:

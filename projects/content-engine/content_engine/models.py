@@ -77,3 +77,10 @@ class GrammarIssue:
     message: str
     excerpt: str
     suggestion: str
+
+
+@dataclass(frozen=True)
+class FactFlag:
+    item: str
+    message: str
+    excerpt: str

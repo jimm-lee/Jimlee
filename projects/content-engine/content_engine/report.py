@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from .models import Angle, Brief, GrammarIssue, Idea, Score, Slot, Theme
+from .models import Angle, Brief, FactFlag, GrammarIssue, Idea, Score, Slot, Theme
 
 
 @dataclass(frozen=True)
@@ -20,6 +20,7 @@ class Plan:
     themes: tuple[Theme, ...]
     calendar: tuple[Slot, ...]
     grammar: tuple[GrammarIssue, ...] | None
+    fact_flags: tuple[FactFlag, ...] = ()
 
 
 def cell(text: str) -> str:
@@ -29,6 +30,7 @@ def cell(text: str) -> str:
 def render(plan: Plan) -> str:
     sections = [
         _header(plan),
+        _facts(plan),
         _ideas(plan),
         _scores(plan),
         _angles(plan),
@@ -44,6 +46,19 @@ def _header(plan: Plan) -> str:
         f"# Content plan\n\n**Campaign objective:** {plan.objective}\n\n"
         f"Generated {plan.created} with `{plan.model}` on Ollama; copy checked with Harper. "
         f"The {len(plan.selected_ids)} highest-scoring ideas (★) get angles and full briefs."
+    )
+
+
+def _facts(plan: Plan) -> str:
+    heading = "## ⚠ Confirm before posting"
+    if not plan.fact_flags:
+        return f"{heading}\n\nNo numbers or personal details beyond the campaign facts were found."
+    rows = [f"| {cell(f.item)} | {cell(f.excerpt)} | {cell(f.message)} |" for f in plan.fact_flags]
+    return (
+        f"{heading}\n\nThe model sometimes invents numbers, family members or losses to make a story land. "
+        f"These {len(plan.fact_flags)} lines contain a number that isn't in your facts or a personal detail you "
+        "didn't give it. Keep them only if they're true and yours to share.\n\n"
+        "| Where | Line | Why it's flagged |\n|---|---|---|\n" + "\n".join(rows)
     )
 
 

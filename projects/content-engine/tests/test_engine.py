@@ -30,7 +30,8 @@ class SchemaFake:
                 {"name": "Cold Mondays", "description": "d", "idea_ids": [1, 2, 3]},
                 {"name": "Table talk", "description": "d", "idea_ids": [4, 5, 6]},
             ]}
-        return {k: "the the text" if k == "caption" else "x" for k in keys} | {"shots": ["a", "b"]}
+        brief = {k: "x" for k in keys} | {"caption": "the the text", "voiceover": "I do it for my brother."}
+        return brief | {"shots": ["a", "b"]}
 
 
 @pytest.fixture
@@ -52,6 +53,8 @@ def test_full_run_writes_report_and_json(fake_model, tmp_path):
     assert data["selected_ids"] == [6, 5]
     assert [s["theme"] for s in data["calendar"]] == ["Cold Mondays", "Table talk"] * 2
     assert len(data["briefs"]) == 2
+    assert "## ⚠ Confirm before posting" in report
+    assert "I do it for my brother." in report
 
 
 def test_context_file_is_added_to_what_the_model_knows(tmp_path):

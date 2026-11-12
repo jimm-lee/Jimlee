@@ -25,6 +25,9 @@ def system(creator: str) -> str:
         "- Ordinary, relatable moments and honest vulnerability beat impressive footage.\n"
         "- People share things that say something about themselves; people save things they will use.\n"
         "- Voice-over and captions sound like a person talking, not an advert.\n"
+        "Never invent facts about the creator: no family members, relationships, illnesses, injuries, losses, "
+        "past events, weights, times or statistics beyond what you were told. If a story needs a personal detail "
+        "you weren't given, write it as a [placeholder] in square brackets for the creator to fill in.\n"
         "Write in New Zealand English. Be specific and concrete; avoid cliches like 'journey' and 'game-changer'."
     )
 

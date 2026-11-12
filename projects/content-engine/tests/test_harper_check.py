@@ -34,13 +34,14 @@ def test_parse_handles_lints_without_suggestions():
     assert parse_harper_json(json.dumps(raw))[0].suggestion == ""
 
 
-def test_prepare_text_drops_hashtags_and_mentions():
+def test_prepare_text_drops_hashtags_mentions_and_links():
     assert prepare_text("Cold swim today #NZadventures #selfcare @mate") == "Cold swim today"
+    assert prepare_text("Sponsor me at movember.com/m/15440871 today") == "Sponsor me at today"
 
 
 @pytest.mark.skipif(shutil.which("harper-cli") is None, reason="harper-cli not installed")
 def test_nz_style_is_not_flagged():
-    text = "Coffee, mateship and wellbeing with the whānau at Wānaka #selfcare"
+    text = "Coffee, mateship and wellbeing with the whānau at Wānaka for Movember's sake #selfcare"
     assert check_texts({"nz": text}) == []
 
 

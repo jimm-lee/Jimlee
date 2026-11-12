@@ -12,6 +12,7 @@ from pathlib import Path
 
 from . import steps
 from .calendar_plan import build_calendar
+from .fact_check import check_brief_texts
 from .harper_check import check_texts
 from .models import Angle, Brief, Idea
 from .ollama_client import DEFAULT_HOST, DEFAULT_MODEL, OllamaClient
@@ -81,6 +82,18 @@ def load_background(args: argparse.Namespace) -> str:
     return background
 
 
+def texts_for_fact_check(ideas: list[Idea], briefs: list[Brief]) -> dict[str, str]:
+    """Everything the creator might post or say, including the story beats and shots."""
+    texts = {f"idea-{i.id:02d}": f"{i.hook}. {i.summary}" for i in ideas}
+    for b in briefs:
+        for field in ("hook", "core_message", "beginning", "middle", "end", "voiceover", "caption", "call_to_action"):
+            if getattr(b, field):
+                texts[f"brief-{b.idea_id:02d}-{field.replace('_', '-')}"] = getattr(b, field)
+        if b.shots:
+            texts[f"brief-{b.idea_id:02d}-shots"] = ". ".join(b.shots)
+    return texts
+
+
 def run(args: argparse.Namespace) -> Path:
     creator = load_background(args)
     model = OllamaClient(model=args.model, host=args.host)
@@ -105,6 +118,9 @@ def run(args: argparse.Namespace) -> Path:
     themes = steps.group_themes(model, args.objective, creator, ideas, args.themes)
     calendar = build_calendar(themes, [i.id for i, _ in ranked], args.start or next_monday(today), args.weeks, args.post_weekdays)
 
+    log.info("Checking for claims that aren't in your facts…")
+    fact_flags = tuple(check_brief_texts(texts_for_fact_check(ideas, briefs), creator))
+
     grammar = None
     if not args.no_harper:
         log.info("Checking the copy with Harper…")
@@ -114,7 +130,7 @@ def run(args: argparse.Namespace) -> Path:
     plan = Plan(
         objective=args.objective, model=args.model, created=today.isoformat(),
         ideas=tuple(ideas), ranked=tuple(ranked), selected_ids=tuple(i.id for i in selected),
-        angles=angles, briefs=tuple(briefs), themes=themes, calendar=tuple(calendar), grammar=grammar,
+        angles=angles, briefs=tuple(briefs), themes=themes, calendar=tuple(calendar), grammar=grammar, fact_flags=fact_flags,
     )
     out = args.out or PROJECT_DIR / "runs" / f"{today.isoformat()}-{slug(args.objective)}"
     out.mkdir(parents=True, exist_ok=True)
