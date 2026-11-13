@@ -140,3 +140,14 @@ stream copied, timings unchanged).
 UVR check (Nov 9): Ultimate Vocal Remover's Mel-Roformer denoise and De-Echo/De-Reverb models were run on Movember_1;
 they removed almost nothing (−66 / −77 dB), so the takes have little hiss or echo. They stay installed for noisier
 takes (see `MEDIA_SKILLS.md`, "Ultimate Vocal Remover models").
+
+## 20 s clips with two visual hooks (Nov 13)
+
+`build_clips.py` → `clip-*/`; hooks in `fx.py` (overlays on the cut: spiral, grid pop, zoom-through, split screen).
+A hook opens each clip and a second lands in the voice-over's pause around 10 s; each ends on the QR card.
+
+| File | Opening hook | ~10 s hook | Voice |
+|---|---|---|---|
+| `Clip-Invisible-Weight-20s.mp4` | spiral of eight clips onto the walking selfie | the rain bursts into a 2×2 grid | "Because we all carry weight… it's invisible. You don't see it." / "So many men hold this weight… And that needs to change." |
+| `Clip-The-Stare-20s.mp4` | the vest selfie bursts into a 3×3 grid | zoom-through from the grin, white flash, into the vest at night | "Most of the times I stare at that vest… a little bit of suffering." / "I can hold that weight on my shoulders." + "Go on, look after yourself" |
+| `Clip-Say-It-20s.mp4` | split screen: golden day view over the night shadow, the shadow opens up | spiral onto people walking the hill | "No one ever knows how bad it really is inside your mind… for a lifetime and don't tell anyone." / "There's always someone who can relate to your story. You just need to say it." |

@@ -86,6 +86,31 @@ PLANS = {"full": [
     ("m4", 282.28, 283.40, 0.60, "You just need to say it."),
     ("o", 9.25, 11.42, 0.00, "Go on, look after yourself."),
 ],
+    # 20 s clips with a pause at ~10 s for the second visual hook (takes: m4=Movember_4 o=New_Recording_10)
+    "clip-weight": [
+    ("m4", 121.18, 123.82, 0.45, "Because we all carry weight."),
+    ("m4", 132.30, 135.95, 0.35, "Sometimes, most of the time even, it's invisible."),
+    ("m4", 136.20, 137.10, 1.60, "You don't see it."),          # the pause carries the 10 s hook
+    ("m4", 216.12, 217.98, 0.15, "So many men"),
+    ("m4", 219.20, 221.12, 0.10, "hold this weight on their shoulders and"),
+    ("m4", 222.05, 223.22, 0.50, "don't tell anyone."),
+    ("m4", 230.15, 231.36, 0.00, "And that needs to change."),
+],
+    "clip-stare": [
+    ("m4", 150.40, 153.62, 0.10, "Most of the times I stare at that vest for two minutes"),
+    ("m4", 154.95, 156.95, 0.50, "before even trying to pick it up."),
+    ("m4", 158.70, 160.20, 0.25, "Preparing myself"),
+    ("m4", 161.45, 164.12, 0.90, "for a little bit of suffering."),   # the pause carries the 10 s hook
+    ("m4", 200.35, 203.10, 0.60, "I can hold that weight on my shoulders"),
+    ("o", 5.10, 6.95, 0.00, "Go on, look after yourself."),
+],
+    "clip-say": [
+    ("m4", 253.20, 256.30, 0.30, "No one ever knows how bad it really is"),
+    ("m4", 258.38, 259.56, 0.50, "inside your mind."),
+    ("m4", 182.40, 186.72, 0.90, "Some people hold that weight on their shoulders for a lifetime and don't tell anyone."),
+    ("m4", 275.60, 279.55, 0.40, "There's always someone who can relate to your story."),
+    ("m4", 282.28, 283.40, 0.00, "You just need to say it."),
+],
     "promo-hold": [
     ("m4", 194.40, 197.10, 0.15, "I can put myself under"),
     ("m4", 197.85, 199.40, 0.40, "stressful situations."),

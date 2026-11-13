@@ -11,6 +11,8 @@ import json
 import math
 import re
 import shutil
+
+import fx
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -221,13 +223,14 @@ def build(name, cfg):
                      f'class="clip" data-start="{s}" data-duration="{dur}" data-media-start="{m}" muted playsinline>'
                      f'</video></div>')
     cut_js = ", ".join(f"['{'map' if c == 'MAP' else f's{i}'}', {s}, {dur}]" for i, (c, s, dur, m) in enumerate(cut))
+    fx_html, fx_js, fx_windows = fx.build(cfg.get("fx", []), cut)
     tops, halo = dict(cfg.get("tops", {})), set()
     for i, (_, a, o) in enumerate(caps):
         clip = next((c for c, s, dd, _ in cut if s <= a + 0.05 < s + dd), None)
         if clip in HIGH_FACE:
             tops.setdefault(i, HIGH_FACE[clip])
-        if any(c in LIGHT_BG and s < o and a < s + dd for c, s, dd, _ in cut):
-            halo.add(i)
+        if any(c in LIGHT_BG and s < o and a < s + dd for c, s, dd, _ in cut) or any(s < o and a < e for s, e in fx_windows):
+            halo.add(i)   # pale ground, or a busy hook underneath
     types = [f'  <div class="t h cap{" halo" if i in halo else ""}" id="c{i}" data-om-id="caption-{i}" '
              f'style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
              for i, (h, a, o) in enumerate(caps)]
@@ -245,6 +248,7 @@ def build(name, cfg):
     html = (HERE / "template.html").read_text()
     for k, v in {"TITLE": cfg["title"], "SHOTS": "\n".join(shots), "TYPES": "\n".join(types), "CUT_JS": cut_js,
                  "TITLES_JS": titles_js, "END": str(end_at), "END_DUR": str(round(length - end_at, 2)),
+                 "FX_HTML": fx_html, "FX_JS": fx_js,
                  "LENGTH": str(length), "ENDCARD_DUR": str(cfg.get("endcard", ENDCARD)), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
                  "MAP_KIND": mp["kind"], "MAP_AT": str(mp["at"]), "MAP_W": str(MAP["width_m"]),
                  "MAP_H": str(MAP["height_m"]),

@@ -46,6 +46,11 @@
   .place { color: #e9f1f5; }
   .count { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-family: "Bebas Neue"; font-size: 150px; letter-spacing: .035em; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); opacity: 0; }
   .osm { position: absolute; right: 24px; bottom: 470px; font: 400 20px "Outfit"; color: rgba(255,255,255,.55); }
+  /* visual hooks (fx.py): overlays above the cut */
+  .fxshot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .fxshot video, .cell video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .fxgrid { position: absolute; inset: 0; background: #000; visibility: hidden; }
+  .cell { position: absolute; overflow: hidden; visibility: hidden; }
   /* end card: the ask, as in the launch video, in the hero type (blurred summit selfie behind) */
   #endcard { position: absolute; inset: 0; visibility: hidden; background: #000; }
   #endcard .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.4); }
@@ -67,6 +72,7 @@
   <div class="shot" id="s1" data-om-id="shot-1-3402"><video src="assets/clips/3402.mp4" class="clip" data-start="3.6" data-duration="1.8" data-media-start="0.3" muted playsinline></video></div>
   <div class="shot" id="s2" data-om-id="shot-2-3290"><video src="assets/clips/3290.mp4" class="clip" data-start="5.4" data-duration="1.75" data-media-start="1.5" muted playsinline></video></div>
   <div class="shot" id="s3" data-om-id="shot-3-3304"><video src="assets/clips/3304.mp4" class="clip" data-start="7.15" data-duration="3.25" data-media-start="0.9" muted playsinline></video></div>
+
 
   <div id="map" data-om-id="map">
     <svg viewBox="0 0 1080 1920"><g id="world">
@@ -97,6 +103,7 @@
   <div class="t h cap" id="o2" data-om-id="outro-2" style="top:900px"><span class="w" data-t="0.00" data-d="0.30"><span class="l">l</span><span class="l">o</span><span class="l">o</span><span class="l">k</span></span> <span class="w" data-t="1.08" data-d="0.24"><span class="l">a</span><span class="l">f</span><span class="l">t</span><span class="l">e</span><span class="l">r</span></span> <span class="w" data-t="1.32" data-d="0.28"><span class="acc"><span class="l">y</span><span class="l">o</span><span class="l">u</span><span class="l">r</span><span class="l">s</span><span class="l">e</span><span class="l">l</span><span class="l">f</span></span></span></div>
 
   <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+  <div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none"></div>
 
   <div id="endcard" data-om-id="end-card">
     <div class="bg"><video src="assets/clips/3246.mp4" class="clip" data-start="10.4" data-duration="3.0" data-media-start="1.0" muted playsinline></video></div>
@@ -194,6 +201,41 @@
       .fromTo(el, { scale: quick ? 1.12 : 1.06 }, { scale: 1, duration: Math.min(.5, dur), immediateRender: false }, at)
       .set(el, { visibility: 'hidden' }, at + dur);
     if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+  // ---------- visual hooks (fx.py): spiral, grid pop, zoom-through, split screen ----------
+  const FX = [
+    
+  ];
+  FX.forEach((f) => {
+    if (f[0] === 'spiral') {            // flashes turn from an angle to level and zoom in, landing on the cut
+      f[1].forEach(([id, at, dur, ang, sc], k) => {
+        const next = f[1][k + 1];
+        tl.set('#' + id, { visibility: 'visible', rotation: ang, scale: sc }, at)
+          .to('#' + id, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.02, duration: dur, ease: 'none' }, at)
+          .set('#' + id, { visibility: 'hidden' }, at + dur);
+      });
+    } else if (f[0] === 'grid') {       // cells pop in on black one by one, hold, then the full shot takes over
+      const [, wrap, at, end, cells] = f;
+      tl.set('#' + wrap, { visibility: 'visible' }, at).set('#' + wrap, { visibility: 'hidden' }, end);
+      cells.forEach(([id, appear]) => {
+        tl.set('#' + id, { visibility: 'visible' }, appear)
+          .fromTo('#' + id, { scale: 1.12 }, { scale: 1, duration: .2, ease: 'expo.out', immediateRender: false }, appear);
+      });
+      tl.fromTo('#flash', { opacity: .45 }, { opacity: 0, duration: 2 / 30, ease: 'none', immediateRender: false }, end);
+    } else if (f[0] === 'zoom') {       // punch forward out of one shot, white flash, land in the next
+      const [, out, inn, at] = f;
+      tl.to('#' + out, { scale: 2.3, duration: .22, ease: 'power2.in' }, at - .22)
+        .fromTo('#flash', { opacity: .7 }, { opacity: 0, duration: 3 / 30, ease: 'none', immediateRender: false }, at)
+        .fromTo('#' + inn, { scale: 1.4 }, { scale: 1, duration: .45, ease: 'expo.out', immediateRender: false }, at);
+    } else if (f[0] === 'split') {      // top and bottom halves slide in, hold, then the bottom opens to full frame
+      const [, top, bot, at, dur] = f;
+      tl.set(['#' + top, '#' + bot], { visibility: 'visible' }, at)
+        .fromTo('#' + top, { clipPath: 'inset(0% 0% 50% 0%)', y: -420 }, { y: 0, duration: .35, ease: 'power3.out', immediateRender: false }, at)
+        .fromTo('#' + bot, { clipPath: 'inset(50% 0% 0% 0%)', y: 420 }, { y: 0, duration: .35, ease: 'power3.out', immediateRender: false }, at + .08)
+        .to('#' + bot, { clipPath: 'inset(0% 0% 0% 0%)', duration: .3, ease: 'expo.inOut' }, at + dur - .3)
+        .set(['#' + top, '#' + bot], { visibility: 'hidden' }, at + dur);
+    }
   });
 
   // ---------- captions: each word spells itself out across its spoken time ----------
