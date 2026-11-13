@@ -37,6 +37,22 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 - Never put a caption over a face. If a clip with people sits under a caption, move the clip after the caption clears.
 - Check every caption is readable on its background (white on white sky fails).
 
+## Voice-led edits (James, Nov 2026)
+
+When an edit carries James's voice-over (e.g. `projects/heavyweight-hills-hero/`), captions **track the voice**
+instead of the hook-line pacing above:
+- **Phrases of up to 3 words** (mostly 3 in fast speech, 1–2 where he slows down), phrased by hand
+  ("Just because I | haven't *posted* it, | doesn't mean | I haven't been | *doing* it.").
+- Each phrase **writes on whole** (a quick 0.07 s ripple across the words) as its first word is said, and stays until
+  the next phrase is said: **never less than 0.7 s** (the next one waits; keep any lag under ~0.5 s by rephrasing),
+  1.1 s at a pause. James flagged captions "jumping off too quickly" twice: the first fix (1-word captions revealed
+  word by word, 0.45 s minimum) still flashed by in fast speech. `build_intros.captions` now refuses anything shorter.
+- **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
+  most one per caption; 124 px Bebas.
+- Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
+  the call to action, Nov 9): Heavyweight Hills / Sponsor my *summit* / QR / Scan to donate / link, 3 s. The
+  "no name card" rule still holds for lifestyle hero edits.
+
 ## Structure (five parts) and variety
 
 15 s: hook 0–2.5 · connection 2.5–5.5 · build 5.5–9.5 (0.5 s cuts) · payoff 9.5–11 · linger 11–15.

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en" data-composition-variables='[
+  {"id":"accent","type":"color","label":"Accent","default":"#75ff78"},
+  {"id":"ink","type":"color","label":"Text","default":"#ffffff"}
+]'>
+<head>
+<meta charset="utf-8">
+<title>{{TITLE}}</title>
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/om.js"></script>
+<style id="om-fonts">
+@font-face { font-family: "Outfit"; src: url("assets/fonts/Outfit-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; }
+@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/BebasNeue.woff2") format("woff2"); font-weight: 400; font-style: normal; }
+</style>
+<style>
+  html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #000; }
+  #film { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #000; color: var(--ink); font-family: "Outfit", sans-serif;
+          --accent: #75ff78; --ink: #fff; --shadow: 4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35); }
+  .shot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .shot video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }   /* ungraded */
+  .shade { position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(180deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.12) 22%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 70%, rgba(0,0,0,.35) 100%); }
+  /* house type: Bebas Neue caps, thickened with a same-colour stroke; one green word per line, no outline */
+  .t { position: absolute; left: 0; right: 0; text-align: center; font-family: "Bebas Neue", sans-serif; font-weight: 400; line-height: .95;
+       letter-spacing: .035em; text-transform: uppercase; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); }
+  .h { font-size: 124px; }
+  .acc { color: var(--accent); text-shadow: var(--shadow); }
+  /* over pale ground (concrete, dirt): a soft dark halo so the words stay readable */
+  .halo, .halo .acc { text-shadow: var(--shadow), 0 0 26px rgba(0,0,0,.6), 0 0 8px rgba(0,0,0,.55); }
+  .cap { white-space: nowrap; visibility: hidden; }
+  .cap .w { display: inline-block; }
+  .cap .l { opacity: 0; }
+  /* map: the Day 3 & 4 recap map (OpenStreetMap) */
+  #map { position: absolute; inset: 0; visibility: hidden; background: #0f1c26; }
+  #map svg { position: absolute; inset: 0; width: 1080px; height: 1920px; }
+  #map .road-major { fill: none; stroke: #6a7782; stroke-width: 2.4; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  #map .road-minor { fill: none; stroke: #3d4851; stroke-width: 1.3; vector-effect: non-scaling-stroke; stroke-linecap: round; }
+  #map .path { fill: none; stroke: #4a5560; stroke-width: 1.4; stroke-dasharray: 4 4; vector-effect: non-scaling-stroke; }
+  #map .park { fill: #1f3a28; } #map .wood { fill: #1b3123; } #map .beach { fill: #3d3a2d; }
+  #map .coast { fill: none; stroke: #5d86a0; stroke-width: 2; vector-effect: non-scaling-stroke; }
+  #map .reserve { fill: rgba(117,255,120,.16); stroke: #75ff78; stroke-width: 4; vector-effect: non-scaling-stroke; }
+  #map .route { fill: none; stroke: #75ff78; stroke-width: 3.6; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 3px rgba(117,255,120,.9)); }
+  .pin { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: #75ff78; box-shadow: 0 0 0 8px rgba(117,255,120,.25), 0 0 26px rgba(117,255,120,.9); opacity: 0; }
+  .ring { position: absolute; width: 34px; height: 34px; margin: -19px 0 0 -19px; border-radius: 50%; border: 4px solid #75ff78; opacity: 0; }
+  .mlabel { position: absolute; transform: translate(-50%, -50%); font-family: "Outfit"; font-weight: 500; letter-spacing: 7px; text-transform: uppercase; font-size: 32px; color: #75ff78; text-shadow: 0 2px 8px rgba(0,0,0,.85); opacity: 0; white-space: nowrap; }
+  .place { color: #e9f1f5; }
+  .count { position: absolute; left: 0; right: 0; top: 300px; text-align: center; font-family: "Bebas Neue"; font-size: 150px; letter-spacing: .035em; -webkit-text-stroke: 3px currentColor; text-shadow: var(--shadow); opacity: 0; }
+  .osm { position: absolute; right: 24px; bottom: 470px; font: 400 20px "Outfit"; color: rgba(255,255,255,.55); }
+  /* visual hooks (fx.py): overlays above the cut */
+  .fxshot { position: absolute; inset: 0; overflow: hidden; visibility: hidden; }
+  .fxshot video, .cell video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .fxgrid { position: absolute; inset: 0; background: #000; visibility: hidden; }
+  .cell { position: absolute; overflow: hidden; visibility: hidden; }
+  /* end card: the ask, as in the launch video, in the hero type (blurred summit selfie behind) */
+  #endcard { position: absolute; inset: 0; visibility: hidden; background: #000; }
+  #endcard .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.4); }
+  #endcard .bg video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .ec-title { top: 290px; font-size: 128px; }
+  .ec-ask { top: 420px; font-size: 100px; }
+  .qrwrap { position: absolute; left: 50%; top: 575px; width: 480px; height: 480px; margin-left: -270px; padding: 30px;
+            background: #fff; border-radius: 28px; box-shadow: 0 30px 80px rgba(0,0,0,.5); }
+  .qrwrap img { width: 100%; height: 100%; display: block; image-rendering: pixelated; }
+  .ec-scan { position: absolute; left: 0; right: 0; top: 1150px; text-align: center; font: 500 46px "Outfit"; letter-spacing: 10px;
+             color: var(--accent); text-shadow: var(--shadow); }
+  .ec-url { position: absolute; left: 0; right: 0; top: 1222px; text-align: center; font: 400 40px "Outfit"; text-shadow: var(--shadow); }
+</style>
+</head>
+<body>
+<div id="film" data-composition-id="film" data-width="1080" data-height="1920" data-om-signature="off">
+  <!-- voice-over and music are mixed in afterwards (see README) -->
+{{SHOTS}}
+{{FX_HTML}}
+
+  <div id="map"{{MAP_STYLE}} data-om-id="map">
+    <svg viewBox="0 0 1080 1920"><g id="world">
+      <image href="assets/map/land.png" x="0" y="0" width="{{MAP_W}}" height="{{MAP_H}}" preserveAspectRatio="none"></image>
+      <g id="lyr"></g>
+      <path id="reserve" class="reserve" d=""></path>
+      <path id="rDru" class="route" d=""></path>
+      <path id="rAve" class="route" d=""></path>
+    </g></svg>
+    <div class="mlabel place" id="lb-tga">Tauranga</div>
+    <div class="mlabel place" id="lb-mount">Mount Maunganui</div>
+    <div id="pins"></div>
+    <div class="count" id="cnt-all">8 days · <span class="acc">4 hills</span></div>
+    <div class="osm">Map data © OpenStreetMap contributors</div>
+  </div>
+
+  <div class="shade"></div>
+
+{{TYPES}}
+
+  <div id="fade" style="position:absolute;inset:0;background:#000;opacity:0;pointer-events:none"></div>
+  <div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none"></div>
+
+  <div id="endcard" data-om-id="end-card">
+    <div class="bg"><video src="assets/clips/3246.mp4" class="clip" data-start="{{LENGTH}}" data-duration="{{ENDCARD_DUR}}" data-media-start="1.0" muted playsinline></video></div>
+    <div class="t ec-title" id="ec1" style="opacity:0">Heavyweight Hills</div>
+    <div class="t ec-ask" id="ec2" style="opacity:0">Sponsor my <span class="acc">summit</span></div>
+    <div class="qrwrap" id="ecq" style="opacity:0"><img src="assets/qr.svg" alt="QR code to James Leahy's Movember page"></div>
+    <div class="ec-scan" id="ec3" style="opacity:0">SCAN TO DONATE</div>
+    <div class="ec-url" id="ec4" style="opacity:0">movember.com/m/15440871</div>
+  </div>
+</div>
+
+<script>
+  const MAP = {{MAPJSON}};
+  const MAP_KIND = '{{MAP_KIND}}', MAP_AT = {{MAP_AT}};
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out' } });
+  const CUT = [{{CUT_JS}}];
+  const TITLES = [{{TITLES_JS}}];
+  const END = {{END}}, LENGTH = {{LENGTH}};
+
+  // long caption lines shrink to fit the frame
+  document.querySelectorAll('.cap').forEach((el) => {
+    const w = el.scrollWidth; if (w > 1000) el.style.fontSize = (124 * 1000 / w) + 'px';
+  });
+
+  // ---------- map ----------
+  const NS = 'http://www.w3.org/2000/svg', lyr = document.getElementById('lyr');
+  const add = (cls, list) => list.forEach((d) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', cls); lyr.appendChild(p); });
+  add('wood', MAP.woods); add('park', MAP.parks); add('beach', MAP.beaches);
+  add('path', MAP.paths); add('road-minor', MAP.roads_minor); add('road-major', MAP.roads_major); add('coast', MAP.coast);
+  document.getElementById('reserve').setAttribute('d', MAP.reserve);
+  document.getElementById('rDru').setAttribute('d', MAP.route_drury);
+  document.getElementById('rAve').setAttribute('d', MAP.route_ave);
+  const pins = document.getElementById('pins'), world = document.getElementById('world');
+  const marks = [['lb-tga', MAP.lbl_tauranga], ['lb-mount', MAP.lbl_mount]];
+  for (const [key, h] of Object.entries(MAP.hills)) {
+    for (const [cls, id, dx, dy] of [['ring', 'rg-' + key, 0, 0], ['pin', 'pn-' + key, 0, 0], ['mlabel', 'lb-' + key, h.dx, h.dy]]) {
+      const el = document.createElement('div'); el.className = cls; el.id = id;
+      if (cls === 'mlabel') el.textContent = h.name;
+      pins.appendChild(el); marks.push([id, h.at, dx, dy]);
+    }
+  }
+  const xs = Object.values(MAP.hills).map(h => h.at[0]), ys = Object.values(MAP.hills).map(h => h.at[1]);
+  const centre = [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...ys) + Math.max(...ys)) / 2];
+  // frame every hill below the caption row (y 810–1690), labels clear of the captions
+  const WIDE = 1080 * (Math.max(...ys) - Math.min(...ys)) / 880;
+  const cam = { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250 };
+  function draw() {
+    const s = 1080 / cam.w, tx = 540 - cam.cx * s, ty = cam.sy - cam.cy * s;
+    world.setAttribute('transform', `translate(${tx},${ty}) scale(${s})`);
+    for (const [id, [x, y], dx = 0, dy = 0] of marks) {
+      const el = document.getElementById(id); el.style.left = (x * s + tx + dx) + 'px'; el.style.top = (y * s + ty + dy) + 'px';
+    }
+  }
+  draw();
+  const popPin = (key, at) => tl.fromTo('#pn-' + key, { opacity: 0, scale: 2.2 }, { opacity: 1, scale: 1, duration: .35, immediateRender: false }, at);
+  const pulse = (key, at) => tl.fromTo('#rg-' + key, { opacity: 1, scale: 1 }, { opacity: 0, scale: 3.2, duration: .55, ease: 'power2.out', immediateRender: false }, at);
+  const rise = (sel, at) => tl.fromTo(sel, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: .45, immediateRender: false }, at);
+
+  const mapCut = CUT.find(c => c[0] === 'map'), MAP_END = mapCut ? mapCut[1] + mapCut[2] : 0;
+  if (mapCut) tl.set('#map', { visibility: 'visible' }, MAP_AT).set('#map', { visibility: 'hidden' }, MAP_END);
+  if (!mapCut) {
+    // no map in this edit
+  } else if (MAP_KIND === 'days') {
+    // a pin for every day: the hill lights up (or pulses again), the day counter ticks over
+    tl.fromTo(cam, { w: WIDE * 1.12 }, { w: WIDE, duration: MAP_END - MAP_AT, ease: 'sine.inOut', onUpdate: draw, immediateRender: false }, MAP_AT);
+    rise(['#lb-tga', '#lb-mount'], MAP_AT + .1);
+    tl.to(['#lb-tga', '#lb-mount'], { opacity: 0, duration: .3 }, MAP_AT + 1.0);
+    const seen = new Set(), step = .58, t0 = MAP_AT + .45;
+    MAP.days.forEach((key, k) => {
+      const at = t0 + k * step;
+      if (!seen.has(key)) { popPin(key, at); rise('#lb-' + key, at + .05); seen.add(key); }
+      pulse(key, at);
+      const c = document.createElement('div'); c.className = 'count'; c.id = 'day' + (k + 1);
+      c.innerHTML = 'Day <span class="acc">' + (k + 1) + '</span>'; document.getElementById('map').appendChild(c);
+      tl.set(c, { opacity: 1 }, at).set(c, { opacity: 0 }, at + step);
+    });
+    rise('#cnt-all', t0 + MAP.days.length * step);
+  } else {
+    // every hill so far, pulling back from Mount Drury
+    Object.keys(MAP.hills).forEach((key) => { tl.set('#pn-' + key, { opacity: 1 }, MAP_AT); });
+    const D = MAP_END - MAP_AT, k = Math.min(1, D / 3.3);   // the pull-back fits the time the map has
+    tl.fromTo(cam, { cx: MAP.drury[0], cy: MAP.drury[1], w: 900, sy: 1180 },
+              { cx: centre[0], cy: centre[1], w: WIDE, sy: 1250, duration: 2.4 * k, ease: 'power3.inOut', onUpdate: draw, immediateRender: false }, MAP_AT + .1);
+    rise('#lb-drury', MAP_AT + .05);
+    ['ave', 'cliff', '17th'].forEach((key, j) => { rise('#lb-' + key, MAP_AT + (1.5 + j * .15) * k); pulse(key, MAP_AT + (1.5 + j * .15) * k); });
+    pulse('drury', MAP_AT + .2);
+    rise('#cnt-all', MAP_AT + 1.9 * k);
+  }
+
+  // ---------- shots: a slow push-in on the holds, a punch on the quick ones ----------
+  CUT.forEach(([id, at, dur]) => {
+    if (id === 'map') return;
+    const el = '#' + id, quick = dur <= .6, isLast = at === END;
+    tl.set(el, { visibility: 'visible' }, at)
+      .fromTo(el, { scale: quick ? 1.12 : 1.06 }, { scale: 1, duration: Math.min(.5, dur), immediateRender: false }, at)
+      .set(el, { visibility: 'hidden' }, at + dur);
+    if (dur > .5 && !isLast) tl.to(el, { scale: 1.05, duration: dur - .5, ease: 'none' }, at + .5);
+  });
+
+  // ---------- visual hooks (fx.py): spiral, grid pop, zoom-through, split screen ----------
+  const FX = [
+    {{FX_JS}}
+  ];
+  FX.forEach((f) => {
+    if (f[0] === 'spiral') {            // flashes turn from an angle to level and zoom in, landing on the cut
+      f[1].forEach(([id, at, dur, ang, sc], k) => {
+        const next = f[1][k + 1];
+        tl.set('#' + id, { visibility: 'visible', rotation: ang, scale: sc }, at)
+          .to('#' + id, { rotation: next ? next[3] : 0, scale: next ? next[4] : 1.02, duration: dur, ease: 'none' }, at)
+          .set('#' + id, { visibility: 'hidden' }, at + dur);
+      });
+    } else if (f[0] === 'grid') {       // cells pop in on black one by one, hold, then the full shot takes over
+      const [, wrap, at, end, cells] = f;
+      tl.set('#' + wrap, { visibility: 'visible' }, at).set('#' + wrap, { visibility: 'hidden' }, end);
+      cells.forEach(([id, appear]) => {
+        tl.set('#' + id, { visibility: 'visible' }, appear)
+          .fromTo('#' + id, { scale: 1.12 }, { scale: 1, duration: .2, ease: 'expo.out', immediateRender: false }, appear);
+      });
+      tl.fromTo('#flash', { opacity: .45 }, { opacity: 0, duration: 2 / 30, ease: 'none', immediateRender: false }, end);
+    } else if (f[0] === 'zoom') {       // punch forward out of one shot, white flash, land in the next
+      const [, out, inn, at] = f;
+      tl.to('#' + out, { scale: 2.3, duration: .22, ease: 'power2.in' }, at - .22)
+        .fromTo('#flash', { opacity: .7 }, { opacity: 0, duration: 3 / 30, ease: 'none', immediateRender: false }, at)
+        .fromTo('#' + inn, { scale: 1.4 }, { scale: 1, duration: .45, ease: 'expo.out', immediateRender: false }, at);
+    } else if (f[0] === 'split') {      // top and bottom halves slide in, hold, then the bottom opens to full frame
+      const [, top, bot, at, dur] = f;
+      tl.set(['#' + top, '#' + bot], { visibility: 'visible' }, at)
+        .fromTo('#' + top, { clipPath: 'inset(0% 0% 50% 0%)', y: -420 }, { y: 0, duration: .35, ease: 'power3.out', immediateRender: false }, at)
+        .fromTo('#' + bot, { clipPath: 'inset(50% 0% 0% 0%)', y: 420 }, { y: 0, duration: .35, ease: 'power3.out', immediateRender: false }, at + .08)
+        .to('#' + bot, { clipPath: 'inset(0% 0% 0% 0%)', duration: .3, ease: 'expo.inOut' }, at + dur - .3)
+        .set(['#' + top, '#' + bot], { visibility: 'hidden' }, at + dur);
+    }
+  });
+
+  // ---------- captions: each word spells itself out across its spoken time ----------
+  const LETTER_FADE = {{LETTER_FADE}};
+  TITLES.forEach(([id, at, out]) => {
+    const el = document.getElementById(id);
+    tl.set(el, { visibility: 'visible' }, at).set(el, { visibility: 'hidden' }, out);
+    el.querySelectorAll('.w').forEach((w) => {
+      const start = at + parseFloat(w.dataset.t), ls = w.querySelectorAll('.l');
+      const step = ls.length > 1 ? parseFloat(w.dataset.d) / ls.length : 0;
+      ls.forEach((l, j) => tl.fromTo(l, { opacity: 0 }, { opacity: 1, duration: LETTER_FADE, ease: 'sine.out', immediateRender: false }, start + j * step));
+    });
+    if (out < LENGTH) tl.fromTo(el, { opacity: 1 }, { opacity: 0, duration: .12, ease: 'none', immediateRender: false }, out - .12);
+  });
+
+  // ---------- linger: slow push on the open view, the closing line, fade to black ----------
+  tl.addLabel('scene:linger', END);
+  tl.to('#' + CUT[CUT.length - 1][0], { scale: 1.08, duration: {{END_DUR}} - .5, ease: 'sine.inOut' }, END + .5);
+  tl.to('#fade', { opacity: 1, duration: {{FADE_OUT}}, ease: 'sine.in' }, LENGTH - {{FADE_OUT}});
+  // ---------- end card: the ask, a beat after the closing line ----------
+  const ENDCARD = {{ENDCARD_DUR}};
+  if (ENDCARD > 0) {
+    tl.addLabel('scene:endcard', LENGTH);
+    tl.set('#endcard', { visibility: 'visible' }, LENGTH)
+      .fromTo('#endcard', { opacity: 0 }, { opacity: 1, duration: .35, ease: 'none', immediateRender: false }, LENGTH);
+    rise('#ec1', LENGTH + .15);
+    rise('#ec2', LENGTH + .4);
+    tl.fromTo('#ecq', { opacity: 0, scale: .75, rotation: -4 }, { opacity: 1, scale: 1, rotation: 0, duration: .6, ease: 'back.out(1.6)', immediateRender: false }, LENGTH + .65);
+    rise('#ec3', LENGTH + 1.0);
+    rise('#ec4', LENGTH + 1.2);
+  }
+  tl.to({}, { duration: .001 }, LENGTH + ENDCARD - .001);
+
+  window.__timelines['film'] = tl;
+</script>
+</body>
+</html>

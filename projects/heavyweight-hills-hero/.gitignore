@@ -1,0 +1,19 @@
+# Raw footage, voice takes and render caches stay out of this public repo
+film/assets/clips/
+film/assets/voice.wav
+film/assets/sound.wav
+film/out/
+film/.om/
+film/index.v*.html
+*.mov
+*.m4a
+voiceover/*.wav
+*.wav
+clips/
+out/
+.om/
+intro-*/assets/clips
+__pycache__/
+promo-*/assets/clips
+*/LENGTH
+clip-*/assets/clips

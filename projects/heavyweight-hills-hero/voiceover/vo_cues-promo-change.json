@@ -1,0 +1,52 @@
+[
+ {
+  "take": "m4",
+  "src": [
+   216.12,
+   217.98
+  ],
+  "at": 0.3,
+  "end": 2.16,
+  "text": "So many men"
+ },
+ {
+  "take": "m4",
+  "src": [
+   219.2,
+   221.12
+  ],
+  "at": 2.31,
+  "end": 4.23,
+  "text": "hold this weight on their shoulders and"
+ },
+ {
+  "take": "m4",
+  "src": [
+   222.05,
+   223.22
+  ],
+  "at": 4.33,
+  "end": 5.5,
+  "text": "don't tell anyone."
+ },
+ {
+  "take": "m4",
+  "src": [
+   230.15,
+   231.36
+  ],
+  "at": 6.0,
+  "end": 7.21,
+  "text": "And that needs to change."
+ },
+ {
+  "take": "o",
+  "src": [
+   29.4,
+   31.15
+  ],
+  "at": 7.81,
+  "end": 9.56,
+  "text": "Go on, look after yourself."
+ }
+]

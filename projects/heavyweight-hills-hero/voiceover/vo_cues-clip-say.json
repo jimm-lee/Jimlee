@@ -1,0 +1,52 @@
+[
+ {
+  "take": "m4",
+  "src": [
+   253.2,
+   256.3
+  ],
+  "at": 0.3,
+  "end": 3.4,
+  "text": "No one ever knows how bad it really is"
+ },
+ {
+  "take": "m4",
+  "src": [
+   258.38,
+   259.56
+  ],
+  "at": 3.7,
+  "end": 4.88,
+  "text": "inside your mind."
+ },
+ {
+  "take": "m4",
+  "src": [
+   182.4,
+   186.72
+  ],
+  "at": 5.38,
+  "end": 9.7,
+  "text": "Some people hold that weight on their shoulders for a lifetime and don't tell anyone."
+ },
+ {
+  "take": "m4",
+  "src": [
+   275.6,
+   279.55
+  ],
+  "at": 10.6,
+  "end": 14.55,
+  "text": "There's always someone who can relate to your story."
+ },
+ {
+  "take": "m4",
+  "src": [
+   282.28,
+   283.4
+  ],
+  "at": 14.95,
+  "end": 16.07,
+  "text": "You just need to say it."
+ }
+]

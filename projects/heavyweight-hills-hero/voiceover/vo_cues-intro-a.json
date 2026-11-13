@@ -1,0 +1,52 @@
+[
+ {
+  "take": "m2",
+  "src": [
+   7.5,
+   10.55
+  ],
+  "at": 0.3,
+  "end": 3.35,
+  "text": "Just because I haven't posted it doesn't mean I haven't been doing it."
+ },
+ {
+  "take": "m1",
+  "src": [
+   9.7,
+   12.36
+  ],
+  "at": 3.7,
+  "end": 6.36,
+  "text": "30 kilo weight vest, same as last year,"
+ },
+ {
+  "take": "m2",
+  "src": [
+   21.86,
+   31.3
+  ],
+  "at": 6.56,
+  "end": 16.0,
+  "text": "so walking up the hill, walking down the hill obviously, 30 kilos on my back, at least one hill every day for the whole month of Movember,"
+ },
+ {
+  "take": "m2",
+  "src": [
+   31.3,
+   33.42
+  ],
+  "at": 18.5,
+  "end": 20.62,
+  "text": "and calling it Heavyweight Hills."
+ },
+ {
+  "take": "m3",
+  "src": [
+   57.4,
+   60.92
+  ],
+  "at": 21.22,
+  "end": 24.74,
+  "text": "We all carry our own weight, but this one is visible."
+ }
+]

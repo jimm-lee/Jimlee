@@ -1,0 +1,42 @@
+[
+ {
+  "take": "m4",
+  "src": [
+   253.2,
+   256.3
+  ],
+  "at": 0.3,
+  "end": 3.4,
+  "text": "No one ever knows how bad it really is"
+ },
+ {
+  "take": "m4",
+  "src": [
+   258.38,
+   259.56
+  ],
+  "at": 3.7,
+  "end": 4.88,
+  "text": "inside your mind."
+ },
+ {
+  "take": "m4",
+  "src": [
+   282.28,
+   283.4
+  ],
+  "at": 5.48,
+  "end": 6.6,
+  "text": "You just need to say it."
+ },
+ {
+  "take": "o",
+  "src": [
+   9.25,
+   11.42
+  ],
+  "at": 7.2,
+  "end": 9.37,
+  "text": "Go on, look after yourself."
+ }
+]

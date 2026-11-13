@@ -19,12 +19,16 @@
 `map-build/build_map34.py` merges the Mount Maunganui Overpass extract with OpenStreetMap API tiles for Tauranga
 (bbox −37.705,176.150 → −37.612,176.215) into `film/assets/map/map.json` + `land.png`.
 
-- **3rd Avenue** (OSM way 28502068): from the harbour end (≈5 m) up to the crest near the western end (≈16.7 m),
-  about 500 m — heights from the NZ 8 m DEM via OpenTopoData (`map-build/ave_profile.json`). James's clips are
-  geotagged on this stretch.
+- **3rd Avenue** (OSM way 28502068): from the Cameron Road crossing west up to the crest near the western end
+  (≈16.7 m), about 200 m. James trimmed the stretch east of Cameron Road (Nov 2026); heights from the NZ 8 m DEM via
+  OpenTopoData (`map-build/ave_profile.json`).
 - **Mount Drury, usual track**: north entrance up the winding gravel track (OSM way 574736364) to the summit.
-- **Mount Drury, steeper slope**: the direct grass track up the north-east face (OSM way 574736365), where IMG_3327
-  was filmed.
+- **Mount Drury, steeper slope**: the direct grass track (OSM way 574736365) from where it leaves the usual track to
+  the summit, where IMG_3327 was filmed. The lead-in from the east edge of the reserve was removed (James, Nov 2026).
+
+The two route corrections were made in `film/assets/map/map.json` directly (`build_map34.py` needs the Overpass
+extract, which is not committed); apply the same trims if the map is ever rebuilt. The video was patched by
+re-rendering the map section (2.5–12.3 s) and splicing it in; every other frame and the audio are unchanged.
 
 Map data © OpenStreetMap contributors (ODbL), credited on screen; elevation: LINZ NZ 8 m DEM via OpenTopoData.
 
