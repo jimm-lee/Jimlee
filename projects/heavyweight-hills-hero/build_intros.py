@@ -206,13 +206,18 @@ def build(name, cfg):
     if not clips.exists():
         clips.symlink_to("../../clips")
 
-    words = json.loads((HERE / f"voiceover/words-{name}.json").read_text())
+    cfg = dict(cfg)
+    cfg["cut"] = fx.adjust_cut(cfg.get("fx", []), cfg["cut"])   # transitions keep the outgoing shot underneath
+    if not cfg.get("chunks"):            # a silent reel (e.g. the hook showcase): no voice, no captions
+        words = []
+    else:
+        words = json.loads((HERE / f"voiceover/words-{name}.json").read_text())
     for i in sorted(cfg.get("drop", []), reverse=True):   # Whisper ghosts (words that are not in the audio)
         del words[i]
     for i, start in cfg["fix"].items():
         words[i][1] = start
     cut_at = cfg.get("spoken_outro", len(words))
-    caps = captions(cfg["chunks"], words[:cut_at], {})
+    caps = captions(cfg["chunks"], words[:cut_at], {}) if cfg.get("chunks") else []
     length, cut = cfg["length"], cfg["cut"]
     end_at = cut[-1][1]
     if not cfg.get("outro", True):   # no closing line: the last caption holds into the fade
@@ -273,7 +278,9 @@ def build(name, cfg):
     html = (HERE / "template.html").read_text()
     for k, v in {"TITLE": cfg["title"], "SHOTS": "\n".join(shots), "TYPES": "\n".join(types), "CUT_JS": cut_js,
                  "TITLES_JS": titles_js, "END": str(end_at), "END_DUR": str(round(length - end_at, 2)),
-                 "FX_HTML": fx_html, "FX_JS": fx_js,
+                 "FX_HTML": fx_html + "".join(f'\n  <div class="label" id="lb{i}">{t}</div>' for i, (t, a, e) in enumerate(cfg.get("labels", []))),
+                 "LABELS_JS": ", ".join(f"['lb{i}', {a}, {e}]" for i, (t, a, e) in enumerate(cfg.get("labels", []))),
+                 "FX_JS": fx_js,
                  "LENGTH": str(length), "ENDCARD_DUR": str(cfg.get("endcard", ENDCARD)), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
                  "MAP_KIND": mp["kind"], "MAP_AT": str(mp["at"]), "MAP_W": str(MAP["width_m"]),
                  "MAP_H": str(MAP["height_m"]),

@@ -9,13 +9,53 @@ the plain story. Kinds:
           hold, then the full shot takes over (crop to grid, duplicate and offset).
 - zoom:   the outgoing shot punches forward, two frames of white, the incoming shot lands from a zoom.
 - split:  two clips slide in as top and bottom halves, hold, then the bottom one opens to fill the frame.
+
+Calmer, more cinematic set (James, Nov 19: "something new, something fresh"):
+- iris:   the next shot opens out of a point (the sun) as a growing circle over the shot before.
+- nest:   the next shot appears as a small rounded window inside the current one and grows to fill the frame.
+- blinds: the next shot arrives as vertical strips sliding up, staggered.
+- bloom:  a bright, soft dissolve (the incoming shot fades in from over-exposed).
+- freeze: the moment freezes into a white-bordered print, tilts, holds, and snaps back.
+- strip:  a film strip of frames from different days scrolls up, slows, and the last frame opens into the shot.
 """
+import subprocess
+from pathlib import Path
+
+HERE = Path(__file__).parent
+TRANSITIONS = ("iris", "nest", "blinds", "bloom")   # the incoming shot plays over the outgoing one
 FPS = 30
 
 
 def _video(clip, start, dur, media):
     return (f'<video src="assets/clips/{clip}.mp4" class="clip" data-start="{start:.3f}" data-duration="{dur:.3f}" '
             f'data-media-start="{media:.3f}" muted playsinline></video>')
+
+
+def still(clip, media):
+    """A frame of a clip as a JPEG (clips/stills/, not committed); -> path as the page sees it."""
+    d = HERE / "clips" / "stills"
+    d.mkdir(exist_ok=True)
+    name = f"{clip}_{int(media * 1000)}.jpg"
+    if not (d / name).exists():
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{media}", "-i", str(HERE / "clips" / f"{clip}.mp4"),
+                        "-frames:v", "1", "-q:v", "3", str(d / name)], check=True)
+    return f"assets/clips/stills/{name}"
+
+
+def adjust_cut(fx_list, cut):
+    """Transitions keep the outgoing shot on screen under the incoming one: stretch it, start the next one later."""
+    cut = list(cut)
+    for f in fx_list:
+        if f["kind"] not in TRANSITIONS:
+            continue
+        at, dur = f["at"], f["dur"]
+        k = next(i for i, (c, s, d, m) in enumerate(cut) if abs(s - at) < 1e-3)
+        pc, ps, pd, pm = cut[k - 1]
+        c, s, d, m = cut[k]
+        f["_incoming"] = (c, m)
+        cut[k - 1] = (pc, ps, round(pd + dur, 3), pm)
+        cut[k] = (c, round(s + dur, 3), round(d - dur, 3), round(m + dur, 3))
+    return cut
 
 
 def build(fx_list, cut):
@@ -68,6 +108,42 @@ def build(fx_list, cut):
             html.append(f'  <div class="fxshot" id="fx{n}t">{_video(tc, at, dur, tm)}</div>')
             html.append(f'  <div class="fxshot" id="fx{n}b">{_video(bc, at, dur, bm)}</div>')
             js.append(f"['split', 'fx{n}t', 'fx{n}b', {at:.3f}, {dur:.3f}]")
+            windows.append((at, at + dur))
+        elif kind in TRANSITIONS:
+            dur = f["dur"]
+            clip, media = f["_incoming"]
+            fid = f"fx{n}"
+            if kind == "blinds":
+                strips, ids = f.get("strips", 7), []
+                w = 1080 / strips
+                for k in range(strips):
+                    sid = f"{fid}b{k}"
+                    html.append(f'  <div class="fxshot" id="{sid}" style="clip-path:inset(0 {1080 - (k + 1) * w - 0.5:.1f}px 0 '
+                                f'{k * w - 0.5:.1f}px)">{_video(clip, at, dur, media)}</div>')
+                    ids.append(f"'{sid}'")
+                js.append(f"['blinds', [{', '.join(ids)}], {at:.3f}, {dur:.3f}]")
+            else:
+                cls = "fxshot fxnest" if kind == "nest" else "fxshot"
+                html.append(f'  <div class="{cls}" id="{fid}">{_video(clip, at, dur, media)}</div>')
+                extra = f", {f.get('x', 50)}, {f.get('y', 40)}" if kind == "iris" else ""
+                js.append(f"['{kind}', '{fid}', {at:.3f}, {dur:.3f}{extra}]")
+            windows.append((at, at + dur))
+        elif kind == "freeze":
+            dur, clip, media = f["dur"], f["clip"], f["media"]
+            fid = f"fx{n}"
+            html.append(f'  <div class="fxfreeze" id="{fid}"><div class="dim"></div>'
+                        f'<img class="card" src="{still(clip, media)}" alt=""></div>')
+            js.append(f"['freeze', '{fid}', {at:.3f}, {dur:.3f}]")
+            windows.append((at, at + dur))
+        elif kind == "strip":
+            dur, frames = f["dur"], f["frames"]          # frames: [(clip, media)...]; the last opens into the cut
+            fid = f"fx{n}"
+            imgs = "".join(f'<img src="{still(c, m)}" alt="" style="top:{k * 540}px">' for k, (c, m) in enumerate(frames))
+            last_c, last_m = frames[-1]
+            open_at = at + dur * 0.68
+            html.append(f'  <div class="fxstrip" id="{fid}"><div class="col" id="{fid}c">{imgs}</div></div>')
+            html.append(f'  <div class="fxshot fxopen" id="{fid}o">{_video(last_c, open_at, at + dur - open_at, last_m)}</div>')
+            js.append(f"['strip', '{fid}', {at:.3f}, {dur:.3f}, {len(frames)}]")
             windows.append((at, at + dur))
         else:
             raise ValueError(f"unknown hook {kind}")

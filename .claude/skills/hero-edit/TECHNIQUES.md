@@ -116,3 +116,11 @@ DaVinci timeline reference.
 | 5 | mirror on the hook, iris into the linger |
 | 6 | impact frame intro (no spiral), photo stack in the build |
 | 7 | split screen in the connection, zoom-through into the payoff |
+
+## Heavyweight Hills engine (`projects/heavyweight-hills-hero/fx.py`), Nov 19
+
+James found spiral / grid / split / zoom on repeat "tacky and not visually aesthetic" and asked for something fresh.
+Built for the voice-led edits, shown in `videos/Heavyweight-Hills-Hook-Showcase.mp4` for him to pick from:
+**iris from the sun** (#13), **nested frame** (#12), **blinds** (#14), **freeze card** (#10 as a white-bordered print),
+**film strip** (#9, frames from different days), **bloom dissolve** (#16, a bright soft dissolve) and **match cuts**
+(#18, sun to sun). Don't reuse the same hook across a set of videos; vary per video and keep them calm.
