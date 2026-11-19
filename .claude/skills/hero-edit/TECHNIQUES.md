@@ -124,3 +124,10 @@ Built for the voice-led edits, shown in `videos/Heavyweight-Hills-Hook-Showcase.
 **iris from the sun** (#13), **nested frame** (#12), **blinds** (#14), **freeze card** (#10 as a white-bordered print),
 **film strip** (#9, frames from different days), **bloom dissolve** (#16, a bright soft dissolve) and **match cuts**
 (#18, sun to sun). Don't reuse the same hook across a set of videos; vary per video and keep them calm.
+
+**Two per video, motivated by the frames (James, Nov 19):** "use an aesthetic frame to transition to the next clip,
+not just where it suits; the transition must flow and feel natural, not forced." Pick the transition from what the
+two frames share: sun → light (glow iris), lines → lines (bridge railings into stairs: blinds), feet → feet (match
+cuts, nested frame), bright sky → night (bloom), a smile → a photo of it (freeze card), many days → the one shot (film
+strip). The iris finds the sun itself (`fx.brightest`) and swells its light over the frame; going bright → dark, a
+hard-edged circle read as a dark hole.

@@ -11,7 +11,8 @@ the plain story. Kinds:
 - split:  two clips slide in as top and bottom halves, hold, then the bottom one opens to fill the frame.
 
 Calmer, more cinematic set (James, Nov 19: "something new, something fresh"):
-- iris:   the next shot opens out of a point (the sun) as a growing circle over the shot before.
+- iris:   the sun's glow swells out from where the sun is until it fills the frame, and the next shot comes up
+          out of the light (a hard-edged circle read as a dark hole when going from sunset into night).
 - nest:   the next shot appears as a small rounded window inside the current one and grows to fill the frame.
 - blinds: the next shot arrives as vertical strips sliding up, staggered.
 - bloom:  a bright, soft dissolve (the incoming shot fades in from over-exposed).
@@ -42,6 +43,15 @@ def still(clip, media):
     return f"assets/clips/stills/{name}"
 
 
+def brightest(clip, media):
+    """Where the sun is: the brightest spot of a frame (blurred), as x %, y %."""
+    import cv2
+    p = HERE / still(clip, media).replace("assets/clips/", "clips/")
+    g = cv2.GaussianBlur(cv2.cvtColor(cv2.imread(str(p)), cv2.COLOR_BGR2GRAY), (0, 0), 25)
+    y, x = divmod(int(g.argmax()), g.shape[1])
+    return round(100 * x / g.shape[1], 1), round(100 * y / g.shape[0], 1)
+
+
 def adjust_cut(fx_list, cut):
     """Transitions keep the outgoing shot on screen under the incoming one: stretch it, start the next one later."""
     cut = list(cut)
@@ -53,6 +63,8 @@ def adjust_cut(fx_list, cut):
         pc, ps, pd, pm = cut[k - 1]
         c, s, d, m = cut[k]
         f["_incoming"] = (c, m)
+        if f["kind"] == "iris" and "x" not in f:   # open from the sun in the outgoing frame
+            f["x"], f["y"] = brightest(pc, pm + (at - ps))
         cut[k - 1] = (pc, ps, round(pd + dur, 3), pm)
         cut[k] = (c, round(s + dur, 3), round(d - dur, 3), round(m + dur, 3))
     return cut
@@ -125,6 +137,8 @@ def build(fx_list, cut):
             else:
                 cls = "fxshot fxnest" if kind == "nest" else "fxshot"
                 html.append(f'  <div class="{cls}" id="{fid}">{_video(clip, at, dur, media)}</div>')
+                if kind == "iris":   # the sunlight that swells out over both shots
+                    html.append(f'  <div class="fxglow" id="{fid}g"></div>')
                 extra = f", {f.get('x', 50)}, {f.get('y', 40)}" if kind == "iris" else ""
                 js.append(f"['{kind}', '{fid}', {at:.3f}, {dur:.3f}{extra}]")
             windows.append((at, at + dur))

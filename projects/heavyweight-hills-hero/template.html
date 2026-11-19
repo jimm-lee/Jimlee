@@ -67,6 +67,7 @@
   .fxgrid { position: absolute; inset: 0; background: #000; visibility: hidden; }
   .cell { position: absolute; overflow: hidden; visibility: hidden; }
   .fxnest { box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .fxglow { position: absolute; inset: 0; visibility: hidden; background: #fff6e0; }
   .fxfreeze { position: absolute; inset: 0; visibility: hidden; }
   .fxfreeze .dim { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
   .fxfreeze .card { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;
@@ -242,11 +243,17 @@
       tl.to('#' + out, { scale: 2.3, duration: .22, ease: 'power2.in' }, at - .22)
         .fromTo('#flash', { opacity: .7 }, { opacity: 0, duration: 3 / 30, ease: 'none', immediateRender: false }, at)
         .fromTo('#' + inn, { scale: 1.4 }, { scale: 1, duration: .45, ease: 'expo.out', immediateRender: false }, at);
-    } else if (f[0] === 'iris') {       // the next shot opens out of a point (the sun) as a growing circle
-      const [, id, at, dur, x, y] = f;
-      tl.set('#' + id, { visibility: 'visible', clipPath: `circle(0% at ${x}% ${y}%)` }, at)
-        .to('#' + id, { clipPath: `circle(130% at ${x}% ${y}%)`, duration: dur, ease: 'power2.inOut' }, at)
-        .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'iris') {       // the sun's glow swells out until it fills the frame, and the next shot comes up out of the light
+      const [, id, at, dur, x, y] = f, glow = document.getElementById(id + 'g'), r = { v: 0 };
+      const paint = () => { const m = `radial-gradient(circle at ${x}% ${y}%, #000 ${r.v}px, transparent ${r.v * 1.6 + 200}px)`;
+                            glow.style.webkitMaskImage = m; glow.style.maskImage = m; };
+      paint();
+      tl.set(glow, { visibility: 'visible', opacity: 1 }, at)
+        .fromTo(r, { v: 40 }, { v: 1900, duration: dur * .55, ease: 'power2.in', onUpdate: paint, immediateRender: false }, at)
+        .set('#' + id, { visibility: 'visible', opacity: 0 }, at)
+        .fromTo('#' + id, { opacity: 0, filter: 'brightness(2.2)' }, { opacity: 1, filter: 'brightness(1)', duration: dur * .55, ease: 'sine.out', immediateRender: false }, at + dur * .45)
+        .to(glow, { opacity: 0, duration: dur * .5, ease: 'sine.inOut' }, at + dur * .5)
+        .set(['#' + id, glow], { visibility: 'hidden' }, at + dur);
     } else if (f[0] === 'nest') {       // a small rounded window inside the current shot grows to fill the frame
       const [, id, at, dur] = f;
       tl.set('#' + id, { visibility: 'visible' }, at)

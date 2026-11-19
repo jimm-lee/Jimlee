@@ -66,6 +66,18 @@
   .fxshot video, .cell video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .fxgrid { position: absolute; inset: 0; background: #000; visibility: hidden; }
   .cell { position: absolute; overflow: hidden; visibility: hidden; }
+  .fxnest { box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .fxglow { position: absolute; inset: 0; visibility: hidden; background: #fff6e0; }
+  .fxfreeze { position: absolute; inset: 0; visibility: hidden; }
+  .fxfreeze .dim { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
+  .fxfreeze .card { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box;
+                    border: 26px solid #fbfaf6; box-shadow: 0 40px 90px rgba(0,0,0,.6); }
+  .fxstrip { position: absolute; inset: 0; background: #0d0d0d; visibility: hidden; overflow: hidden; }
+  .fxstrip .col { position: absolute; left: 0; right: 0; top: 0; }
+  .fxstrip img { position: absolute; left: 160px; width: 760px; height: 500px; object-fit: cover; border-radius: 22px;
+                 box-shadow: 0 20px 50px rgba(0,0,0,.6); }
+  .label { position: absolute; left: 60px; top: 150px; font: 500 34px "Outfit"; letter-spacing: 6px; text-transform: uppercase;
+           color: #fff; text-shadow: var(--shadow); opacity: 0; }
   /* end card: the ask, as in the launch video, in the hero type (blurred summit selfie behind) */
   #endcard { position: absolute; inset: 0; visibility: hidden; background: #000; }
   #endcard .bg { position: absolute; inset: -40px; filter: blur(18px) brightness(.4); }
@@ -262,6 +274,50 @@
       tl.to('#' + out, { scale: 2.3, duration: .22, ease: 'power2.in' }, at - .22)
         .fromTo('#flash', { opacity: .7 }, { opacity: 0, duration: 3 / 30, ease: 'none', immediateRender: false }, at)
         .fromTo('#' + inn, { scale: 1.4 }, { scale: 1, duration: .45, ease: 'expo.out', immediateRender: false }, at);
+    } else if (f[0] === 'iris') {       // the sun's glow swells out until it fills the frame, and the next shot comes up out of the light
+      const [, id, at, dur, x, y] = f, glow = document.getElementById(id + 'g'), r = { v: 0 };
+      const paint = () => { const m = `radial-gradient(circle at ${x}% ${y}%, #000 ${r.v}px, transparent ${r.v * 1.6 + 200}px)`;
+                            glow.style.webkitMaskImage = m; glow.style.maskImage = m; };
+      paint();
+      tl.set(glow, { visibility: 'visible', opacity: 1 }, at)
+        .fromTo(r, { v: 40 }, { v: 1900, duration: dur * .55, ease: 'power2.in', onUpdate: paint, immediateRender: false }, at)
+        .set('#' + id, { visibility: 'visible', opacity: 0 }, at)
+        .fromTo('#' + id, { opacity: 0, filter: 'brightness(2.2)' }, { opacity: 1, filter: 'brightness(1)', duration: dur * .55, ease: 'sine.out', immediateRender: false }, at + dur * .45)
+        .to(glow, { opacity: 0, duration: dur * .5, ease: 'sine.inOut' }, at + dur * .5)
+        .set(['#' + id, glow], { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'nest') {       // a small rounded window inside the current shot grows to fill the frame
+      const [, id, at, dur] = f;
+      tl.set('#' + id, { visibility: 'visible' }, at)
+        .fromTo('#' + id, { scale: .3, borderRadius: 60, y: 60 }, { scale: 1, borderRadius: 0, y: 0, duration: dur, ease: 'power3.inOut', immediateRender: false }, at)
+        .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'blinds') {     // vertical strips of the next shot slide up, staggered
+      const [, ids, at, dur] = f, step = dur * .35 / ids.length;
+      ids.forEach((id, k) => {
+        tl.set('#' + id, { visibility: 'visible' }, at)
+          .fromTo('#' + id, { yPercent: 100 }, { yPercent: 0, duration: dur - step * (ids.length - 1), ease: 'power3.out', immediateRender: false }, at + k * step)
+          .set('#' + id, { visibility: 'hidden' }, at + dur);
+      });
+    } else if (f[0] === 'bloom') {      // the next shot fades in from over-exposed: a soft, bright dissolve
+      const [, id, at, dur] = f;
+      tl.set('#' + id, { visibility: 'visible' }, at)
+        .fromTo('#' + id, { opacity: 0, filter: 'brightness(2.4)' }, { opacity: 1, filter: 'brightness(1)', duration: dur, ease: 'sine.inOut', immediateRender: false }, at)
+        .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'freeze') {     // the moment freezes into a print, tilts, holds, snaps back
+      const [, id, at, dur] = f, card = '#' + id + ' .card', dim = '#' + id + ' .dim';
+      tl.set('#' + id, { visibility: 'visible' }, at)
+        .fromTo(card, { scale: 1, rotation: 0, borderWidth: 0 }, { scale: .82, rotation: -4, borderWidth: 26, duration: .28, ease: 'back.out(1.4)', immediateRender: false }, at)
+        .fromTo(dim, { opacity: 0 }, { opacity: 1, duration: .2, immediateRender: false }, at)
+        .to(card, { scale: 1, rotation: 0, borderWidth: 0, duration: .18, ease: 'power2.in' }, at + dur - .18)
+        .to(dim, { opacity: 0, duration: .18 }, at + dur - .18)
+        .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'strip') {      // a film strip of frames scrolls up, slows, and the last frame opens up
+      const [, id, at, dur, n] = f, openAt = at + dur * .68, endY = 960 - 250 - (n - 1) * 540;
+      tl.set('#' + id, { visibility: 'visible' }, at)
+        .fromTo('#' + id + 'c', { y: endY + 1900 }, { y: endY, duration: openAt - at, ease: 'power3.out', immediateRender: false }, at)
+        .set('#' + id, { visibility: 'hidden' }, openAt)
+        .set('#' + id + 'o', { visibility: 'visible', clipPath: 'inset(710px 160px 710px 160px round 22px)' }, openAt)
+        .to('#' + id + 'o', { clipPath: 'inset(0px 0px 0px 0px round 0px)', duration: at + dur - openAt, ease: 'power3.inOut' }, openAt)
+        .set('#' + id + 'o', { visibility: 'hidden' }, at + dur);
     } else if (f[0] === 'split') {      // top and bottom halves slide in, hold, then the bottom opens to full frame
       const [, top, bot, at, dur] = f;
       tl.set(['#' + top, '#' + bot], { visibility: 'visible' }, at)
@@ -270,6 +326,12 @@
         .to('#' + bot, { clipPath: 'inset(0% 0% 0% 0%)', duration: .3, ease: 'expo.inOut' }, at + dur - .3)
         .set(['#' + top, '#' + bot], { visibility: 'hidden' }, at + dur);
     }
+  });
+
+  // labels (showcase reels only)
+  [].forEach(([id, a, e]) => {
+    tl.fromTo('#' + id, { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: .3, immediateRender: false }, a)
+      .to('#' + id, { opacity: 0, duration: .2 }, e - .2);
   });
 
   // ---------- captions: each word spells itself out across its spoken time ----------
