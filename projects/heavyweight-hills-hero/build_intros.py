@@ -178,7 +178,13 @@ def captions(spec, words, fix):
             follow = ws[j + 1][1] if j + 1 < len(ws) else min(out_t, w[2] + 0.25)
             he = max(hs + 0.12, min(follow, out_t) - at)
             spans.append(word_span(t, j * PHRASE_STAGGER, PHRASE_WRITE, hs, he))
-        out.append((" ".join(spans), at, round(out_t, 2)))
+        # the script impact word sits on its own line underneath the main caption (James, Nov 19)
+        script = [k for k, t in enumerate(part) if "*" in t]
+        if script:
+            k = script[-1]
+            main = [sp for j, sp in enumerate(spans) if j != k]
+            spans = ([f'<span class="r1">{" ".join(main)}</span>'] if main else []) + [f'<span class="r2">{spans[k]}</span>']
+        out.append(("".join(spans) if script else " ".join(spans), at, round(out_t, 2)))
     quick = [(round(o - a, 2), re.sub("<[^>]+>", "", h)) for h, a, o in out if o - a < MIN_SHOW - 0.01]
     assert not quick, f"captions on screen for less than {MIN_SHOW} s: {quick}"   # never again too quick to read
     return out

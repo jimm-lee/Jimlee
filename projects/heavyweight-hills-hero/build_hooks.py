@@ -21,7 +21,7 @@ HOOKS = {
              ("3604", 6.7, 2.3, 0.4),      # (bridge bursts into a grid) "One missed day would be easy to explain"
              ("3605", 9.0, 2.2, 0.5),      # "and that's exactly why": the bridge walkway at night
              ("3542", 11.2, 3.1, 0.5)],    # "I made this commitment public.": the sun going down over the hill
-        chunks=("One *hill.* | *30* kilos. | One *promise.* | Show up again | *tomorrow.* | One missed day | "
+        chunks=("One *hill.* | 30 *kilos.* | One *promise.* | Show up again | *tomorrow.* | One missed day | "
                 "would be easy | to *explain,* | and that's exactly | why I made | this commitment | *public.*"),
         outro=False,
         fix={0: 0.35, 10: 6.88, 18: 10.2},
@@ -37,7 +37,7 @@ HOOKS = {
              ("3635", 5.6, 3.0, 0.4),      # (sunset over the night road, then the road opens up) "I didn't start this challenge"
              ("3535", 8.6, 2.0, 0.5),      # "I started because someone mattered": sun through the trees
              ("3470", 10.6, 2.4, 1.5)],    # "enough to make me show up.": the summit at sunset
-        chunks=("*30* kilos | on my back, | but it's not | the *weight* | I'm doing this | *for.* | I didn't start | "
+        chunks=("30 *kilos* | on my back, | but it's not | the *weight* | I'm doing this | *for.* | I didn't start | "
                 "this *challenge* | because I thought | it'd be *easy.* | I started | because *someone* | "
                 "mattered enough | to make me | show *up.*"),
         outro=False,
@@ -55,7 +55,7 @@ HOOKS = {
              ("3524", 8.25, 1.9, 0.2),     # "turn up every day": the beach
              ("3535", 10.15, 2.25, 1.4)],  # "and still be carrying more than people realise.": sun through the trees
         chunks=("If you've | ever said, | I'm *grand,* | when you *weren't,* | this one's | for *you.* | You can look | "
-                "completely *fine,* | turn up | every day | and still be | *carrying* more | than people | *realise.*"),
+                "completely *fine,* | turn up | every day | and still be | *carrying* | more than people | *realise.*"),
         outro=False,
         tops={0: 300, 1: 300, 2: 300},   # over the split, the selfie's face sits at the caption row
         fix={0: 0.35, 13: 5.68},
@@ -72,8 +72,8 @@ HOOKS = {
              ("3635", 5.35, 2.4, 0.3),     # (lands from the zoom) "The hardest part of this challenge": night road
              ("3621", 7.75, 2.0, 2.0),     # "isn't the hill. It's making": the orange sunset
              ("3470", 9.75, 2.35, 1.0)],   # "the decision to show up again tomorrow.": the summit at sunset
-        chunks=("A heavier *vest* | isn't the point. | Showing up | when *nobody* | is watching is. | The *hardest* part | "
-                "of this challenge | isn't the *hill.* | It's making | the *decision* | to show up | again *tomorrow.*"),
+        chunks=("A heavier *vest* | isn't the point. | Showing up | when *nobody* | is watching is. | The *hardest* | "
+                "part of this | challenge | isn't the *hill.* | It's making | the *decision* | to show up | again *tomorrow.*"),
         outro=False,
         fix={0: 0.35, 13: 5.38},
     ),
@@ -90,7 +90,7 @@ HOOKS = {
              ("3632", 10.5, 1.9, 0.3),     # "until you feel": your shadow on the footpath
              ("3545", 12.4, 1.8, 0.5),     # "motivated to make a change,": the sun over the hill
              ("3470", 14.2, 2.2, 0.5)],    # "let this be your reminder.": the summit at sunset
-        chunks=("There have been | mornings and *evenings,* | that I've *questioned,* | why am I | even *doing* this? | "
+        chunks=("There have been | mornings and *evenings,* | that I've *questioned,* | why am I | even *doing* | this? | "
                 "And then | I *remember* | who I started | it *for.* | If you're waiting | until you feel | *motivated* | "
                 "to make a | *change,* | let this be | your *reminder.*"),
         outro=False,
@@ -109,8 +109,8 @@ HOOKS = {
              ("3579", 7.45, 1.15, 3.0),    # "I'm fine,": the wide-eyed selfie
              ("3392", 8.6, 2.5, 1.2),      # "when you weren't,": the night footpath, your hand
              ("3549", 11.1, 2.2, 1.0)],    # "this one's for you.": the sun going down over the sea
-        chunks=("We talk | a lot about | getting *stronger,* | but we don't | talk enough | about *checking* in | "
-                "on each other. | If you've | ever said, | I'm *fine,* | when you *weren't,* | this one's | for *you.*"),
+        chunks=("We talk | a lot about | getting *stronger,* | but we don't | talk enough | about *checking* | "
+                "in on | each other. | If you've | ever said, | I'm *fine,* | when you *weren't,* | this one's | for *you.*"),
         outro=False,
         fix={0: 0.35},
     ),
