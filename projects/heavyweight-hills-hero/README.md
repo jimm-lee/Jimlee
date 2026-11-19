@@ -171,3 +171,14 @@ visual hook, then the QR card. New clips Nov 10–18: IMG_3470, 3524, 3535, 3542
 
 More clips Nov 19: IMG_3390, 3392, 3439, 3440, 3449, 3459, 3537, 3549, 3552, 3570, 3576, 3579 (night stairs, sunsets
 from the top, the night footpath, the wide-eyed selfie).
+
+## Caption style v2 (Nov 19)
+
+James asked for the word being spoken to be highlighted in green underneath the white text, and sent a script-font
+reference ("The Riding *diaries*"). Captions are now white Bebas phrases with a green highlight box moving under each
+word as it is said (`data-hs`/`data-he` from the Whisper timings), and impact words set in white **Allura** script
+(OFL, `fonts/Allura.woff2`; chosen from Great Vibes, Allura, Parisienne, Pinyon Script and Alex Brush as the closest to
+the reference), with a firm dark edge so they read on the green. The spoken closing line is highlighted too. The six
+hook videos use it; the earlier intros, promos and 20 s clips keep the old style until rebuilt.
+
+New clips Nov 19: IMG_3629, 3630, 3631 (counting summits on the fingers), 3643 (night footpath).

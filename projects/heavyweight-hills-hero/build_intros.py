@@ -124,13 +124,19 @@ def letters(text):
     return "".join(f'<span class="l">{ch}</span>' for ch in text)
 
 
-def word_span(word, t, d):
+def word_span(word, t, d, hs=None, he=None):
+    """One caption word writing on from t over d; *word* is the impact word (script font). hs/he: when it is spoken
+    (offsets in the caption), shown as the green highlight underneath it (James, Nov 19)."""
     m = re.fullmatch(r"(.*?)\*(.+)\*([.,?!:;]*)", word)
     if m:
         body = f'{letters(m.group(1))}<span class="acc">{letters(m.group(2))}</span>{letters(m.group(3))}'
     else:
         body = letters(word)
-    return f'<span class="w" data-t="{t:.2f}" data-d="{d:.2f}">{body}</span>'
+    hl = ""
+    if hs is not None:
+        hl = f' data-hs="{hs:.2f}" data-he="{he:.2f}"'
+        body = '<span class="hl"></span>' + body
+    return f'<span class="w" data-t="{t:.2f}" data-d="{d:.2f}"{hl}>{body}</span>'
 
 
 MAX_WORDS = 3      # never more than three words on screen (most captions are one or two)
@@ -158,7 +164,6 @@ def captions(spec, words, fix):
         i += len(part)
         at = round(max(ws[0][1] - 0.05, free), 2)   # after a quick caption, this one may land a moment late
         # the whole phrase writes on at once (a quick ripple across the words), so it can be read for its full time
-        spans = [word_span(t, j * PHRASE_STAGGER, PHRASE_WRITE) for j, t in enumerate(part)]
         last_end = ws[-1][2]
         nxt = words[i][1] - 0.05 if i < len(words) else None
         if nxt is None or nxt - last_end > END_HOLD:
@@ -166,6 +171,13 @@ def captions(spec, words, fix):
         else:
             out_t = max(nxt, at + MIN_SHOW)   # straight on: replaced as the next word is said
         free = out_t
+        # each word is highlighted from when it is said until the next word starts (the last: until it ends)
+        spans = []
+        for j, (t, w) in enumerate(zip(part, ws)):
+            hs = max(0.0, w[1] - 0.03 - at)
+            follow = ws[j + 1][1] if j + 1 < len(ws) else min(out_t, w[2] + 0.25)
+            he = max(hs + 0.12, min(follow, out_t) - at)
+            spans.append(word_span(t, j * PHRASE_STAGGER, PHRASE_WRITE, hs, he))
         out.append((" ".join(spans), at, round(out_t, 2)))
     quick = [(round(o - a, 2), re.sub("<[^>]+>", "", h)) for h, a, o in out if o - a < MIN_SHOW - 0.01]
     assert not quick, f"captions on screen for less than {MIN_SHOW} s: {quick}"   # never again too quick to read
@@ -179,6 +191,8 @@ def build(name, cfg):
     shutil.copytree(VENDOR, d / "vendor", dirs_exist_ok=True)
     for f in ("BebasNeue.woff2", "BebasNeue-OFL.txt", "Outfit-var.woff2", "Outfit-OFL.txt"):
         shutil.copy(FONTS / f, d / "assets/fonts" / f)
+    for f in ("Allura.woff2", "Allura-OFL.txt"):   # the script font for impact words (James's "diaries" reference)
+        shutil.copy(HERE / "fonts" / f, d / "assets/fonts" / f)
     shutil.copy(MAP_SRC / "land.png", d / "assets/map/land.png")
     shutil.copy(QR, d / "assets/qr.svg")
     clips = d / "assets/clips"
@@ -199,20 +213,24 @@ def build(name, cfg):
     elif "spoken_outro" in cfg:   # the closing line is in James's voice: each word appears as he says it
         spoken = words[cut_at:]
         outro_at = round(spoken[0][1] - 0.05, 2)
-        o_html = [(w, s, min(WRITE_MAX, max(0.15, e - s))) for (w, *_), (_, s, e) in zip(OUTRO, spoken)]
+        o_html = [(w, s, min(WRITE_MAX, max(0.15, e - s)), e) for (w, *_), (_, s, e) in zip(OUTRO, spoken)]
     else:
         outro_at = end_at + 0.15
         o_html, t = [], outro_at
         for k, (w, gap, dur) in enumerate(OUTRO):
             t += gap
-            o_html.append((w, t, dur))
+            o_html.append((w, t, dur, None))
     if o_html and caps and caps[-1][2] > outro_at:   # the last caption clears as the closing line starts
         caps[-1] = (caps[-1][0], caps[-1][1], outro_at)
         assert outro_at - caps[-1][1] >= MIN_SHOW - 0.01, f"{name}: last caption too quick before the closing line"
     if o_html:
-        row1 = " ".join(word_span(w, t - outro_at, dd) for w, t, dd in o_html[:1])
+        def ospan(w, t, dd, e, row_at):   # spoken closing line: highlight each word as James says it
+            if e is None:
+                return word_span(w, t - row_at, dd)
+            return word_span(w, t - row_at, dd, max(0.0, t - row_at), e + 0.15 - row_at)
+        row1 = " ".join(ospan(w, t, dd, e, outro_at) for w, t, dd, e in o_html[:1])
         row2_at = o_html[1][1]
-        row2 = " ".join(word_span(w, t - row2_at, dd) for w, t, dd in o_html[1:])
+        row2 = " ".join(ospan(w, t, dd, e, row2_at) for w, t, dd, e in o_html[1:])
 
     shots = []
     for i, (c, s, dur, m) in enumerate(cut):

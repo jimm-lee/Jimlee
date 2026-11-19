@@ -49,6 +49,10 @@ instead of the hook-line pacing above:
   word by word, 0.45 s minimum) still flashed by in fast speech. `build_intros.captions` now refuses anything shorter.
 - **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
   most one per caption; 124 px Bebas.
+- **Caption style v2 (James, Nov 19):** white Bebas phrases; the **word being said gets a green (#75FF78) highlight
+  box underneath it**, moving word by word with the voice; **impact words in white script (Allura, OFL)**, matched to
+  his "The Riding *diaries*" reference, instead of green type. Engine: `projects/heavyweight-hills-hero/` (`.hl`,
+  `.cap .acc`). Applied to the hook videos first; older edits pick it up when rebuilt and re-rendered.
 - Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
   the call to action, Nov 9): Heavyweight Hills / Sponsor my *summit* / QR / Scan to donate / link, 3 s. The
   "no name card" rule still holds for lifestyle hero edits.
