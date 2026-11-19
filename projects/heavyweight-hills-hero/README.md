@@ -151,3 +151,20 @@ A hook opens each clip and a second lands in the voice-over's pause around 10 s;
 | `Clip-Invisible-Weight-20s.mp4` | spiral of eight clips onto the walking selfie | the rain bursts into a 2×2 grid | "Because we all carry weight… it's invisible. You don't see it." / "So many men hold this weight… And that needs to change." |
 | `Clip-The-Stare-20s.mp4` | the vest selfie bursts into a 3×3 grid | zoom-through from the grin, white flash, into the vest at night | "Most of the times I stare at that vest… a little bit of suffering." / "I can hold that weight on my shoulders." + "Go on, look after yourself" |
 | `Clip-Say-It-20s.mp4` | split screen: golden day view over the night shadow, the shadow opens up | spiral onto people walking the hill | "No one ever knows how bad it really is inside your mind… for a lifetime and don't tell anyone." / "There's always someone who can relate to your story. You just need to say it." |
+
+## Hook videos (Nov 19)
+
+From the `Movember_hooks` voice note: eleven spoken hooks (best take of each, cleaned; `stitch_vo.py hook-01`…`hook-11`,
+plus `hook-07b`, the "I'm fine" take). `build_hooks.py` → `hk-*/` pairs two hooks per video, each landing with its own
+visual hook, then the QR card. New clips Nov 10–18: IMG_3470, 3524, 3535, 3542, 3545, 3572, 3604, 3605, 3621, 3624,
+3632, 3635, 3637 (summit-bin taps 3460/3532/3569 not used).
+
+| File | Opening (spoken + visual) | Second hook |
+|---|---|---|
+| `Hook-One-Promise.mp4` | "One hill. 30 kilos. One promise. Show up again tomorrow." spiral, then a cut on every beat | "One missed day would be easy to explain…" grid pop of the bridge at night |
+| `Hook-Not-The-Weight.mp4` | "30 kilos on my back, but it's not the weight I'm doing this for." vest selfie 3×3 grid | "I didn't start this challenge because I thought it'd be easy…" split: sunset over the night road |
+| `Hook-Im-Grand.mp4` | "If you've ever said I'm grand, when you weren't, this one's for you." split: selfie over the night shadow | "You can look completely fine…" spiral onto the shadow and the wave |
+| `Hook-Nobody-Watching.mp4` | "A heavier vest isn't the point, showing up when nobody is watching is." spiral onto the vest selfie | "The hardest part of this challenge isn't the hill…" zoom-through onto the night road |
+| `Hook-Your-Reminder.mp4` | "There have been mornings and evenings that I've questioned…" split: sunset over the night bridge | "If you're waiting until you feel motivated to make a change…" grid pop of the sun |
+
+Unused so far: hook 10, "We talk a lot about getting stronger, but we don't talk enough about checking in on each other."

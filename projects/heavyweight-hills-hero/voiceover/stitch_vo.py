@@ -128,6 +128,25 @@ PLANS = {"full": [
     "hook-10": [("h", 200.38, 205.12, 0.0, "We talk a lot about getting stronger, but we don't talk enough about checking in on each other.")],
     "hook-11": [("h", 214.95, 217.88, 0.40, "One missed day would be easy to explain,"),
                 ("h", 218.70, 222.12, 0.0, "and that's exactly why I made this commitment public.")],
+    # hook videos: two spoken hooks each, the second landing with a second visual hook (Nov 19)
+    "hk-promise": [
+    ("h", 169.80, 175.45, 0.9, "One hill, 30 kilos, one promise, show up again tomorrow."),
+    ("h", 214.95, 217.88, 0.40, "One missed day would be easy to explain,"),
+    ("h", 218.70, 222.12, 0.0, "and that's exactly why I made this commitment public.")],
+    "hk-weight": [
+    ("h", 98.30, 103.58, 0.9, "30 kilos on my back, but it's not the weight I'm doing this for."),
+    ("h", 6.20, 12.00, 0.0, "I didn't start this challenge because I thought it would be easy. I started because someone mattered enough to make me show up.")],
+    "hk-grand": [
+    ("h", 138.82, 141.92, 0.45, "If you've ever said, I'm grand, when you weren't,"),
+    ("h", 142.75, 143.66, 0.9, "this one's for you."),
+    ("h", 57.45, 63.50, 0.0, "You can look completely fine, turn up every day and still be carrying more than people realise.")],
+    "hk-nobody": [
+    ("h", 30.75, 34.90, 0.9, "A heavier vest isn't the point, showing up when nobody is watching is."),
+    ("h", 83.35, 89.35, 0.0, "The hardest part of this challenge isn't the hill, it's making the decision to show up again tomorrow.")],
+    "hk-reminder": [
+    ("h", 126.45, 132.05, 0.45, "There have been mornings and evenings that I've questioned, why am I even doing this?"),
+    ("h", 133.25, 135.50, 0.9, "Then I remember who I started it for."),
+    ("h", 190.88, 197.05, 0.0, "If you're waiting until you feel motivated to make a change, let this be your reminder.")],
     "promo-hold": [
     ("m4", 194.40, 197.10, 0.15, "I can put myself under"),
     ("m4", 197.85, 199.40, 0.40, "stressful situations."),
