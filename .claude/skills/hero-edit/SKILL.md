@@ -50,7 +50,7 @@ instead of the hook-line pacing above:
 - **Impact words green** (Movember, vest, Heavyweight Hills, uncle, grandparents, invisible, visible, alone…), at
   most one per caption; 124 px Bebas.
 - **Caption style v2 (James, Nov 19):** white Bebas phrases; the **word being said gets a green (#75FF78) highlight
-  box underneath it**, moving word by word with the voice; **impact words in white script (Allura, OFL)**, matched to
+  box underneath it**, moving word by word with the voice; **impact words in white script (Great Vibes, OFL; James's pick)**, matched to
   his "The Riding *diaries*" reference, instead of green type. Engine: `projects/heavyweight-hills-hero/` (`.hl`,
   `.cap .acc`). Applied to the hook videos first; older edits pick it up when rebuilt and re-rendered.
 - Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for

@@ -191,7 +191,7 @@ def build(name, cfg):
     shutil.copytree(VENDOR, d / "vendor", dirs_exist_ok=True)
     for f in ("BebasNeue.woff2", "BebasNeue-OFL.txt", "Outfit-var.woff2", "Outfit-OFL.txt"):
         shutil.copy(FONTS / f, d / "assets/fonts" / f)
-    for f in ("Allura.woff2", "Allura-OFL.txt"):   # the script font for impact words (James's "diaries" reference)
+    for f in ("GreatVibes.woff2", "GreatVibes-OFL.txt"):   # the script font for impact words (James picked Great Vibes)
         shutil.copy(HERE / "fonts" / f, d / "assets/fonts" / f)
     shutil.copy(MAP_SRC / "land.png", d / "assets/map/land.png")
     shutil.copy(QR, d / "assets/qr.svg")
