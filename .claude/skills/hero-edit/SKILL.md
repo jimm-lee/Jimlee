@@ -53,7 +53,10 @@ instead of the hook-line pacing above:
   box underneath it**, moving word by word with the voice; **impact words in white script (Great Vibes, OFL; James's pick)**, matched to
   his "The Riding *diaries*" reference, instead of green type. The **script word sits on its own line underneath**
   the main caption (so phrase captions end on it), and the highlight box is centred on the letters (Bebas sits high
-  in its line box: the box is offset to match). Engine: `projects/heavyweight-hills-hero/` (`.hl`,
+  in its line box: the box is offset to match).
+- **Script is an accent, not a habit (James, Nov 19):** one or two script words per video, only where they land with
+  purpose (the turn or the payoff: *promise*, *someone*, *nobody*, *remember*…). Every other word stays white Bebas
+  with the green highlight. Don't star a word in every caption. Engine: `projects/heavyweight-hills-hero/` (`.hl`,
   `.cap .acc`). Applied to the hook videos first; older edits pick it up when rebuilt and re-rendered.
 - Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
   the call to action, Nov 9): Heavyweight Hills / Sponsor my *summit* / QR / Scan to donate / link, 3 s. The
