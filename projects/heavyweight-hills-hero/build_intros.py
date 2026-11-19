@@ -53,9 +53,9 @@ MAP["days"] = DAYS
 # shots where the faces sit where the caption row would be: captions starting over them move to clear space
 # (3276: James's head sits high, so up into the sky; 3220: faces mid-frame under a white ceiling, so down onto
 # the dark jersey)
-HIGH_FACE = {"3276": 300, "3220": 1300, "3542": 300}
+HIGH_FACE = {"3276": 300, "3220": 1300, "3542": 300, "3579": 300}   # 3579: wide-eyed close-up, caption above the head
 # pale backgrounds (concrete footpath, dirt, the white bin): captions over them get a soft dark halo
-LIGHT_BG = {"3386", "3632", "3572", "3545"}   # (3307/3353, the summit-bin tap, are not used: James found them distracting)
+LIGHT_BG = {"3386", "3632", "3572", "3545", "3549"}   # (3307/3353, the summit-bin tap, are not used: James found them distracting)
 
 ENDCARD = 3.0      # s: the ask (QR code to the Movember page) after the closing line; cfg endcard=0 leaves it off
 QR = PROJECTS / "heavyweight-hills/film/assets/qr.svg"

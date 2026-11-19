@@ -167,4 +167,7 @@ visual hook, then the QR card. New clips Nov 10–18: IMG_3470, 3524, 3535, 3542
 | `Hook-Nobody-Watching.mp4` | "A heavier vest isn't the point, showing up when nobody is watching is." spiral onto the vest selfie | "The hardest part of this challenge isn't the hill…" zoom-through onto the night road |
 | `Hook-Your-Reminder.mp4` | "There have been mornings and evenings that I've questioned…" split: sunset over the night bridge | "If you're waiting until you feel motivated to make a change…" grid pop of the sun |
 
-Unused so far: hook 10, "We talk a lot about getting stronger, but we don't talk enough about checking in on each other."
+| `Hook-Checking-In.mp4` | "We talk a lot about getting stronger, but we don't talk enough about checking in on each other." night stairs 3×3 grid | "If you've ever said I'm fine, when you weren't, this one's for you." spiral onto the night shadow; "I'm fine" over the wide-eyed selfie |
+
+More clips Nov 19: IMG_3390, 3392, 3439, 3440, 3449, 3459, 3537, 3549, 3552, 3570, 3576, 3579 (night stairs, sunsets
+from the top, the night footpath, the wide-eyed selfie).

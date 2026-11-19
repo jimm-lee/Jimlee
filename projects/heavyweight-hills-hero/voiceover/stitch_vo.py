@@ -147,6 +147,10 @@ PLANS = {"full": [
     ("h", 126.45, 132.05, 0.45, "There have been mornings and evenings that I've questioned, why am I even doing this?"),
     ("h", 133.25, 135.50, 0.9, "Then I remember who I started it for."),
     ("h", 190.88, 197.05, 0.0, "If you're waiting until you feel motivated to make a change, let this be your reminder.")],
+    "hk-checkin": [
+    ("h", 200.38, 205.12, 0.9, "We talk a lot about getting stronger, but we don't talk enough about checking in on each other."),
+    ("h", 146.30, 151.10, 0.40, "If you've ever said, I'm fine, when you weren't,"),
+    ("h", 151.45, 152.88, 0.0, "this one's for you.")],
     "promo-hold": [
     ("m4", 194.40, 197.10, 0.15, "I can put myself under"),
     ("m4", 197.85, 199.40, 0.40, "stressful situations."),

@@ -96,6 +96,24 @@ HOOKS = {
         outro=False,
         fix={0: 0.35, 15: 6.4, 24: 9.53},
     ),
+    "hk-checkin": dict(
+        title="Heavyweight Hills — hooks: checking in",
+        length=13.3,
+        fx=[dict(kind="grid", at=0.0, dur=0.9, clip="3440", media=0.5, cols=3, rows=3, frames=2, order="stair"),
+            dict(kind="spiral", at=5.3, clips=[("3549", 1.0), ("3552", 1.0), ("3439", 1.0), ("3570", 1.0),
+                                               ("3537", 0.5), ("3392", 0.8)])],
+        cut=[("3440", 0.0, 2.2, 0.3),      # (night stairs burst into a 3 x 3 grid) "We talk a lot about getting stronger,"
+             ("3449", 2.2, 1.4, 0.5),      # "but we don't talk enough": feet on the stairs
+             ("3576", 3.6, 1.7, 0.3),      # "about checking in on each other.": sun through the trees
+             ("3390", 5.3, 2.15, 0.0),     # (spiral lands) "If you've ever said": your shadow on the night footpath
+             ("3579", 7.45, 1.15, 3.0),    # "I'm fine,": the wide-eyed selfie
+             ("3392", 8.6, 2.5, 1.2),      # "when you weren't,": the night footpath, your hand
+             ("3549", 11.1, 2.2, 1.0)],    # "this one's for you.": the sun going down over the sea
+        chunks=("We talk | a lot about | getting *stronger,* | but we don't | talk enough | about *checking* in | "
+                "on each other. | If you've | ever said, | I'm *fine,* | when you *weren't,* | this one's | for *you.*"),
+        outro=False,
+        fix={0: 0.35},
+    ),
 }
 
 if __name__ == "__main__":
