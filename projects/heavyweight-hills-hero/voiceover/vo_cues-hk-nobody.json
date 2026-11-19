@@ -1,0 +1,22 @@
+[
+ {
+  "take": "h",
+  "src": [
+   30.75,
+   34.9
+  ],
+  "at": 0.3,
+  "end": 4.45,
+  "text": "A heavier vest isn't the point, showing up when nobody is watching is."
+ },
+ {
+  "take": "h",
+  "src": [
+   83.35,
+   89.35
+  ],
+  "at": 5.35,
+  "end": 11.35,
+  "text": "The hardest part of this challenge isn't the hill, it's making the decision to show up again tomorrow."
+ }
+]

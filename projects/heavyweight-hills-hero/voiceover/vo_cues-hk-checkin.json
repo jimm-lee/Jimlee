@@ -1,0 +1,32 @@
+[
+ {
+  "take": "h",
+  "src": [
+   200.38,
+   205.12
+  ],
+  "at": 0.3,
+  "end": 5.04,
+  "text": "We talk a lot about getting stronger, but we don't talk enough about checking in on each other."
+ },
+ {
+  "take": "h",
+  "src": [
+   146.3,
+   151.1
+  ],
+  "at": 5.94,
+  "end": 10.74,
+  "text": "If you've ever said, I'm fine, when you weren't,"
+ },
+ {
+  "take": "h",
+  "src": [
+   151.45,
+   152.88
+  ],
+  "at": 11.14,
+  "end": 12.57,
+  "text": "this one's for you."
+ }
+]

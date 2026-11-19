@@ -1,0 +1,32 @@
+[
+ {
+  "take": "h",
+  "src": [
+   126.45,
+   132.05
+  ],
+  "at": 0.3,
+  "end": 5.9,
+  "text": "There have been mornings and evenings that I've questioned, why am I even doing this?"
+ },
+ {
+  "take": "h",
+  "src": [
+   133.25,
+   135.5
+  ],
+  "at": 6.35,
+  "end": 8.6,
+  "text": "Then I remember who I started it for."
+ },
+ {
+  "take": "h",
+  "src": [
+   190.88,
+   197.05
+  ],
+  "at": 9.5,
+  "end": 15.67,
+  "text": "If you're waiting until you feel motivated to make a change, let this be your reminder."
+ }
+]

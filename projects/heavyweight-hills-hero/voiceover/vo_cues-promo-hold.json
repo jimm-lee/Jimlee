@@ -1,0 +1,42 @@
+[
+ {
+  "take": "m4",
+  "src": [
+   194.4,
+   197.1
+  ],
+  "at": 0.3,
+  "end": 3.0,
+  "text": "I can put myself under"
+ },
+ {
+  "take": "m4",
+  "src": [
+   197.85,
+   199.4
+  ],
+  "at": 3.15,
+  "end": 4.7,
+  "text": "stressful situations."
+ },
+ {
+  "take": "m4",
+  "src": [
+   200.35,
+   203.1
+  ],
+  "at": 5.1,
+  "end": 7.85,
+  "text": "I can hold that weight on my shoulders"
+ },
+ {
+  "take": "o",
+  "src": [
+   17.62,
+   19.28
+  ],
+  "at": 8.45,
+  "end": 10.11,
+  "text": "Go on, look after yourself."
+ }
+]
