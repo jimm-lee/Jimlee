@@ -55,7 +55,7 @@ MAP["days"] = DAYS
 # the dark jersey)
 HIGH_FACE = {"3276": 300, "3220": 1300, "3542": 300, "3579": 300}   # 3579: wide-eyed close-up, caption above the head
 # pale backgrounds (concrete footpath, dirt, the white bin): captions over them get a soft dark halo
-LIGHT_BG = {"3386", "3632", "3572", "3545", "3549"}   # (3307/3353, the summit-bin tap, are not used: James found them distracting)
+LIGHT_BG = {"3386", "3632", "3572", "3545", "3549", "3621"}   # (3307/3353, the summit-bin tap, are not used: James found them distracting)
 
 ENDCARD = 3.0      # s: the ask (QR code to the Movember page) after the closing line; cfg endcard=0 leaves it off
 QR = PROJECTS / "heavyweight-hills/film/assets/qr.svg"
@@ -174,7 +174,8 @@ def captions(spec, words, fix):
         # each word is highlighted from when it is said until the next word starts (the last: until it ends)
         spans = []
         for j, (t, w) in enumerate(zip(part, ws)):
-            hs = max(0.0, w[1] - 0.03 - at)
+            # never before the word has written on (an empty green box flashed first otherwise)
+            hs = max(w[1] - 0.03 - at, j * PHRASE_STAGGER + PHRASE_WRITE + 0.02)
             follow = ws[j + 1][1] if j + 1 < len(ws) else min(out_t, w[2] + 0.25)
             he = max(hs + 0.12, min(follow, out_t) - at)
             spans.append(word_span(t, j * PHRASE_STAGGER, PHRASE_WRITE, hs, he))
