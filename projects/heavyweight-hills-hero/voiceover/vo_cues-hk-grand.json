@@ -1,0 +1,32 @@
+[
+ {
+  "take": "h",
+  "src": [
+   138.82,
+   141.92
+  ],
+  "at": 0.3,
+  "end": 3.4,
+  "text": "If you've ever said, I'm grand, when you weren't,"
+ },
+ {
+  "take": "h",
+  "src": [
+   142.75,
+   143.66
+  ],
+  "at": 3.85,
+  "end": 4.76,
+  "text": "this one's for you."
+ },
+ {
+  "take": "h",
+  "src": [
+   57.45,
+   63.5
+  ],
+  "at": 5.66,
+  "end": 11.71,
+  "text": "You can look completely fine, turn up every day and still be carrying more than people realise."
+ }
+]

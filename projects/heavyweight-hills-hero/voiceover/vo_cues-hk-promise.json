@@ -1,0 +1,32 @@
+[
+ {
+  "take": "h",
+  "src": [
+   169.8,
+   175.45
+  ],
+  "at": 0.3,
+  "end": 5.95,
+  "text": "One hill, 30 kilos, one promise, show up again tomorrow."
+ },
+ {
+  "take": "h",
+  "src": [
+   214.95,
+   217.88
+  ],
+  "at": 6.85,
+  "end": 9.78,
+  "text": "One missed day would be easy to explain,"
+ },
+ {
+  "take": "h",
+  "src": [
+   218.7,
+   222.12
+  ],
+  "at": 10.18,
+  "end": 13.6,
+  "text": "and that's exactly why I made this commitment public."
+ }
+]
