@@ -67,6 +67,7 @@
   .fxgrid { position: absolute; inset: 0; background: #000; visibility: hidden; }
   .cell { position: absolute; overflow: hidden; visibility: hidden; }
   .fxnest { box-shadow: 0 30px 80px rgba(0,0,0,.55); }
+  .lbar { position: absolute; left: 0; right: 0; height: 860px; background: #000; }
   .fxglow { position: absolute; inset: 0; visibility: hidden; background: #fff6e0; }
   .fxfreeze { position: absolute; inset: 0; visibility: hidden; }
   .fxfreeze .dim { position: absolute; inset: 0; background: rgba(0,0,0,.45); }
@@ -121,7 +122,7 @@
   <div id="flash" style="position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none"></div>
 
   <div id="endcard" data-om-id="end-card">
-    <div class="bg"><video src="assets/clips/3246.mp4" class="clip" data-start="{{LENGTH}}" data-duration="{{ENDCARD_DUR}}" data-media-start="1.0" muted playsinline></video></div>
+    <div class="bg"><video src="assets/clips/{{EC_CLIP}}.mp4" class="clip" data-start="{{LENGTH}}" data-duration="{{ENDCARD_DUR}}" data-media-start="{{EC_MEDIA}}" muted playsinline></video></div>
     <div class="t ec-title" id="ec1" style="opacity:0">Heavyweight Hills</div>
     <div class="t ec-ask" id="ec2" style="opacity:0">Sponsor my <span class="acc">summit</span></div>
     <div class="qrwrap" id="ecq" style="opacity:0"><img src="assets/qr.svg" alt="QR code to James Leahy's Movember page"></div>
@@ -271,6 +272,14 @@
       tl.set('#' + id, { visibility: 'visible' }, at)
         .fromTo('#' + id, { opacity: 0, filter: 'brightness(2.4)' }, { opacity: 1, filter: 'brightness(1)', duration: dur, ease: 'sine.inOut', immediateRender: false }, at)
         .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'dissolve') {   // a soft cross-dissolve
+      const [, id, at, dur] = f;
+      tl.set('#' + id, { visibility: 'visible' }, at)
+        .fromTo('#' + id, { opacity: 0 }, { opacity: 1, duration: dur, ease: 'sine.inOut', immediateRender: false }, at)
+        .set('#' + id, { visibility: 'hidden' }, at + dur);
+    } else if (f[0] === 'letterbox') {  // bars open from a thin slit to the full frame
+      const [, top, bot, at, dur] = f;
+      tl.fromTo(['#' + top, '#' + bot], { height: 860 }, { height: 0, duration: dur, ease: 'power3.inOut', immediateRender: false }, at);
     } else if (f[0] === 'freeze') {     // the moment freezes into a print, tilts, holds, snaps back
       const [, id, at, dur] = f, card = '#' + id + ' .card', dim = '#' + id + ' .dim';
       tl.set('#' + id, { visibility: 'visible' }, at)

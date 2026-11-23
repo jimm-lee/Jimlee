@@ -18,12 +18,14 @@ Calmer, more cinematic set (James, Nov 19: "something new, something fresh"):
 - bloom:  a bright, soft dissolve (the incoming shot fades in from over-exposed).
 - freeze: the moment freezes into a white-bordered print, tilts, holds, and snaps back.
 - strip:  a film strip of frames from different days scrolls up, slows, and the last frame opens into the shot.
+- dissolve: a plain soft cross-dissolve, for flow between graded shots.
+- letterbox: black bars open from a thin slit to the full frame, a cinematic opening reveal.
 """
 import subprocess
 from pathlib import Path
 
 HERE = Path(__file__).parent
-TRANSITIONS = ("iris", "nest", "blinds", "bloom")   # the incoming shot plays over the outgoing one
+TRANSITIONS = ("iris", "nest", "blinds", "bloom", "dissolve")   # the incoming shot plays over the outgoing one
 FPS = 30
 
 
@@ -141,6 +143,11 @@ def build(fx_list, cut):
                     html.append(f'  <div class="fxglow" id="{fid}g"></div>')
                 extra = f", {f.get('x', 50)}, {f.get('y', 40)}" if kind == "iris" else ""
                 js.append(f"['{kind}', '{fid}', {at:.3f}, {dur:.3f}{extra}]")
+            windows.append((at, at + dur))
+        elif kind == "letterbox":   # cinematic bars that open from a slit to the full frame
+            dur = f["dur"]
+            html.append(f'  <div class="lbar" id="fx{n}t" style="top:0"></div><div class="lbar" id="fx{n}b" style="bottom:0"></div>')
+            js.append(f"['letterbox', 'fx{n}t', 'fx{n}b', {at:.3f}, {dur:.3f}]")
             windows.append((at, at + dur))
         elif kind == "freeze":
             dur, clip, media = f["dur"], f["clip"], f["media"]

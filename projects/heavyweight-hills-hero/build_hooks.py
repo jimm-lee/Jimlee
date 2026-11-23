@@ -29,15 +29,22 @@ HOOKS = {
     "hk-weight": dict(
         title="Heavyweight Hills — hooks: not the weight",
         length=13.0,
-        fx=[dict(kind="strip", at=0.0, dur=1.6, frames=[("3460", 0.4), ("3637", 1.0), ("3604", 1.0), ("3440", 0.6),
-                                                     ("3549", 1.0), ("3542", 4.8)]),
-            dict(kind="iris", at=6.2, dur=1.0)],
-        cut=[("3542", 0.0, 1.8, 3.71),     # (the solo days scroll up; the last opens into the vest selfie) "30 kilos"
-             ("3624", 1.8, 1.8, 0.0),      # "on my back, but": feet in the dark
-             ("3552", 3.6, 2.6, 0.0),      # "it's not the weight I'm doing this for.": the sun low through the haze
-             ("3635", 6.2, 2.4, 0.4),      # (opens out of the sun) "I didn't start this challenge": the night road
-             ("3535", 8.6, 2.0, 0.5),      # "I started because someone mattered": sun through the trees
-             ("3470", 10.6, 2.4, 1.5)],    # "enough to make me show up.": the summit at sunset
+        # Nov 23 rebuild: one colour grade (g = graded copy), dissolves for flow, two clean hooks
+        fx=[dict(kind="letterbox", at=0.1, dur=1.3),
+            dict(kind="dissolve", at=1.8, dur=0.35),
+            dict(kind="dissolve", at=3.9, dur=0.4),
+            dict(kind="iris", at=6.2, dur=1.0),
+            dict(kind="dissolve", at=8.2, dur=0.35),
+            dict(kind="dissolve", at=9.6, dur=0.4),
+            dict(kind="dissolve", at=11.0, dur=0.45)],
+        cut=[("g3542", 0.0, 1.8, 4.4),     # (the letterbox opens on you) "30 kilos on my back": vest selfie, golden light
+             ("g3386", 1.8, 2.1, 0.2),     # "but it's not": feet on the footpath
+             ("g3552", 3.9, 2.3, 0.0),     # "the weight I'm doing this for.": the sun low through the haze
+             ("g3440", 6.2, 2.0, 0.3),     # (the sun's light swells into night) "I didn't start this challenge": the stairs
+             ("g3449", 8.2, 1.4, 0.5),     # "because I thought it'd be easy.": feet climbing them
+             ("g3576", 9.6, 1.4, 0.1),     # "I started because someone": the sun back through the trees
+             ("g3549", 11.0, 2.0, 2.0)],   # "mattered enough to make me show up.": the sun going down over the sea
+        endcard_bg=("g3549", 2.6),      # the QR card sits over the same graded sunset (blurred), so the ending flows
         chunks=("30 kilos | on my back, | but it's not | the weight | I'm doing this | for. | I didn't start | "
                 "this challenge | because I thought | it'd be easy. | I started | because *someone* | "
                 "mattered enough | to make me | show up."),

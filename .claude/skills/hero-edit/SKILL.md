@@ -58,6 +58,12 @@ instead of the hook-line pacing above:
   purpose (the turn or the payoff: *promise*, *someone*, *nobody*, *remember*…). Every other word stays white Bebas
   with the green highlight. Don't star a word in every caption. Engine: `projects/heavyweight-hills-hero/` (`.hl`,
   `.cap .acc`). Applied to the hook videos first; older edits pick it up when rebuilt and re-rendered.
+- **Graded, flowing format (James, Nov 23, on "Not the weight"):** one colour grade across the edit (`grade.py`:
+  filmic S-curve, teal shadows, amber highlights, greens to olive, soft vignette; night clips lifted), soft
+  cross-dissolves between shots instead of hard cuts, an arc of light (golden day → sunset → night → light again),
+  and two clean hooks (letterbox opening from a slit; the sun's light swelling into the next shot). The QR card
+  sits over the last shot's graded scene (`endcard_bg`), not an unrelated clip. This overrides "no grade" for the
+  campaign edits he asks to be graded.
 - Campaign edits (Heavyweight Hills) end on the **QR end card** after "Go on, look after yourself" (James asked for
   the call to action, Nov 9): Heavyweight Hills / Sponsor my *summit* / QR / Scan to donate / link, 3 s. The
   "no name card" rule still holds for lifestyle hero edits.

@@ -13,6 +13,7 @@ import re
 import shutil
 
 import fx
+import grade
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -207,6 +208,9 @@ def build(name, cfg):
         clips.symlink_to("../../clips")
 
     cfg = dict(cfg)
+    for c, *_ in cfg["cut"]:               # "g<clip>" = the colour-graded copy (grade.py)
+        if c.startswith("g"):
+            grade.graded(c[1:])
     cfg["cut"] = fx.adjust_cut(cfg.get("fx", []), cfg["cut"])   # transitions keep the outgoing shot underneath
     if not cfg.get("chunks"):            # a silent reel (e.g. the hook showcase): no voice, no captions
         words = []
@@ -256,10 +260,10 @@ def build(name, cfg):
     fx_html, fx_js, fx_windows = fx.build(cfg.get("fx", []), cut)
     tops, halo = dict(cfg.get("tops", {})), set()
     for i, (_, a, o) in enumerate(caps):
-        clip = next((c for c, s, dd, _ in cut if s <= a + 0.05 < s + dd), None)
+        clip = next((c.lstrip("g") for c, s, dd, _ in cut if s <= a + 0.05 < s + dd), None)
         if clip in HIGH_FACE:
             tops.setdefault(i, HIGH_FACE[clip])
-        if any(c in LIGHT_BG and s < o and a < s + dd for c, s, dd, _ in cut) or any(s < o and a < e for s, e in fx_windows):
+        if any(c.lstrip("g") in LIGHT_BG and s < o and a < s + dd for c, s, dd, _ in cut) or any(s < o and a < e for s, e in fx_windows):
             halo.add(i)   # pale ground, or a busy hook underneath
     types = [f'  <div class="t h cap{" halo" if i in halo else ""}" id="c{i}" data-om-id="caption-{i}" '
              f'style="top:{tops.get(i, CAPTION_TOP)}px">{h}</div>'
@@ -281,7 +285,8 @@ def build(name, cfg):
                  "FX_HTML": fx_html + "".join(f'\n  <div class="label" id="lb{i}">{t}</div>' for i, (t, a, e) in enumerate(cfg.get("labels", []))),
                  "LABELS_JS": ", ".join(f"['lb{i}', {a}, {e}]" for i, (t, a, e) in enumerate(cfg.get("labels", []))),
                  "FX_JS": fx_js,
-                 "LENGTH": str(length), "ENDCARD_DUR": str(cfg.get("endcard", ENDCARD)), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
+                 "LENGTH": str(length), "ENDCARD_DUR": str(cfg.get("endcard", ENDCARD)),
+                 "EC_CLIP": cfg.get("endcard_bg", ("3246", 1.0))[0], "EC_MEDIA": str(cfg.get("endcard_bg", ("3246", 1.0))[1]), "FADE_OUT": str(FADE_OUT), "LETTER_FADE": str(LETTER_FADE),
                  "MAP_KIND": mp["kind"], "MAP_AT": str(mp["at"]), "MAP_W": str(MAP["width_m"]),
                  "MAP_H": str(MAP["height_m"]),
                  "MAP_STYLE": ' style="visibility:visible"' if mp["at"] == 0 else "", "MAPJSON": json.dumps(MAP, separators=(",", ":"))}.items():
