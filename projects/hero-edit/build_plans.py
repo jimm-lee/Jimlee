@@ -124,6 +124,7 @@ PLANS = [
                               ("9065", 2.0), ("races", 0.3), ("8701", 2.0), ("2815", 1.0)]),
               ("7815", 9.5, 2.0, 4.0),                      # payoff: in the ice tub
               ("3366", 11.5, 3.5, 0.8)]),                   # linger: dusk sea
+
 ]
 
 
@@ -181,8 +182,12 @@ def variety_report():
     print("payoff+linger repeated:", {k: n for k, n in ends.items() if n > 1} or "none")
 
 
+import sys
+ONLY = sys.argv[1:]          # build just these slugs (prefix match); the old library clips aren't always on disk
 variety_report()
 for plan in PLANS:
+    if ONLY and not any(plan["slug"].startswith(o) for o in ONLY):
+        continue
     d = HERE / "plans" / plan["slug"]
     link(HERE / "clips", d / "assets" / "clips")
     link(HERE / "film-15" / "assets" / "fonts", d / "assets" / "fonts")
