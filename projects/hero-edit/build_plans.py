@@ -125,6 +125,16 @@ PLANS = [
               ("7815", 9.5, 2.0, 4.0),                      # payoff: in the ice tub
               ("3366", 11.5, 3.5, 0.8)]),                   # linger: dusk sea
 
+    # Series 2 (Nov 23): James's second caption list, from the Nov 23 clips. No closing line ("I don't need the go on
+    # look after yourself at the end"): the last caption chunk holds on the linger shot to the fade.
+    dict(slug="n02-nobody-prepares-you", length=15, outro=False,
+         hook="Nobody prepares you | for what | your camera roll | looks like | after moving | to *New* *Zealand*.",
+         cut=[("3705", 0.0, 2.5, 0.0),                      # hook: a power pole and the daytime moon (the mundane)
+              ("9325", 2.5, 1.5, 0.3), ("2011", 4.0, 1.5, 1.5),   # cliffs over turquoise water, waterfall through leaves
+              *seq(5.5, 0.5, [("9169", 1.0), ("9157", 0.5), ("8230", 4.2), ("9319", 3.6),
+                              ("8068", 0.5), ("9200", 1.0), ("9239", 0.0), ("3549", 2.0)]),
+              ("9061", 9.5, 1.5, 2.4),                      # payoff: a figure walking the beach at sunrise
+              ("8374", 11.0, 4.0, 0.5)]),                   # linger: the sun breaking through red cloud
 ]
 
 
@@ -192,11 +202,13 @@ for plan in PLANS:
     link(HERE / "clips", d / "assets" / "clips")
     link(HERE / "film-15" / "assets" / "fonts", d / "assets" / "fonts")
     link(HERE / "film-15" / "vendor", d / "vendor")
-    plan["cut"] = with_long_linger(plan["cut"])
+    if plan.get("outro", True):
+        plan["cut"] = with_long_linger(plan["cut"])
     length = plan["length"]
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
     start = 0.3 if length == 15 else 0.2
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
-                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True), fx=plan.get("fx"))
+                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True), fx=plan.get("fx"),
+                        closing=plan.get("outro", True))
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

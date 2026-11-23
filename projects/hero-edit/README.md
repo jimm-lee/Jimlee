@@ -88,3 +88,13 @@ faces are kept out from under the captions.
 **Caption edits, closing:** "GO ON," and "LOOK AFTER YOURSELF" sit as two stacked rows that both stay up; the linger
 shot is 3.5 s (15 s cuts) so the full line holds about a second before a 0.6 s fade. The dune run (9661) plays at real
 speed in the caption edits (James didn't want it slowed); `clips/9661.mp4` is the real-speed copy.
+
+## Caption edits, series 2 (Nov 23)
+
+James's second caption list (2–10), cut from the Nov 23 clips (see `COMPOSITIONS.md`). **No closing line**: the last
+caption chunk holds on the linger shot through the fade (`outro=False`). Renders go to `videos/captions-2/`.
+Build one with `python3 build_plans.py n02` (slug prefix).
+
+| # | Caption | Status |
+|---|---|---|
+| 2 | Nobody prepares you for what your camera roll looks like after moving to New Zealand. | rendered for review: `videos/captions-2/02-Nobody-Prepares-You-15s.mp4` |

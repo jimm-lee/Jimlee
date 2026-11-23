@@ -350,12 +350,15 @@ def build_fx(cut, fx, spiral_end=0.0):
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
-           spiral=False, fx=None):
+           spiral=False, fx=None, closing=True):
     collage_clips = [(c, 0, 0, m) for f in (fx or []) if f["kind"] in ("collage", "stack") for c, m in f["clips"]]
     flashes, spiral_end = spiral_flashes(cut, collage_clips) if spiral else ([], 0.0)
     if spiral:
         hook_start = max(hook_start, spiral_end + 0.1)   # the first caption starts as the spiral lands
     titles = chunks(hook, hook_start, read_per_word)
+    if not closing:   # no closing line (James, Nov 23 series): the last hook chunk holds to the end
+        html_, s_, _ = titles[-1]
+        titles = [*titles[:-1], (html_, s_, length)]
     # closing line: two stacked rows that both stay up; the second starts writing as soon as the first is said
     outro = chunks(OUTRO, end_at + OUTRO_DELAY)
     first = OUTRO.split("|")[0].split()
@@ -363,6 +366,8 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     outro = [(outro[0][0], outro[0][1], length),
              (outro[1][0], round(outro[0][1] + first_said, 2), length)]
     tops = dict(tops or {})
+    if not closing:
+        outro = []
     tops.update({len(titles) + i: (outro_top or OUTRO_TOP) + i * OUTRO_LINE for i in range(len(outro))})
     titles = titles + outro
     last = len(cut) - 1
