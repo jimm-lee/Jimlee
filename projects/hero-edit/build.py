@@ -133,6 +133,8 @@ WRITE_SHARE = 1.0     # letters are spread over the whole of the word's spoken t
 READ_BASE = 0.07      # hold after the last letter lands = READ_BASE + READ_PER_WORD (about 0.35 s)
 READ_PER_WORD = 0.28  # the 10 s cuts pass a slightly smaller value
 CHUNK_GAP = 0.0       # the next chunk starts writing as soon as the last one clears (no dead air)
+TYPED_FADE = 0.01     # series 2 (James, Nov 23): every letter typed out, on in a single frame
+CAPTION_TOP_MID = 790 # px; series 2: just north of centre
 CAPTION_TOP = 520     # px; single row in the upper third, not too high (James, Nov 2026)
 CHERRY = "#FDE68A"    # unused: green words no longer have an outline (kept so old templates still build)
 
@@ -181,7 +183,8 @@ def word_span(word: str, t: float = 0.0, d: float = 0.4) -> str:
     return f'<span class="w" data-t="{t}" data-d="{d}">{letters(word)}</span>'
 
 
-def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> list[tuple[str, float, float]]:
+def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD,
+           letter_fade: float = LETTER_FADE) -> list[tuple[str, float, float]]:
     """Split a hook line into timed chunks: (html of word spans, start, end)."""
     out, at = [], start
     for part in (p.strip() for p in hook.split("|")):
@@ -191,7 +194,7 @@ def chunks(hook: str, start: float, read_per_word: float = READ_PER_WORD) -> lis
             offsets.append(round(t, 2))
             t += speak(w)
         spans = " ".join(word_span(w, o, write_time(w)) for w, o in zip(words, offsets))
-        dur = offsets[-1] + write_time(words[-1]) * WRITE_SHARE + LETTER_FADE + READ_BASE + read_per_word
+        dur = offsets[-1] + write_time(words[-1]) * WRITE_SHARE + letter_fade + READ_BASE + read_per_word
         out.append((spans, round(at, 2), round(at + dur, 2)))
         at += dur + CHUNK_GAP
     return out
@@ -350,12 +353,12 @@ def build_fx(cut, fx, spiral_end=0.0):
 
 
 def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_word=READ_PER_WORD, outro_top=None,
-           spiral=False, fx=None, closing=True):
+           spiral=False, fx=None, closing=True, caption_top=CAPTION_TOP, letter_fade=LETTER_FADE):
     collage_clips = [(c, 0, 0, m) for f in (fx or []) if f["kind"] in ("collage", "stack") for c, m in f["clips"]]
     flashes, spiral_end = spiral_flashes(cut, collage_clips) if spiral else ([], 0.0)
     if spiral:
         hook_start = max(hook_start, spiral_end + 0.1)   # the first caption starts as the spiral lands
-    titles = chunks(hook, hook_start, read_per_word)
+    titles = chunks(hook, hook_start, read_per_word, letter_fade)
     if not closing:   # no closing line (James, Nov 23 series): the last hook chunk holds to the end
         html_, s_, _ = titles[-1]
         titles = [*titles[:-1], (html_, s_, length)]
@@ -408,7 +411,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     flash_js = ", ".join(str(t) for t in fx_flashes)
     spiral_js = ",\n    ".join(f"['sp{i}', {a}, {d}, {ang}, {sc}]" for i, (_, a, d, _, ang, sc) in enumerate(flashes))
     types = "\n".join(
-        f'  <div class="t h cap" id="t{i}" style="top:{(tops or {}).get(i, CAPTION_TOP)}px" data-om-id="caption-{i}">{html}</div>'
+        f'  <div class="t h cap" id="t{i}" style="top:{(tops or {}).get(i, caption_top)}px" data-om-id="caption-{i}">{html}</div>'
         for i, (html, s, e) in enumerate(titles)
     )
     titles_js = ",\n    ".join(f"['t{i}', {s}, {e}]" for i, (_, s, e) in enumerate(titles))
@@ -430,7 +433,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
             .replace("{{SPIRAL_END}}", str(spiral_end))
             .replace("{{TITLES_JS}}", titles_js)
             .replace("{{CHERRY}}", CHERRY)
-            .replace("{{LETTER_FADE}}", str(LETTER_FADE))
+            .replace("{{LETTER_FADE}}", str(letter_fade))
             .replace("{{WRITE_SHARE}}", str(WRITE_SHARE))
             .replace("{{FADE_OUT}}", str(FADE_OUT))
             .replace("{{WORD_GAP}}", str(WORD_GAP))

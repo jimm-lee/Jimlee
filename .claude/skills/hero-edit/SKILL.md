@@ -19,7 +19,7 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 | Type | **Bebas Neue** caps, letter-spacing .035em, thickened with a 3 px same-colour `-webkit-text-stroke`, white |
 | Accent | **One green word** (#75FF78) per caption line, **just the green + the shadow, no outline** (cherry and pastel-yellow outlines were tried and dropped) |
 | Shadow | `4px 6px 0 rgba(0,0,0,.28), 6px 8px 12px rgba(0,0,0,.35)` on all type |
-| Caption position | single row, `top: 520px` (upper third, not too high); no text below y 1440 |
+| Caption position | **Series 2 (Nov 23): just north of centre, `top: 790px`, every letter typed out (on in one frame, no fade)**, `SERIES_2` in `build_plans.py`; mid-frame means people's faces sit in the caption band more often, so check every hook. Earlier: single row, `top: 520px` (upper third, not too high); no text below y 1440 |
 | Ending | **Series 2 (Nov 23 captions): no closing line** — James: "I don't need the go on look after yourself at the end". The last caption chunk holds on the linger shot to the fade (`outro=False` in the plan). Earlier series: **No name card** (reads as forced promotion). Close on an open landscape with **"GO ON, / LOOK AFTER YOURSELF"** (*yourself* green), two stacked rows, fade to black |
 
 ## Captions (the part James cares most about)

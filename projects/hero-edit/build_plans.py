@@ -137,10 +137,11 @@ PLANS = [
               ("8374", 11.0, 4.0, 0.5)]),                   # linger: the sun breaking through red cloud
     dict(slug="n03-life-starts-happening", length=15, outro=False,
          hook="You leave home | thinking you'll | miss *everything*. | Then life | starts happening | over here.",
-         cut=[("1422", 0.0, 2.5, 0.3),                      # hook: Ireland's green jerseys, a long way from home
-              ("2885", 2.5, 1.5, 3.4), ("2898", 4.0, 1.5, 2.0),   # cloud pouring over the peaks, the Alps
+         cut=[("2885", 0.0, 2.5, 3.0),                      # hook: cloud pouring over the peaks (the rugby's faces sat
+                                                            # under the mid-frame caption, so it came out)
+              ("2898", 2.5, 1.5, 2.0), ("2987", 4.0, 1.5, 0.1),   # the Alps against blue sky, Clay Cliffs
               ("3666", 5.5, 1.7, 0.3),                      # the harbour at dusk under "miss everything."
-              *seq(7.2, 0.5, [("3494", 0.8), ("8877", 1.6), ("2788", 3.2), ("1920", 0.5),   # "Then life" cuts into the burst
+              *seq(7.2, 0.5, [("3494", 0.8), ("8877", 1.6), ("2788", 3.2), ("0454", 1.0),   # "Then life" cuts into the burst
                               ("3127", 1.2), ("2842", 1.0), ("3644", 0.5)]),
               ("3365", 10.7, 1.5, 1.0),                     # payoff: running the empty beach under "over here."
               ("3080", 12.2, 2.8, 0.5)]),                   # linger: the cove at sunset
@@ -204,6 +205,9 @@ def variety_report(plans=None):
 
 import sys
 ONLY = sys.argv[1:]          # build just these slugs (prefix match); the old library clips aren't always on disk
+# Series 2 look (James, Nov 23): captions just north of centre, every letter typed out (no fade)
+SERIES_2 = dict(caption_top=build.CAPTION_TOP_MID, letter_fade=build.TYPED_FADE)
+
 print("series 1:"); variety_report([p for p in PLANS if p["slug"].startswith("p")])
 print("series 2:"); variety_report([p for p in PLANS if p["slug"].startswith("n")])   # James's Nov 23 caption list
 for plan in PLANS:
@@ -220,6 +224,6 @@ for plan in PLANS:
     start = 0.3 if length == 15 else 0.2
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
                         read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True), fx=plan.get("fx"),
-                        closing=plan.get("outro", True))
+                        closing=plan.get("outro", True), **SERIES_2 if plan["slug"].startswith("n") else {})
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

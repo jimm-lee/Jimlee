@@ -91,7 +91,7 @@ speed in the caption edits (James didn't want it slowed); `clips/9661.mp4` is th
 
 ## Caption edits, series 2 (Nov 23)
 
-James's second caption list (2–10), cut from the Nov 23 clips (see `COMPOSITIONS.md`). **No closing line**: the last
+James's second caption list (2–10), cut from the Nov 23 clips (see `COMPOSITIONS.md`). Captions sit **just north of centre** (top 790 px) and **every letter is typed out** (no fade). **No closing line**: the last
 caption chunk holds on the linger shot through the fade (`outro=False`). Renders go to `videos/captions-2/`.
 Build one with `python3 build_plans.py n02` (slug prefix).
 
