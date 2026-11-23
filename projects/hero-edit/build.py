@@ -338,7 +338,10 @@ def build_fx(cut, fx, spiral_end=0.0):
             zooms.append((f"s{i - 1}", f"s{i}", cut[i][1]))
         elif kind == "iris":                    # the shot opens out of a growing circle over the shot before it
             i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
-            irises.append((f"s{i}", cut[i][1], f.get("dur", 0.8), f.get("x", 50), f.get("y", 50)))
+            irises.append((f"s{i}", cut[i][1], f.get("dur", 0.8), f.get("x", 50), f.get("y", 50), "circle"))
+        elif kind == "bars":                    # widescreen open: the shot opens from a thin band to full height
+            i = f.get("shot", 0)
+            irises.append((f"s{i}", cut[i][1], f.get("dur", 1.0), 50, f.get("y", 50), "bars"))
         elif kind == "collage":                 # several clips resized into a grid, popping in one by one
             rects = grid_cells(f["cols"], f["rows"], f.get("gap", GRID_GAP))
             at, dur = f["at"], f["dur"]
@@ -375,7 +378,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
     titles = titles + outro
     last = len(cut) - 1
     for f in fx or []:
-        if f["kind"] == "iris":
+        if f["kind"] == "iris" and f["shot"] != 0:   # shot 0 opens out of black, nothing to extend
             i = len(cut) - 1 if f["shot"] == "last" else f["shot"]
             pc, pa, pd, pm = cut[i - 1]
             cut = [*cut[:i - 1], (pc, pa, round(pd + f.get("dur", 0.8), 3), pm), *cut[i:]]
@@ -402,7 +405,7 @@ def render(cut, hook, hook_start, end_at, length, title, tops=None, read_per_wor
         f"['{bg}', {a}, {e}, [" + ", ".join(f"['{cid}', {d}, {r}, {x}, {y}]" for cid, d, r, x, y in cards) + "]]"
         for bg, a, e, cards in fx_stacks)
     mirror_js = ",\n    ".join(f"['{a}', {b}, {c}, {d}]" for a, b, c, d in fx_mirrors)
-    iris_js = ",\n    ".join(f"['{a}', {b}, {c}, {x}, {y}]" for a, b, c, x, y in fx_irises)
+    iris_js = ",\n    ".join(f"['{a}', {b}, {c}, {x}, {y}, '{sh}']" for a, b, c, x, y, sh in fx_irises)
     spin_js = ",\n    ".join(f"['{w}', '{sid}', {a}, {d}]" for w, sid, a, d in fx_spins)
     shots += ("\n" + fx_html) if fx_html else ""
     cut_js = ",\n    ".join(f"['s{i}', {takeover.get(i, s)}, {round(s + d - takeover.get(i, s), 3)}]"

@@ -42,7 +42,8 @@ Renders with huashu-motion (`.claude/skills/huashu-motion/bin/om`). Brand file: 
 15 s: hook 0–2.5 · connection 2.5–5.5 · build 5.5–9.5 (0.5 s cuts) · payoff 9.5–11 · linger 11–15.
 10 s: hook 0–2 · connection 2–3 · build 3–5 · payoff 5–6 · linger 6–10.
 - **Hook**: an unexpected image under the first caption chunk (geyser, ice plunge, jellyfish, motorway…).
-- **Opening spiral** (James, Nov 2026): before the hook lands, every clip in the edit flashes by for **3 frames**
+- **Series 2 (Nov 23): no spiral.** James: "clean up that start". Each edit gets **one simple aesthetic visual hook at the start and another about two thirds in** (e.g. iris out of the moon + zoom-through into the payoff; widescreen bars open + iris into the payoff). Vary the pair between edits; first caption at 0.7 s so it isn't typed over black.
+- **Opening spiral** (James, Nov 2026, series 1 only): before the hook lands, every clip in the edit flashes by for **3 frames**
   (the last three for 4: "slowed by the smallest margin so you get the essence of it"), turning from 32° to level
   and zooming to cover the frame, landing on the hook shot (~0.9 s for 8 clips, ~1.4 s for 13). The first caption
   starts as it lands, which pushes captions later: re-check that the last chunk doesn't land on the payoff's faces.

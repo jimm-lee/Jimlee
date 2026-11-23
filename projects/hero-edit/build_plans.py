@@ -134,7 +134,11 @@ PLANS = [
               *seq(5.5, 0.5, [("9169", 1.0), ("9157", 0.5), ("8230", 4.2), ("9319", 3.6),
                               ("8068", 0.5), ("9200", 1.0), ("9239", 0.0), ("3549", 2.0)]),
               ("9061", 9.5, 1.5, 2.4),                      # payoff: a figure walking the beach at sunrise
-              ("8374", 11.0, 4.0, 0.5)]),                   # linger: the sun breaking through red cloud
+              ("8374", 11.0, 4.0, 0.5)],                    # linger: the sun breaking through red cloud
+         # James: no spiral; one simple hook at the start, another two thirds in
+         start=0.7,
+         fx=[dict(kind="iris", shot=0, dur=1.1, x=53, y=37),     # opens out of the daytime moon
+             dict(kind="zoom", into=11)]),                       # punch through into the payoff at 9.5 s
     dict(slug="n03-life-starts-happening", length=15, outro=False,
          hook="You leave home | thinking you'll | miss *everything*. | Then life | starts happening | over here.",
          cut=[("2885", 0.0, 2.5, 3.0),                      # hook: cloud pouring over the peaks (the rugby's faces sat
@@ -144,7 +148,10 @@ PLANS = [
               *seq(7.2, 0.5, [("3494", 0.8), ("8877", 1.6), ("2788", 3.2), ("0454", 1.0),   # "Then life" cuts into the burst
                               ("3127", 1.2), ("2842", 1.0), ("3644", 0.5)]),
               ("3365", 10.7, 1.5, 1.0),                     # payoff: running the empty beach under "over here."
-              ("3080", 12.2, 2.8, 0.5)]),                   # linger: the cove at sunset
+              ("3080", 12.2, 2.8, 0.5)],
+         start=0.7,
+         fx=[dict(kind="bars", shot=0, dur=1.1, y=45),                             # widescreen open on the peaks
+             dict(kind="iris", shot=11, dur=0.8, x=50, y=62)]),                    # the beach run opens out of a circle                   # linger: the cove at sunset
 ]
 
 
@@ -206,7 +213,7 @@ def variety_report(plans=None):
 import sys
 ONLY = sys.argv[1:]          # build just these slugs (prefix match); the old library clips aren't always on disk
 # Series 2 look (James, Nov 23): captions just north of centre, every letter typed out (no fade)
-SERIES_2 = dict(caption_top=build.CAPTION_TOP_MID, letter_fade=build.TYPED_FADE)
+SERIES_2 = dict(caption_top=build.CAPTION_TOP_MID, letter_fade=build.TYPED_FADE)   # and no spiral (see loop)
 
 print("series 1:"); variety_report([p for p in PLANS if p["slug"].startswith("p")])
 print("series 2:"); variety_report([p for p in PLANS if p["slug"].startswith("n")])   # James's Nov 23 caption list
@@ -221,9 +228,9 @@ for plan in PLANS:
         plan["cut"] = with_long_linger(plan["cut"])
     length = plan["length"]
     end_at = plan["cut"][-1][1]  # the linger shot carries the closing line
-    start = 0.3 if length == 15 else 0.2
+    start = plan.get("start", 0.3 if length == 15 else 0.2)   # first caption
     html = build.render(plan["cut"], plan["hook"], start, end_at, float(length), plan["slug"],
-                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", True), fx=plan.get("fx"),
+                        read_per_word=plan.get("read", build.READ_PER_WORD), outro_top=plan.get("outro_top"), spiral=plan.get("spiral", not plan["slug"].startswith("n")), fx=plan.get("fx"),
                         closing=plan.get("outro", True), **SERIES_2 if plan["slug"].startswith("n") else {})
     (d / "index.html").write_text(html)
     print(plan["slug"], length, "s; caption stills at", caption_times(plan))

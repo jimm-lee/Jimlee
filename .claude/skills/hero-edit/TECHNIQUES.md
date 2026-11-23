@@ -37,6 +37,8 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 5. **Flash frames** (built: `kind="flash"`). Two frames of 55 % white. *Use*: only on grid transitions. *Avoid*:
    everywhere else (James found filters and flashes distracting).
 
+24. **Widescreen open** (built: `kind="bars", shot=0, dur=1.1, y=45`; first used on series 2 #3). The first shot opens from a thin horizontal band to full height. *Use*: a calm, cinematic start. *Avoid*: mid-edit, where it reads as a glitch.
+
 ### Easy to add (post-only, from the existing library)
 
 6. **Split screen** (built, top/bottom: `kind="split", a=(clip, media), into=i, dur=0.8`; B slides up beside A, holds, then fills the frame; masks + transforms only; first used on #7) (2 or 3 vertical or horizontal panels, one clip each, sliding in). *Use*: contrast captions: the
@@ -59,7 +61,7 @@ Status: **built** = in the engine (`build.py` / `template.html`, plan keys in `b
 12. **Nested frame / infinite zoom** (the next clip appears small, framed inside the current one, then scales to
     fill; can chain 2–3). *Use*: distance and journey: "18,000km from home", "other side of the world". *Avoid*: with
     the spiral right after it (two zooms in a row).
-13. **Shape-mask iris** (built: `kind="iris", shot="last", dur=0.8, x=50, y=44`; first used on #5) (a circle or rounded rectangle opens from a point, often the sun or a face, to reveal the
+13. **Shape-mask iris** (built: `kind="iris", shot="last"|0|i` (shot 0 opens from black), dur=0.8, x=50, y=44`; first used on #5) (a circle or rounded rectangle opens from a point, often the sun or a face, to reveal the
     next clip). *Use*: soft reveals into the linger: an iris opening from the sun in 2636 / 2603 / 9619 sunrises.
     Calmer than the crop flash; suits reflective captions.
 14. **Blinds / strip wipe** (5–7 vertical strips slide in, staggered). A calmer cousin of the grid. *Use*: section

@@ -178,9 +178,12 @@
     });
   });
   // iris: the shot opens out of a growing circle over the shot before it
-  IRISES.forEach(([id, at, dur, x, y]) => {
-    tl.set('#' + id, { clipPath: `circle(0% at ${x}% ${y}%)` }, at)
-      .to('#' + id, { clipPath: `circle(125% at ${x}% ${y}%)`, duration: dur, ease: 'power2.inOut' }, at)
+  IRISES.forEach(([id, at, dur, x, y, shape]) => {
+    const [from, to] = shape === 'bars'   // widescreen open: a thin band at y % grows to the full frame
+      ? [`inset(${y - 3}% 0% ${100 - y - 3}% 0%)`, 'inset(0% 0% 0% 0%)']
+      : [`circle(0% at ${x}% ${y}%)`, `circle(125% at ${x}% ${y}%)`];
+    tl.set('#' + id, { clipPath: from }, at)
+      .to('#' + id, { clipPath: to, duration: dur, ease: shape === 'bars' ? 'expo.inOut' : 'power2.inOut' }, at)
       .set('#' + id, { clipPath: 'none' }, at + dur);
   });
   // flash: two frames of white on a grid transition, kept subtle
