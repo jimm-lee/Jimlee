@@ -135,6 +135,15 @@ PLANS = [
                               ("8068", 0.5), ("9200", 1.0), ("9239", 0.0), ("3549", 2.0)]),
               ("9061", 9.5, 1.5, 2.4),                      # payoff: a figure walking the beach at sunrise
               ("8374", 11.0, 4.0, 0.5)]),                   # linger: the sun breaking through red cloud
+    dict(slug="n03-life-starts-happening", length=15, outro=False,
+         hook="You leave home | thinking you'll | miss *everything*. | Then life | starts happening | over here.",
+         cut=[("1422", 0.0, 2.5, 0.3),                      # hook: Ireland's green jerseys, a long way from home
+              ("2885", 2.5, 1.5, 3.4), ("2898", 4.0, 1.5, 2.0),   # cloud pouring over the peaks, the Alps
+              ("3666", 5.5, 1.7, 0.3),                      # the harbour at dusk under "miss everything."
+              *seq(7.2, 0.5, [("3494", 0.8), ("8877", 1.6), ("2788", 3.2), ("1920", 0.5),   # "Then life" cuts into the burst
+                              ("3127", 1.2), ("2842", 1.0), ("3644", 0.5)]),
+              ("3365", 10.7, 1.5, 1.0),                     # payoff: running the empty beach under "over here."
+              ("3080", 12.2, 2.8, 0.5)]),                   # linger: the cove at sunset
 ]
 
 
@@ -176,9 +185,10 @@ def caption_times(plan):
     return out
 
 
-def variety_report():
+def variety_report(plans=None):
     """Every clip's uses, plus any pair of shots that sits side by side in more than one edit."""
     from collections import Counter, defaultdict
+    PLANS = plans if plans is not None else globals()["PLANS"]
     uses, pairs = Counter(), defaultdict(list)
     for plan in PLANS:
         clips = [c for c, *_ in plan["cut"]]
@@ -194,7 +204,8 @@ def variety_report():
 
 import sys
 ONLY = sys.argv[1:]          # build just these slugs (prefix match); the old library clips aren't always on disk
-variety_report()
+print("series 1:"); variety_report([p for p in PLANS if p["slug"].startswith("p")])
+print("series 2:"); variety_report([p for p in PLANS if p["slug"].startswith("n")])   # James's Nov 23 caption list
 for plan in PLANS:
     if ONLY and not any(plan["slug"].startswith(o) for o in ONLY):
         continue

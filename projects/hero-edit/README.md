@@ -98,3 +98,4 @@ Build one with `python3 build_plans.py n02` (slug prefix).
 | # | Caption | Status |
 |---|---|---|
 | 2 | Nobody prepares you for what your camera roll looks like after moving to New Zealand. | rendered for review: `videos/captions-2/02-Nobody-Prepares-You-15s.mp4` |
+| 3 | You leave home thinking you'll miss everything. Then life starts happening over here. | rendered for review: `videos/captions-2/03-Life-Starts-Happening-15s.mp4` |
